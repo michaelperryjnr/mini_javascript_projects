@@ -24,17 +24,18 @@ function count() {
     // let time = `${hourCount}h:${minuteCount}m:${counter}s`;
     // console.log(time);
   }
+  minutes.innerHTML = minuteCount;
+
+  hours.innerHTML = hourCount;
+
+  seconds.innerHTML = counter;
+
+  dateBtn.addEventListener("click", () => {
+    fullDate.innerHTML = date;
+  });
 }
 
-minutes.innerHTML = minuteCount;
 
-hours.innerHTML = hourCount;
-
-seconds.innerHTML = counter;
-
-dateBtn.addEventListener('click', () => {
-    fullDate.innerHTML = date;
-})
 
 
 
