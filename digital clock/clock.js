@@ -23,15 +23,17 @@ function count() {
     }
     // let time = `${hourCount}h:${minuteCount}m:${counter}s`;
     // console.log(time);
+    counter = 0;
   }
   minutes.innerHTML = minuteCount;
 
   hours.innerHTML = hourCount;
 
-  seconds.innerHTML = counter;
+  seconds.innerHTML = counter < 10 ? '0' + `${counter}` : counter;
 
   dateBtn.addEventListener("click", () => {
-    fullDate.innerHTML = date;
+    let currentDate = new Date();
+    fullDate.innerHTML = currentDate;
   });
 }
 
