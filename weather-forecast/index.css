@@ -1,0 +1,47 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+h1 {
+    font-size: 2rem;
+    color: rgb(14, 121, 222)
+}
+
+.form-input {
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    border: solid white;
+    background-color: rgb(39, 39, 39);
+}
+
+.form-input::placeholder {
+    color: white;
+    font-size: 0.7rem;
+}
+
+.form-input {
+    color: white;
+    font-size: 0.9rem;
+}
+
+.submit {
+    padding: 1.4rem 2rem;
+    margin-top: 1.8rem;
+    background-color: rgb(14, 121, 222);
+    border: none;
+    border-radius: 0.8rem;
+    transition: all 0.3s;
+    animation: bounce 0.5s;
+}
+
+.submit:hover {
+    background-color: rgb(12, 99, 167);
+    color: white;
+    cursor: pointer;
+    animation: ease-out 0.3s;
+}
