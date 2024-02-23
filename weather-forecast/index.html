@@ -12,11 +12,18 @@
 <body>
     <section class="main">
         <h1>Weather Forecast</h1>
-        <form class="form" id="form">
-            <input type="text" id="location" placeholder="Enter your location" class="form-input">
-        </form>
-        <button id="submit" class="submit">Get Weather Details</button>
-        <div id="weather-div"></div>
+        <div class="form-elements">
+            <form class="form" id="form">
+                <input type="text" id="location" placeholder="Enter your location" class="form-input">
+            </form>
+            <button id="submit" class="submit">Get Weather Details</button>
+        </div>
+        <div class="loader-container" id="loader-container">
+            <div id="loader" class="loader"></div>
+        </div>
+
+        <div id="weather-div" class="weather-div"></div>
+
     </section>
     <script src="weather.js"></script>
 </body>
