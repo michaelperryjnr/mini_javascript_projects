@@ -1,36 +1,37 @@
 const countBtn = document.getElementById("count-btn");
 const text = document.getElementById("text-input");
-const letterCunt = document.getElementById("stat-letter");
+const letterCount = document.getElementById("stat-letter");
+const wordCount = document.getElementById("stat-words");
+const punctuationCount = document.getElementById("stat-punctuation");
 
+let letter = [];
 let words = [];
+let punctuationsArray = [];
 
-letterCunt.innerHTML = words.length <= 0 ? 0 : words.length - 1;
+letterCount.innerHTML = letter.length <= 0 ? 0 : letter.length;
 
-function count (){
- let userText = JSON.stringify(text.value);
-    for(let i = 0; i <= userText.length; i++){
-        if(userText[i] === '"' || undefined || null){
-            continue;
-        }
-        words.push(userText[i]);
-    }
-  return words;
-};
+const punctuations = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/g;
 
-const countWords = async () => {
-  const isNotNull = await text.value;
-  const isTyPing = text.value != "" || " " || null ? true : false;
-  if (isTyPing === true) {
+function count() {
+let userText = text.value;
+letter = userText.split("").filter(char => !punctuations.test(char) && char !== " " && char !== "\n");
+words = userText.split(" ").filter(word => word !== "");
+punctuationsArray = userText.split("").filter(char => punctuations.test(char));
+}
+
+const countStats = () => {
+    letter = [];
     words = [];
+    punctuationsArray = [];
     count();
-    letterCunt.innerHTML = words.length <= 0 ? 0 : words.length - 1 ;
-  } else {
-    console.log("Start typing to count words");
-  }
+    letterCount.innerHTML = letter.length;
+    wordCount.innerHTML = words.length;
+    punctuationCount.innerHTML = punctuationsArray.length;
+  
 };
 
-// setInterval(countWords, 1000)
+const intervalId = setInterval(countStats, 1000)
 
-text.addEventListener('input', countWords);
+text.addEventListener('input', countStats);
 
-countBtn.addEventListener('click', countWords);
+countBtn.addEventListener('click', countStats);
