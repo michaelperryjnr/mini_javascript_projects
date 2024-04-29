@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../index.css">
     <title>Word Counter</title>
 </head>
+
 <body>
     <section class="main">
         <h1>Word Counter</h1>
@@ -16,9 +18,27 @@
         </div>
         <div class="word-statics container">
         </div>
-        <button class="count-btn" id="count-btn" onsubmit="none">
+        <div class="stat-container">
+            <div class="stats">
+                <div class="stat">Letters</div>
+                <div class="stat-value" id="stat-letter"></div>
+            </div>
+            <div class="stats">
+                <div class="stat">Words</div>
+                <div class="stat-value" id="stat-words">N/A</div>
+            </div>
+            <div class="stats">
+                <div class="stat">Puctuations</div>
+                <div class="stat-value" id="stat-punctuation"> N/A</div>
+            </div>
+        </div>
+        
+        <div class="count-btn" id="count-btn" onsubmit="none">
             Count Words
-        </button>
+        </div>
+
     </section>
+    <script src="counter.js"></script>
 </body>
+
 </html>
