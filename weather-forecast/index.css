@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-* > * {
-    font-family: "Poppins", sans-serif;
-}
+
 
 .main {
     display: flex;
@@ -15,7 +13,8 @@
 
 h1 {
     font-size: 2rem;
-    color: rgb(14, 121, 222)
+    color: rgb(14, 121, 222);
+    font-family: "Poppins", sans-serif;
 }
 
 .form-input {
@@ -26,11 +25,13 @@ h1 {
     border-bottom-right-radius: 0;
     border: solid white;
     background-color: rgb(39, 39, 39);
+    font-family: "Poppins", sans-serif;
 }
 
 .form-input::placeholder {
     color: white;
     font-size: 0.7rem;
+    font-family: "Poppins", sans-serif;
 }
 
 .form-input {
@@ -48,6 +49,7 @@ h1 {
     border-bottom-right-radius: 0.8rem;
     transition: all 0.3s;
     animation: bounce 0.5s;
+    font-family: "Poppins", sans-serif;
 }
 
 .submit:hover {
