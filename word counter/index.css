@@ -41,6 +41,13 @@ textarea {
     color: black;
     height: 15rem;
     width: 20rem;
+    border: none;
+    border-radius: 3.6%;
+}
+
+textarea:focus{
+    /* border: none; */
+    outline: none;
 }
 
 .count-btn {
@@ -58,4 +65,28 @@ textarea {
     padding: 1.4rem 2.5rem;
     background-color: rgb(5, 144, 203);
     color:  white;
+}
+
+
+.stat-container {
+    margin-top: 2rem;
+    border-style: solid;
+    border-color: white;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 6%;
+}
+
+
+.stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    display: flex;
+    gap: 2rem
 }
