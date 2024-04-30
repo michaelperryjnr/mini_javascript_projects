@@ -12,6 +12,9 @@ let gameActive = true;
 const player1Moves = [];
 const player2Moves = [];
 const playersturn = document.querySelector(".player");
+const player1wins = document.querySelector(".player1-wins");
+const player2wins = document.querySelector(".player2-wins");
+const scoreBoard = [0, 0];
 
 const winningConditions = [
   [0, 1, 2],
@@ -24,19 +27,19 @@ const winningConditions = [
   [2, 4, 6],
 ];
 
-
 cells.forEach((cell) => {
   const cellId = parseInt(cell.getAttribute("data-cell"));
   cell.addEventListener("click", () => {
     if (gameActive && !gameBoard[cellId]) {
       gameBoard[cellId] = currentPlayer;
       cell.textContent = currentPlayer;
-      if (currentPlayer === player1) {
-        player1Moves.push(cellId);
-      } else {
-        player2Moves.push(cellId);
-      }
-      playersturn.textContent = currentPlayer === player1 ? player2 : player1;
+          cell.classList.add(currentPlayer === player1 ? 'player1' : 'player2');
+        if (currentPlayer === player1) {
+          player1Moves.push(cellId);
+        } else {
+          player2Moves.push(cellId);
+        }
+        playersturn.textContent = currentPlayer === player1 ? player2 : player1;
       currentPlayer = currentPlayer === player1 ? player2 : player1;
     }
     handleResultValidation();
@@ -55,11 +58,21 @@ function handleResultValidation(player1Moves, player2Moves) {
     } else if (a === b && b === c) {
       roundWon = true;
       gameActive = false;
-      message.textContent = `${currentPlayer === player1 ? player2 : player1} has won!`;
+      scoreBoard[currentPlayer === player2 ? 0 : 1]++;
+      player1wins.textContent = scoreBoard[0];
+      player2wins.textContent = scoreBoard[1];
+      message.classList.add(currentPlayer === player1 ? 'message-won-player1' : 'message-won-player2');
+      message.textContent = `${
+        currentPlayer === player1 ? player2 : player1
+      } has won!`;
       break;
-    }
+        } else if (a !== b && b !== c && c !== a && !gameBoard.includes("")) {
+      roundWon = true;
+      gameActive = false;
+      message.textContent = "It's a tie!";
+      break;
+        }
   }
-
 }
 
 resetBtn.addEventListener("click", () => {
