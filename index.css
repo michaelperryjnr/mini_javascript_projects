@@ -40,7 +40,6 @@ html {
   border-radius: 0.8rem;
   transition: all 0.3s;
   animation: bounce 0.5s;
-  text-decoration: none;
   color: white;
   font-weight: bold;
   font-size: large;
@@ -63,4 +62,8 @@ html {
   100% {
     transform: scale(1);
   }
+}
+
+a {
+  text-decoration: none;
 }
