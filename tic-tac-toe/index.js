@@ -24,13 +24,11 @@ const winningConditions = [
   [2, 4, 6],
 ];
 
-console.log(cells);
 
 cells.forEach((cell) => {
   const cellId = parseInt(cell.getAttribute("data-cell"));
   cell.addEventListener("click", () => {
     if (gameActive && !gameBoard[cellId]) {
-      console.log(currentPlayer);
       gameBoard[cellId] = currentPlayer;
       cell.textContent = currentPlayer;
       if (currentPlayer === player1) {
@@ -42,13 +40,26 @@ cells.forEach((cell) => {
       currentPlayer = currentPlayer === player1 ? player2 : player1;
     }
     handleResultValidation();
-    console.log(player1Moves);
-    console.log(player2Moves);
   });
 });
 
 function handleResultValidation(player1Moves, player2Moves) {
   let roundWon = false;
+  for (let i = 0; i <= 7; i++) {
+    const winCondtion = winningConditions[i];
+    const a = gameBoard[winCondtion[0]];
+    const b = gameBoard[winCondtion[1]];
+    const c = gameBoard[winCondtion[2]];
+    if (a === "" || b === "" || c === "") {
+      continue;
+    } else if (a === b && b === c) {
+      roundWon = true;
+      gameActive = false;
+      message.textContent = `${currentPlayer === player1 ? player2 : player1} has won!`;
+      break;
+    }
+  }
+
 }
 
 resetBtn.addEventListener("click", () => {
