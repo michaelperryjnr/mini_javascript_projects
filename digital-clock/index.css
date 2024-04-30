@@ -13,6 +13,7 @@ html {
     justify-content: center;
     gap: 3rem;
     height: 100vh;
+    padding: 1rem;
 }
 
 .clock-container h1 {
@@ -25,7 +26,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6rem;
+    gap: 2rem;
 }
 
 .clock-items {
@@ -51,4 +52,6 @@ html {
 
 .full-date {
     color: white;
+    text-wrap: wrap;
+    text-align: center;
 }
