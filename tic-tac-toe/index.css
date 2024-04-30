@@ -36,6 +36,7 @@ body {
     padding: 0.4rem 0.4rem;
     border: 0.3rem solid rgb(14, 121, 222);
     border-radius: 0.8rem;
+    box-shadow: 0 0 1rem rgba(14, 122, 222, 0.767);
 }
 
 .cell {
@@ -75,7 +76,60 @@ body {
 
 .reset:hover {
     color: rgb(14, 121, 222);
-    padding: 0.8rem 2.5rem;
-    font-size: 1.8rem;
-    border-color: rgba(34, 196, 34, 0.701);
+    padding: 0.6rem 2.2rem;
+    font-size: 1.6rem;
+    background-color: rgb(14, 121, 222);
+    border-color: rgb(14, 121, 222);
+    color: white;
 }
+
+.player1 {
+    color: rgb(228, 71, 71);
+    font-size: bold;
+}
+
+.player2 {
+    color: rgb(34, 196, 34);
+    font-size: bold;
+}
+
+.message {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    margin-top: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.message-won-player1 {
+    animation: fade-in 0.5s forwards;
+    color: rgb(34, 196, 34);
+}
+
+.message-won-player2 {
+    animation: fade-in 0.5s forwards;
+    color: rgb(228, 71, 71);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.score-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.1rem;
+    border: solid 0.2rem rgb(14, 121, 222);
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+}
+
