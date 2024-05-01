@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+html {
+    background-color: black;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+* > * {
+    color: white;
+    font-family: "Poppins", sans-serif;
+}
+
+.add-task {
+    border: solid 0.2rem rgb(14, 121, 222);
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+    background-color: rgb(14, 121, 222);
+    transition: ease-out all 0.15s;
+    cursor: pointer;
+}
+
+.add-task:hover {
+    padding: 0.7rem 2.2rem;
+}
