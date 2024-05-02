@@ -25,8 +25,42 @@ html {
     background-color: rgb(14, 121, 222);
     transition: ease-out all 0.15s;
     cursor: pointer;
+    text-align: center;
 }
 
 .add-task:hover {
     padding: 0.7rem 2.2rem;
+}
+
+.task-container, .add-task-div, .task-status-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-container {
+    gap: 1rem;
+    padding: 0.5rem 2rem;
+}
+
+.textBx {
+    background-color: black;
+    border: solid 0.04rem gray;
+    border-radius: 0.4rem;
+    padding: 0.5rem 2rem;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+}
+
+.textBx:focus{
+   border: none; 
+}
+
+.tasks {
+    display: none;
+}
+
+.tasks-Clicked {
+    display: contents;
 }
