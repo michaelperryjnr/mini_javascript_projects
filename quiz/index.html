@@ -125,6 +125,11 @@
             font-weight: bold;
             font-size: 1.5rem;
         }
+
+        .feedbackContainer {
+            overflow: scroll;
+            display: contents;
+        }
     </style>
 </head>
 
@@ -152,17 +157,23 @@
             <div id="result" class="result"></div>
         </div>
 
-        <div id="feedbackContainer" class="feedback">
+        <div id="feedbackContainer" style="overflow: scroll;" class="feedback">
+
             <form id="feedbackForm">
                 <!-- Quiz questions with answers will be displayed here -->
             </form>
-            <div class="button-group">
+            <!-- <div class="button-group" id="retakeGroup">
                 <button class="btn" id="feedbackBackButton" onclick="previousFeedback()">Back</button>
                 <button class="btn" id="feedbackNextButton" onclick="nextFeedback()">Next</button>
                 <button class="btn" id="retakeQuizButton" onclick="retakeQuiz()">Retake Quiz</button>
-            </div>
+            </div> -->
         </div>
-
+        <div class="button-group" id="retakeGroup" style="display: none;">
+            <button class="btn" id="feedbackBackButton" onclick="previousFeedback()">Back</button>
+            <button class="btn" id="feedbackNextButton" onclick="nextFeedback()">Next</button>
+            <button class="btn" id="retakeQuizButton" onclick="retakeQuiz()">Retake Quiz</button>
+        </div>
+        <div id="result2" class="result"></div>
         <div id="feedbackChoice" style="display: none;">
             <p>Show feedback?</p>
             <button class="btn" id="yesButton" onclick="showFeedback()">Yes</button>
@@ -1148,10 +1159,12 @@
         let currentQuestion = 0;
         const userAnswers = Array(questions.length).fill(null);
 
+        const retake = document.getElementById("retakeGroup")
         const quizForm = document.getElementById('quizForm');
         const feedbackContainer = document.getElementById('feedbackContainer');
         const feedbackChoice = document.getElementById('feedbackChoice');
         const resultDiv = document.getElementById('result');
+        const resultDiv2 = document.getElementById('result2');
         let userName = ""
 
         function startQuiz() {
@@ -1162,6 +1175,7 @@
             }
             userName = username
             document.getElementById('usernameDialog').style.display = 'none';
+            retake.style.display = "none"
             showQuestion(currentQuestion);
         }
 
@@ -1240,8 +1254,30 @@
         }
 
         function showFeedback() {
-            feedbackChoice.style.display = 'none';
+            retake.style.display = 'block';
+            retake.style.position = "relative"
+            retake.style.bottom = "0"
+            resultDiv2.style.display = 'block';
+            resultDiv2.style.position = "relative"
+            resultDiv2.style.top = "0"
+            resultDiv.style.color = "green"
+            feedbackChoice.style.display = "none"
             feedbackContainer.style.display = 'block';
+            feedbackContainer.style.overflow = "scroll";
+            let score = 0;
+            questions.forEach((q, index) => {
+                if (userAnswers[index] === q.answer) {
+                    score++;
+                }
+            });
+
+            const totalQuestions = questions.length;
+            const percentage = (score / totalQuestions) * 100;
+
+            // Capitalize the first letter of the username
+            const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
+
+            resultDiv2.textContent = `${capitalizedUsername}, you got ${score} out of ${totalQuestions} correct! That's ${percentage.toFixed(2)}%`;
             displayFeedback();
         }
 
@@ -1268,6 +1304,7 @@
         }
 
         function displayFeedback() {
+            feedbackContainer.style.overflow = "scroll";
             feedbackContainer.innerHTML = '';
             questions.forEach((q, index) => {
                 const questionDiv = document.createElement('div');
