@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="../_vercel/insights/script.js"></script>
     <title>DCIT 204 Quiz</title>
     <style>
         body {
@@ -136,7 +136,7 @@
         }
 
         #quizContainer {
-            width: 45vw;
+            width: 70vw;
         }
     </style>
 </head>
@@ -2257,12 +2257,12 @@
 
         function showQuestion(index) {
             quizForm.innerHTML = '';
-            quizForm.style.width = "45vw"
             const question = questions[index];
             const questionDiv = document.createElement('div');
             questionDiv.classList.add('question');
 
             const questionTitle = document.createElement('p');
+            questionTitle.style.fontSize = "1rem"
             questionTitle.textContent = (index + 1) + ". " + question.question;
             if (index == 4) {
                 sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, ADTS: Trees"
