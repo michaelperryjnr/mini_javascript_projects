@@ -194,6 +194,577 @@
         const questions = [
             {
                 question:
+                    "________ is the process of finding a designated target element within a group of items.",
+                options: ["A. Sorting", "B. Searching", "C. Recursing", "D. Helping", "E. None of the above"],
+                answer: "B",
+            }, {
+                question:
+                    "As the number of items in a search pool grows, the number of comparisons required to search _______________ .",
+                options: ["A. increases", "B. decreases",
+                    "C. stays the same",
+                    "D. goes to 0",
+                    "E.none of the above"],
+                answer: "A",
+            },
+            {
+                question: "A _______________ search is more efficient than a linear search.",
+
+                options: ["A. binary",
+                    "B. selection",
+                    "C. insertion",
+                    "D. bubble",
+                    "E. none of the above"],
+                answer: "A"
+            },
+            {
+                question: " In a binary search, _______________________________ .",
+
+                options: ["A. it is assumed that all of the elements are integers",
+                    "B. it is assumed that all of the elements are Strings",
+                    "C. it is assumed that the search pool is small",
+                    "D. it is assumed that the search pool is ordered",
+                    "E. it is assumed that the search pool is large"],
+                answer: "D"
+            },
+            {
+                question: "_____________________ is the process of arranging a group of items into a defined order.",
+                options: [
+                    "A. Searching",
+                    "B. Sorting",
+                    "C. Selecting",
+                    "D. Helping",
+                    "E. none of the above"
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which of the following is not a sorting algorithm?",
+                options: [
+                    "A. Bubble sort",
+                    "B. Quick sort",
+                    "C. Merge sort",
+                    "D. Selection sort",
+                    "E. all of the above are sorting algorithms"
+                ],
+                answer: "E"
+            },
+            {
+                question: "Which data structures are used by a radix sort?",
+                options: [
+                    "A. stacks",
+                    "B. queues",
+                    "C. heaps",
+                    "D. both A. and B. are correct",
+                    "E. A., B., and C. are all correct"
+                ],
+                answer: "B"
+            },
+            {
+                question: "The ___________________ algorithm sorts values by repeatedly comparing neighboring elements in the list and swapping their position if they are not in order relative to each other.",
+                options: [
+                    "A. insertion sort",
+                    "B. selection sort",
+                    "C. bubble sort",
+                    "D. quick sort",
+                    "E. merge sort"
+                ],
+                answer: "C"
+            },
+            {
+                question: "The __________________ algorithm sorts a list of values by repetitively inserting a particular value into a subset of the list that has already been sorted.",
+                options: [
+                    "A. insertion sort",
+                    "B. selection sort",
+                    "C. bubble sort",
+                    "D. quick sort",
+                    "E. merge sort"
+                ],
+                answer: "A"
+            },
+            {
+                question: "The ___________________ is the number of possible values of the digits or characters in a sort key.",
+                options: [
+                    "A. radix",
+                    "B. asymptote",
+                    "C. thread",
+                    "D. order",
+                    "E. none of the above"
+                ],
+                answer: "A"
+            },
+            {
+                question: "________ can be used to sort the same set of objects in multiple ways",
+                options: [
+                    "A. insertion sort",
+                    "B. selection sort",
+                    "C. bubble sort",
+                    "D. random sort",
+                    "E. Comparator objects"
+                ],
+                answer: "E"
+            },
+            {
+                question: "In order to compare objects of a class in different ways,",
+                options: [
+                    "A. the class must implement the Comparable interface",
+                    "B. the class must implement the Comparator interface",
+                    "C. the class must inherit from the Comparator class",
+                    "D. a separate class must be created that implements the Comparator interface and provides a body for the compare method",
+                    "E. None of these is correct."
+                ],
+                answer: "D"
+            },
+            {
+                question: "Suppose we have algorithms that solve a particular problem that have the following complexities. Which one is most efficient?",
+                options: [
+                    "A. O(1)",
+                    "B. O(log2n)",
+                    "C. O(n2)",
+                    "D. O(n3)",
+                    "E. O(2n)"
+                ],
+                answer: "A"
+            },
+            {
+                question: "Which of the following algorithms has a worst case complexity of O(n log2n)?",
+                options: [
+                    "A. insertion sort",
+                    "B. selection sort",
+                    "C. bubble sort",
+                    "D. merge sort",
+                    "E. none of the above"
+                ],
+                answer: "D"
+            },
+            {
+                question: "In a radix sort, the radix is the number of elements to be sorted.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "The underlying data structure used in a radix sort is a stack.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "A linear search always requires more comparisons than a binary search.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "If there are more items in a search pool, then it will typically require more comparisons to find an item.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "Bubble sort is the most efficient searching algorithm.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "Quick sort works by separating a list into two lists, and recursively sorting the two lists using quick sort.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "The sort method of the Arrays class sorts the elements of an array by using a comparator.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "Implementing the Comparator interface requires writing a body for the compareTo method.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "With each comparison, a binary search eliminates approximately half of the items remaining in the search pool.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "The selection sort algorithm sorts a list of values by repeatedly putting a particular value into its final, sorted position.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            }, {
+                question: "A method that calls itself is a __________________ method.",
+                options: [
+                    "A. invalid",
+                    "B. static",
+                    "C. final",
+                    "D. recursive",
+                    "E. public"
+                ],
+                answer: "D"
+            },
+            {
+                question: "____________________ recursion occurs when a method calls itself, while _________________ recursion occurs when a method calls another method that then calls the original method.",
+                options: [
+                    "A. upward, downward",
+                    "B. downward, upward",
+                    "C. direct, indirect",
+                    "D. indirect, direct",
+                    "E. none of the above"
+                ],
+                answer: "C"
+            },
+            {
+                question: "__________________ recursion results from the lack of a base case.",
+                options: [
+                    "A. Indirect",
+                    "B. Direct",
+                    "C. Infinite",
+                    "D. Spiral",
+                    "E. none of the above"
+                ],
+                answer: "C"
+            },
+            {
+                question: "The _______________________ puzzle is a favorite of computer scientists because of its elegant recursive solution.",
+                options: [
+                    "A. Tower of Hanoi",
+                    "B. Sudoku",
+                    "C. Tetris",
+                    "D. Tic-Tac-Toe",
+                    "E. none of the above"
+                ],
+                answer: "A"
+            },
+            {
+                question: "In the Towers of Hanoi puzzle, there are ________________ pegs.",
+                options: [
+                    "A. 2",
+                    "B. 3",
+                    "C. 4",
+                    "D. 5",
+                    "E. The Towers of Hanoi puzzle can include any number of pegs"
+                ],
+                answer: "B"
+            },
+            {
+                question: "In indirect recursion, how many method calls can occur between one call to a method and the next one that completes the indirect recursion?",
+                options: [
+                    "A. 2",
+                    "B. 3",
+                    "C. 4",
+                    "D. 5",
+                    "E. There is no limit to the number of intervening calls between a method and its indirect recursive call."
+                ],
+                answer: "E"
+            },
+            {
+                question: "Which of the following statements is true?",
+                options: [
+                    "A. Recursion should be used in every program.",
+                    "B. Recursion should be avoided all the time.",
+                    "C. Solutions that are easily expressed recursively should be programmed recursively.",
+                    "D. Solutions that are easily expressed recursively should be programmed iteratively.",
+                    "E. None of the above."
+                ],
+                answer: "C"
+            },
+            {
+                question: "Which of the following will result from infinite recursion in Java?",
+                options: [
+                    "A. The program will hang as though there is an infinite loop.",
+                    "B. The program will throw an ArrayOutOfBoundsException.",
+                    "C. The program will not compile.",
+                    "D. The program will run out of memory.",
+                    "E. none of the above."
+                ],
+                answer: "D"
+            },
+            {
+                question: "How many base cases must a recursive method have?",
+                options: [
+                    "A. A recursive method does not have to have a base case.",
+                    "B. at least 1",
+                    "C. more than 1",
+                    "D. more than 2",
+                    "E. more than 3"
+                ],
+                answer: "B"
+            },
+            {
+                question: "All recursive programs ____________________________________ .",
+                options: [
+                    "A. are more difficult to read than iterative programs.",
+                    "B. can be implemented iteratively.",
+                    "C. are easier to read than iterative programs.",
+                    "D. are shorter than iterative programs.",
+                    "E. none of the above are true."
+                ],
+                answer: "B"
+            },
+            {
+                question: "The recursive solution of the Towers of Hanoi problem has _______________ complexity.",
+                options: [
+                    "A. exponential",
+                    "B. polynomial",
+                    "C. logarithmic",
+                    "D. low",
+                    "E. none of the above"
+                ],
+                answer: "A"
+            },
+            {
+                question: "Which of the following is a proper recursive definition of x raised to the y power?",
+                options: [
+                    "A. x^y=x*x^(y-1)",
+                    "B. x^y=x*x^(y-2)",
+                    "C. x^y=x*x^(y-1) for y > 1; x^y = x for y = 1",
+                    "D. x^y=x*x^(y-1) for all x",
+                    "E. none of the above"
+                ],
+                answer: "C"
+            },
+            {
+                question: "There is (are) ____________ base case(s) in the recursive solution to finding a path through a maze.",
+                options: [
+                    "A. 0",
+                    "B. 1",
+                    "C. 2",
+                    "D. 3",
+                    "E. 4"
+                ],
+                answer: "C"
+            },
+            {
+                question: "A solution with exponential complexity is ____________________ .",
+                options: [
+                    "A. efficient",
+                    "B. inefficient",
+                    "C. easy to implement",
+                    "D. difficult to implement",
+                    "E. none of the above"
+                ],
+                answer: "B"
+            },
+            {
+                question: "In a recursive solution, _______________ is (are) always necessary.",
+                options: [
+                    "A. short, efficient code",
+                    "B. several variables",
+                    "C. numerous lines of code",
+                    "D. a base case",
+                    "E. none of the above"
+                ],
+                answer: "D"
+            },
+            {
+                question: "In Java, it is possible for a method to call itself.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "Some problems can only be solved recursively.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "All recursive methods must have a base case.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "A method that calls a different method, which then calls the original calling method, is a recursive method.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "Recursive solutions to problems should be used whenever possible.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "In the Towers of Hanoi puzzle, it is legal to move a larger disk to a peg that already contains a smaller disk.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "The Towers of Hanoi puzzle cannot be solved iteratively.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "Determining whether or not there is a path through a maze has a recursive solution.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "A program with infinite recursion will act similarly to a program with an infinite loop.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "Recursive solutions are always more efficient than iterative solutions.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "An iterator is",
+                options: [
+                    "A. an element in a collection.",
+                    "B. an object that allows access to each element in a collection individually.",
+                    "C. an interface",
+                    "D. a loop control variable",
+                    "E. a five syllable word"
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which method below is not part of the Iterator interface?",
+                options: [
+                    "A. add",
+                    "B. remove",
+                    "C. next",
+                    "D. hasNext",
+                    "E. all of these are methods in the Iterator interface."
+                ],
+                answer: "A"
+            },
+            {
+                question: "The only method in the Iterable interface is",
+                options: [
+                    "A. create",
+                    "B. iterator",
+                    "C. destroy",
+                    "D. remove",
+                    "E. hasNext"
+                ],
+                answer: "B"
+            },
+            {
+                question: "When writing a class for an array-based implementation of a list, the class that defines an iterator for the list should be",
+                options: [
+                    "A. public",
+                    "B. iterable",
+                    "C. an interface",
+                    "D. an inner class",
+                    "E. none of the above"
+                ],
+                answer: "D"
+            },
+            {
+                question: "A user defines a class to implement an iterator for a user-defined collection. When an iterator object is created, it needs to know",
+                options: [
+                    "A. when it was created",
+                    "B. why it was created",
+                    "C. the number of elements in the collection",
+                    "D. the datatype of the elements in the collection",
+                    "E. none of the above"
+                ],
+                answer: "C"
+            },
+            {
+                question: "Using the hasNext() and next() methods in a loop is the only way to retrieve all of the list elements using an iterator.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "A user may not be able to predict the order in which an iterator will return elements from a collection",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "‘Fail-fast’ means that a program will crash if a collection class supports the Iterable interface but no Iterator object is created.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "An iterator’s remove method requires the use of a for-each loop.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "When a user writes code to implement a collection class that implements the Iterable interface, they have to write code for the next and hasNext methods.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "When a user defines an Iterator class for a user-defined collection, the user must implement the methods in the Iterator interface in a way that detects if the collection is modified independent of the iterator object.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question:
                     "Which of the following is NOT a step in the divide and conquer technique?",
                 options: ["A. Divide", "B. Combine", "C. Analyze", "D. Sort"],
                 answer: "D",
