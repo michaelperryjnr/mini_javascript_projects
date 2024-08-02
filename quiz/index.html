@@ -2433,7 +2433,6 @@
                     feedbackContainer.appendChild(questionDiv);
                 });
 
-                document.getElementById('feedbackBackButton').disabled = currentQuestion === 0;
                 document.getElementById('feedbackNextButton').disabled = currentQuestion === questions.length - 1;
             }
             document.getElementById("quizContainer").style.display = "none"
@@ -2441,7 +2440,6 @@
             displayQA()
             currentQuestion = 0;
             document.getElementById("feedbackNextButton").style.display = "none"
-            document.getElementById("feedbackBackButton").style.display = "none"
             document.getElementById("retakeQuizButton").textContent = "Start Quiz"
         }
 
@@ -2502,7 +2500,6 @@
                 feedbackContainer.appendChild(questionDiv);
             });
 
-            document.getElementById('feedbackBackButton').disabled = currentQuestion === 0;
             document.getElementById('feedbackNextButton').disabled = currentQuestion === questions.length - 1;
         }
 
