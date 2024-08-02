@@ -2362,12 +2362,12 @@
             });
 
             const totalQuestions = questions.length;
-            const percentage = (score / totalQuestions) * 100;
+            const percentage = (score / (currentQuestion + 1)) * 100;
 
             // Capitalize the first letter of the username
             const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
 
-            resultDiv2.textContent = `${capitalizedUsername}, you got ${score} out of ${totalQuestions} correct! That's ${percentage.toFixed(2)}%`;
+            resultDiv2.textContent = `${capitalizedUsername}, you got ${score} out of ${currentQuestion + 1} correct! That's ${percentage.toFixed(2)}% .... ${totalQuestions - currentQuestion - 1} remain`;
             displayFeedback();
         }
 
@@ -2380,12 +2380,12 @@
             });
 
             const totalQuestions = questions.length;
-            const percentage = (score / totalQuestions) * 100;
+            const percentage = (score / (currentQuestion + 1)) * 100;
 
             // Capitalize the first letter of the username
             const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
 
-            resultDiv.textContent = `${capitalizedUsername}, you got ${score} out of ${totalQuestions} correct! That's ${percentage.toFixed(2)}%`;
+            resultDiv.textContent = `${capitalizedUsername}, you got ${score} out of ${currentQuestion + 1} correct! That's ${percentage.toFixed(2)}% .... ${totalQuestions - currentQuestion - 1} remain`;
 
             feedbackChoice.style.display = 'none';
             feedbackContainer.style.display = 'none';
@@ -2396,7 +2396,7 @@
         function displayFeedback() {
             feedbackContainer.style.overflow = "scroll";
             feedbackContainer.innerHTML = '';
-            questions.forEach((q, index) => {
+            questions.slice(0, currentQuestion + 1).forEach((q, index) => {
                 const questionDiv = document.createElement('div');
                 questionDiv.classList.add('question');
                 const questionTitle = document.createElement('p');
