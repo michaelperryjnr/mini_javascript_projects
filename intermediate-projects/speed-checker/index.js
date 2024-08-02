@@ -29,3 +29,4 @@ function performSpeedTest() {
 }
 
 window.addEventListener('load', performSpeedTest)
+//remember to make checks from a third parties 
