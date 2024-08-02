@@ -1321,10 +1321,12 @@
 
                     if (option[0] === q.answer) {
                         optionInput.checked = true;
-                        optionLabel.classList.add('correct');
+                        optionLabel.style.color = 'green';
+                        optionLabel.style.fontWeight = "bold"
                     } else if (option[0] === userAnswers[index]) {
                         optionInput.checked = true;
-                        optionLabel.classList.add('incorrect');
+                        optionLabel.style.color = "red";
+                        questionTitle.style.fontWeight = "bold"
                     }
 
                     optionLabel.appendChild(optionInput);
