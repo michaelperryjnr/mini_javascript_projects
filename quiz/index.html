@@ -1358,6 +1358,9 @@
             currentQuestion = 0;
             userAnswers.fill(null);
             document.getElementById('feedbackContainer').style.display = 'none';
+            retake.style.display = "none";
+            resultDiv.style.display = "none"
+            resultDiv2.style.display = "none"
             document.getElementById('quizContainer').style.display = 'block';
             showQuestion(currentQuestion);
         }
