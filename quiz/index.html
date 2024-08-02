@@ -147,6 +147,7 @@
             <h2 id="usr-h2">Enter your username</h2>
             <input type="text" id="username" placeholder="Username" required>
             <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
+            <button class="btn" id="see" onclick="showQA()">See Q & A</button>
         </div>
     </div>
 
@@ -164,6 +165,7 @@
                 </div>
 
                 <div>
+                    <button class="btn" onclick="showQA()">Q & A</button>
                     <button class="btn" onclick="checkAnswers()">Submit</button>
                 </div>
 
@@ -2381,6 +2383,66 @@
 
             resultDiv2.textContent = `${capitalizedUsername}, you got ${score} out of ${currentQuestion + 1} correct! That's ${percentage.toFixed(2)}% .... ${totalQuestions - currentQuestion - 1} remain`;
             displayFeedback();
+        }
+
+        function showQA() {
+            const username = document.getElementById('username').value;
+            if (username.trim() === "") {
+                alert("Please enter a username");
+                return;
+            }
+            userName = username
+            retake.style.display = 'block';
+            retake.style.position = "relative"
+            retake.style.bottom = "0"
+            feedbackChoice.style.display = "none"
+            feedbackContainer.style.display = 'block';
+            feedbackContainer.style.overflow = "scroll";
+            function displayQA() {
+                feedbackContainer.style.overflow = "scroll";
+                feedbackContainer.innerHTML = '';
+                questions.forEach((q, index) => {
+                    const questionDiv = document.createElement('div');
+                    questionDiv.classList.add('question');
+                    const questionTitle = document.createElement('p');
+                    questionTitle.textContent = (index + 1) + ". " + q.question;
+                    questionDiv.appendChild(questionTitle);
+
+                    q.options.forEach(option => {
+                        const optionLabel = document.createElement('label');
+                        const optionInput = document.createElement('input');
+                        optionInput.type = "radio";
+                        optionInput.disabled = true;
+
+                        if (option[0] === q.answer) {
+                            optionInput.checked = true;
+                            optionLabel.style.color = 'green';
+                            optionLabel.style.fontWeight = "bold"
+                        } else if (option[0] === userAnswers[index]) {
+                            optionInput.checked = true;
+                            optionLabel.style.color = "red";
+                            questionTitle.style.fontWeight = "bold"
+                        }
+
+                        optionLabel.appendChild(optionInput);
+                        optionLabel.appendChild(document.createTextNode(option));
+                        questionDiv.appendChild(optionLabel);
+                        questionDiv.appendChild(document.createElement('br'));
+                    });
+
+                    feedbackContainer.appendChild(questionDiv);
+                });
+
+                document.getElementById('feedbackBackButton').disabled = currentQuestion === 0;
+                document.getElementById('feedbackNextButton').disabled = currentQuestion === questions.length - 1;
+            }
+            document.getElementById("quizContainer").style.display = "none"
+            document.getElementById("usernameDialog").style.display = "none"
+            displayQA()
+            currentQuestion = 0;
+            document.getElementById("feedbackNextButton").style.display = "none"
+            document.getElementById("feedbackBackButton").style.display = "none"
+            document.getElementById("retakeQuizButton").textContent = "Start Quiz"
         }
 
         function hideFeedback() {
