@@ -133,6 +133,10 @@
             overflow: scroll;
             display: contents;
         }
+
+        #quizContainer {
+            width: 45vw;
+        }
     </style>
 </head>
 
@@ -192,6 +196,251 @@
 
     <script>
         const questions = [
+            {
+                question: "A user has designed an interface for a binary tree abstract data type (ADT). Which method below requires knowledge of the purpose and organization of the binary tree in order to design an implementation?",
+                options: [
+                    "A. find",
+                    "B. add",
+                    "C. contains",
+                    "D. isEmpty",
+                    "E. size"
+                ],
+                answer: "B"
+            },
+            {
+                question: "A tree in which every node can have at most n children is referred to as a __________________ tree.",
+                options: [
+                    "A. binary",
+                    "B. ternary",
+                    "C. n-ary",
+                    "D. general",
+                    "E. graph"
+                ],
+                answer: "C"
+            },
+            {
+                question: "Which of the following best describes a balanced tree?",
+                options: [
+                    "A. A balanced tree has all nodes at exactly the same level.",
+                    "B. A balanced tree has no nodes at exactly the same level.",
+                    "C. A balanced tree has half of the nodes at one level and half the nodes at another level.",
+                    "D. A balanced tree has all of the nodes within one level of each other.",
+                    "E. none of the above correctly describe a balanced tree."
+                ],
+                answer: "D"
+            },
+            {
+                question: "A full binary tree of height n has _________________ leaves.",
+                options: [
+                    "A. 2n",
+                    "B. 3n",
+                    "C. 2^n",
+                    "D. 2^(n+1)",
+                    "E. 3^(n+1)"
+                ],
+                answer: "D"
+            },
+            {
+                question: "Which of the following tree traversals traverses the subtrees from left to right and then visits the root?",
+                options: [
+                    "A. Preorder",
+                    "B. Inorder",
+                    "C. Postorder",
+                    "D. Level-order",
+                    "E. none of the above"
+                ],
+                answer: "C"
+            },
+            {
+                question: "Which of the following traversals is not easily implemented recursively?",
+                options: [
+                    "A. Preorder",
+                    "B. Inorder",
+                    "C. Postorder",
+                    "D. Level-order",
+                    "E. all of the above are easily implemented recursively"
+                ],
+                answer: "D"
+            },
+            {
+                question: "Which of the following traversals is implemented using a queue as a supporting data structure?",
+                options: [
+                    "A. Preorder",
+                    "B. Inorder",
+                    "C. Postorder",
+                    "D. Level-order",
+                    "E. none of the above are implemented using a queue"
+                ],
+                answer: "D"
+            },
+            {
+                question: "One method of implementing a tree using an array involves storing the child of the element at the index n in the array at indexes ______________________________ .",
+                options: [
+                    "A. n+1 and n+2",
+                    "B. 2n and 22n",
+                    "C. 2n+1 and 2n+2",
+                    "D. n-1 and n-2",
+                    "E. none of the above will work"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What property of the tree does its order specify?",
+                options: [
+                    "A. maximum height",
+                    "B. maximum number of leaves",
+                    "C. maximum number of internal nodes",
+                    "D. maximum number of edges",
+                    "E. maximum number of children per node"
+                ],
+                answer: "E"
+            },
+            {
+                question: "A balanced binary tree with m elements will have height ______________ .",
+                options: [
+                    "A. 2m",
+                    "B. 2^m",
+                    "C. logm 2",
+                    "D. log2 m",
+                    "E. none of the above"
+                ],
+                answer: "D"
+            },
+            {
+                question: "A _________________ can be used as the basis for an expert system.",
+                options: [
+                    "A. queue",
+                    "B. stack",
+                    "C. ternary tree",
+                    "D. 4-ary tree",
+                    "E. decision tree"
+                ],
+                answer: "E"
+            },
+            {
+                question: "Which of the following traversals visits the root before visiting the left and right subtrees?",
+                options: [
+                    "A. Preorder",
+                    "B. Inorder",
+                    "C. Postorder",
+                    "D. Level-order",
+                    "E. none of the above"
+                ],
+                answer: "A"
+            },
+            {
+                question: "The find method to locate an element in a binary tree can be implemented",
+                options: [
+                    "A. iteratively",
+                    "B. recursively",
+                    "C. independently",
+                    "D. both A. and B. are correct",
+                    "E. all of A., B., and C. are correct"
+                ],
+                answer: "D"
+            },
+            {
+                question: "Which of the following traversals never visits the root?",
+                options: [
+                    "A. Preorder",
+                    "B. Inorder",
+                    "C. Postorder",
+                    "D. Level-order",
+                    "E. none of the above"
+                ],
+                answer: "E"
+            },
+            {
+                question: "Which of the following traversals visits the nodes that are closer to the top of the tree before visiting those that are closer to the bottom?",
+                options: [
+                    "A. Preorder",
+                    "B. Inorder",
+                    "C. Postorder",
+                    "D. Level-order",
+                    "E. none of the above"
+                ],
+                answer: "D"
+            },
+            {
+                question: "In a tree, a node that does not have any children is called a leaf.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "The height of a tree and the depth of a tree are different.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "A binary tree is a tree in which any node can have at most two children.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "Since trees are nonlinear structures, it is impossible to implement them using an array.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "The methods in the Binary Tree ADT all return references to elements.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "There are four basic ways to traverse a tree, and they are all implemented recursively.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "A decision tree cannot be used as the basis for an expert system.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "In an inorder traversal, the elements of a tree are visited in order of their distance from the root.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "B"
+            },
+            {
+                question: "In a postorder traversal, the root is the last element visited in the tree.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
+            {
+                question: "Recursive methods that work with binary trees are often implemented with a private support method.",
+                options: [
+                    "A. True",
+                    "B. False"
+                ],
+                answer: "A"
+            },
             {
                 question:
                     "________ is the process of finding a designated target element within a group of items.",
@@ -1990,6 +2239,7 @@
         const feedbackChoice = document.getElementById('feedbackChoice');
         const resultDiv = document.getElementById('result');
         const resultDiv2 = document.getElementById('result2');
+        const sectionTitle = document.getElementById("quiz-h1");
         let userName = ""
 
         function startQuiz() {
@@ -2006,12 +2256,26 @@
 
         function showQuestion(index) {
             quizForm.innerHTML = '';
+            quizForm.style.width = "45vw"
             const question = questions[index];
             const questionDiv = document.createElement('div');
             questionDiv.classList.add('question');
 
             const questionTitle = document.createElement('p');
             questionTitle.textContent = (index + 1) + ". " + question.question;
+            if (index == 4) {
+                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, ADTS: Trees"
+            } else if (index == 25) {
+                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, Searching and Sorting"
+            } else if (index == 49) {
+                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, Recursion"
+            } else if (index == 74) {
+                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, Iterators"
+            } else if (index == 85) {
+                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, Lists"
+            } else if (index == 110) {
+                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, IA Questions: Mixed"
+            }
             questionDiv.appendChild(questionTitle);
 
             question.options.forEach(option => {
