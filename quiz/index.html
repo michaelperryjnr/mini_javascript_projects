@@ -183,7 +183,7 @@
             </div> -->
         </div>
         <div class="button-group" id="retakeGroup" style="display: none;">
-            <button class="btn" id="feedbackBackButton" onclick="previousFeedback()">Back</button>
+            <button class="btn" id="feedbackBackButton" onclick="previousQuestionFromFeedBack()">Back to Quiz</button>
             <button class="btn" id="feedbackNextButton" onclick="nextFeedback()">Next</button>
             <button class="btn" id="retakeQuizButton" onclick="retakeQuiz()">Retake Quiz</button>
         </div>
@@ -2314,6 +2314,18 @@
                 currentQuestion--;
                 showQuestion(currentQuestion);
             }
+        }
+
+        function previousQuestionFromFeedBack() {
+            hideFeedback()
+            function start() {
+                retake.style.display = "none"
+                showQuestion(currentQuestion);
+            }
+            start()
+            retake.style.display = "none"
+            resultDiv.style.display = "none"
+            resultDiv2.style.display = "none"
         }
 
         function saveAnswer() {
