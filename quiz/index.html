@@ -1144,6 +1144,7 @@
         ];
 
 
+
         let currentQuestion = 0;
         const userAnswers = Array(questions.length).fill(null);
 
@@ -1151,6 +1152,7 @@
         const feedbackContainer = document.getElementById('feedbackContainer');
         const feedbackChoice = document.getElementById('feedbackChoice');
         const resultDiv = document.getElementById('result');
+        let userName = ""
 
         function startQuiz() {
             const username = document.getElementById('username').value;
@@ -1158,6 +1160,7 @@
                 alert("Please enter a username");
                 return;
             }
+            userName = username
             document.getElementById('usernameDialog').style.display = 'none';
             showQuestion(currentQuestion);
         }
@@ -1228,7 +1231,10 @@
             const totalQuestions = questions.length;
             const percentage = (score / totalQuestions) * 100;
 
-            resultDiv.textContent = `You got ${score} out of ${totalQuestions} correct! That's ${percentage.toFixed(2)}%`;
+            const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
+
+            resultDiv.textContent = `${capitalizedUsername}, you got ${score} out of ${totalQuestions} correct! That's ${percentage.toFixed(2)}%`;
+
             document.getElementById('quizContainer').style.display = 'none';
             feedbackChoice.style.display = 'block';
         }
@@ -1250,7 +1256,11 @@
             const totalQuestions = questions.length;
             const percentage = (score / totalQuestions) * 100;
 
-            resultDiv.textContent = `You got ${score} out of ${totalQuestions} correct! That's ${percentage.toFixed(2)}%`;
+            // Capitalize the first letter of the username
+            const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
+
+            resultDiv.textContent = `${capitalizedUsername}, you got ${score} out of ${totalQuestions} correct! That's ${percentage.toFixed(2)}%`;
+
             feedbackChoice.style.display = 'none';
             feedbackContainer.style.display = 'none';
             document.getElementById('quizContainer').style.display = 'block';
