@@ -47,6 +47,9 @@
 
         .button-group {
             margin-top: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         #username {
@@ -149,10 +152,16 @@
                 <!-- Quiz questions will be generated here -->
             </form>
             <div class="button-group">
-                <button class="btn" id="backButton" onclick="previousQuestion()">Back</button>
-                <button class="btn" onclick="saveAnswer()">Save</button>
-                <button class="btn" id="nextButton" onclick="nextQuestion()">Next</button>
-                <button class="btn" onclick="checkAnswers()">Submit</button>
+                <div>
+                    <button class="btn" id="backButton" onclick="previousQuestion()">Back</button>
+                    <button class="btn" onclick="saveAnswer()">Save</button>
+                    <button class="btn" id="nextButton" onclick="nextQuestion()">Next</button>
+                </div>
+
+                <div>
+                    <button class="btn" onclick="checkAnswers()">Submit</button>
+                </div>
+
             </div>
             <div id="result" class="result"></div>
         </div>
