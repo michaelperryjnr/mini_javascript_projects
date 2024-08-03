@@ -3325,7 +3325,8 @@
         function displayFeedback() {
             feedbackContainer.style.overflow = "scroll";
             feedbackContainer.innerHTML = '';
-            selectedQuestions.forEach((questionIndex, index) => {
+            let questionsCount = currentQuestion
+            selectedQuestions.slice(0, questionsCount).forEach((questionIndex, index) => {
                 const q = questions[questionIndex];
                 const questionDiv = document.createElement('div');
                 questionDiv.classList.add('question');
