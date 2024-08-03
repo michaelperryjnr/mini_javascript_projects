@@ -203,6 +203,12 @@
             display: block;
             margin-bottom: 10px;
         }
+
+        .btns {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
     </style>
 </head>
 
@@ -248,16 +254,21 @@
             <form id="quizForm">
                 <!-- Quiz questions will be generated here -->
             </form>
-            <div class="button-group">
-                <div>
-                    <button class="btn" id="backButton" onclick="previousQuestion()">Back</button>
-                    <button class="btn" onclick="saveAnswer()">Save</button>
-                    <button class="btn" id="nextButton" onclick="nextQuestion()">Next</button>
+            <div class="btns">
+                <div class="button-group">
+                    <div>
+                        <button class="btn" id="backButton" onclick="previousQuestion()">Back</button>
+                        <button class="btn" onclick="saveAnswer()">Save</button>
+                        <button class="btn" id="nextButton" onclick="nextQuestion()">Next</button>
+                    </div>
+                    <div>
+                        <button class="btn" onclick="showQA()">Q & A</button>
+                        <button class="btn" onclick="checkAnswers()">Submit</button>
+                    </div>
                 </div>
+
                 <div>
                     <button class="btn" onclick="showLectureSelection()">Select Lectures</button>
-                    <button class="btn" onclick="showQA()">Q & A</button>
-                    <button class="btn" onclick="checkAnswers()">Submit</button>
                 </div>
             </div>
             <div id="result" class="result"></div>
