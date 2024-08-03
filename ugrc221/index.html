@@ -204,6 +204,10 @@
             margin-top: 1.2rem;
         }
 
+        #usernameDiv {
+            margin-top: 1rem;
+        }
+
         #lectureSelection {
             margin-top: 20px;
             display: none;
@@ -229,8 +233,11 @@
             <h2 id="usr-h2">Choose a username</h2>
             <h4>A username is required to access anything on the page</h4>
             <input type="text" id="username" placeholder="Username" required>
-            <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
-            <button class="btn" id="see" onclick="showQA()">See Q & A</button>
+            <div id="usernameDiv">
+                <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
+                <button class="btn" id="see" onclick="showQA()">See Q & A</button>
+            </div>
+
         </div>
     </div>
 
