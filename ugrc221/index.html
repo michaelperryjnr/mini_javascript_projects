@@ -154,11 +154,18 @@
             font-size: 1.5rem;
         }
 
-        .lectureCheckboxes {
+        #lectureCheckboxes {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: start;
+        }
+
+        #lectureCheckboxes {
             padding: 0.8rem 0.8rem;
             border-radius: 0.8rem;
             border-width: 0.1rem;
-            background-color: rgb(66, 137, 195);
+            background-color: rgba(41, 103, 154, 0.84);
             color: white;
             border: solid;
             font-weight: bold;
@@ -191,6 +198,10 @@
 
         #quiz-options input[type="radio"] {
             margin-right: 10px;
+        }
+
+        #startSelectedLectures {
+            margin-top: 1.2rem;
         }
 
         #lectureSelection {
@@ -3449,6 +3460,605 @@
                     "D. Weaving"
                 ],
                 answer: "A"
+            }, {
+                question: "What distinguishes the Kongo Kingdom as a significant political entity in Africa?",
+                options: [
+                    "A. It was the smallest kingdom in Africa.",
+                    "B. It is one of the best known and studied.",
+                    "C. It never engaged in trade.",
+                    "D. It had no central leadership."
+                ],
+                answer: "B"
+            },
+            {
+                question: "During which centuries did Bantu speaking populations begin migrating to the Kongo Kingdom?",
+                options: [
+                    "A. 10th and 11th",
+                    "B. 1st and 2nd",
+                    "C. 5th and 6th",
+                    "D. 13th and 14th"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What triggered the wave of migration lasting over a century in the Kongo region?",
+                options: [
+                    "A. Religious persecution",
+                    "B. Drought and famine",
+                    "C. Arrival of European colonists",
+                    "D. Need for more land for pastoral groups"
+                ],
+                answer: "D"
+            },
+            {
+                question: "Who is credited with founding the Kongo Kingdom?",
+                options: [
+                    "A. Shaka",
+                    "B. Nimi Lukemi",
+                    "C. Shyaam a-Mbul a Ngoong",
+                    "D. Diego Cao"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What was a major export of the Kongo Kingdom, traded to the Portuguese?",
+                options: [
+                    "A. Gold",
+                    "B. Spices",
+                    "C. Slaves",
+                    "D. Coffee"
+                ],
+                answer: "C"
+            },
+            {
+                question: "Which European explorer first encountered the Kongo Kingdom in 1482?",
+                options: [
+                    "A. Vasco da Gama",
+                    "B. Christopher Columbus",
+                    "C. Ferdinand Magellan",
+                    "D. Diego Cao"
+                ],
+                answer: "D"
+            },
+            {
+                question: "What material did Kongo weavers produce that impressed the Portuguese king?",
+                options: [
+                    "A. Cotton",
+                    "B. Silk",
+                    "C. Raffia",
+                    "D. Wool"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What names did the King and Queen of Kongo adopt after their baptism?",
+                options: [
+                    "A. David and Victoria",
+                    "B. Joao and Leonora",
+                    "C. Louis and Antoinette",
+                    "D. Ferdinand and Isabella"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What was the new name given to the capital of the Kongo Kingdom after its conversion to Christianity?",
+                options: [
+                    "A. Luanda",
+                    "B. Kinshasa",
+                    "C. San Salvador",
+                    "D. Brazzaville"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the meaning of the term 'Nkisi' in Kongo belief?",
+                options: [
+                    "A. Medicine",
+                    "B. Spirit",
+                    "C. King",
+                    "D. Dance"
+                ],
+                answer: "A"
+            },
+            {
+                question: "What type of objects are used as Nkisi?",
+                options: [
+                    "A. Paintings",
+                    "B. Musical instruments",
+                    "C. Vessels, gourds, carved works, etc.",
+                    "D. Only wooden statues"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the role of the 'Nganga' in relation to Nkisi?",
+                options: [
+                    "A. They are priests who pray to them.",
+                    "B. They are chiefs who own them.",
+                    "C. They are sculptors who create and empower them.",
+                    "D. They are musicians who play for them."
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the purpose of driving nails into Nkisi figures?",
+                options: [
+                    "A. To decorate them",
+                    "B. To activate their spiritual power",
+                    "C. To ward off evil spirits",
+                    "D. To represent ancestors"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What type of Nkisi is known for its menacing appearance and use of weapons?",
+                options: [
+                    "A. Nkondi",
+                    "B. Npezo",
+                    "C. Na moganga",
+                    "D. Mbula"
+                ],
+                answer: "A"
+            },
+            {
+                question: "Which Nkisi is believed to protect against sickness and dangerous spirits?",
+                options: [
+                    "A. Nkondi",
+                    "B. Npezo",
+                    "C. Na moganga",
+                    "D. Mbula"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the name for the magical substances used to empower Nkisi?",
+                options: [
+                    "A. Ashe",
+                    "B. Bilongo",
+                    "C. Nyama",
+                    "D. Mana"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What type of textile was produced in the Kongo Kingdom and used in royal courts?",
+                options: [
+                    "A. Cotton",
+                    "B. Silk",
+                    "C. Raffia",
+                    "D. Wool"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What was the traditional purpose of the lozenge designs found on Kongo textiles and scarification?",
+                options: [
+                    "A. To represent animals",
+                    "B. To ward off evil",
+                    "C. To denote status",
+                    "D. To attract good luck"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the Kongo term for the ritually wrapped mummies used in funerary practices?",
+                options: [
+                    "A. Nkisi",
+                    "B. Nganga",
+                    "C. Niombo",
+                    "D. Bocio"
+                ],
+                answer: "C"
+            },
+            {
+                question: "Why were cloths and mats collected and displayed with the deceased in Kongo funerals?",
+                options: [
+                    "A. To provide warmth for the afterlife",
+                    "B. To ward off evil spirits",
+                    "C. To show respect and commemorate the dead",
+                    "D. To symbolize wealth and status"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What event led to the Kongo people's initial difficulty in accepting the crucifixion of Christ?",
+                options: [
+                    "A. Lack of understanding of Roman customs",
+                    "B. Belief that only criminals were crucified",
+                    "C. The concept of a god dying was unfamiliar",
+                    "D. The use of nails in crucifixes seemed strange"
+                ],
+                answer: "D"
+            },
+            {
+                question: "How did the Kongo people reconcile their belief in Nkisi with the concept of the Christian cross?",
+                options: [
+                    "A. They saw the cross as a powerful Nkisi.",
+                    "B. They rejected Christianity altogether.",
+                    "C. They believed Christ was a Nganga.",
+                    "D. They saw both nails in Nkisi and crucifixes as linking worlds."
+                ],
+                answer: "D"
+            },
+            {
+                question: "What was the name given to Saint Anthony of Padua in the Kongo language?",
+                options: [
+                    "A. Saint Augustine",
+                    "B. Toni Malau",
+                    "C. Saint Francis",
+                    "D. Saint Peter"
+                ],
+                answer: "B"
+            },
+            {
+                question: "How were Christian saints incorporated into Kongo belief system?",
+                options: [
+                    "A. They were seen as ancestors.",
+                    "B. They were worshipped as gods.",
+                    "C. They were considered protective figures.",
+                    "D. They were ignored and forgotten."
+                ],
+                answer: "C"
+            },
+            {
+                question: "What material was commonly used to create Kongo crucifixes?",
+                options: [
+                    "A. Wood",
+                    "B. Gold",
+                    "C. Ivory",
+                    "D. Copper"
+                ],
+                answer: "D"
+            },
+            {
+                question: "What event led to the dissolution of the Kongo Kingdom?",
+                options: [
+                    "A. Internal rebellion",
+                    "B. Invasion by a neighboring kingdom",
+                    "C. Portuguese colonization",
+                    "D. A combination of factors"
+                ],
+                answer: "D"
+            },
+            {
+                question: "What factors contributed to the rise of the Kuba Kingdom?",
+                options: [
+                    "A. Decline of the Kongo Kingdom",
+                    "B. Introduction of new agricultural techniques",
+                    "C. Unification of smaller principalities",
+                    "D. All of the above"
+                ],
+                answer: "D"
+            },
+            {
+                question: "Who is credited with unifying the Kuba Kingdom?",
+                options: [
+                    "A. Nimi Lukemi",
+                    "B. Shaka",
+                    "C. Shyaam a-Mbul a Ngoong",
+                    "D. Mzilikazi"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What new crops from the Americas were introduced to the Kuba Kingdom?",
+                options: [
+                    "A. Rice and wheat",
+                    "B. Maize, tobacco, cassava",
+                    "C. Coffee and sugarcane",
+                    "D. Potatoes and tomatoes"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the title of the Kuba king?",
+                options: [
+                    "A. Oba",
+                    "B. Asantehene",
+                    "C. Nyim",
+                    "D. Mwami"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the purpose of the raised dais used by the Kuba king?",
+                options: [
+                    "A. To display his wealth",
+                    "B. To separate him from the earth",
+                    "C. To intimidate his subjects",
+                    "D. To make him taller"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the Kuba term for the symbolic portraits of their kings?",
+                options: [
+                    "A. Nkisi",
+                    "B. Ndop",
+                    "C. Niombo",
+                    "D. Bocio"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What material is typically used to create Kuba Ndop figures?",
+                options: [
+                    "A. Clay",
+                    "B. Bronze",
+                    "C. Wood",
+                    "D. Ivory"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What object serves as a symbol of each Kuba king's reign in Ndop figures?",
+                options: [
+                    "A. A crown",
+                    "B. A scepter",
+                    "C. An ibol",
+                    "D. A weapon"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the belief regarding the connection between the Kuba king and his Ndop figure?",
+                options: [
+                    "A. The Ndop is a magical replica of the king.",
+                    "B. The Ndop contains the king's soul.",
+                    "C. The Ndop protects the king from harm.",
+                    "D. The Ndop enhances the king's power."
+                ],
+                answer: "B"
+            },
+            {
+                question: "What natural material is primarily used to create Kuba textiles?",
+                options: [
+                    "A. Cotton",
+                    "B. Silk",
+                    "C. Raffia",
+                    "D. Wool"
+                ],
+                answer: "C"
+            },
+            {
+                question: "Who is responsible for weaving the raffia cloth in Kuba textile production?",
+                options: [
+                    "A. Men",
+                    "B. Women",
+                    "C. Children",
+                    "D. Elders"
+                ],
+                answer: "A"
+            },
+            {
+                question: "How are Kuba raffia textiles decorated?",
+                options: [
+                    "A. Embroidery",
+                    "B. Appliqué",
+                    "C. Both A and B",
+                    "D. Painting"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the most common contemporary use of traditional Kuba raffia cloth?",
+                options: [
+                    "A. Everyday clothing",
+                    "B. Royal ceremonies",
+                    "C. Funerals",
+                    "D. Wedding attire"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the largest ancient stone construction south of the Sahara Desert?",
+                options: [
+                    "A. The Pyramids of Giza",
+                    "B. Lalibela Churches",
+                    "C. Great Zimbabwe",
+                    "D. Timbuktu"
+                ],
+                answer: "C"
+            },
+            {
+                question: "Which people group is believed to have built Great Zimbabwe?",
+                options: [
+                    "A. Zulu",
+                    "B. Shona",
+                    "C. Ndebele",
+                    "D. Kongo"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the estimated time period during which Great Zimbabwe was built?",
+                options: [
+                    "A. 1st to 5th centuries",
+                    "B. 6th to 10th centuries",
+                    "C. 12th to 15th centuries",
+                    "D. 16th to 19th centuries"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What are the three main architectural groupings of Great Zimbabwe?",
+                options: [
+                    "A. Palace, Temple, Market",
+                    "B. Hill Complex, Valley Complex, Great Enclosure",
+                    "C. Royal Quarters, Commoner Housing, Sacred Space",
+                    "D. North Wing, South Wing, Central Tower"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What was the likely purpose of the massive stone walls at Great Zimbabwe?",
+                options: [
+                    "A. Purely defensive fortifications",
+                    "B. To enclose livestock",
+                    "C. Symbolic display of authority and privacy",
+                    "D. To create a labyrinth"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the construction technique used to build the walls at Great Zimbabwe?",
+                options: [
+                    "A. Bricklaying with mortar",
+                    "B. Dry stacking of stones",
+                    "C. Concrete pouring",
+                    "D. Wood framing with stone cladding"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What are the most famous artworks found at Great Zimbabwe?",
+                options: [
+                    "A. Gold masks",
+                    "B. Soapstone birds",
+                    "C. Terracotta figures",
+                    "D. Bronze sculptures"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the symbolic significance of the soapstone birds at Great Zimbabwe?",
+                options: [
+                    "A. Fertility and abundance",
+                    "B. War and conquest",
+                    "C. Royal authority and ancestors",
+                    "D. Peace and harmony"
+                ],
+                answer: "C"
+            },
+            {
+                question: "Which animal is depicted on the monolith with the bird at Great Zimbabwe?",
+                options: [
+                    "A. Lion",
+                    "B. Leopard",
+                    "C. Elephant",
+                    "D. Crocodile"
+                ],
+                answer: "D"
+            },
+            {
+                question: "What is the largest ethnic group in South Africa?",
+                options: [
+                    "A. Xhosa",
+                    "B. Sotho",
+                    "C. Zulu",
+                    "D. Ndebele"
+                ],
+                answer: "C"
+            },
+            {
+                question: "Under which leader did the Zulu form a powerful state in 1816?",
+                options: [
+                    "A. Mzilikazi",
+                    "B. Cetshwayo",
+                    "C. Shaka",
+                    "D. Dingane"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the primary purpose of Zulu beadwork?",
+                options: [
+                    "A. Decoration and adornment",
+                    "B. Communication and social messaging",
+                    "C. Religious rituals",
+                    "D. Both A and B"
+                ],
+                answer: "D"
+            },
+            {
+                question: "What is the Zulu term for the beaded panels worn by married women?",
+                options: [
+                    "A. Jocolo",
+                    "B. Nguba",
+                    "C. Isigolwani",
+                    "D. Isicholo"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What type of garment do Zulu women wear for protection during pregnancy and lactation?",
+                options: [
+                    "A. Beaded cape",
+                    "B. Leather apron",
+                    "C. Woven shawl",
+                    "D. Raffia skirt"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the Zulu term for the 'warts' motif symbolizing herds of cattle?",
+                options: [
+                    "A. Indlamu",
+                    "B. Amasumpa",
+                    "C. Isicathulo",
+                    "D. Umzansi"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the Zulu term for the beaded capes or shawls worn by women?",
+                options: [
+                    "A. Jocolo",
+                    "B. Nguba",
+                    "C. Isigolwani",
+                    "D. Isicholo"
+                ],
+                answer: "D"
+            },
+            {
+                question: "What type of object do the Zulu believe facilitates ancestral intervention through dreams?",
+                options: [
+                    "A. Mask",
+                    "B. Headrest",
+                    "C. Necklace",
+                    "D. Doll"
+                ],
+                answer: "B"
+            },
+            {
+                question: "Who led the Ndebele people to split from the Zulu Kingdom?",
+                options: [
+                    "A. Shaka",
+                    "B. Dingane",
+                    "C. Cetshwayo",
+                    "D. Mzilikazi"
+                ],
+                answer: "D"
+            },
+            {
+                question: "What art form did Ndebele women develop as a response to Apartheid?",
+                options: [
+                    "A. Pottery",
+                    "B. Sculpture",
+                    "C. House painting",
+                    "D. Weaving"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the Ndebele term for the plain apron received by a woman upon marriage?",
+                options: [
+                    "A. Jocolo",
+                    "B. Nguba",
+                    "C. Isigolwani",
+                    "D. Isicholo"
+                ],
+                answer: "A"
+            },
+            {
+                question: "What is the Ndebele term for the marriage blanket adorned with beadwork?",
+                options: [
+                    "A. Jocolo",
+                    "B. Nguba",
+                    "C. Isigolwani",
+                    "D. Isicholo"
+                ],
+                answer: "B"
             }
         ];
 
@@ -3457,6 +4067,8 @@
         let lect3 = { start: 200, end: 249 };
         let lect4 = { start: 250, end: 281 };
         let lect5 = { start: 282, end: 328 }
+        let lect6 = { start: 329, end: 388 }
+        let lect7 = { start: 0, end: 388 }
 
 
         let currentQuestion = 0;
@@ -3494,7 +4106,7 @@
         }
 
         function generateLectureSelection() {
-            const lectureRanges = [lect1, lect2, lect3, lect4, lect5];
+            const lectureRanges = [lect1, lect2, lect3, lect4, lect5, lect6, lect7];
 
             lectureSelectionDiv.innerHTML = '';
 
@@ -3503,6 +4115,13 @@
                 label.innerHTML = `
                     <input type="checkbox" name="lectureCheckbox" value="${index + 1}"> Lecture ${index + 1}
                 `;
+
+                if (index === 6) {
+                    const label = document.createElement('label');
+                    label.innerHTML = `
+                    <input type="checkbox" name="lectureCheckbox" value="${index + 1}"> All
+                `;
+                }
                 lectureSelectionDiv.appendChild(label);
             });
         }
@@ -3537,7 +4156,7 @@
         }
 
         function getLectureRangeByNumber(number) {
-            const lectureRanges = [lect1, lect2, lect3, lect4, lect5];
+            const lectureRanges = [lect1, lect2, lect3, lect4, lect5, lect6, lect7];
             return lectureRanges[number - 1];
         }
 
@@ -3888,12 +4507,12 @@
         function generateLectureSelection() {
             const lectureCheckboxes = document.getElementById('lectureCheckboxes');
             lectureCheckboxes.innerHTML = '';
-            const lectureRanges = [lect1, lect2, lect3, lect4, lect5];
+            const lectureRanges = [lect1, lect2, lect3, lect4, lect5, lect6, lect7];
 
             lectureRanges.forEach((lectureRange, index) => {
                 const label = document.createElement('label');
                 label.innerHTML = `
-            <input type="checkbox" name="lectureCheckbox" value="${index + 1}"> Lecture ${index + 1}
+            <input type="checkbox" name="lectureCheckbox" value="${index + 1}"> ${index + 1 <= 6 ? `Lecture ${index + 1}` : "All"}
         `;
                 lectureCheckboxes.appendChild(label);
             });
