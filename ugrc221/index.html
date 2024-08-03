@@ -3405,8 +3405,13 @@
         });
 
         function showLectureSelection() {
-            document.getElementById('lectureSelectionDialog').style.display = 'flex';
-            generateLectureSelection();
+            const confirmShow = confirm("Do you want to manually select lectures to be quizzed on?")
+            if (confirmShow) {
+                document.getElementById('lectureSelectionDialog').style.display = 'flex';
+                generateLectureSelection();
+            } else {
+                return
+            }
         }
 
         function generateLectureSelection() {
