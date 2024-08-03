@@ -146,6 +146,7 @@
             font-weight: bolder;
             font-size: 2rem;
             color: rgb(66, 137, 195);
+            margin-bottom: 0;
         }
 
         #result {
@@ -224,6 +225,18 @@
             flex-direction: column;
             gap: 0.8rem;
         }
+
+        #question-count {
+            cursor: default;
+            margin-top: 0;
+            padding: 0.8rem 0.8rem;
+            border-radius: 0.8rem;
+            border-width: 0.1rem;
+            background-color: rgb(66, 137, 195);
+            color: white;
+            border: solid;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -254,8 +267,8 @@
     <div id="container-1">
         <div id="quizContainer" style="display: none;">
             <h1 id="quiz-h1">UGRC 221 Mock Quiz: A BBF Labs Initiative
-                <span id="question-count"></span>
             </h1>
+            <div id="question-count"></div>
             <!-- <div id="quiz-options">
                 <label>
                     <input type="radio" name="quizType" value="all" checked>
@@ -4169,7 +4182,7 @@
 
         function updateQuestionCount() {
             const questionCountSpan = document.getElementById('question-count');
-            questionCountSpan.textContent = `(${currentQuestion + 1}/${selectedQuestions.length})`;
+            questionCountSpan.textContent = `Question ${currentQuestion + 1} out of ${selectedQuestions.length}`;
         }
 
         function showQuestion(index) {
