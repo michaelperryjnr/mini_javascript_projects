@@ -101,7 +101,7 @@
         }
 
         #usernameDialog>div {
-            background: #53aca8;
+            background: #2c5460;
             padding: 4rem 4rem;
             border-radius: 10px;
             text-align: center;
@@ -136,8 +136,17 @@
             border: none;
         }
 
-        .btn {
+        #see {
             padding: 1.1rem 1.1rem;
+            border-radius: 0.8rem;
+            border-width: 0.1rem;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+
+        .btn {
+            padding: 0.8rem 0.8rem;
             border-radius: 0.8rem;
             border-width: 0.1rem;
             background-color: rgb(66, 137, 195);
@@ -157,9 +166,10 @@
         }
 
         #usr-h2 {
-            font-weight: bolder;
-            font-size: 2rem;
+            font-weight: bold;
+            font-size: 1.6rem;
             color: white;
+            margin-bottom: 0;
         }
 
         #container-1 {
@@ -315,6 +325,13 @@
             justify-content: center;
             gap: 2rem;
         }
+
+        #usr-h4 {
+            margin-top: 0;
+            font-weight: 500;
+            color: rgb(217, 85, 85);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 
@@ -322,7 +339,7 @@
     <div id="usernameDialog">
         <div>
             <h2 id="usr-h2">Choose a username</h2>
-            <h4>A username is required to access anything on the page</h4>
+            <h4 id="usr-h4">A username is required to access anything on the page</h4>
             <input type="text" id="username" placeholder="Username" required>
             <div id="usernameDiv">
                 <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
