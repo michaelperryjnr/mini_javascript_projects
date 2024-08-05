@@ -3403,7 +3403,7 @@
             const percentage = (score / answeredQuestions) * 100;
 
             const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
-            userScore.innerHTML = `<p>${capitalizedUsername}'s Score: <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span></p> <p>Answered: ${answeredQuestions}</p></p>`
+            userScore.innerHTML = `<p>${capitalizedUsername}'s Score: <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f"};">${percentage.toFixed(2)}%</span></p> <p>Answered: ${answeredQuestions}</p></p>`
 
             displayFeedback();
         }
