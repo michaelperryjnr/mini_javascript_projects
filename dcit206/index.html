@@ -3336,12 +3336,7 @@
             hideFeedback();
             function start() {
                 retake.style.display = "none"
-                if (currentQuestion === 0) {
-                    retakeQuiz();
-                }
-                else {
-                    showQuestion(currentQuestion);
-                }
+                showQuestion(currentQuestion);
             }
             start()
             retake.style.display = "none"
