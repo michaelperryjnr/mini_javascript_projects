@@ -23,7 +23,23 @@
         .question {
             margin-bottom: 20px;
         }
-
+        .hint{
+            height: 20px;
+            width: 20px;
+            position:absolute;
+        }
+        #hinting{
+            font-size: 1.5rem;
+        }
+        #hinting:hover{
+            cursor: pointer;
+        }
+        #removeHinting{
+            font-size: 1.5rem;
+        }
+        #removeHinting:hover{
+            cursor: pointer;
+        }
         .result {
             font-size: 18px;
             font-weight: bold;
@@ -421,7 +437,12 @@
             <h1 id="quiz-h1">DCIT 206 Mock Quiz: A BBF Labs Initiative
             </h1>
             <div id="question-count-container">
-                <button id="scoresBtn" class="btn next" onclick="checkScores()">View Scores</button>
+                <div class="" style="display: flex; align-items: center; gap:5px">
+                    <!-- add hinting icon -->
+                    <i class="fa-regular fa-lightbulb " id="hinting" title="Get hint with emoji expressions"></i>
+                    <i class="fa-regular fa-ban " id="removeHinting" title="remove hint on this question"></i>
+                    <button id="scoresBtn" class="btn next" onclick="checkScores()">View Scores</button>
+                </div>
                 <div id="question-count"></div>
             </div>
             <!-- <div id="quiz-options">
@@ -3395,16 +3416,46 @@
             questionDiv.appendChild(questionTitle);
 
             question.options.forEach(option => {
-                const optionLabel = document.createElement('label');
-                const optionInput = document.createElement('input');
-                optionInput.type = "radio";
-                optionInput.name = "q" + (index + 1);
-                optionInput.value = option[0];
-                if (userAnswers[questionIndex] === option[0]) {
-                    optionInput.checked = true;
-                }
-                optionLabel.appendChild(optionInput);
-                optionLabel.appendChild(document.createTextNode(option));
+            const optionLabel = document.createElement('label');
+            const optionInput = document.createElement('input');
+            const optionHint = document.createElement('img');
+    
+            optionInput.type = "radio";
+            optionInput.name = "q" + (index + 1);
+            optionInput.value = option[0];
+    
+             optionHint.classList.add('hint');
+             optionHint.style.display = 'none';  // Initially hide the hint
+
+             const correctEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f601/512.webp';
+             const incorrectEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f9d0/512.webp';
+    
+              optionHint.src = optionInput.value === questions[questionIndex].answer ? correctEmoji : incorrectEmoji;
+               optionHint.alt = optionInput.value === questions[questionIndex].answer ? 'correct' : 'incorrect';
+
+            if (userAnswers[questionIndex] === option[0]) {
+                optionInput.checked = true;
+              }
+
+           optionLabel.appendChild(optionInput);
+            optionLabel.appendChild(document.createTextNode(option));
+    
+    hinting.addEventListener('click', () => {
+        optionLabel.appendChild(optionHint)
+    });
+
+    removeHinting.addEventListener('click', () => {
+       optionLabel.removeChild(optionHint)
+    });
+
+    // Add event listeners for hover
+    optionLabel.addEventListener('mouseover', () => {
+        optionHint.style.display = 'inline-block';
+    });
+
+    optionLabel.addEventListener('mouseout', () => {
+        optionHint.style.display = 'none';
+    });
                 questionDiv.appendChild(optionLabel);
                 optionLabel.addEventListener('click', () => {
                     userAnswers[questionIndex] = option[0];
