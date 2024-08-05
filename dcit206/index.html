@@ -124,7 +124,29 @@
             padding: 8rem 8rem;
             border-radius: 10px;
             text-align: center;
+            position: relative;
         }
+
+        #scoreContainer {
+            z-index: 10000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #scoreContainer>div {
+            background: #434e52;
+            padding: 8rem 8rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
 
         #start-btn {
             padding: 1.1rem 1.1rem;
@@ -268,7 +290,11 @@
             gap: 0.8rem;
         }
 
-        #question-count {
+        #question-count-container {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
             cursor: default;
             margin-top: 0;
             padding: 0.8rem 0.8rem;
@@ -336,6 +362,13 @@
             color: rgb(217, 85, 85);
             font-size: 0.9rem;
         }
+
+        #scoreShowContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
     </style>
 </head>
 
@@ -364,10 +397,25 @@
 
 
     <div id="container-1">
+        <div id="scoreContainer" style="display: none;">
+            <div class="score-div">
+                <p id="usr-h2">Scores</p>
+                <div id="scoreShowContainer"></div>
+                <div id="showFeedOptions">
+                    <button class="btn green btnSize" id="yesButton" onclick="previousQuestionFromFeedBack()">Back To
+                        Quiz</button>
+                    <button class="btn voilet btnSize" id="noButton" onclick="retakeQuiz()">Retake Quiz</button>
+                </div>
+            </div>
+
+        </div>
         <div id="quizContainer" style="display: none;">
             <h1 id="quiz-h1">DCIT 206 Mock Quiz: A BBF Labs Initiative
             </h1>
-            <div id="question-count"></div>
+            <div id="question-count-container">
+                <button id="scoresBtn" class="btn next" onclick="checkScores()">View Scores</button>
+                <div id="question-count"></div>
+            </div>
             <!-- <div id="quiz-options">
                 <label>
                     <input type="radio" name="quizType" value="all" checked>
@@ -3204,15 +3252,33 @@
         const sectionTitle = document.getElementById("quiz-h1");
         const retake = document.getElementById("retakeGroup");
         const userScore = document.getElementById("user-answers");
-        let userName = "";
+        const scoreContainer = document.getElementById("scoreContainer");
+        let userName = "" || localStorage.getItem("username");
+        const usernameInput = document.getElementById('username').value = userName;
+
+        function saveScore(score) {
+            let scores = JSON.parse(localStorage.getItem("scores")) || [];
+            scores.push({ username: userName, score: score });
+            localStorage.setItem("scores", JSON.stringify(scores));
+        }
 
         function startQuiz() {
-            const username = document.getElementById('username').value;
-            if (username.trim() === "") {
-                alert("Please enter a username");
-                return;
+            const usernameInput = document.getElementById('username')
+            let username = usernameInput.value.trim();
+
+            if (username === "") {
+                if (localStorage.getItem("username")) {
+                    username = localStorage.getItem("username");
+                    userName = username;
+                    usernameInput.value = username;
+                } else {
+                    alert("Please enter a username");
+                    return;
+                }
+            } else {
+                localStorage.setItem("username", username);
+                userName = username;
             }
-            userName = username;
 
             generateLectureSelection();
 
@@ -3334,6 +3400,7 @@
 
         function previousQuestionFromFeedBack() {
             hideFeedback();
+            scoreContainer.style.display = "none"
             function start() {
                 retake.style.display = "none"
                 showQuestion(currentQuestion);
@@ -3376,6 +3443,63 @@
             feedbackChoice.style.display = 'contents';
         }
 
+
+        function checkScores() {
+            let scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+            if (!scores || scores.length === 0) {
+                alert("You must complete a quiz first to view scores");
+                return;
+            }
+            scoreContainer.style.display = "flex";
+            scores.sort((a, b) => b.score - a.score);
+            let scoreList = document.getElementById("scoreShowContainer");
+            scoreList.innerHTML = "";
+            const table = document.createElement("table");
+            const thead = document.createElement("thead");
+            const tbody = document.createElement("tbody");
+
+            // Create header row
+            const headerRow = document.createElement("tr");
+            const headers = ["Quiz", "Score"];
+            headers.forEach(headerText => {
+                const th = document.createElement("th");
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            scores.forEach((score, index) => {
+                const tr = document.createElement("tr");
+
+                const rankCell = document.createElement("td");
+                rankCell.textContent = index + 1;
+                tr.appendChild(rankCell);
+
+                const scoreCell = document.createElement("td");
+                scoreCell.textContent = `${score.score}%`;
+                tr.appendChild(scoreCell);
+
+                tr.style.border = "1px solid black";
+                tr.style.textAlign = "center";
+                tr.style.padding = "0.7rem";
+                tbody.appendChild(tr);
+            });
+
+            table.appendChild(tbody);
+            table.style.border = "1px solid white";
+            table.style.borderRadius = "10px";
+            table.style.textAlign = "center";
+            table.style.margin = "auto";
+            table.style.backgroundColor = "#430f58";
+            table.style.padding = "0.7rem";
+            table.style.color = "white";
+            scoreList.style.overflow = "scroll";
+            table.style.marginTop = "1rem"
+            scoreList.appendChild(table);
+        }
+
         function showFeedback() {
             retake.style.display = 'block';
             retake.style.position = "relative"
@@ -3401,6 +3525,10 @@
             });
 
             const percentage = (score / answeredQuestions) * 100;
+
+            if (answeredQuestions === selectedQuestions.length) {
+                saveScore(percentage);
+            }
 
             const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
             userScore.innerHTML = `<p>${capitalizedUsername}'s Score: <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f"};">${percentage.toFixed(2)}%</span></p> <p>Answered: ${answeredQuestions}</p></p>`
@@ -3583,6 +3711,7 @@
                 resultDiv.style.display = "none"
                 userScore.style.display = "none"
                 resultDiv2.style.display = "none"
+                scoreContainer.style.display = "none"
                 document.getElementById('quizContainer').style.display = 'block';
                 showQuestion(currentQuestion);
             }
