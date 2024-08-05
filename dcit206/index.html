@@ -160,8 +160,12 @@
         }
 
         .usr-score {
-            font-weight: bolder;
-            font-size: 2.2rem;
+            font-weight: bold;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: start;
+            gap: 0.2rem;
             color: black;
         }
 
@@ -428,6 +432,952 @@
 
     <script>
         const questions = [{
+            question: "What is the naming convention for run level directories in System V?",
+            options: [
+                "A. /etc/rcN.d/ where \"N\" is the run level between 0 and 6.",
+                "B. /etc/init.d/rcN where \"N\" is the run level between 0 and 6.",
+                "C. /etc/runN/ where \"N\" is the run level between 0 and 6.",
+                "D. /etc/levelN/ where \"N\" is the run level between 0 and 6."
+            ],
+            answer: "A"
+        },
+        {
+            question: "What happens when power is applied to the system?",
+            options: [
+                "A. The system performs a memory dump.",
+                "B. The system resets all of the logic gates (chips) to a known state.",
+                "C. The system runs a user-defined script.",
+                "D. The system initiates a network connection."
+            ],
+            answer: "B"
+        },
+        {
+            question: "What is the purpose of a virtual switch in virtualization?",
+            options: [
+                "A. To connect the virtual machines to the host operating system.",
+                "B. To manage the guest operating systems of virtual machines.",
+                "C. To provide a dedicated network connection for each virtual machine.",
+                "D. To allocate hardware resources to virtual machines."
+            ],
+            answer: "C"
+        },
+        {
+            question: "Which technology enables server consolidation through virtualization?",
+            options: [
+                "A. Virtual reality",
+                "B. Cloud computing",
+                "C. Virtual networking",
+                "D. Hypervisor"
+            ],
+            answer: "D"
+        },
+        {
+            question: "How do you rename file “new” to file “old”?",
+            options: [
+                "A. mv new old",
+                "B. move new old",
+                "C. cp new old",
+                "D. rn new old"
+            ],
+            answer: "A"
+        },
+        {
+            question: "A (an) ________ is a person using a computer to perform routine tasks other than systems administration.",
+            options: [],
+            answer: "User"
+        },
+        {
+            question: "Where is the POST run from?",
+            options: [
+                "A. The hard drive",
+                "B. The RAM",
+                "C. The PROM Monitor",
+                "D. The operating system"
+            ],
+            answer: "C"
+        },
+        {
+            question: "Which of the following virtualization technologies is open-source?",
+            options: [
+                "A. VMware vSphere",
+                "B. Microsoft Hyper-V",
+                "C. Oracle VirtualBox",
+                "D. Citrix XenServer"
+            ],
+            answer: "C"
+        },
+        {
+            question: "Once the initial diagnostics are performed and assigning system resources, the startup BIOS program will check for information about secondary storage devices that might contain the OS. This list of devices and the order in which they should be checked are found and arranged in the CMOS setup utility, and are commonly referred to as:",
+            options: [
+                "A. The Boot Record",
+                "B. The Boot sequence",
+                "C. The MBR (Master Boot Record)",
+                "D. The Disk Partition table"
+            ],
+            answer: "B"
+        },
+        {
+            question: "Which represents the user home directory?",
+            options: [
+                "A. /",
+                "B. .",
+                "C. ..",
+                "D. ~"
+            ],
+            answer: "D"
+        },
+        {
+            question: "The _________ presents a uniform device-access interface to the I/O subsystem, much as system calls provide a standard interface between the application and the operating system.",
+            options: [
+                "A. Device drivers",
+                "B. I/O systems",
+                "C. Devices",
+                "D. Buses"
+            ],
+            answer: "A"
+        },
+        {
+            question: "Which option of rmdir command will remove all directories a, b, c if path is a/b/c",
+            options: [
+                "A. -b",
+                "B. -o",
+                "C. -p",
+                "D. -t"
+            ],
+            answer: "C"
+        },
+        {
+            question: "Why do customers stay with the proprietary Solaris OS on SPARC?",
+            options: [
+                "A. Because Linux does not support SPARC",
+                "B. Because applications are not available for Linux/SPARC",
+                "C. Because Solaris is cheaper"
+            ],
+            answer: "B"
+        },
+        {
+            question: "What do you need to perform a network installation of Linux?",
+            options: [
+                "A. A dedicated Linux server",
+                "B. A DHCP server running on your network",
+                "C. A physical copy of the Linux installation media",
+                "D. A high-speed internet connection"
+            ],
+            answer: "B"
+        },
+        {
+            question: "Where are the run control (rc) scripts typically located in BSD variants?",
+            options: [
+                "A. /usr/bin",
+                "B. /etc",
+                "C. /var/log",
+                "D. /home"
+            ],
+            answer: "B"
+        },
+        {
+            question: "The maximum size of a write file is limited to only",
+            options: [
+                "A. Name of the file",
+                "B. Extension of the file",
+                "C. The amount of memory in your computer",
+                "D. All of above"
+            ],
+            answer: "C"
+        },
+        {
+            question: "What is one possible outcome if there is an error in the Unix password file format?",
+            options: [
+                "A. Only root can log in.",
+                "B. The password file is automatically truncated to remove the error.",
+                "C. New users cannot be added.",
+                "D. The system will shut down immediately."
+            ],
+            answer: "B"
+        },
+        {
+            question: "Which of the following is a key characteristic of virtual machines?",
+            options: [
+                "A. They require separate physical hardware for each virtual machine.",
+                "B. They cannot run multiple operating systems simultaneously.",
+                "C. They provide isolation between different virtual machines.",
+                "D. They have direct access to the physical hardware."
+            ],
+            answer: "C"
+        },
+        {
+            question: "Where is the operating system placed in the memory?",
+            options: [
+                "A. either low or high memory (depending on the location of interrupt vector)",
+                "B. in the low memory",
+                "C. in the high memory",
+                "D. none of the mentioned"
+            ],
+            answer: "A"
+        },
+        {
+            question: "____ command is used for setting limits on file size.",
+            options: [
+                "A. limit",
+                "B. flimit",
+                "C. ulimit",
+                "D. flim"
+            ],
+            answer: "C"
+        },
+        {
+            question: "Which of the following functionalities is carried by the root user?",
+            options: [
+                "A. managing disk space",
+                "B. performing backup",
+                "C. changing attributes of a file",
+                "D. managing disk space, performing backup, changing attributes of a file"
+            ],
+            answer: "D"
+        },
+        {
+            question: "The memory which allocates space for DOS and application is called",
+            options: [
+                "A. Expanded memory",
+                "B. Cache memory",
+                "C. Virtual memory",
+                "D. Conventional memory"
+            ],
+            answer: "D"
+        },
+        {
+            question: "Which command is used for displaying the contents of a file in Unix?",
+            options: [
+                "A. mkdir",
+                "B. cat",
+                "C. rm",
+                "D. cp"
+            ],
+            answer: "B"
+        },
+        {
+            question: "Which company's hardware is mentioned as only supporting its proprietary OS?",
+            options: [
+                "A. Apple",
+                "B. IBM",
+                "C. Sun Microsystems",
+                "D. Microsoft"
+            ],
+            answer: "C"
+        },
+        {
+            question: "____ is the program run on a computer when the computer boots up",
+            options: [
+                "A. System software",
+                "B. Operating system",
+                "C. System operations",
+                "D. None"
+            ],
+            answer: "B"
+        },
+        {
+            question: "Over time, single-OS systems are likely to be:",
+            options: [
+                "A. Permanently maintained.",
+                "B. Replaced by multi-OS systems.",
+                "C. Made open-source.",
+                "D. Unsupported by vendors."
+            ],
+            answer: "B"
+        },
+        {
+            question: "Which of the following does not occur during the power-on-self-test (POST)?",
+            options: [
+                "A. Tuscan disk utility begins to run",
+                "B. The video card and video memory are tested",
+                "C. The BIOS identification process occurs",
+                "D. The memory chip is checked to ensure that they are working properly"
+            ],
+            answer: "A"
+        },
+        {
+            question: "Which component is responsible for ensuring that the minimal hardware components are available during system startup?",
+            options: [
+                "A. The operating system",
+                "B. The POST",
+                "C. The boot loader",
+                "D. The user-defined scripts"
+            ],
+            answer: "B"
+        },
+        {
+            question: "What is the benefit of virtual machine portability?",
+            options: [
+                "A. It allows virtual machines to communicate with each other easily.",
+                "B. It ensures faster boot times for virtual machines.",
+                "C. It allows virtual machines to be moved between different physical machines with compatible hypervisors.",
+                "D. It reduces the need for hardware virtualization."
+            ],
+            answer: "C"
+        },
+        {
+            question: "When you use the OS to reboot it is called a ______.",
+            options: [
+                "A. Cold Boot",
+                "B. Warm Boot",
+                "C. Short Boot",
+                "D. Restore"
+            ],
+            answer: "B"
+        },
+        {
+            question: "What is the \"old\" method for adding or changing user information in UNIX?",
+            options: [
+                "A. Using a graphical user interface.",
+                "B. Editing the /etc/password file.",
+                "C. Running an automatic script.",
+                "D. Using a web-based management tool."
+            ],
+            answer: "B"
+        },
+        {
+            question: "What should you print out before upgrading the OS?",
+            options: [
+                "A. The installation guide",
+                "B. The network configuration",
+                "C. Information regarding current disk partitions",
+                "D. The user manual"
+            ],
+            answer: "C"
+        },
+        {
+            question: "What does virtualization allow in terms of hardware resource allocation?",
+            options: [
+                "A. All virtual machines share the same hardware resources equally.",
+                "B. Virtual machines can access the physical hardware directly.",
+                "C. Hypervisor dynamically allocates hardware resources to virtual machines based on their demands.",
+                "D. Hardware resources are only allocated during virtual machine creation."
+            ],
+            answer: "C"
+        },
+        {
+            question: "What is an advantage for vendors of having a single OS on their systems?",
+            options: [
+                "A. Easier for the service personnel to learn one system.",
+                "B. Allows for the installation of multiple OS.",
+                "C. It increases the complexity of the system.",
+                "D. It makes the system less reliable."
+            ],
+            answer: "A"
+        },
+        {
+            question: "What is the purpose of a virtual disk manager in virtualization?",
+            options: [
+                "A. To manage the physical hard disks of the host system",
+                "B. To create virtual hard disks for virtual machines",
+                "C. To manage the guest operating systems of virtual machines",
+                "D. To monitor network bandwidth usage"
+            ],
+            answer: "B"
+        },
+        {
+            question: "What is the correct format of a Unix password file?",
+            options: [
+                "A. USER:PASSWD:UID:GID:HOMEDIR:GECOS",
+                "B. USER:PASSWD:UID:GECOS:GID:HOMEDIR",
+                "C. USER:PASSWD:UID:GID:GECOS:HOMEDIR",
+                "D. USER:PASSWD:GID:UID:GECOS:HOMEDIR"
+            ],
+            answer: "C"
+        },
+        {
+            question: "The main memory of a computer is also referred to as:",
+            options: [
+                "A. immediate access store.",
+                "B. auxiliary storage.",
+                "C. secondary storage.",
+                "D. backup storage."
+            ],
+            answer: "A"
+        },
+        {
+            question: "Who spearheaded the project to create the Ubuntu operating system?",
+            options: [
+                "A. Steve Wozniak",
+                "B. Linus Torvalds",
+                "C. Mark Shuttleworth",
+                "D. Bill Gates"
+            ],
+            answer: "C"
+        },
+        {
+            question: "Which of the following is not a problem associated with using a small number of rc scripts?",
+            options: [
+                "A. Need to reboot system to test scripts.",
+                "B. Each rc script modifies and may stop some services.",
+                "C. Not easy to shut down individual services using rc scripts.",
+                "D. Startup becomes more difficult to test."
+            ],
+            answer: "B"
+        },
+        {
+            question: "Which files will be displayed by the following command: cat file",
+            options: [
+                "A. all files in the directory",
+                "B. all files with filename containing ‘file’",
+                "C. no files will be displayed",
+                "D. a single file"
+            ],
+            answer: "D"
+        },
+        {
+            question: "What is the main purpose of virtual machine snapshots?",
+            options: [
+                "A. To create backups of virtual machines",
+                "B. To take screenshots of virtual machine desktops",
+                "C. To monitor network traffic between virtual machines",
+                "D. To revert virtual machines to a previous state"
+            ],
+            answer: "D"
+        },
+        {
+            question: "What is the purpose of server consolidation in virtualization?",
+            options: [
+                "A. To reduce hardware costs and energy consumption",
+                "B. To increase the number of virtual machines on a single physical machine",
+                "C. To increase the processing power of virtual machines",
+                "D. To reduce the isolation between virtual machines"
+            ],
+            answer: "A"
+        },
+        {
+            question: "To access the services of the operating system, the interface is provided by the ___________",
+            options: [
+                "A. Library",
+                "B. System calls",
+                "C. Assembly instructions",
+                "D. API"
+            ],
+            answer: "B"
+        },
+        {
+            question: "The ALU processes data and stores it in:",
+            options: [
+                "A. a flash drive.",
+                "B. the main memory.",
+                "C. a sound card.",
+                "D. modem."
+            ],
+            answer: "B"
+        },
+        {
+            question: "How can Linux be \"kickstarted\"?",
+            options: [
+                "A. From a bootable CD",
+                "B. From a bootable USB drive",
+                "C. From a bootable floppy diskette",
+                "D. From a local hard drive"
+            ],
+            answer: "C"
+        },
+        {
+            question: "What tool does some versions of UNIX provide to prevent mistakes when editing the password file?",
+            options: [
+                "A. editpw",
+                "B. adduser",
+                "C. useredit",
+                "D. vipw"
+            ],
+            answer: "D"
+        },
+        {
+            question: "What does cat file01 file01 file01 display?",
+            options: [
+                "A. error",
+                "B. blank terminal",
+                "C. contents of file01 three times successively",
+                "D. contents of file01 single time"
+            ],
+            answer: "C"
+        },
+        {
+            question: "What is a recommended solution if a network adapter's driver is not operating correctly during Windows installation?",
+            options: [],
+            answer: "Generally, removing the adapter’s driver, rebooting the system, and reinstalling the driver will correct this problem."
+        },
+        {
+            question: "What tool does Solaris provide for adding, changing, or deleting one user at a time?",
+            options: [
+                "A. vipw",
+                "B. useradd",
+                "C. admintool",
+                "D. usermod"
+            ],
+            answer: "C"
+        },
+        {
+            question: "What is the benefit of using virtual machines in cloud computing?",
+            options: [
+                "A. Virtual machines offer better performance than physical servers.",
+                "B. Virtual machines eliminate the need for hypervisors.",
+                "C. Virtual machines can be easily migrated between cloud providers.",
+                "D. Virtual machines enable efficient resource allocation and cost savings."
+            ],
+            answer: "D"
+        },
+        {
+            question: "When does BIOS run?",
+            options: [
+                "A. Runs after Windows loads",
+                "B. Runs before you shut down",
+                "C. Runs after you log in",
+                "D. Runs before Windows loads"
+            ],
+            answer: "D"
+        },
+        {
+            question: "What is a key statement about the world of computing mentioned in the text?",
+            options: [
+                "A. It follows a one-size-fits-all approach.",
+                "B. Only Windows systems are used.",
+                "C. Only UNIX systems are used.",
+                "D. It is not a one-size-fits-all environment."
+            ],
+            answer: "D"
+        },
+        {
+            question: "What must be done to system disks larger than 4 gigabytes to install NT 4.0?",
+            options: [
+                "A. They must be formatted as FAT32.",
+                "B. They must be divided into multiple partitions.",
+                "C. They must be encrypted.",
+                "D. They must be converted to SSDs."
+            ],
+            answer: "B"
+        },
+        {
+            question: "For creating and removing directories, which of the following system calls are used?",
+            options: [
+                "A. mkdir and rmdir",
+                "B. rmdir and chown",
+                "C. chdir and chown",
+                "D. mkdir and chdir"
+            ],
+            answer: "A"
+        },
+        {
+            question: "What program runs first after a computer is booted and loading GUI?",
+            options: [
+                "A. Desktop Manager",
+                "B. File Manager",
+                "C. Windows Explorer",
+                "D. Authentication"
+            ],
+            answer: "D"
+        },
+        {
+            question: "How do virtual machines facilitate software testing and development?",
+            options: [
+                "A. By providing access to physical hardware for testing purposes",
+                "B. By isolating development environments from the host system",
+                "C. By offering faster processing speed for applications",
+                "D. By enabling real-time collaboration between developers"
+            ],
+            answer: "B"
+        },
+        {
+            question: "In a virtualized server environment, compared with a traditional server environment:",
+            options: [
+                "A. It is easier to keep track of software licensing.",
+                "B. Tracking software licensing is neither materially easier nor harder.",
+                "C. It is significantly harder to keep track of software licensing.",
+                "D. None of the options is correct."
+            ],
+            answer: "C"
+        },
+        {
+            question: "What is the purpose of the /etc/rc script in BSD variants?",
+            options: [
+                "A. To log system errors.",
+                "B. To manage user accounts.",
+                "C. To start new services at boot time.",
+                "D. To configure the graphical user interface."
+            ],
+            answer: "C"
+        },
+        {
+            question: "Whenever you move a directory from one location to another",
+            options: [
+                "A. All files inside the directory are moved.",
+                "B. All the subdirectories inside that directory are moved.",
+                "C. The directory is moved the source file is not moved.",
+                "D. Both a and b."
+            ],
+            answer: "D"
+        },
+        {
+            question: "In a Linux kickstart, what is the function of the boot service machine?",
+            options: [
+                "A. To host the Linux installation files.",
+                "B. To run diagnostics on the new system.",
+                "C. To provide user support during installation.",
+                "D. To configure the BIOS settings."
+            ],
+            answer: "A"
+        },
+        {
+            question: "Unix is which kind of Operating System?",
+            options: [],
+            answer: "Unix is a **multitasking**, **multi-user** operating system."
+        },
+        {
+            question: "To access the services of the operating system, the interface is provided by the ___________",
+            options: [
+                "A. Library",
+                "B. System calls",
+                "C. Assembly instructions",
+                "D. API"
+            ],
+            answer: "B"
+        },
+        {
+            question: "Which process is immediately set up by the kernel when we log on to a Unix system?",
+            options: [
+                "A. System",
+                "B. bash",
+                "C. shell",
+                "D. parent"
+            ],
+            answer: "C"
+        },
+        {
+            question: "Which one of the following is not true?",
+            options: [
+                "A. kernel remains in the memory during the entire computer session",
+                "B. kernel is made of various modules which can not be loaded in running operating system",
+                "C. kernel is the first part of the operating system to load into memory during booting",
+                "D. kernel is the program that constitutes the central core of the operating system"
+            ],
+            answer: "B"
+        },
+        {
+            question: "Registers are used to store data and instructions that:",
+            options: [
+                "A. are needed over a long period of time.",
+                "B. are needed immediately and often.",
+                "C. are needed at start up.",
+                "D. are needed to hold the program that is being used."
+            ],
+            answer: "B"
+        },
+        {
+            question: "What is an example of an OS that supports the SPARC architecture?",
+            options: [
+                "A. Windows",
+                "B. MacOS",
+                "C. Linux",
+                "D. FreeBSD"
+            ],
+            answer: "C"
+        },
+        {
+            question: "How do virtual machines contribute to hardware consolidation in data centers?",
+            options: [
+                "A. By reducing the number of virtual machines per physical server",
+                "B. By allowing multiple physical servers to share the same hardware",
+                "C. By increasing the number of physical servers required",
+                "D. By providing direct access to physical hardware for each virtual machine"
+            ],
+            answer: "B"
+        },
+        {
+            question: "What is a virtual machine (VM)?",
+            options: [
+                "A. A physical computer",
+                "B. A software-based emulation of a physical computer",
+                "C. A mobile device",
+                "D. A server operating system"
+            ],
+            answer: "B"
+        },
+        {
+            question: "When it comes to avoiding major outages, the use of server virtualization:",
+            options: [
+                "A. Reduces the frequency of hardware-related service outages.",
+                "B. Has no material impact.",
+                "C. Requires that levels of redundancy be increased to avoid an increase in outages affecting multiple applications or services.",
+                "D. None of the options is correct."
+            ],
+            answer: "A"
+        },
+        {
+            question: "Symbolic, or hard links connect the _______ scripts into the correct run level directories",
+            options: [
+                "A. /etc/init.d",
+                "B. /etc/rc.d/init.d",
+                "C. /sbin/init.d",
+                "D. /etc/rc.d/afs"
+            ],
+            answer: "A"
+        },
+        {
+            question: "What is the main advantage of using virtual machines for software testing and development?",
+            options: [
+                "A. Ability to run games and graphics-intensive applications",
+                "B. Access to a faster internet connection",
+                "C. Isolation of testing environments from the host system",
+                "D. Integration of multiple operating systems into a single environment"
+            ],
+            answer: "C"
+        },
+        {
+            question: "What are Commands?",
+            options: [
+                "A. specific instructions for performing a particular task",
+                "B. part of the operating system",
+                "C. part of the shell",
+                "D. special instructions"
+            ],
+            answer: "A"
+        },
+        {
+            question: "The speed at which a CPU processes data to convert it, is measured in:",
+            options: [
+                "A. megabytes.",
+                "B. gigahertz.",
+                "C. gigabytes.",
+                "D. terabytes."
+            ],
+            answer: "B"
+        },
+        {
+            question: "Whenever a process needs I/O to or from a disk it issues a ______________",
+            options: [
+                "A. system call to the operating system",
+                "B. a special procedure",
+                "C. system call to the CPU",
+                "D. all of the mentioned"
+            ],
+            answer: "A"
+        },
+        {
+            question: "Multiple arguments as filenames can be specified in cat command.",
+            options: [
+                "A. True",
+                "B. False"
+            ],
+            answer: "A"
+        },
+        {
+            question: "Which one is true for unconditional disk formatting?",
+            options: [
+                "A. Destroys every byte of data on a disk by overwriting it with blank spaces",
+                "B. Do not check/scan surface after format",
+                "C. Transfer system files after format",
+                "D. All of above"
+            ],
+            answer: "A"
+        },
+        {
+            question: "What is the correct boot process order?  ii.Loading the OS iii. BIOS checking hardware (POST) iv. Load the Shell/GUI (DOS Prompt)  A. OS Initializing itself",
+            options: [
+                "B. 1,2,3,4",
+                "C. 2,3,4,1",
+                "D. 3,2,1,4",
+                "E. 3,1,2,4"
+            ],
+            answer: "E"
+        },
+        {
+            question: "NT 4.0 cannot be installed on systems with a boot partition larger than:",
+            options: [
+                "A. 4 gigabytes.",
+                "B. 2 gigabytes.",
+                "C. 8 gigabytes.",
+                "D. 16 gigabytes."
+            ],
+            answer: "A"
+        },
+        {
+            question: "In virtualization, what is the guest operating system?",
+            options: [
+                "A. The main operating system running on the physical machine",
+                "B. The operating system installed on a virtual machine",
+                "C. The operating system running on a remote server",
+                "D. The operating system running on a mobile device"
+            ],
+            answer: "B"
+        },
+        {
+            question: "What is a shell script?",
+            options: [
+                "A. group of functions",
+                "B. a file containing a series of commands",
+                "C. a file containing special symbols",
+                "D. group of commands"
+            ],
+            answer: "B"
+        },
+        {
+            question: "How do some architectures build a device tree during the boot process?",
+            options: [
+                "A. By using the PROM monitor.",
+                "B. By using a BIOS scan.",
+                "C. By using a user-defined script.",
+                "D. By loading from a configuration file."
+            ],
+            answer: "A"
+        },
+        {
+            question: "Which of the following is a use case for virtual machines?",
+            options: [
+                "A. Running resource-intensive games",
+                "B. Hosting multiple websites on a single physical server",
+                "C. Managing social media accounts",
+                "D. Editing videos and images"
+            ],
+            answer: "B"
+        },
+        {
+            question: "Which version of UNIX did away with vipw, requiring another text editor to change the password file manually?",
+            options: [
+                "A. Linux",
+                "B. FreeBSD",
+                "C. Solaris",
+                "D. AIX"
+            ],
+            answer: "C"
+        },
+        {
+            question: "Which rc script in FreeBSD is responsible for configuring the network links?",
+            options: [
+                "A. /etc/rc.network",
+                "B. /etc/rc.firewall",
+                "C. /etc/rc.atm",
+                "D. /etc/rc.links"
+            ],
+            answer: "A"
+        },
+        {
+            question: "The operating system creates … from the physical computer",
+            options: [
+                "A. Virtual space",
+                "B. Virtual computer",
+                "C. Virtual device",
+                "D. None"
+            ],
+            answer: "B"
+        },
+        {
+            question: "Why does SCSI tend to confuse the OS with a variable number of sectors per cylinder?",
+            options: [
+                "A. Because it uses different hardware.",
+                "B. Because it uses a different operating system.",
+                "C. Because it uses a different file system.",
+                "D. Because it lies about the number of cylinders, heads, and sectors/track."
+            ],
+            answer: "D"
+        },
+        {
+            question: "Unix is which kind of Operating System?",
+            options: [],
+            answer: "Multitasking and Multi-user"
+        },
+        {
+            question: "Which one is not a system tool?",
+            options: [
+                "A. Backup",
+                "B. Disk defragment",
+                "C. Virus scanning",
+                "D. All of the above"
+            ],
+            answer: "D"
+        },
+        {
+            question: "What is a snapshot in virtualization?",
+            options: [
+                "A. A screenshot of the virtual machine’s desktop",
+                "B. A copy of the virtual machine’s entire hard disk",
+                "C. A point-in-time image of the virtual machine’s state",
+                "D. A backup of the host operating system"
+            ],
+            answer: "C"
+        },
+        {
+            question: "If a file is removed in Unix using ‘rm’ then",
+            options: [
+                "A. The file can be recovered by a normal user",
+                "B. The file cannot be recovered by a user",
+                "C. The file can be fully recovered provided the sytem is not rebooted",
+                "D. The file will be moved to /lost+found directory and can be recovered only by administrator’s intervention"
+            ],
+            answer: "B"
+        },
+        {
+            question: "What does the kernel do once it is loaded and started?",
+            options: [
+                "A. It probes devices.",
+                "B. It shuts down non-essential services.",
+                "C. It performs a system backup.",
+                "D. It runs user applications."
+            ],
+            answer: "A"
+        },
+        {
+            question: "What does virtual machine isolation mean?",
+            options: [
+                "A. Virtual machines can communicate directly with the physical hardware.",
+                "B. Virtual machines share the same resources and cannot be isolated.",
+                "C. Virtual machines run independently and are isolated from each other and the host system.",
+                "D. Virtual machines can only be accessed locally."
+            ],
+            answer: "C"
+        },
+        {
+            question: "What do you press on the HP computer keyboard in order to open the BIOS screen?",
+            options: [
+                "A. F6",
+                "B. Esc",
+                "C. F2",
+                "D. Tab"
+            ],
+            answer: "C"
+        },
+        {
+            question: "Which Unix command is used for changing the current directory?",
+            options: [
+                "A. pwd",
+                "B. rm",
+                "C. cd",
+                "D. cp"
+            ],
+            answer: "C"
+        },
+        {
+            question: "Which command is used by the user to change their login password in Unix?",
+            options: [
+                "A. cp",
+                "B. man",
+                "C. reset",
+                "D. passwd"
+            ],
+            answer: "D"
+        },
+        {
+            question: "What is the output of who command?",
+            options: [
+                "A. display information about users who are currently logged in.",
+                "B. display file hierarchy",
+                "C. display administrator information",
+                "D. display processes"
+            ],
+            answer: "A"
+        },
+        {
+            question: "Which type of virtualization allows multiple virtual machines to share the same operating system kernel?",
+            options: [
+                "A. Full virtualization",
+                "B. Paravirtualization",
+                "C. Hosted virtualization",
+                "D. Containerization"
+            ],
+            answer: "D"
+        }, {
             question: "What is the primary role of a System Administrator in a small company?",
             options: [
                 "A. Managing only computer systems",
@@ -2226,15 +3176,16 @@
         ];
 
         // Define lecture ranges
-        let lect1 = { start: 0, end: 35 };
-        let lect2 = { start: 36, end: 73 };
-        let lect3 = { start: 74, end: 99 };
-        let lect4 = { start: 100, end: 120 };
-        let lect5 = { start: 121, end: 158 };
-        let lect6 = { start: 159, end: 179 };
-        let all = { start: 0, end: questions.length - 1 };
+        let ia = { start: 0, end: 96, name: "IA" };
+        let lect1 = { start: 97, end: 133, name: "Lecture 1" };
+        let lect2 = { start: 134, end: 172, name: "Lecture 2" };
+        let lect3 = { start: 173, end: 197, name: "Lecture 3" };
+        let lect4 = { start: 198, end: 218, name: "Lecture 4" };
+        let lect5 = { start: 218, end: 256, name: "Lecture 5" };
+        let lect6 = { start: 257, end: questions.length - 1, name: "Lecture 6" };
+        let all = { start: 0, end: questions.length - 1, name: "All" };
 
-        const lectureRanges = [lect1, lect2, lect3, lect4, lect5, lect6, all];
+        const lectureRanges = [ia, lect1, lect2, lect3, lect4, lect5, lect6, all];
 
         let currentQuestion = 0;
         const userAnswers = Array(questions.length).fill(null);
@@ -2382,10 +3333,15 @@
         }
 
         function previousQuestionFromFeedBack() {
-            hideFeedback()
+            hideFeedback();
             function start() {
                 retake.style.display = "none"
-                showQuestion(currentQuestion);
+                if (currentQuestion === 0) {
+                    retakeQuiz();
+                }
+                else {
+                    showQuestion(currentQuestion);
+                }
             }
             start()
             retake.style.display = "none"
@@ -2429,7 +3385,7 @@
             retake.style.display = 'block';
             retake.style.position = "relative"
             retake.style.bottom = "0"
-            userScore.style.display = 'block';
+            userScore.style.display = 'flex';
             resultDiv2.style.display = 'block';
             resultDiv2.style.position = "relative"
             resultDiv2.style.top = "0"
@@ -2452,9 +3408,8 @@
             const percentage = (score / answeredQuestions) * 100;
 
             const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
-            userScore.innerHTML = `<p>Score: <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span></p>`
+            userScore.innerHTML = `<p>${capitalizedUsername}'s Score: <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span></p> <p>Answered: ${answeredQuestions}</p></p>`
 
-            resultDiv2.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span>... ${selectedQuestions.length - currentQuestion - 1} remain</p>`;
             displayFeedback();
         }
 
@@ -2534,7 +3489,7 @@
 
             const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
 
-            resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span>... ${selectedQuestions.length - currentQuestion - 1} remain</p>`;
+            //resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span>... ${selectedQuestions.length - currentQuestion - 1} remain</p>`;
 
             feedbackChoice.style.display = 'none';
             feedbackContainer.style.display = 'none';
@@ -2567,18 +3522,6 @@
             }
         }
 
-        function previousQuestionFromFeedBack() {
-            hideFeedback()
-            function start() {
-                retake.style.display = "none"
-                showQuestion(currentQuestion);
-            }
-            start()
-            retake.style.display = "none"
-            resultDiv.style.display = "none"
-            resultDiv2.style.display = "none"
-            userScore.style.display = "none"
-        }
 
         function displayFeedback() {
             feedbackContainer.style.overflow = "scroll";
@@ -2681,7 +3624,7 @@
             lectureRanges.forEach((lectureRange, index) => {
                 const label = document.createElement('label');
                 label.innerHTML = `
-            <input type="checkbox" name="lectureCheckbox" value="${index + 1}"> ${index + 1 <= lectureRanges.length - 1 ? `Lecture ${index + 1}` : "All"}
+            <input type="checkbox" name="lectureCheckbox" value="${index + 1}"> ${lectureRange.name}
         `;
                 lectureCheckboxes.appendChild(label);
             });
