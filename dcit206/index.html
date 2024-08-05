@@ -3248,7 +3248,7 @@
         const lectureRanges = [ia, lect1, lect2, lect3, lect4, lect5, lect6, all];
 
         let currentQuestion = 0;
-        const userAnswers = Array(questions.length).fill(null);
+        let userAnswers = Array(questions.length).fill(null);
         let selectedQuestions = [];
         let quizType = "all";
 
@@ -3275,7 +3275,7 @@
         }
 
         function startQuiz() {
-            const usernameInput = document.getElementById('username')
+            const usernameInput = document.getElementById('username');
             let username = usernameInput.value.trim();
 
             if (username === "") {
@@ -3292,12 +3292,22 @@
                 userName = username;
             }
 
-            generateLectureSelection();
-
-            usernameDialog.style.display = 'none';
-            quizContainer.style.display = 'block';
-
-            updateQuiz();
+            if (username === localStorage.getItem("previousUser") && localStorage.getItem("currentQuestion") !== "0") {
+                userAnswers = JSON.parse(localStorage.getItem("userAnswers"));
+                currentQuestion = parseInt(localStorage.getItem("currentQuestion"));
+                selectedQuestions = JSON.parse(localStorage.getItem("selectedQuestions"));
+                usernameDialog.style.display = 'none';
+                quizContainer.style.display = 'block';
+                showQuestion(currentQuestion);
+            } else {
+                userAnswers = Array(questions.length).fill(null);
+                currentQuestion = 0;
+                selectedQuestions = [];
+                generateLectureSelection();
+                usernameDialog.style.display = 'none';
+                quizContainer.style.display = 'block';
+                updateQuiz();
+            }
         }
 
         function generateLectureSelection() {
@@ -3396,20 +3406,13 @@
             updateQuestionCount();
         }
 
-        function nextQuestion() {
-            saveAnswer();
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-            }
-        }
-
         function previousQuestion() {
             saveAnswer();
             if (currentQuestion > 0) {
                 currentQuestion--;
                 showQuestion(currentQuestion);
             }
+            saveProgressLocally();
         }
 
         function previousQuestionFromFeedBack() {
@@ -3426,12 +3429,25 @@
             userScore.style.display = "none"
         }
 
+        function saveProgressLocally() {
+            localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
+            localStorage.setItem("currentQuestion", currentQuestion);
+            localStorage.setItem("selectedQuestions", JSON.stringify(selectedQuestions));
+        }
+
         function saveAnswer() {
             const selectedOption = document.querySelector('input[name="q' + (currentQuestion + 1) + '"]:checked');
             if (selectedOption) {
                 userAnswers[currentQuestion] = selectedOption.value;
             }
+            saveProgressLocally();
         }
+
+
+        window.addEventListener("beforeunload", () => {
+            localStorage.setItem("previousUser", userName);
+            saveProgressLocally();
+        })
 
         function checkAnswers() {
             saveAnswer();
@@ -3634,27 +3650,10 @@
             showQuestion(currentQuestion);
         }
 
-
-        function saveAnswer() {
-            const selectedOption = document.querySelector(
-                'input[name="q' + (currentQuestion + 1) + '"]:checked'
-            );
-            if (selectedOption) {
-                userAnswers[selectedQuestions[currentQuestion]] = selectedOption.value;
-            }
-        }
         function nextQuestion() {
             saveAnswer();
             if (currentQuestion < selectedQuestions.length - 1) {
                 currentQuestion++;
-                showQuestion(currentQuestion);
-            }
-        }
-
-        function previousQuestion() {
-            saveAnswer();
-            if (currentQuestion > 0) {
-                currentQuestion--;
                 showQuestion(currentQuestion);
             }
         }
