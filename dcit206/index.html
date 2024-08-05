@@ -531,8 +531,8 @@
         },
         {
             question: "A (an) ________ is a person using a computer to perform routine tasks other than systems administration.",
-            options: [],
-            answer: "User"
+            options: ["A. user", "B. operator", "C. vendor", "D. programmer"],
+            answer: "A"
         },
         {
             question: "Where is the POST run from?",
@@ -3355,7 +3355,7 @@
 
             const questionTitle = document.createElement('p');
             questionTitle.style.fontSize = "1rem";
-            questionTitle.textContent = (index + 1) + ". " + question.question;
+            questionTitle.textContent = question.question;
 
 
             questionDiv.appendChild(questionTitle);
