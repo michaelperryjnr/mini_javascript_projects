@@ -348,6 +348,14 @@
             font-size: 1.4rem;
         }
 
+        .resetRed {
+            background: #84253e;
+        }
+
+        #resetButton:disabled {
+            background: #84253e71;
+        }
+
         #showFeedOptions {
             display: flex;
             flex-direction: row;
@@ -446,8 +454,8 @@
                 </div>
 
                 <div>
-                    <button id="selectLectBtn" class="btn select" onclick="showLectureSelection()">Select
-                        Lectures</button>
+                    <button id="selectLectBtn" class="btn select" onclick="showLectureSelection()">Lectures</button>
+                    <button class="btn resetRed" id="resetButton" onclick="resetQuiz()">Reset Quiz</button>
                 </div>
             </div>
             <div id="result" class="result"></div>
@@ -3265,6 +3273,7 @@
         const retake = document.getElementById("retakeGroup");
         const userScore = document.getElementById("user-answers");
         const scoreContainer = document.getElementById("scoreContainer");
+        const resetBtn = document.getElementById("resetButton")
         let userName = "" || localStorage.getItem("username");
         const usernameInput = document.getElementById('username').value = userName;
 
@@ -3292,7 +3301,7 @@
                 userName = username;
             }
 
-            if (username === localStorage.getItem("previousUser") && localStorage.getItem("currentQuestion") !== "") {
+            if (username === localStorage.getItem("previousUser") && localStorage.getItem("currentQuestion") !== "" && JSON.parse(localStorage.getItem("userAnswers")).length > 0 && JSON.parse(localStorage.getItem("selectedQuestions")).length > 0) {
                 userAnswers = JSON.parse(localStorage.getItem("userAnswers"));
                 currentQuestion = parseInt(localStorage.getItem("currentQuestion"));
                 selectedQuestions = JSON.parse(localStorage.getItem("selectedQuestions"));
@@ -3397,6 +3406,11 @@
                 optionLabel.appendChild(optionInput);
                 optionLabel.appendChild(document.createTextNode(option));
                 questionDiv.appendChild(optionLabel);
+                optionLabel.addEventListener('click', () => {
+                    userAnswers[questionIndex] = option[0];
+                    disableResetAfterCheckboxPress()
+                    saveProgressLocally();
+                });
                 questionDiv.appendChild(document.createElement('br'));
             });
 
@@ -3657,6 +3671,7 @@
                 currentQuestion++;
                 showQuestion(currentQuestion);
             }
+            saveProgressLocally();
         }
 
 
@@ -3715,6 +3730,35 @@
             }
         }
 
+
+        function resetQuiz() {
+            const confirmRetake = confirm("Reset current Quiz?");
+            if (confirmRetake) {
+                currentQuestion = 0;
+                userAnswers.fill(null);
+                document.getElementById('feedbackContainer').style.display = 'none';
+                retake.style.display = "none";
+                resultDiv.style.display = "none"
+                userScore.style.display = "none"
+                resultDiv2.style.display = "none"
+                scoreContainer.style.display = "none"
+                document.getElementById('quizContainer').style.display = 'block';
+                showQuestion(currentQuestion);
+            }
+            else {
+                return
+            }
+
+        }
+
+        function disableResetAfterCheckboxPress() {
+            resetBtn.disabled = true;
+            setTimeout(() => {
+                resetBtn.disabled = false;
+            }, 400);
+        }
+
+
         function retakeQuiz() {
             const confirmRetake = confirm("Retake Quiz?");
             if (confirmRetake) {
@@ -3735,7 +3779,6 @@
 
         }
 
-        // Add event listeners for quiz type radio buttons
         const radioButtons = document.querySelectorAll('input[name="quizType"]');
         radioButtons.forEach(radioButton => {
             radioButton.addEventListener('change', () => {
