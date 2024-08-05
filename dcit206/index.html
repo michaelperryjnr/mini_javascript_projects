@@ -364,6 +364,14 @@
             font-size: 1.4rem;
         }
 
+        .resetRed {
+            background: #84253e;
+        }
+
+        #resetButton:disabled {
+            background: #84253e71;
+        }
+
         #showFeedOptions {
             display: flex;
             flex-direction: row;
@@ -467,8 +475,8 @@
                 </div>
 
                 <div>
-                    <button id="selectLectBtn" class="btn select" onclick="showLectureSelection()">Select
-                        Lectures</button>
+                    <button id="selectLectBtn" class="btn select" onclick="showLectureSelection()">Lectures</button>
+                    <button class="btn resetRed" id="resetButton" onclick="resetQuiz()">Reset Quiz</button>
                 </div>
             </div>
             <div id="result" class="result"></div>
@@ -3286,6 +3294,7 @@
         const retake = document.getElementById("retakeGroup");
         const userScore = document.getElementById("user-answers");
         const scoreContainer = document.getElementById("scoreContainer");
+        const resetBtn = document.getElementById("resetButton")
         let userName = "" || localStorage.getItem("username");
         const usernameInput = document.getElementById('username').value = userName;
 
@@ -3313,7 +3322,7 @@
                 userName = username;
             }
 
-            if (username === localStorage.getItem("previousUser") && localStorage.getItem("currentQuestion") !== "") {
+            if (username === localStorage.getItem("previousUser") && localStorage.getItem("currentQuestion") !== "" && JSON.parse(localStorage.getItem("userAnswers")).length > 0 && JSON.parse(localStorage.getItem("selectedQuestions")).length > 0) {
                 userAnswers = JSON.parse(localStorage.getItem("userAnswers"));
                 currentQuestion = parseInt(localStorage.getItem("currentQuestion"));
                 selectedQuestions = JSON.parse(localStorage.getItem("selectedQuestions"));
@@ -3407,27 +3416,29 @@
             questionDiv.appendChild(questionTitle);
 
             question.options.forEach(option => {
-    const optionLabel = document.createElement('label');
-    const optionInput = document.createElement('input');
-    const optionHint = document.createElement('img');
-    optionInput.type = "radio";
-    optionInput.name = "q" + (index + 1);
-    optionInput.value = option[0];
-    optionHint.classList.add('hint');
-    optionHint.style.display = 'none';  // Initially hide the hint
-
-    const correctEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f601/512.webp';
-    const incorrectEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f9d0/512.webp';
+            const optionLabel = document.createElement('label');
+            const optionInput = document.createElement('input');
+            const optionHint = document.createElement('img');
     
-    optionHint.src = optionInput.value === questions[questionIndex].answer ? correctEmoji : incorrectEmoji;
-    optionHint.alt = optionInput.value === questions[questionIndex].answer ? 'correct' : 'incorrect';
+            optionInput.type = "radio";
+            optionInput.name = "q" + (index + 1);
+            optionInput.value = option[0];
+    
+             optionHint.classList.add('hint');
+             optionHint.style.display = 'none';  // Initially hide the hint
 
-    if (userAnswers[questionIndex] === option[0]) {
-        optionInput.checked = true;
-    }
+             const correctEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f601/512.webp';
+             const incorrectEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f9d0/512.webp';
+    
+              optionHint.src = optionInput.value === questions[questionIndex].answer ? correctEmoji : incorrectEmoji;
+               optionHint.alt = optionInput.value === questions[questionIndex].answer ? 'correct' : 'incorrect';
 
-    optionLabel.appendChild(optionInput);
-    optionLabel.appendChild(document.createTextNode(option));
+            if (userAnswers[questionIndex] === option[0]) {
+                optionInput.checked = true;
+              }
+
+           optionLabel.appendChild(optionInput);
+            optionLabel.appendChild(document.createTextNode(option));
     
     hinting.addEventListener('click', () => {
         optionLabel.appendChild(optionHint)
@@ -3445,17 +3456,15 @@
     optionLabel.addEventListener('mouseout', () => {
         optionHint.style.display = 'none';
     });
+                questionDiv.appendChild(optionLabel);
+                optionLabel.addEventListener('click', () => {
+                    userAnswers[questionIndex] = option[0];
+                    disableResetAfterCheckboxPress()
+                    saveProgressLocally();
+                });
+                questionDiv.appendChild(document.createElement('br'));
+            });
 
-    questionDiv.appendChild(optionLabel);
-    questionDiv.appendChild(document.createElement('br'));
-
-    if (userAnswers[questionIndex] === questions[questionIndex].answer) {
-        score++;
-    }
-});
-
-
-           
             quizForm.appendChild(questionDiv);
 
             document.getElementById('backButton').disabled = index === 0;
@@ -3713,6 +3722,7 @@
                 currentQuestion++;
                 showQuestion(currentQuestion);
             }
+            saveProgressLocally();
         }
 
 
@@ -3771,6 +3781,35 @@
             }
         }
 
+
+        function resetQuiz() {
+            const confirmRetake = confirm("Reset current Quiz?");
+            if (confirmRetake) {
+                currentQuestion = 0;
+                userAnswers.fill(null);
+                document.getElementById('feedbackContainer').style.display = 'none';
+                retake.style.display = "none";
+                resultDiv.style.display = "none"
+                userScore.style.display = "none"
+                resultDiv2.style.display = "none"
+                scoreContainer.style.display = "none"
+                document.getElementById('quizContainer').style.display = 'block';
+                showQuestion(currentQuestion);
+            }
+            else {
+                return
+            }
+
+        }
+
+        function disableResetAfterCheckboxPress() {
+            resetBtn.disabled = true;
+            setTimeout(() => {
+                resetBtn.disabled = false;
+            }, 400);
+        }
+
+
         function retakeQuiz() {
             const confirmRetake = confirm("Retake Quiz?");
             if (confirmRetake) {
@@ -3791,7 +3830,6 @@
 
         }
 
-        // Add event listeners for quiz type radio buttons
         const radioButtons = document.querySelectorAll('input[name="quizType"]');
         radioButtons.forEach(radioButton => {
             radioButton.addEventListener('change', () => {
