@@ -3292,7 +3292,7 @@
                 userName = username;
             }
 
-            if (username === localStorage.getItem("previousUser") && localStorage.getItem("currentQuestion") !== "0") {
+            if (username === localStorage.getItem("previousUser") && localStorage.getItem("currentQuestion") !== "") {
                 userAnswers = JSON.parse(localStorage.getItem("userAnswers"));
                 currentQuestion = parseInt(localStorage.getItem("currentQuestion"));
                 selectedQuestions = JSON.parse(localStorage.getItem("selectedQuestions"));
@@ -3349,6 +3349,7 @@
                         selectedQuestions.push(i);
                     }
                 });
+
                 currentQuestion = document.querySelectorAll('input[name="lectureCheckbox"]:checked')
                     .map(checkbox => parseInt(checkbox.value))[0]
             } else {
@@ -3787,6 +3788,7 @@
             document.getElementById('lectureSelectionDialog').style.display = 'none';
             currentQuestion = 0;
             updateQuestionCount();
+            saveProgressLocally();
             showQuestion(currentQuestion);
         }
     </script>
