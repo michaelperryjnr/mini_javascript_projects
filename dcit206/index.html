@@ -3561,7 +3561,7 @@
             }
 
             const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
-            userScore.innerHTML = `<p>${capitalizedUsername}'s Score: <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f"};">${percentage.toFixed(0)}%</span></p> <p>Ans: ${answeredQuestions}</p> <p>Frac: ${score}/${selectedQuestions.length}</p>`
+            userScore.innerHTML = `<p>${capitalizedUsername}'s Score: <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f"};">${percentage.toFixed(0)}%</span></p> <p>Done: ${answeredQuestions}</p> <p>Ans: ${score}/${selectedQuestions.length}</p>`
 
             displayFeedback();
         }
