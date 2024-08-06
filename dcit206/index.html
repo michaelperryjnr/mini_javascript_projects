@@ -3711,6 +3711,31 @@
             document.getElementById("retakeQuizButton").textContent = "Start Quiz"
         }
 
+        function showQuestionSpanChange() {
+            let score = 0;
+            let answeredQuestions = 0;
+
+            selectedQuestions.forEach(questionIndex => {
+                if (userAnswers[questionIndex] !== null) {
+                    answeredQuestions++;
+                    if (userAnswers[questionIndex] === questions[questionIndex].answer) {
+                        score++;
+                    }
+                }
+            });
+
+            const percentage = (score / answeredQuestions) * 100 || 0;
+
+            questionCountContainer.style.background = "#434e52";
+            questionCountSpan.textContent = `Score: ${percentage.toFixed(0)}%`;
+            questionCountSpan.style.color = percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f";
+
+            setTimeout(() => {
+                updateQuestionCount()
+            }, 1000);
+
+        }
+
         function hideFeedback() {
             let score = 0;
             let answeredQuestions = 0;
@@ -3734,19 +3759,15 @@
             feedbackContainer.style.display = 'none';
             document.getElementById('quizContainer').style.display = 'block';
 
-            function showQuestionSpanChange() {
-                questionCountContainer.style.background = "#434e52";
-                questionCountSpan.textContent = `Score: ${percentage.toFixed(0)}%`;
-                questionCountSpan.style.color = percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f";
-
-                setTimeout(() => {
-                    updateQuestionCount()
-                }, 1000);
-
-            }
             showQuestion(currentQuestion);
             showQuestionSpanChange();
         }
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "s" || event.key === "S") {
+                showQuestionSpanChange()
+            }
+        })
 
         function nextQuestion() {
             saveAnswer();
