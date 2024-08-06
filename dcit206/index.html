@@ -3913,6 +3913,10 @@
 
             document.getElementById('lectureSelectionDialog').style.display = 'none';
             currentQuestion = 0;
+
+            //reset answers to prevent default filling for different lecture in range
+            localStorage.setItem("userAnswers", userAnswers.fill(null));
+
             updateQuestionCount();
             saveProgressLocally();
             showQuestion(currentQuestion);
