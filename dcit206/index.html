@@ -24,23 +24,29 @@
         .question {
             margin-bottom: 20px;
         }
-        .hint{
+
+        .hint {
             height: 20px;
             width: 20px;
-            position:absolute;
+            position: absolute;
         }
-        #hinting{
+
+        #hinting {
             font-size: 1.5rem;
         }
-        #hinting:hover{
+
+        #hinting:hover {
             cursor: pointer;
         }
-        #removeHinting{
+
+        #removeHinting {
             font-size: 1.5rem;
         }
-        #removeHinting:hover{
+
+        #removeHinting:hover {
             cursor: pointer;
         }
+
         .result {
             font-size: 18px;
             font-weight: bold;
@@ -3417,46 +3423,44 @@
             questionDiv.appendChild(questionTitle);
 
             question.options.forEach(option => {
-            const optionLabel = document.createElement('label');
-            const optionInput = document.createElement('input');
-            const optionHint = document.createElement('img');
-    
-            optionInput.type = "radio";
-            optionInput.name = "q" + (index + 1);
-            optionInput.value = option[0];
-    
-             optionHint.classList.add('hint');
-             optionHint.style.display = 'none';  // Initially hide the hint
+                const optionLabel = document.createElement('label');
+                const optionInput = document.createElement('input');
+                const optionHint = document.createElement('img');
 
-             const correctEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f601/512.webp';
-             const incorrectEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f9d0/512.webp';
-    
-              optionHint.src = optionInput.value === questions[questionIndex].answer ? correctEmoji : incorrectEmoji;
-               optionHint.alt = optionInput.value === questions[questionIndex].answer ? 'correct' : 'incorrect';
+                optionInput.type = "radio";
+                optionInput.name = "q" + (index + 1);
+                optionInput.value = option[0];
 
-            if (userAnswers[questionIndex] === option[0]) {
-                optionInput.checked = true;
-              }
+                optionHint.classList.add('hint');
+                optionHint.style.display = 'none';
+                const correctEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f601/512.webp';
+                const incorrectEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f9d0/512.webp';
 
-           optionLabel.appendChild(optionInput);
-            optionLabel.appendChild(document.createTextNode(option));
-    
-    hinting.addEventListener('click', () => {
-        optionLabel.appendChild(optionHint)
-    });
+                optionHint.src = optionInput.value === questions[questionIndex].answer ? correctEmoji : incorrectEmoji;
+                optionHint.alt = optionInput.value === questions[questionIndex].answer ? 'correct' : 'incorrect';
 
-    removeHinting.addEventListener('click', () => {
-       optionLabel.removeChild(optionHint)
-    });
+                if (userAnswers[questionIndex] === option[0]) {
+                    optionInput.checked = true;
+                }
 
-    // Add event listeners for hover
-    optionLabel.addEventListener('mouseover', () => {
-        optionHint.style.display = 'inline-block';
-    });
+                optionLabel.appendChild(optionInput);
+                optionLabel.appendChild(document.createTextNode(option));
 
-    optionLabel.addEventListener('mouseout', () => {
-        optionHint.style.display = 'none';
-    });
+                hinting.addEventListener('click', () => {
+                    optionLabel.appendChild(optionHint)
+                });
+
+                removeHinting.addEventListener('click', () => {
+                    optionLabel.removeChild(optionHint)
+                });
+
+                optionLabel.addEventListener('mouseover', () => {
+                    optionHint.style.display = 'inline-block';
+                });
+
+                optionLabel.addEventListener('mouseout', () => {
+                    optionHint.style.display = 'none';
+                });
                 questionDiv.appendChild(optionLabel);
                 optionLabel.addEventListener('click', () => {
                     userAnswers[questionIndex] = option[0];
