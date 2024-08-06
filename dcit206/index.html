@@ -166,7 +166,7 @@
 
         #scoreContainer>div {
             background: #434e52;
-            padding: 8rem 8rem;
+            padding: 5rem 5rem;
             border-radius: 10px;
             text-align: center;
         }
@@ -368,7 +368,7 @@
         }
 
         .btnSize {
-            padding: 1.4rem 2rem;
+            padding: 1.2rem 1.6rem;
             font-size: 1.4rem;
         }
 
@@ -401,14 +401,22 @@
             align-items: center;
             margin-bottom: 2rem;
         }
+
+        .usr-h2 {
+            margin-top: 0;
+        }
+
+        .logo {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 
 <body>
     <div id="usernameDialog">
         <div>
-            <img src="../assets/images/bbf-logo.svg" alt="bbf labs logo">
-            <h2 id="usr-h2">Choose a username</h2>
+            <img id="logo" src="../assets/images/bbf-logo.svg" alt="bbf labs logo">
+            <h2 id="usr-h2" class="usr-h2">Choose a username</h2>
             <h4 id="usr-h4">A username is required to access anything on the page</h4>
             <input type="text" id="username" placeholder="Username" required>
             <div id="usernameDiv">
@@ -432,6 +440,7 @@
     <div id="container-1">
         <div id="scoreContainer" style="display: none;">
             <div class="score-div">
+                <img id="logo" src="../assets/images/bbf-logo.svg" alt="bbf labs logo">
                 <p id="usr-h2">Scores</p>
                 <div id="scoreShowContainer"></div>
                 <div id="showFeedOptions">
@@ -506,7 +515,8 @@
         <div id="result2" class="result"></div>
         <div id="feedbackChoice" style="display: none;">
             <div>
-                <p id="usr-h2">Show feedback?</p>
+                <img id="logo" src="../assets/images/bbf-logo.svg" alt="bbf labs logo" width="70px">
+                <p id="usr-h2" class="usr-h2" style="margin-bottom: 1rem;">Show feedback?</p>
                 <div id="showFeedOptions">
                     <button class="btn green btnSize" id="yesButton" onclick="showFeedback()">Yes</button>
                     <button class="btn voilet btnSize" id="noButton" onclick="hideFeedback()">No</button>
