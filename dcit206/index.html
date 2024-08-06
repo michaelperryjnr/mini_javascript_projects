@@ -3313,7 +3313,9 @@
         const retake = document.getElementById("retakeGroup");
         const userScore = document.getElementById("user-answers");
         const scoreContainer = document.getElementById("scoreContainer");
-        const resetBtn = document.getElementById("resetButton")
+        const resetBtn = document.getElementById("resetButton");
+        const questionCountSpan = document.getElementById('question-count');
+        const questionCountContainer = document.getElementById("question-count-container");
         let userName = "" || localStorage.getItem("username");
         const usernameInput = document.getElementById('username').value = userName;
 
@@ -3413,7 +3415,8 @@
         }
 
         function updateQuestionCount() {
-            const questionCountSpan = document.getElementById('question-count');
+            questionCountContainer.style.background = "#430f58";
+            questionCountSpan.style.color = "white";
             questionCountSpan.textContent = `Question ${currentQuestion + 1} out of ${selectedQuestions.length}`;
         }
 
@@ -3721,7 +3724,7 @@
                 }
             });
 
-            const percentage = (score / answeredQuestions) * 100;
+            const percentage = (score / answeredQuestions) * 100 || 0;
 
             const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
 
@@ -3730,7 +3733,19 @@
             feedbackChoice.style.display = 'none';
             feedbackContainer.style.display = 'none';
             document.getElementById('quizContainer').style.display = 'block';
+
+            function showQuestionSpanChange() {
+                questionCountContainer.style.background = "#434e52";
+                questionCountSpan.textContent = `Score: ${percentage.toFixed(0)}%`;
+                questionCountSpan.style.color = percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f";
+
+                setTimeout(() => {
+                    updateQuestionCount()
+                }, 1000);
+
+            }
             showQuestion(currentQuestion);
+            showQuestionSpanChange();
         }
 
         function nextQuestion() {
