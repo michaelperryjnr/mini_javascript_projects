@@ -3594,7 +3594,7 @@
                 tr.appendChild(rankCell);
 
                 const scoreCell = document.createElement("td");
-                scoreCell.textContent = `${score.score}%`;
+                scoreCell.textContent = `${score.score.toFixed(0)}%`;
                 tr.appendChild(scoreCell);
 
                 tr.style.border = "1px solid black";
