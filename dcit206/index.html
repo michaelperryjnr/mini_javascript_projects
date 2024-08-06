@@ -3550,7 +3550,7 @@
 
             const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
 
-            resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span></p>`;
+            //resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span></p>`;
 
             document.getElementById('quizContainer').style.display = 'none';
             feedbackChoice.style.display = 'contents';
