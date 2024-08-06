@@ -1,469 +1,516 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
     </script>
     <script defer src="../_vercel/speed-insights/script.js"></script>
     <script defer src="../_vercel/insights/script.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="../assets/favicon.ico"
+      type="image/x-icon"
+    />
     <title>DCIT 214 MOCK Quiz</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-        body {
-            font-family: "Poppins", Arial, Helvetica, sans-serif;
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 10px;
-        }
+      body {
+        font-family: "Poppins", Arial, Helvetica, sans-serif;
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 10px;
+      }
 
-        .question {
-            margin-bottom: 20px;
-        }
+      .question {
+        margin-bottom: 20px;
+      }
 
-        .hint {
-            height: 20px;
-            width: 20px;
-            position: absolute;
-        }
+      .hint {
+        height: 20px;
+        width: 20px;
+        position: absolute;
+      }
 
-        #hinting {
-            font-size: 1.5rem;
-        }
+      #hinting {
+        font-size: 1.5rem;
+      }
 
-        #hinting:hover {
-            cursor: pointer;
-        }
+      #hinting:hover {
+        cursor: pointer;
+      }
 
-        #removeHinting {
-            font-size: 1.5rem;
-        }
+      #removeHinting {
+        font-size: 1.5rem;
+      }
 
-        #removeHinting:hover {
-            cursor: pointer;
-        }
+      #removeHinting:hover {
+        cursor: pointer;
+      }
 
-        .result {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
+      .result {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
 
-        .feedback {
-            display: none;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
+      .feedback {
+        display: none;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
 
-        .feedback div {
-            margin-bottom: 10px;
-        }
+      .feedback div {
+        margin-bottom: 10px;
+      }
 
-        .feedback p.correct {
-            color: green;
-            font-weight: bold;
-        }
+      .feedback p.correct {
+        color: green;
+        font-weight: bold;
+      }
 
-        .feedback p.incorrect {
-            color: red;
-            font-weight: bold;
-        }
+      .feedback p.incorrect {
+        color: red;
+        font-weight: bold;
+      }
 
-        .button-group {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            gap: 1rem;
-        }
+      .button-group {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1rem;
+      }
 
-        #username {
-            border: none;
-            border-radius: 0.5rem;
-            padding: 1.1rem;
-            width: 80%;
-            border-color: rgb(60, 101, 143);
-        }
+      #username {
+        border: none;
+        border-radius: 0.5rem;
+        padding: 1.1rem;
+        width: 80%;
+        border-color: rgb(60, 101, 143);
+      }
 
-        .lecturesDialog {
-            z-index: 10000;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      .lecturesDialog {
+        z-index: 10000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-        .lecturesDialog>div {
-            background: white;
-            padding: 4rem 4rem;
-            border-radius: 10px;
-            text-align: center;
-        }
+      .lecturesDialog > div {
+        background: white;
+        padding: 4rem 4rem;
+        border-radius: 10px;
+        text-align: center;
+      }
 
-        #usernameDialog {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      #usernameDialog {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-        #usernameDialog>div {
-            background: #2c5460;
-            padding: 4rem 4rem;
-            border-radius: 10px;
-            text-align: center;
-        }
+      #usernameDialog > div {
+        background: #2c5460;
+        padding: 4rem 4rem;
+        border-radius: 10px;
+        text-align: center;
+      }
 
-        #feedbackChoice {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      #feedbackChoice {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-        #feedbackChoice>div {
-            background: #53aca8;
-            padding: 8rem 8rem;
-            border-radius: 10px;
-            text-align: center;
-            position: relative;
-        }
+      #feedbackChoice > div {
+        background: #53aca8;
+        padding: 8rem 8rem;
+        border-radius: 10px;
+        text-align: center;
+        position: relative;
+      }
 
-        #scoreContainer {
-            z-index: 10000;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      #scoreContainer {
+        z-index: 10000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-        #scoreContainer>div {
-            background: #434e52;
-            padding: 5rem 5rem;
-            border-radius: 10px;
-            text-align: center;
-        }
+      #scoreContainer > div {
+        background: #434e52;
+        padding: 5rem 5rem;
+        border-radius: 10px;
+        text-align: center;
+      }
 
+      #start-btn {
+        padding: 1.1rem 1.1rem;
+        border-radius: 0.8rem;
+        border-width: 0.1rem;
+        background: #6643b5;
+        color: white;
+        font-weight: bold;
+        border: none;
+      }
 
-        #start-btn {
-            padding: 1.1rem 1.1rem;
-            border-radius: 0.8rem;
-            border-width: 0.1rem;
-            background: #6643b5;
-            color: white;
-            font-weight: bold;
-            border: none;
-        }
+      #see {
+        padding: 1.1rem 1.1rem;
+        border-radius: 0.8rem;
+        border-width: 0.1rem;
+        color: white;
+        font-weight: bold;
+        border: none;
+      }
 
-        #see {
-            padding: 1.1rem 1.1rem;
-            border-radius: 0.8rem;
-            border-width: 0.1rem;
-            color: white;
-            font-weight: bold;
-            border: none;
-        }
+      .btn {
+        padding: 0.8rem 0.8rem;
+        border-radius: 0.8rem;
+        border-width: 0.1rem;
+        background-color: rgb(66, 137, 195);
+        color: white;
+        border: none;
+        font-weight: bold;
+      }
 
-        .btn {
-            padding: 0.8rem 0.8rem;
-            border-radius: 0.8rem;
-            border-width: 0.1rem;
-            background-color: rgb(66, 137, 195);
-            color: white;
-            border: none;
-            font-weight: bold;
-        }
+      .btn:disabled {
+        opacity: 0.2;
+      }
 
-        .btn:disabled {
-            opacity: 0.2;
-        }
+      .usr-score {
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: start;
+        gap: 0.8rem;
+        color: black;
+      }
 
-        .usr-score {
-            font-weight: bold;
-            display: flex;
-            flex-direction: row;
-            justify-content: start;
-            align-items: start;
-            gap: 0.8rem;
-            color: black;
-        }
+      #usr-h2 {
+        font-weight: bold;
+        font-size: 1.6rem;
+        color: white;
+        margin-bottom: 0;
+      }
 
-        #usr-h2 {
-            font-weight: bold;
-            font-size: 1.6rem;
-            color: white;
-            margin-bottom: 0;
-        }
+      #container-1 {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
 
-        #container-1 {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+      #quiz-h1 {
+        font-weight: bolder;
+        font-size: 2rem;
+        color: #3b5441;
+        margin-bottom: 0;
+      }
 
-        #quiz-h1 {
-            font-weight: bolder;
-            font-size: 2rem;
-            color: #3b5441;
-            margin-bottom: 0;
-        }
+      #result {
+        color: green;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
 
-        #result {
-            color: green;
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
+      #lectureCheckboxes {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: start;
+      }
 
-        #lectureCheckboxes {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            align-items: start;
-        }
+      #lectureCheckboxes {
+        padding: 0.8rem 0.8rem;
+        border-radius: 0.8rem;
+        border-width: 0.1rem;
+        background-color: rgba(30, 74, 109, 0.84);
+        color: white;
+        border: none;
+        font-weight: bold;
+      }
 
-        #lectureCheckboxes {
-            padding: 0.8rem 0.8rem;
-            border-radius: 0.8rem;
-            border-width: 0.1rem;
-            background-color: rgba(30, 74, 109, 0.84);
-            color: white;
-            border: none;
-            font-weight: bold;
-        }
+      .feedbackContainer {
+        overflow: scroll;
+        display: contents;
+      }
 
-        .feedbackContainer {
-            overflow: scroll;
-            display: contents;
-        }
+      button {
+        cursor: pointer;
+      }
 
-        button {
-            cursor: pointer;
-        }
+      #quizContainer {
+        width: 85vw;
+      }
 
-        #quizContainer {
-            width: 85vw;
-        }
+      #quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 20px;
+      }
 
-        #quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 20px;
-        }
+      #quiz-options label {
+        display: flex;
+        align-items: center;
+      }
 
-        #quiz-options label {
-            display: flex;
-            align-items: center;
-        }
+      #quiz-options input[type="radio"] {
+        margin-right: 10px;
+      }
 
-        #quiz-options input[type="radio"] {
-            margin-right: 10px;
-        }
+      #startSelectedLectures {
+        margin-top: 1.2rem;
+      }
 
-        #startSelectedLectures {
-            margin-top: 1.2rem;
-        }
+      #usernameDiv {
+        margin-top: 1rem;
+      }
 
-        #usernameDiv {
-            margin-top: 1rem;
-        }
+      #lectureSelection {
+        margin-top: 20px;
+        display: none;
+        /* Initially hide lecture selection */
+      }
 
-        #lectureSelection {
-            margin-top: 20px;
-            display: none;
-            /* Initially hide lecture selection */
-        }
+      #lectureSelection label {
+        display: block;
+        margin-bottom: 10px;
+      }
 
-        #lectureSelection label {
-            display: block;
-            margin-bottom: 10px;
-        }
+      .btns {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
 
-        .btns {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
+      #question-count-container {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        cursor: default;
+        margin-top: 0;
+        padding: 0.8rem 0.8rem;
+        border-radius: 0.8rem;
+        border-width: 0.1rem;
+        background: #430f58;
+        color: white;
+        border: solid;
+        font-weight: bold;
+      }
 
-        #question-count-container {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: space-between;
-            align-items: center;
-            cursor: default;
-            margin-top: 0;
-            padding: 0.8rem 0.8rem;
-            border-radius: 0.8rem;
-            border-width: 0.1rem;
-            background: #430f58;
-            color: white;
-            border: solid;
-            font-weight: bold;
-        }
+      .submit {
+        background: #2c2955;
+      }
 
-        .submit {
-            background: #2c2955;
-        }
+      .select {
+        background: #6643b5;
+      }
 
-        .select {
-            background: #6643b5;
-        }
+      .seeQNA {
+        background: #430f58;
+      }
 
-        .seeQNA {
-            background: #430f58;
-        }
+      .green {
+        background: #055049;
+      }
 
-        .green {
-            background: #055049;
-        }
+      .start {
+        background: #6643b5;
+      }
 
-        .start {
-            background: #6643b5;
-        }
+      .save {
+        background: #069a8e;
+      }
 
-        .save {
-            background: #069a8e;
-        }
+      .next {
+        background: #7cbd1e;
+      }
 
-        .next {
-            background: #7cbd1e;
-        }
+      .back {
+        background: #434e52;
+      }
 
-        .back {
-            background: #434e52;
-        }
+      #selectBox {
+        background: #ecce6d;
+        padding: 4rem 4rem;
+      }
 
-        #selectBox {
-            background: #ecce6d;
-            padding: 4rem 4rem;
-        }
+      .btnSize {
+        padding: 1.2rem 1.6rem;
+        font-size: 1.4rem;
+      }
 
-        .btnSize {
-            padding: 1.2rem 1.6rem;
-            font-size: 1.4rem;
-        }
+      .resetRed {
+        background: #84253e;
+      }
 
-        .resetRed {
-            background: #84253e;
-        }
+      #resetButton:disabled {
+        background: #84253e71;
+      }
 
-        #resetButton:disabled {
-            background: #84253e71;
-        }
+      #showFeedOptions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+      }
 
-        #showFeedOptions {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-        }
+      #usr-h4 {
+        margin-top: 0;
+        font-weight: 500;
+        color: rgb(217, 85, 85);
+        font-size: 0.9rem;
+      }
 
-        #usr-h4 {
-            margin-top: 0;
-            font-weight: 500;
-            color: rgb(217, 85, 85);
-            font-size: 0.9rem;
-        }
+      #scoreShowContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
 
-        #scoreShowContainer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
+      .usr-h2 {
+        margin-top: 0;
+      }
 
-        .usr-h2 {
-            margin-top: 0;
-        }
-
-        .logo {
-            margin-bottom: 0;
-        }
+      .logo {
+        margin-bottom: 0;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="usernameDialog">
-        <div>
-            <img id="logo" src="../assets/images/bbf-logo.svg" alt="bbf labs logo">
-            <h2 id="usr-h2" class="usr-h2">Choose a username</h2>
-            <h4 id="usr-h4">A username is required to access anything on the page</h4>
-            <input type="text" id="username" placeholder="Username" required>
-            <div id="usernameDiv">
-                <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
-                <button class="btn seeQNA" id="see" onclick="showQA()">See Q & A</button>
-            </div>
-
+      <div>
+        <img
+          id="logo"
+          src="../assets/images/bbf-logo.svg"
+          alt="bbf labs logo"
+        />
+        <h2 id="usr-h2" class="usr-h2">Choose a username</h2>
+        <h4 id="usr-h4">
+          A username is required to access anything on the page
+        </h4>
+        <input type="text" id="username" placeholder="Username" required />
+        <div id="usernameDiv">
+          <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
+          <button class="btn seeQNA" id="see" onclick="showQA()">
+            See Q & A
+          </button>
         </div>
+      </div>
     </div>
 
-    <div id="lectureSelectionDialog" class="lecturesDialog" style="display: none;">
-        <div id="selectBox">
-            <h2 id="usr-h2">Select Lectures</h2>
-            <div id="lectureCheckboxes"></div>
-            <button id="startSelectedLectures" class="btn start" onclick="startSelectedLectures()">Start Quiz</button>
-        </div>
+    <div
+      id="lectureSelectionDialog"
+      class="lecturesDialog"
+      style="display: none"
+    >
+      <div id="selectBox">
+        <h2 id="usr-h2">Select Lectures</h2>
+        <div id="lectureCheckboxes"></div>
+        <button
+          id="startSelectedLectures"
+          class="btn start"
+          onclick="startSelectedLectures()"
+        >
+          Start Quiz
+        </button>
+      </div>
     </div>
-
-
 
     <div id="container-1">
-        <div id="scoreContainer" style="display: none;">
-            <div class="score-div">
-                <img id="logo" src="../assets/images/bbf-logo.svg" alt="bbf labs logo">
-                <p id="usr-h2">Scores</p>
-                <div id="scoreShowContainer"></div>
-                <div id="showFeedOptions">
-                    <button class="btn green btnSize" id="yesButton"
-                        onclick="previousQuestionFromFeedBack()">Back</button>
-                    <button class="btn voilet btnSize" id="noButton" onclick="retakeQuiz()">Retake</button>
-                </div>
-            </div>
-
+      <div id="scoreContainer" style="display: none">
+        <div class="score-div">
+          <img
+            id="logo"
+            src="../assets/images/bbf-logo.svg"
+            alt="bbf labs logo"
+          />
+          <p id="usr-h2">Scores</p>
+          <div id="scoreShowContainer"></div>
+          <div id="showFeedOptions">
+            <button
+              class="btn green btnSize"
+              id="yesButton"
+              onclick="previousQuestionFromFeedBack()"
+            >
+              Back
+            </button>
+            <button
+              class="btn voilet btnSize"
+              id="noButton"
+              onclick="retakeQuiz()"
+            >
+              Retake
+            </button>
+          </div>
         </div>
-        <div id="quizContainer" style="display: none;">
-            <h1 id="quiz-h1">DCIT 214 Mock Quiz: A BBF Labs Initiative
-            </h1>
-            <div id="question-count-container">
-                <div class="" style="display: flex; align-items: center; gap:5px">
-                    <!-- add hinting icon -->
-                    <i class="fa-regular fa-lightbulb " id="hinting" title="Get hint with emoji expressions"></i>
-                    <i class="fa-regular fa-ban " id="removeHinting" title="remove hint on this question"></i>
-                    <button id="scoresBtn" class="btn next" onclick="checkScores()">View Scores</button>
-                </div>
-                <div id="question-count"></div>
-            </div>
-            <!-- <div id="quiz-options">
+      </div>
+      <div id="quizContainer" style="display: none">
+        <h1 id="quiz-h1">DCIT 214 Mock Quiz: A BBF Labs Initiative</h1>
+        <div id="question-count-container">
+          <div class="" style="display: flex; align-items: center; gap: 5px">
+            <!-- add hinting icon -->
+            <i
+              class="fa-regular fa-lightbulb"
+              id="hinting"
+              title="Get hint with emoji expressions"
+            ></i>
+            <i
+              class="fa-regular fa-ban"
+              id="removeHinting"
+              title="remove hint on this question"
+            ></i>
+            <button id="scoresBtn" class="btn next" onclick="checkScores()">
+              View Scores
+            </button>
+          </div>
+          <div id="question-count"></div>
+        </div>
+        <!-- <div id="quiz-options">
                 <label>
                     <input type="radio" name="quizType" value="all" checked>
                     All Lectures
@@ -473,1145 +520,1185 @@
                     Select Lectures
                 </label>
             </div> -->
-            <div id="lectureSelection">
-                <!-- Lecture selection checkboxes will be generated here -->
-            </div>
-            <form id="quizForm">
-                <!-- Quiz questions will be generated here -->
-            </form>
-            <div class="btns">
-                <div class="button-group">
-                    <div>
-                        <button class="btn back" id="backButton" onclick="previousQuestion()">Back</button>
-                        <button class="btn save" onclick="saveAnswer()">Save</button>
-                        <button class="btn next" id="nextButton" onclick="nextQuestion()">Next</button>
-                    </div>
-                    <div>
-                        <button class="btn seeQNA" onclick="showQA()">Q & A</button>
-                        <button id="submit-btn" class="btn submit" onclick="checkAnswers()">Submit</button>
-                    </div>
-                </div>
-
-                <div>
-                    <button id="selectLectBtn" class="btn select" onclick="showLectureSelection()">Lectures</button>
-                    <button class="btn resetRed" id="resetButton" onclick="resetQuiz()">Reset Quiz</button>
-                </div>
-            </div>
-            <div id="result" class="result"></div>
+        <div id="lectureSelection">
+          <!-- Lecture selection checkboxes will be generated here -->
         </div>
-        <div class="usr-score" id="user-answers"></div>
-
-        <div id="feedbackContainer" class="feedback">
-            <form id="feedbackForm">
-                <!-- Quiz questions with answers will be displayed here -->
-            </form>
-        </div>
-        <div class="button-group" id="retakeGroup" style="display: none;">
-            <button class="btn backk" id="feedbackBackButton" onclick="previousQuestionFromFeedBack()">Back to
-                Quiz</button>
-            <button class="btn next" id="feedbackNextButton" onclick="nextFeedback()">Next</button>
-            <button class="btn select" id="retakeQuizButton" onclick="retakeQuiz()">Retake Quiz</button>
-        </div>
-        <div id="result2" class="result"></div>
-        <div id="feedbackChoice" style="display: none;">
+        <form id="quizForm">
+          <!-- Quiz questions will be generated here -->
+        </form>
+        <div class="btns">
+          <div class="button-group">
             <div>
-                <img id="logo" src="../assets/images/bbf-logo.svg" alt="bbf labs logo" width="70px">
-                <p id="usr-h2" class="usr-h2" style="margin-bottom: 1rem;">Show feedback?</p>
-                <div id="showFeedOptions">
-                    <button class="btn green btnSize" id="yesButton" onclick="showFeedback()">Yes</button>
-                    <button class="btn voilet btnSize" id="noButton" onclick="hideFeedback()">No</button>
-                </div>
+              <button
+                class="btn back"
+                id="backButton"
+                onclick="previousQuestion()"
+              >
+                Back
+              </button>
+              <button class="btn save" onclick="saveAnswer()">Save</button>
+              <button class="btn next" id="nextButton" onclick="nextQuestion()">
+                Next
+              </button>
             </div>
+            <div>
+              <button class="btn seeQNA" onclick="showQA()">Q & A</button>
+              <button
+                id="submit-btn"
+                class="btn submit"
+                onclick="checkAnswers()"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
 
+          <div>
+            <button
+              id="selectLectBtn"
+              class="btn select"
+              onclick="showLectureSelection()"
+            >
+              Lectures
+            </button>
+            <button class="btn resetRed" id="resetButton" onclick="resetQuiz()">
+              Reset Quiz
+            </button>
+          </div>
         </div>
+        <div id="result" class="result"></div>
+      </div>
+      <div class="usr-score" id="user-answers"></div>
+
+      <div id="feedbackContainer" class="feedback">
+        <form id="feedbackForm">
+          <!-- Quiz questions with answers will be displayed here -->
+        </form>
+      </div>
+      <div class="button-group" id="retakeGroup" style="display: none">
+        <button
+          class="btn backk"
+          id="feedbackBackButton"
+          onclick="previousQuestionFromFeedBack()"
+        >
+          Back to Quiz
+        </button>
+        <button
+          class="btn next"
+          id="feedbackNextButton"
+          onclick="nextFeedback()"
+        >
+          Next
+        </button>
+        <button class="btn select" id="retakeQuizButton" onclick="retakeQuiz()">
+          Retake Quiz
+        </button>
+      </div>
+      <div id="result2" class="result"></div>
+      <div id="feedbackChoice" style="display: none">
+        <div>
+          <img
+            id="logo"
+            src="../assets/images/bbf-logo.svg"
+            alt="bbf labs logo"
+            width="70px"
+          />
+          <p id="usr-h2" class="usr-h2" style="margin-bottom: 1rem">
+            Show feedback?
+          </p>
+          <div id="showFeedOptions">
+            <button
+              class="btn green btnSize"
+              id="yesButton"
+              onclick="showFeedback()"
+            >
+              Yes
+            </button>
+            <button
+              class="btn voilet btnSize"
+              id="noButton"
+              onclick="hideFeedback()"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        let questions = [
-  {
-    question: "At which step of the Conceptual Schema Design Procedure (CSDP) are available arithmetic derivations from generated facts identified?",
-    options: [
-      "A. STEP 3",
-      "B. STEP 2",
-      "C. STEP 4",
-      "D. STEP 7"
-    ],
-    answer: "B"
-  },
-  {
-    question: "What is the term for a collection of related tables?",
-    options: [
-      "A. Records",
-      "B. Table",
-      "C. Database",
-      "D. File"
-    ],
-    answer: "C"
-  },
-  {
-    question: "Are propositions, asserted by declarative sentences, always either true or false, but not both?",
-    options: [
-      "A. True",
-      "B. False"
-    ],
-    answer: "A"
-  },
-  {
-    question: "Is a junction table always required to accurately represent a Many-to-Many (M:N) relationship?",
-    options: [
-      "A. True",
-      "B. False"
-    ],
-    answer: "A"
-  },
-  {
-    question: "What are identified by definite descriptions and typically have the ability to change their state?",
-    options: [
-      "A. Values",
-      "B. Entities",
-      "C. Both A & B",
-      "D. None of the above"
-    ],
-    answer: "B"
-  },
-  {
-    question: "In most derivation cases, one specific type is predetermined to be the derived one. What is this type?",
-    options: [
-      "A. Specific Fact",
-      "B. Entity",
-      "C. Value",
-      "D. Object"
-    ],
-    answer: "C"
-  },
-  {
-    question: "Is it accurate to say that a collection of records constitutes a database?",
-    options: [
-      "A. True",
-      "B. False"
-    ],
-    answer: "B"
-  },
-  {
-    question: "What is a collection of records called?",
-    options: [
-      "A. Records",
-      "B. Database",
-      "C. File",
-      "D. Table"
-    ],
-    answer: "D"
-  },
-  {
-    question: "How does internal uniqueness differ from external uniqueness?",
-    options: [
-      "A. External uniqueness is within fact types.",
-      "B. Internal uniqueness is within fact types.",
-      "C. External uniqueness is across fact types.",
-      "D. Both B & C"
-    ],
-    answer: "D"
-  },
-  {
-    question: "What asserts that a particular object possesses a property or that one or more objects are involved in a relationship?",
-    options: [
-      "A. Elementary Fact",
-      "B. Complex Fact",
-      "C. Composite Fact",
-      "D. Ternary Fact Type"
-    ],
-    answer: "A"
-  },
-  {
-    question: "How should uniqueness constraints be stated?",
-    options: [
-      "A. Explicitly",
-      "B. Implicitly",
-      "C. Internally",
-      "D. None of the above"
-    ],
-    answer: "A"
-  },
-  {
-    question: "What is the term for a relationship utilized within the preferred identification scheme of an entity?",
-    options: [
-      "A. Reference",
-      "B. Mapped Element",
-      "C. Entity Relation",
-      "D. None of the above"
-    ],
-    answer: "A"
-  },
-  {
-    question: "The quality of a database application is primarily determined by what factor?",
-    options: [
-      "A. Database",
-      "B. Domain",
-      "C. Data",
-      "D. Design"
-    ],
-    answer: "D"
-  },
-  {
-    question: "If every role within a fact type is fulfilled by the same object type, is it considered a homogeneous fact type?",
-    options: [
-      "A. True",
-      "B. False"
-    ],
-    answer: "A"
-  },
-  {
-    question: "In a database, what is the term for a single row containing multiple attributes about a specific data format?",
-    options: [
-      "A. Data",
-      "B. File",
-      "C. Record",
-      "D. User Data"
-    ],
-    answer: "C"
-  },
-  {
-    question: "Is it always advisable to add conjunctions to elementary types during STEP 2 of the CSDP?",
-    options: [
-      "A. Certainly Advisable",
-      "B. Depends on the fact type",
-      "C. Unacceptable"
-    ],
-    answer: "B"
-  },
-  {
-    question: "What are constants, typically represented as character strings or numbers?",
-    options: [
-      "A. Values",
-      "B. Entities",
-      "C. Both A & B",
-      "D. None of the above"
-    ],
-    answer: "A"
-  },
-  {
-    question: "In a One-to-One (1:1) relationship, which of the following characteristics are common for the two entities involved? (Select all that apply)",
-    options: [
-      "A. Completely independent and unrelated.",
-      "B. Logically separated for performance reasons.",
-      "C. Closely related and share common attributes.",
-      "D. Separated to improve security."
-    ],
-    answer: [
-      "B",
-      "C"
-    ]
-  },
-  {
-    question: "Why is a thorough understanding of the problem domain crucial before constructing a model?",
-    options: [
-      "A. For human comprehension",
-      "B. For machine interpretation",
-      "C. Both A & B",
-      "D. None of the above"
-    ],
-    answer: "C"
-  },
-  {
-    question: "At which step of the CSDP are entity types that require merging identified?",
-    options: [
-      "A. STEP 2",
-      "B. STEP 3",
-      "C. STEP 7",
-      "D. STEP 4"
-    ],
-    answer: "D"
-  },
-  {
-    question: "What is the primary objective of implementing uniqueness constraints?",
-    options: [
-      "A. To allow for redundancy.",
-      "B. To prevent duplicate entries.",
-      "C. To facilitate changes.",
-      "D. None of the above"
-    ],
-    answer: "B"
-  },
-  {
-    question: "What is another term used to describe a fact that is not derived?",
-    options: [
-      "A. Primitive type",
-      "B. Asserted fact",
-      "C. Base fact",
-      "D. All of the above"
-    ],
-    answer: "D"
-  },
-  {
-    question: "Who is responsible for defining the universe of discourse?",
-    options: [
-      "A. Designer",
-      "B. Developer",
-      "C. Modeler",
-      "D. Domain Experts"
-    ],
-    answer: "D"
-  },
-  {
-    question: "Which of the following notations is NOT commonly used in information modeling?",
-    options: [
-      "A. **",
-      "B. +",
-      "C. *",
-      "D. ~"
-    ],
-    answer: "D"
-  },
-  {
-    question: "What component oversees user updates to the database and responds to user queries?",
-    options: [
-      "A. Logical Schema Model",
-      "B. Conceptual Information Processor",
-      "C. Logical Information Processor",
-      "D. Conceptual Schema Model"
-    ],
-    answer: "C"
-  },
-  {
-    question: "What concept is synonymous with the universe of discourse in information modeling?",
-    options: [
-      "A. Domain",
-      "B. Domain Expert",
-      "C. Business Rule",
-      "D. Conceptual Design"
-    ],
-    answer: "A"
-  },
-  {
-    question: "What is a common method for denoting the categorization of objects?",
-    options: [
-      "A. Lexical Objects",
-      "B. Non-Lexical Objects",
-      "C. Both A & B",
-      "D. None of the above"
-    ],
-    answer: "A"
-  },
-  {
-    question: "Is it true that a ring fact type is created when the binary version of a fact type, where each role is played by the same object type, is homogeneous?",
-    options: [
-      "A. True",
-      "B. False"
-    ],
-    answer: "A"
-  },
-  {
-    question: "Which of the following are integral sections within a conceptual schema? (Select all that apply)",
-    options: [
-      "A. Fact Types",
-      "B. Derivation Rules",
-      "C. Constraints",
-      "D. All of the above"
-    ],
-    answer: "D"
-  },
-  {
-    question: "What are the defining characteristics of a Many-to-Many (M:N) relationship? (Select all that apply)",
-    options: [
-      "A. The junction table typically contains a composite primary key.",
-      "B. The junction table typically contains the primary keys of both entities as foreign keys.",
-      "C. The relationship requires an intermediate junction or association table.",
-      "D. Each instance in both entities can be associated with zero, one, or multiple instances in the other entity."
-    ],
-    answer: [
-      "A",
-      "B",
-      "C",
-      "D"
-    ]
-  },
-  {
-    question: "How can the universe of discourse be conceptualized in information modeling?",
-    options: [
-      "A. Sets of objects playing roles",
-      "B. Designing the real world",
-      "C. Notation of the abstract world",
-      "D. Interfaces connected to each other"
-    ],
-    answer: "A"
-  },
-  {
-    question: "Which of the following quantifiers is NOT typically employed by elementary facts?",
-    options: [
-      "A. This",
-      "B. Or",
-      "C. Not",
-      "D. And"
-    ],
-    answer: "A"
-  },
-  {
-    question: "What is the term for a group of fields?",
-    options: [
-      "A. Records",
-      "B. File",
-      "C. Database"
-    ],
-    answer: "A"
-  },
-  {
-    question: "Is it accurate to say that verbalizing elementary facts is only applicable during STEP 1 of the design process?",
-    options: [
-      "A. True",
-      "B. False"
-    ],
-    answer: "B"
-  },
-  {
-    question: "During STEP 1, what is a fundamental step to ensure?",
-    options: [
-      "A. Quality Check",
-      "B. Important Stage",
-      "C. Basic Step"
-    ],
-    answer: "C"
-  },
-  {
-    question: "What are the possible classifications of constraints or restrictions imposed on the population of fact types?",
-    options: [
-      "A. Static",
-      "B. Dynamic",
-      "C. All the above",
-      "D. None of the above"
-    ],
-    answer: "C"
-  },
-  {
-    question: "In a One-to-Many (1:N) relationship, which statements hold true? (Select all that apply)",
-    options: [
-      "A. Each instance in the \"many\" side can be associated with at most one instance in the \"one\" side.",
-      "B. The \"one\" side of the relationship often contains a composite primary key.",
-      "C. The \"many\" side of the relationship often contains a foreign key that references the primary key of the \"one\" side.",
-      "D. Each instance in the \"one\" side can be associated with zero, one, or multiple instances in the \"many\" side."
-    ],
-    answer: [
-      "C",
-      "D"
-    ]
-  },
-  {
-    question: "Is the following statement accurate: The forward predicate is n:1; the inverse predicate is 1:n?",
-    options: [
-      "A. True",
-      "B. False"
-    ],
-    answer: "A"
-  },
-  {
-    question: "Does an elementary fact assert that a specific object has a property or that one or more objects are involved in a relationship?",
-    options: [
-      "A. True",
-      "B. False"
-    ],
-    answer: "A"
-  },
-  {
-    question: "Is it considered a best practice in information modeling to store derived facts?",
-    options: [
-      "A. True",
-      "B. False"
-    ],
-    answer: "B"
-  },
-  {
-    question: "Is it true that the correctness, clarity, and productivity of information systems are best specified at the external level?",
-    options: [
-      "A. True",
-      "B. False"
-    ],
-    answer: "B"
-  },
-  {
-    question: "Which of the following are common characteristics of a One-to-One (1:1) relationship? (Select all that apply)",
-    options: [
-      "A. Each entity instance is uniquely associated with at most one instance in the other table.",
-      "B. One of the tables often contains attributes that are frequently accessed.",
-      "C. The relationship is often used for performance, security, or logical separation of data.",
-      "D. The relationship is used to split an entity into two tables."
-    ],
-    answer: [
-      "A"
-    ]
-  },
-  {
-    question: "Which of the following are common characteristics of a One-to-One (1:1) relationship? (Select all that apply)",
-    options: [
-      "A. Each entity instance is uniquely associated with at most one instance in the other table.",
-      "B. One of the tables often contains attributes that are frequently accessed.",
-      "C. The relationship is often used for performance, security, or logical separation of data.",
-      "D. The relationship is used to split an entity into two tables."
-    ],
-    answer: [
-      "C"
-    ]
-  }
-]
+      let questions = [
+        {
+          question:
+            "At which step of the Conceptual Schema Design Procedure (CSDP) are available arithmetic derivations from generated facts identified?",
+          options: ["A. STEP 3", "B. STEP 2", "C. STEP 4", "D. STEP 7"],
+          answer: "B",
+        },
+        {
+          question: "What is the term for a collection of related tables?",
+          options: ["A. Records", "B. Table", "C. Database", "D. File"],
+          answer: "C",
+        },
+        {
+          question:
+            "Are propositions, asserted by declarative sentences, always either true or false, but not both?",
+          options: ["A. True", "B. False"],
+          answer: "A",
+        },
+        {
+          question:
+            "Is a junction table always required to accurately represent a Many-to-Many (M:N) relationship?",
+          options: ["A. True", "B. False"],
+          answer: "A",
+        },
+        {
+          question:
+            "What are identified by definite descriptions and typically have the ability to change their state?",
+          options: [
+            "A. Values",
+            "B. Entities",
+            "C. Both A & B",
+            "D. None of the above",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "In most derivation cases, one specific type is predetermined to be the derived one. What is this type?",
+          options: ["A. Specific Fact", "B. Entity", "C. Value", "D. Object"],
+          answer: "C",
+        },
+        {
+          question:
+            "Is it accurate to say that a collection of records constitutes a database?",
+          options: ["A. True", "B. False"],
+          answer: "B",
+        },
+        {
+          question: "What is a collection of records called?",
+          options: ["A. Records", "B. Database", "C. File", "D. Table"],
+          answer: "D",
+        },
+        {
+          question:
+            "How does internal uniqueness differ from external uniqueness?",
+          options: [
+            "A. External uniqueness is within fact types.",
+            "B. Internal uniqueness is within fact types.",
+            "C. External uniqueness is across fact types.",
+            "D. Both B & C",
+          ],
+          answer: "D",
+        },
+        {
+          question:
+            "What asserts that a particular object possesses a property or that one or more objects are involved in a relationship?",
+          options: [
+            "A. Elementary Fact",
+            "B. Complex Fact",
+            "C. Composite Fact",
+            "D. Ternary Fact Type",
+          ],
+          answer: "A",
+        },
+        {
+          question: "How should uniqueness constraints be stated?",
+          options: [
+            "A. Explicitly",
+            "B. Implicitly",
+            "C. Internally",
+            "D. None of the above",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "What is the term for a relationship utilized within the preferred identification scheme of an entity?",
+          options: [
+            "A. Reference",
+            "B. Mapped Element",
+            "C. Entity Relation",
+            "D. None of the above",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "The quality of a database application is primarily determined by what factor?",
+          options: ["A. Database", "B. Domain", "C. Data", "D. Design"],
+          answer: "D",
+        },
+        {
+          question:
+            "If every role within a fact type is fulfilled by the same object type, is it considered a homogeneous fact type?",
+          options: ["A. True", "B. False"],
+          answer: "A",
+        },
+        {
+          question:
+            "In a database, what is the term for a single row containing multiple attributes about a specific data format?",
+          options: ["A. Data", "B. File", "C. Record", "D. User Data"],
+          answer: "C",
+        },
+        {
+          question:
+            "Is it always advisable to add conjunctions to elementary types during STEP 2 of the CSDP?",
+          options: [
+            "A. Certainly Advisable",
+            "B. Depends on the fact type",
+            "C. Unacceptable",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "What are constants, typically represented as character strings or numbers?",
+          options: [
+            "A. Values",
+            "B. Entities",
+            "C. Both A & B",
+            "D. None of the above",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "In a One-to-One (1:1) relationship, which of the following characteristics are common for the two entities involved? (Select all that apply)",
+          options: [
+            "A. Completely independent and unrelated.",
+            "B. Logically separated for performance reasons.",
+            "C. Closely related and share common attributes.",
+            "D. Separated to improve security.",
+          ],
+          answer: ["B", "C"],
+        },
+        {
+          question:
+            "Why is a thorough understanding of the problem domain crucial before constructing a model?",
+          options: [
+            "A. For human comprehension",
+            "B. For machine interpretation",
+            "C. Both A & B",
+            "D. None of the above",
+          ],
+          answer: "C",
+        },
+        {
+          question:
+            "At which step of the CSDP are entity types that require merging identified?",
+          options: ["A. STEP 2", "B. STEP 3", "C. STEP 7", "D. STEP 4"],
+          answer: "D",
+        },
+        {
+          question:
+            "What is the primary objective of implementing uniqueness constraints?",
+          options: [
+            "A. To allow for redundancy.",
+            "B. To prevent duplicate entries.",
+            "C. To facilitate changes.",
+            "D. None of the above",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "What is another term used to describe a fact that is not derived?",
+          options: [
+            "A. Primitive type",
+            "B. Asserted fact",
+            "C. Base fact",
+            "D. All of the above",
+          ],
+          answer: "D",
+        },
+        {
+          question:
+            "Who is responsible for defining the universe of discourse?",
+          options: [
+            "A. Designer",
+            "B. Developer",
+            "C. Modeler",
+            "D. Domain Experts",
+          ],
+          answer: "D",
+        },
+        {
+          question:
+            "Which of the following notations is NOT commonly used in information modeling?",
+          options: ["A. **", "B. +", "C. *", "D. ~"],
+          answer: "D",
+        },
+        {
+          question:
+            "What component oversees user updates to the database and responds to user queries?",
+          options: [
+            "A. Logical Schema Model",
+            "B. Conceptual Information Processor",
+            "C. Logical Information Processor",
+            "D. Conceptual Schema Model",
+          ],
+          answer: "C",
+        },
+        {
+          question:
+            "What concept is synonymous with the universe of discourse in information modeling?",
+          options: [
+            "A. Domain",
+            "B. Domain Expert",
+            "C. Business Rule",
+            "D. Conceptual Design",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "What is a common method for denoting the categorization of objects?",
+          options: [
+            "A. Lexical Objects",
+            "B. Non-Lexical Objects",
+            "C. Both A & B",
+            "D. None of the above",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "Is it true that a ring fact type is created when the binary version of a fact type, where each role is played by the same object type, is homogeneous?",
+          options: ["A. True", "B. False"],
+          answer: "A",
+        },
+        {
+          question:
+            "Which of the following are integral sections within a conceptual schema? (Select all that apply)",
+          options: [
+            "A. Fact Types",
+            "B. Derivation Rules",
+            "C. Constraints",
+            "D. All of the above",
+          ],
+          answer: "D",
+        },
+        {
+          question:
+            "What are the defining characteristics of a Many-to-Many (M:N) relationship? (Select all that apply)",
+          options: [
+            "A. The junction table typically contains a composite primary key.",
+            "B. The junction table typically contains the primary keys of both entities as foreign keys.",
+            "C. The relationship requires an intermediate junction or association table.",
+            "D. Each instance in both entities can be associated with zero, one, or multiple instances in the other entity.",
+          ],
+          answer: ["A", "B", "C", "D"],
+        },
+        {
+          question:
+            "How can the universe of discourse be conceptualized in information modeling?",
+          options: [
+            "A. Sets of objects playing roles",
+            "B. Designing the real world",
+            "C. Notation of the abstract world",
+            "D. Interfaces connected to each other",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "Which of the following quantifiers is NOT typically employed by elementary facts?",
+          options: ["A. This", "B. Or", "C. Not", "D. And"],
+          answer: "A",
+        },
+        {
+          question: "What is the term for a group of fields?",
+          options: ["A. Records", "B. File", "C. Database"],
+          answer: "A",
+        },
+        {
+          question:
+            "Is it accurate to say that verbalizing elementary facts is only applicable during STEP 1 of the design process?",
+          options: ["A. True", "B. False"],
+          answer: "B",
+        },
+        {
+          question: "During STEP 1, what is a fundamental step to ensure?",
+          options: ["A. Quality Check", "B. Important Stage", "C. Basic Step"],
+          answer: "C",
+        },
+        {
+          question:
+            "What are the possible classifications of constraints or restrictions imposed on the population of fact types?",
+          options: [
+            "A. Static",
+            "B. Dynamic",
+            "C. All the above",
+            "D. None of the above",
+          ],
+          answer: "C",
+        },
+        {
+          question:
+            "In a One-to-Many (1:N) relationship, which statements hold true? (Select all that apply)",
+          options: [
+            'A. Each instance in the "many" side can be associated with at most one instance in the "one" side.',
+            'B. The "one" side of the relationship often contains a composite primary key.',
+            'C. The "many" side of the relationship often contains a foreign key that references the primary key of the "one" side.',
+            'D. Each instance in the "one" side can be associated with zero, one, or multiple instances in the "many" side.',
+          ],
+          answer: ["C", "D"],
+        },
+        {
+          question:
+            "Is the following statement accurate: The forward predicate is n:1; the inverse predicate is 1:n?",
+          options: ["A. True", "B. False"],
+          answer: "A",
+        },
+        {
+          question:
+            "Does an elementary fact assert that a specific object has a property or that one or more objects are involved in a relationship?",
+          options: ["A. True", "B. False"],
+          answer: "A",
+        },
+        {
+          question:
+            "Is it considered a best practice in information modeling to store derived facts?",
+          options: ["A. True", "B. False"],
+          answer: "B",
+        },
+        {
+          question:
+            "Is it true that the correctness, clarity, and productivity of information systems are best specified at the external level?",
+          options: ["A. True", "B. False"],
+          answer: "B",
+        },
+        {
+          question:
+            "Which of the following are common characteristics of a One-to-One (1:1) relationship? (Select all that apply)",
+          options: [
+            "A. Each entity instance is uniquely associated with at most one instance in the other table.",
+            "B. One of the tables often contains attributes that are frequently accessed.",
+            "C. The relationship is often used for performance, security, or logical separation of data.",
+            "D. The relationship is used to split an entity into two tables.",
+          ],
+          answer: ["A"],
+        },
+        {
+          question:
+            "Which of the following are common characteristics of a One-to-One (1:1) relationship? (Select all that apply)",
+          options: [
+            "A. Each entity instance is uniquely associated with at most one instance in the other table.",
+            "B. One of the tables often contains attributes that are frequently accessed.",
+            "C. The relationship is often used for performance, security, or logical separation of data.",
+            "D. The relationship is used to split an entity into two tables.",
+          ],
+          answer: ["C"],
+        },
+      ];
 
-        let ia = { start: 0, end: questions.length - 1, name: "IA" };
-        // let lect1 = { start: 97, end: 133, name: "Lecture 1" };
-        // let lect2 = { start: 134, end: 172, name: "Lecture 2" };
-        // let lect3 = { start: 173, end: 197, name: "Lecture 3" };
-        // let lect4 = { start: 198, end: 218, name: "Lecture 4" };
-        // let lect5 = { start: 218, end: 256, name: "Lecture 5" };
-        // let lect6 = { start: 257, end: questions.length - 1, name: "Lecture 6" };
-        // let all = { start: 0, end: questions.length - 1, name: "All: In Order" };
+      let ia = { start: 0, end: questions.length - 1, name: "IA" };
+      // let lect1 = { start: 97, end: 133, name: "Lecture 1" };
+      // let lect2 = { start: 134, end: 172, name: "Lecture 2" };
+      // let lect3 = { start: 173, end: 197, name: "Lecture 3" };
+      // let lect4 = { start: 198, end: 218, name: "Lecture 4" };
+      // let lect5 = { start: 218, end: 256, name: "Lecture 5" };
+      // let lect6 = { start: 257, end: questions.length - 1, name: "Lecture 6" };
+      // let all = { start: 0, end: questions.length - 1, name: "All: In Order" };
 
-        const lectureRanges = [ia];
+      const lectureRanges = [ia];
 
-        let currentQuestion = 0;
-        let userAnswers = Array(questions.length).fill(null);
-        let selectedQuestions = [];
-        let quizType = "all";
+      let currentQuestion = 0;
+      let userAnswers = Array(questions.length).fill(null);
+      let selectedQuestions = [];
+      let quizType = "all";
 
-        const usernameDialog = document.getElementById('usernameDialog');
-        const quizContainer = document.getElementById('quizContainer');
-        const quizOptionsDiv = document.getElementById('quiz-options');
-        const lectureSelectionDiv = document.getElementById('lectureSelection');
-        const quizForm = document.getElementById('quizForm');
-        const feedbackContainer = document.getElementById('feedbackContainer');
-        const feedbackChoice = document.getElementById('feedbackChoice');
-        const resultDiv = document.getElementById('result');
-        const resultDiv2 = document.getElementById('result2');
-        const sectionTitle = document.getElementById("quiz-h1");
-        const retake = document.getElementById("retakeGroup");
-        const userScore = document.getElementById("user-answers");
-        const scoreContainer = document.getElementById("scoreContainer");
-        const resetBtn = document.getElementById("resetButton");
-        const questionCountSpan = document.getElementById('question-count');
-        const questionCountContainer = document.getElementById("question-count-container");
-        let userName = "" || localStorage.getItem("username");
-        const usernameInput = document.getElementById('username').value = userName;
+      const usernameDialog = document.getElementById("usernameDialog");
+      const quizContainer = document.getElementById("quizContainer");
+      const quizOptionsDiv = document.getElementById("quiz-options");
+      const lectureSelectionDiv = document.getElementById("lectureSelection");
+      const quizForm = document.getElementById("quizForm");
+      const feedbackContainer = document.getElementById("feedbackContainer");
+      const feedbackChoice = document.getElementById("feedbackChoice");
+      const resultDiv = document.getElementById("result");
+      const resultDiv2 = document.getElementById("result2");
+      const sectionTitle = document.getElementById("quiz-h1");
+      const retake = document.getElementById("retakeGroup");
+      const userScore = document.getElementById("user-answers");
+      const scoreContainer = document.getElementById("scoreContainer");
+      const resetBtn = document.getElementById("resetButton");
+      const questionCountSpan = document.getElementById("question-count");
+      const questionCountContainer = document.getElementById(
+        "question-count-container"
+      );
+      let userName = "" || localStorage.getItem("username");
+      const usernameInput = (document.getElementById("username").value =
+        userName);
 
-        function saveScore(score) {
-            let scores = JSON.parse(localStorage.getItem("scores")) || [];
-            scores.push({ username: userName, score: score });
-            localStorage.setItem("scores", JSON.stringify(scores));
+      function saveScore(score) {
+        let scores = JSON.parse(localStorage.getItem("scores")) || [];
+        scores.push({ username: userName, score: score });
+        localStorage.setItem("scores", JSON.stringify(scores));
+      }
+
+      function startQuiz() {
+        const usernameInput = document.getElementById("username");
+        let username = usernameInput.value.trim();
+
+        if (username === "") {
+          if (localStorage.getItem("username")) {
+            username = localStorage.getItem("username");
+            userName = username;
+            usernameInput.value = username;
+          } else {
+            alert("Please enter a username");
+            return;
+          }
+        } else {
+          localStorage.setItem("username", username);
+          userName = username;
         }
 
-        function startQuiz() {
-            const usernameInput = document.getElementById('username');
-            let username = usernameInput.value.trim();
-
-            if (username === "") {
-                if (localStorage.getItem("username")) {
-                    username = localStorage.getItem("username");
-                    userName = username;
-                    usernameInput.value = username;
-                } else {
-                    alert("Please enter a username");
-                    return;
-                }
-            } else {
-                localStorage.setItem("username", username);
-                userName = username;
-            }
-
-            if (username === localStorage.getItem("previousUser") && localStorage.getItem("currentQuestion") !== "" && JSON.parse(localStorage.getItem("userAnswers")).length > 0 && JSON.parse(localStorage.getItem("selectedQuestions")).length > 0) {
-                userAnswers = JSON.parse(localStorage.getItem("userAnswers"));
-                currentQuestion = parseInt(localStorage.getItem("currentQuestion"));
-                selectedQuestions = JSON.parse(localStorage.getItem("selectedQuestions"));
-                usernameDialog.style.display = 'none';
-                quizContainer.style.display = 'block';
-                showQuestion(currentQuestion);
-            } else {
-                userAnswers = Array(questions.length).fill(null);
-                currentQuestion = 0;
-                selectedQuestions = [];
-                generateLectureSelection();
-                usernameDialog.style.display = 'none';
-                quizContainer.style.display = 'block';
-                updateQuiz();
-            }
+        if (
+          username === localStorage.getItem("previousUser") &&
+          localStorage.getItem("currentQuestion") !== "" &&
+          JSON.parse(localStorage.getItem("userAnswers")).length > 0 &&
+          JSON.parse(localStorage.getItem("selectedQuestions")).length > 0
+        ) {
+          userAnswers = JSON.parse(localStorage.getItem("userAnswers"));
+          currentQuestion = parseInt(localStorage.getItem("currentQuestion"));
+          selectedQuestions = JSON.parse(
+            localStorage.getItem("selectedQuestions")
+          );
+          usernameDialog.style.display = "none";
+          quizContainer.style.display = "block";
+          showQuestion(currentQuestion);
+        } else {
+          userAnswers = Array(questions.length).fill(null);
+          currentQuestion = 0;
+          selectedQuestions = [];
+          generateLectureSelection();
+          usernameDialog.style.display = "none";
+          quizContainer.style.display = "block";
+          updateQuiz();
         }
+      }
 
-        function generateLectureSelection() {
+      function generateLectureSelection() {
+        lectureSelectionDiv.innerHTML = "";
 
-            lectureSelectionDiv.innerHTML = '';
-
-            lectureRanges.forEach((lectureRange, index) => {
-                const label = document.createElement('label');
-                label.innerHTML = `
-                    <input type="checkbox" name="lectureCheckbox" value="${index + 1}"> Lecture ${index + 1}
+        lectureRanges.forEach((lectureRange, index) => {
+          const label = document.createElement("label");
+          label.innerHTML = `
+                    <input type="checkbox" name="lectureCheckbox" value="${
+                      index + 1
+                    }"> Lecture ${index + 1}
                 `;
 
-                if (index === 6) {
-                    const label = document.createElement('label');
-                    label.innerHTML = `
-                    <input type="checkbox" name="lectureCheckbox" value="${index + 1}"> All
+          if (index === 6) {
+            const label = document.createElement("label");
+            label.innerHTML = `
+                    <input type="checkbox" name="lectureCheckbox" value="${
+                      index + 1
+                    }"> All
                 `;
-                }
-                lectureSelectionDiv.appendChild(label);
-            });
-        }
+          }
+          lectureSelectionDiv.appendChild(label);
+        });
+      }
 
-        function updateQuiz() {
-            selectedQuestions = [];
-            currentQuestion = 0;
+      function updateQuiz() {
+        selectedQuestions = [];
+        currentQuestion = 0;
 
-            if (quizType === "custom") {
-                const selectedLectureNumbers = Array.from(document.querySelectorAll('input[name="lectureCheckbox"]:checked'))
-                    .map(checkbox => parseInt(checkbox.value));
+        if (quizType === "custom") {
+          const selectedLectureNumbers = Array.from(
+            document.querySelectorAll('input[name="lectureCheckbox"]:checked')
+          ).map((checkbox) => parseInt(checkbox.value));
 
-                if (selectedLectureNumbers.length === 0) {
-                    alert("Please select at least one lecture.");
-                    return;
-                }
+          if (selectedLectureNumbers.length === 0) {
+            alert("Please select at least one lecture.");
+            return;
+          }
 
-                selectedLectureNumbers.forEach(lectureNumber => {
-                    const lectureRange = getLectureRangeByNumber(lectureNumber);
-                    for (let i = lectureRange.start; i <= lectureRange.end; i++) {
-                        selectedQuestions.push(i);
-                    }
-                });
-
-                currentQuestion = document.querySelectorAll('input[name="lectureCheckbox"]:checked')
-                    .map(checkbox => parseInt(checkbox.value))[0]
-            } else {
-                selectedQuestions = questions.map((_, index) => index);
+          selectedLectureNumbers.forEach((lectureNumber) => {
+            const lectureRange = getLectureRangeByNumber(lectureNumber);
+            for (let i = lectureRange.start; i <= lectureRange.end; i++) {
+              selectedQuestions.push(i);
             }
-            updateQuestionCount();
-            showQuestion(currentQuestion);
+          });
+
+          currentQuestion = document
+            .querySelectorAll('input[name="lectureCheckbox"]:checked')
+            .map((checkbox) => parseInt(checkbox.value))[0];
+        } else {
+          selectedQuestions = questions.map((_, index) => index);
         }
+        updateQuestionCount();
+        showQuestion(currentQuestion);
+      }
 
-        function getLectureRangeByNumber(number) {
-            return lectureRanges[number - 1];
-        }
+      function getLectureRangeByNumber(number) {
+        return lectureRanges[number - 1];
+      }
 
-        function updateQuestionCount() {
-            questionCountContainer.style.background = "#430f58";
-            questionCountSpan.style.color = "white";
-            questionCountSpan.textContent = `Question ${currentQuestion + 1} out of ${selectedQuestions.length}`;
-        }
+      function updateQuestionCount() {
+        questionCountContainer.style.background = "#430f58";
+        questionCountSpan.style.color = "white";
+        questionCountSpan.textContent = `Question ${
+          currentQuestion + 1
+        } out of ${selectedQuestions.length}`;
+      }
 
-        function showQuestion(index) {
-            quizForm.innerHTML = '';
-            const questionIndex = selectedQuestions[index];
-            const question = questions[questionIndex];
-            const questionDiv = document.createElement('div');
-            questionDiv.classList.add('question');
+      function showQuestion(index) {
+        quizForm.innerHTML = "";
+        const questionIndex = selectedQuestions[index];
+        const question = questions[questionIndex];
+        const questionDiv = document.createElement("div");
+        questionDiv.classList.add("question");
 
-            const questionTitle = document.createElement('p');
-            questionTitle.style.fontSize = "1rem";
-            questionTitle.textContent = question.question;
+        const questionTitle = document.createElement("p");
+        questionTitle.style.fontSize = "1rem";
+        questionTitle.textContent = question.question;
 
-            questionTitle.style.fontWeight = "500"
-            questionTitle.style.fontSize = "1.2rem"
+        questionTitle.style.fontWeight = "500";
+        questionTitle.style.fontSize = "1.2rem";
 
+        questionDiv.appendChild(questionTitle);
 
-            questionDiv.appendChild(questionTitle);
+        question.options.forEach((option) => {
+          const optionLabel = document.createElement("label");
+          const optionInput = document.createElement("input");
+          const optionHint = document.createElement("img");
 
-            question.options.forEach(option => {
-                const optionLabel = document.createElement('label');
-                const optionInput = document.createElement('input');
-                const optionHint = document.createElement('img');
+          optionInput.type = "radio";
+          optionInput.name = "q" + (index + 1);
+          optionInput.value = option[0];
 
-                optionInput.type = "radio";
-                optionInput.name = "q" + (index + 1);
-                optionInput.value = option[0];
+          optionHint.classList.add("hint");
+          optionHint.style.display = "none";
+          const correctEmoji =
+            "https://fonts.gstatic.com/s/e/notoemoji/latest/1f601/512.webp";
+          const incorrectEmoji =
+            "https://fonts.gstatic.com/s/e/notoemoji/latest/1f9d0/512.webp";
 
-                optionHint.classList.add('hint');
-                optionHint.style.display = 'none';
-                const correctEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f601/512.webp';
-                const incorrectEmoji = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f9d0/512.webp';
+          optionHint.src =
+            optionInput.value === questions[questionIndex].answer
+              ? correctEmoji
+              : incorrectEmoji;
+          optionHint.alt =
+            optionInput.value === questions[questionIndex].answer
+              ? "correct"
+              : "incorrect";
 
-                optionHint.src = optionInput.value === questions[questionIndex].answer ? correctEmoji : incorrectEmoji;
-                optionHint.alt = optionInput.value === questions[questionIndex].answer ? 'correct' : 'incorrect';
+          if (userAnswers[questionIndex] === option[0]) {
+            optionInput.checked = true;
+          }
 
-                if (userAnswers[questionIndex] === option[0]) {
-                    optionInput.checked = true;
-                }
+          optionLabel.appendChild(optionInput);
+          optionLabel.appendChild(document.createTextNode(option));
 
-                optionLabel.appendChild(optionInput);
-                optionLabel.appendChild(document.createTextNode(option));
+          hinting.addEventListener("click", () => {
+            optionLabel.appendChild(optionHint);
+          });
 
-                hinting.addEventListener('click', () => {
-                    optionLabel.appendChild(optionHint)
-                });
+          removeHinting.addEventListener("click", () => {
+            optionLabel.removeChild(optionHint);
+          });
 
-                removeHinting.addEventListener('click', () => {
-                    optionLabel.removeChild(optionHint)
-                });
+          optionLabel.addEventListener("mouseover", () => {
+            optionHint.style.display = "inline-block";
+          });
 
-                optionLabel.addEventListener('mouseover', () => {
-                    optionHint.style.display = 'inline-block';
-                });
-
-                optionLabel.addEventListener('mouseout', () => {
-                    optionHint.style.display = 'none';
-                });
-                questionDiv.appendChild(optionLabel);
-                optionLabel.addEventListener('click', () => {
-                    userAnswers[questionIndex] = option[0];
-                    disableResetAfterCheckboxPress()
-                    saveProgressLocally();
-                });
-                questionDiv.appendChild(document.createElement('br'));
-            });
-
-            quizForm.appendChild(questionDiv);
-
-            document.getElementById('backButton').disabled = index === 0;
-            document.getElementById('nextButton').disabled = index === selectedQuestions.length - 1;
-            updateQuestionCount();
-        }
-
-        function previousQuestion() {
-            saveAnswer();
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                showQuestion(currentQuestion);
-            }
+          optionLabel.addEventListener("mouseout", () => {
+            optionHint.style.display = "none";
+          });
+          questionDiv.appendChild(optionLabel);
+          optionLabel.addEventListener("click", () => {
+            userAnswers[questionIndex] = option[0];
+            disableResetAfterCheckboxPress();
             saveProgressLocally();
-        }
-
-        function previousQuestionFromFeedBack() {
-            hideFeedback();
-            scoreContainer.style.display = "none"
-            function start() {
-                retake.style.display = "none"
-                showQuestion(currentQuestion);
-            }
-            start()
-            retake.style.display = "none"
-            resultDiv.style.display = "none"
-            resultDiv2.style.display = "none"
-            userScore.style.display = "none"
-        }
-
-        function saveProgressLocally() {
-            localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
-            localStorage.setItem("currentQuestion", currentQuestion);
-            localStorage.setItem("selectedQuestions", JSON.stringify(selectedQuestions));
-        }
-
-        function saveAnswer() {
-            const selectedOption = document.querySelector('input[name="q' + (currentQuestion + 1) + '"]:checked');
-            if (selectedOption) {
-                userAnswers[currentQuestion] = selectedOption.value;
-            }
-            saveProgressLocally();
-        }
-
-
-        window.addEventListener("beforeunload", () => {
-            localStorage.setItem("previousUser", userName);
-            saveProgressLocally();
-        })
-
-        function checkAnswers() {
-            saveAnswer();
-            let score = 0;
-            let answeredQuestions = 0;
-
-            selectedQuestions.forEach(questionIndex => {
-                if (userAnswers[questionIndex] !== null) {
-                    answeredQuestions++;
-                    if (userAnswers[questionIndex] === questions[questionIndex].answer) {
-                        score++;
-                    }
-                }
-            });
-
-            const percentage = (score / answeredQuestions) * 100;
-
-            const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
-
-            //resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span></p>`;
-
-            document.getElementById('quizContainer').style.display = 'none';
-            feedbackChoice.style.display = 'contents';
-        }
-
-
-        function checkScores() {
-            let scores = JSON.parse(localStorage.getItem("scores")) || [];
-
-            if (!scores || scores.length === 0) {
-                alert("You must complete a quiz first to view scores");
-                return;
-            }
-            scoreContainer.style.display = "flex";
-            scores.sort((a, b) => b.score - a.score);
-            let scoreList = document.getElementById("scoreShowContainer");
-            scoreList.innerHTML = "";
-            const table = document.createElement("table");
-            const thead = document.createElement("thead");
-            const tbody = document.createElement("tbody");
-
-            // Create header row
-            const headerRow = document.createElement("tr");
-            const headers = ["Quiz", "Score"];
-            headers.forEach(headerText => {
-                const th = document.createElement("th");
-                th.textContent = headerText;
-                headerRow.appendChild(th);
-            });
-            thead.appendChild(headerRow);
-            table.appendChild(thead);
-
-            scores.forEach((score, index) => {
-                const tr = document.createElement("tr");
-
-                const rankCell = document.createElement("td");
-                rankCell.textContent = index + 1;
-                tr.appendChild(rankCell);
-
-                const scoreCell = document.createElement("td");
-                scoreCell.textContent = `${score.score.toFixed(0)}%`;
-                tr.appendChild(scoreCell);
-
-                tr.style.border = "1px solid black";
-                tr.style.textAlign = "center";
-                tr.style.padding = "0.7rem";
-                tbody.appendChild(tr);
-            });
-
-            table.appendChild(tbody);
-            table.style.border = "1px solid white";
-            table.style.borderRadius = "10px";
-            table.style.textAlign = "center";
-            table.style.margin = "auto";
-            table.style.backgroundColor = "#430f58";
-            table.style.padding = "0.7rem";
-            table.style.color = "white";
-            scoreList.style.overflow = "auto";
-            table.style.marginTop = "1rem"
-            scoreList.appendChild(table);
-        }
-
-        function showFeedback() {
-            retake.style.display = 'block';
-            retake.style.position = "relative"
-            retake.style.bottom = "0"
-            userScore.style.display = 'flex';
-            resultDiv2.style.display = 'block';
-            resultDiv2.style.position = "relative"
-            resultDiv2.style.top = "0"
-            resultDiv.style.color = "green"
-            feedbackChoice.style.display = "none"
-            feedbackContainer.style.display = 'block';
-            feedbackContainer.style.overflow = "scroll";
-            let score = 0;
-            let answeredQuestions = 0;
-
-            selectedQuestions.forEach(questionIndex => {
-                if (userAnswers[questionIndex] !== null) {
-                    answeredQuestions++;
-                    if (userAnswers[questionIndex] === questions[questionIndex].answer) {
-                        score++;
-                    }
-                }
-            });
-
-            const percentage = (score / answeredQuestions) * 100 || 0;
-
-            if (answeredQuestions === selectedQuestions.length) {
-                saveScore(percentage);
-            }
-
-            const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
-            userScore.innerHTML = `<p>${capitalizedUsername}'s Score: <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f"};">${percentage.toFixed(0)}%</span></p> <p>Done: ${answeredQuestions}</p> <p>Ans: ${score}/${selectedQuestions.length}</p>`
-
-            displayFeedback();
-        }
-
-
-        function showQA() {
-            const username = document.getElementById('username').value;
-            if (username.trim() === "") {
-                alert("Please enter a username");
-                return;
-            }
-            userName = username
-            retake.style.display = 'block';
-            retake.style.position = "relative"
-            retake.style.bottom = "0"
-            feedbackChoice.style.display = "none"
-            feedbackContainer.style.display = 'block';
-            feedbackContainer.style.overflow = "scroll";
-            function displayQA() {
-                feedbackContainer.style.overflow = "scroll";
-                feedbackContainer.innerHTML = '';
-                questions.forEach((q, index) => {
-                    const questionDiv = document.createElement('div');
-                    questionDiv.classList.add('question');
-                    const questionTitle = document.createElement('p');
-                    questionTitle.textContent = (index + 1) + ". " + q.question;
-                    questionDiv.appendChild(questionTitle);
-
-                    q.options.forEach(option => {
-                        const optionLabel = document.createElement('label');
-                        const optionInput = document.createElement('input');
-                        optionInput.type = "radio";
-                        optionInput.disabled = true;
-
-                        if (option[0] === q.answer) {
-                            optionInput.checked = true;
-                            optionLabel.style.color = 'green';
-                            optionLabel.style.fontWeight = "bold"
-                        } else if (option[0] === userAnswers[index]) {
-                            optionInput.checked = true;
-                            optionLabel.style.color = "red";
-                            questionTitle.style.fontWeight = "bold"
-                        }
-
-                        optionLabel.appendChild(optionInput);
-                        optionLabel.appendChild(document.createTextNode(option));
-                        questionDiv.appendChild(optionLabel);
-                        questionDiv.appendChild(document.createElement('br'));
-                    });
-
-                    feedbackContainer.appendChild(questionDiv);
-                });
-
-                document.getElementById('feedbackNextButton').disabled = currentQuestion === questions.length - 1;
-            }
-            document.getElementById("quizContainer").style.display = "none"
-            document.getElementById("usernameDialog").style.display = "none"
-            displayQA()
-            currentQuestion = 0;
-            document.getElementById("feedbackNextButton").style.display = "none"
-            document.getElementById("retakeQuizButton").textContent = "Start Quiz"
-        }
-
-        function showQuestionSpanChange() {
-            let score = 0;
-            let answeredQuestions = 0;
-
-            selectedQuestions.forEach(questionIndex => {
-                if (userAnswers[questionIndex] !== null) {
-                    answeredQuestions++;
-                    if (userAnswers[questionIndex] === questions[questionIndex].answer) {
-                        score++;
-                    }
-                }
-            });
-
-            const percentage = (score / answeredQuestions) * 100 || 0;
-
-            questionCountContainer.style.background = "#434e52";
-            questionCountSpan.textContent = `Score: ${percentage.toFixed(0)}%`;
-            questionCountSpan.style.color = percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f";
-
-            setTimeout(() => {
-                updateQuestionCount()
-            }, 1000);
-
-        }
-
-        function hideFeedback() {
-            let score = 0;
-            let answeredQuestions = 0;
-
-            selectedQuestions.forEach(questionIndex => {
-                if (userAnswers[questionIndex] !== null) {
-                    answeredQuestions++;
-                    if (userAnswers[questionIndex] === questions[questionIndex].answer) {
-                        score++;
-                    }
-                }
-            });
-
-            const percentage = (score / answeredQuestions) * 100 || 0;
-
-            const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
-
-            //resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span>... ${selectedQuestions.length - currentQuestion - 1} remain</p>`;
-
-            feedbackChoice.style.display = 'none';
-            feedbackContainer.style.display = 'none';
-            document.getElementById('quizContainer').style.display = 'block';
-
-            showQuestion(currentQuestion);
-            showQuestionSpanChange();
-        }
-
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "s" || event.key === "S") {
-                showQuestionSpanChange()
-            }
-        })
-
-        function nextQuestion() {
-            saveAnswer();
-            if (currentQuestion < selectedQuestions.length - 1) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-            }
-            saveProgressLocally();
-        }
-
-
-        function displayFeedback() {
-            feedbackContainer.style.overflow = "scroll";
-            feedbackContainer.innerHTML = '';
-
-            let questionsCount = currentQuestion
-            selectedQuestions.slice(0, questionsCount + 1).forEach((questionIndex, index) => {
-                const q = questions[questionIndex];
-                const questionDiv = document.createElement('div');
-                questionDiv.classList.add('question');
-                const questionTitle = document.createElement('p');
-                questionTitle.textContent = (index + 1) + ". " + q.question;
-                questionDiv.appendChild(questionTitle);
-
-                q.options.forEach(option => {
-                    const optionLabel = document.createElement('label');
-                    const optionInput = document.createElement('input');
-                    optionInput.type = "radio";
-                    optionInput.disabled = true;
-
-                    if (option[0] === q.answer) {
-                        optionInput.checked = true;
-                        optionLabel.style.color = 'green';
-                        optionLabel.style.fontWeight = "bold"
-                    } else if (option[0] === userAnswers[questionIndex]) {
-                        optionInput.checked = true;
-                        optionLabel.style.color = "red";
-                        questionTitle.style.fontWeight = "bold"
-                    }
-
-                    optionLabel.appendChild(optionInput);
-                    optionLabel.appendChild(document.createTextNode(option));
-                    questionDiv.appendChild(optionLabel);
-                    questionDiv.appendChild(document.createElement('br'));
-                });
-
-                feedbackContainer.appendChild(questionDiv);
-            });
-
-            document.getElementById('feedbackNextButton').disabled = currentQuestion === selectedQuestions.length - 1;
-        }
-
-        function nextFeedback() {
-            if (currentQuestion < selectedQuestions.length - 1) {
-                currentQuestion++;
-                displayFeedback();
-            }
-        }
-
-        function previousFeedback() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                displayFeedback();
-            }
-        }
-
-
-        function resetQuiz() {
-            const confirmRetake = confirm("Reset current Quiz?");
-            if (confirmRetake) {
-                currentQuestion = 0;
-                userAnswers.fill(null);
-                document.getElementById('feedbackContainer').style.display = 'none';
-                retake.style.display = "none";
-                resultDiv.style.display = "none"
-                userScore.style.display = "none"
-                resultDiv2.style.display = "none"
-                scoreContainer.style.display = "none"
-                document.getElementById('quizContainer').style.display = 'block';
-                showQuestion(currentQuestion);
-            }
-            else {
-                return
-            }
-
-        }
-
-        function disableResetAfterCheckboxPress() {
-            resetBtn.disabled = true;
-            setTimeout(() => {
-                resetBtn.disabled = false;
-            }, 400);
-        }
-
-
-        function retakeQuiz() {
-            const confirmRetake = confirm("Retake Quiz?");
-            if (confirmRetake) {
-                currentQuestion = 0;
-                userAnswers.fill(null);
-                document.getElementById('feedbackContainer').style.display = 'none';
-                retake.style.display = "none";
-                resultDiv.style.display = "none"
-                userScore.style.display = "none"
-                resultDiv2.style.display = "none"
-                scoreContainer.style.display = "none"
-                document.getElementById('quizContainer').style.display = 'block';
-                showQuestion(currentQuestion);
-            }
-            else {
-                return
-            }
-
-        }
-
-        const radioButtons = document.querySelectorAll('input[name="quizType"]');
-        radioButtons.forEach(radioButton => {
-            radioButton.addEventListener('change', () => {
-                quizType = radioButton.value;
-                lectureSelectionDiv.style.display = quizType === 'custom' ? 'block' : 'none';
-                updateQuiz();
-            });
+          });
+          questionDiv.appendChild(document.createElement("br"));
         });
 
-        function showLectureSelection() {
-            const confirmShow = confirm("Do you want to manually select lectures to be quizzed on?")
-            if (confirmShow) {
-                document.getElementById('lectureSelectionDialog').style.display = 'flex';
-                generateLectureSelection();
-            } else {
-                return
+        quizForm.appendChild(questionDiv);
+
+        document.getElementById("backButton").disabled = index === 0;
+        document.getElementById("nextButton").disabled =
+          index === selectedQuestions.length - 1;
+        updateQuestionCount();
+      }
+
+      function previousQuestion() {
+        saveAnswer();
+        if (currentQuestion > 0) {
+          currentQuestion--;
+          showQuestion(currentQuestion);
+        }
+        saveProgressLocally();
+      }
+
+      function previousQuestionFromFeedBack() {
+        hideFeedback();
+        scoreContainer.style.display = "none";
+        function start() {
+          retake.style.display = "none";
+          showQuestion(currentQuestion);
+        }
+        start();
+        retake.style.display = "none";
+        resultDiv.style.display = "none";
+        resultDiv2.style.display = "none";
+        userScore.style.display = "none";
+      }
+
+      function saveProgressLocally() {
+        localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
+        localStorage.setItem("currentQuestion", currentQuestion);
+        localStorage.setItem(
+          "selectedQuestions",
+          JSON.stringify(selectedQuestions)
+        );
+      }
+
+      function saveAnswer() {
+        const selectedOption = document.querySelector(
+          'input[name="q' + (currentQuestion + 1) + '"]:checked'
+        );
+        if (selectedOption) {
+          userAnswers[currentQuestion] = selectedOption.value;
+        }
+        saveProgressLocally();
+      }
+
+      window.addEventListener("beforeunload", () => {
+        localStorage.setItem("previousUser", userName);
+        saveProgressLocally();
+      });
+
+      function checkAnswers() {
+        saveAnswer();
+        let score = 0;
+        let answeredQuestions = 0;
+
+        selectedQuestions.forEach((questionIndex) => {
+          if (userAnswers[questionIndex] !== null) {
+            answeredQuestions++;
+            if (
+              userAnswers[questionIndex] === questions[questionIndex].answer
+            ) {
+              score++;
             }
+          }
+        });
+
+        const percentage = (score / answeredQuestions) * 100;
+
+        const capitalizedUsername =
+          userName[0].toUpperCase() + userName.slice(1);
+
+        //resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span></p>`;
+
+        document.getElementById("quizContainer").style.display = "none";
+        feedbackChoice.style.display = "contents";
+      }
+
+      function checkScores() {
+        let scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+        if (!scores || scores.length === 0) {
+          alert("You must complete a quiz first to view scores");
+          return;
+        }
+        scoreContainer.style.display = "flex";
+        scores.sort((a, b) => b.score - a.score);
+        let scoreList = document.getElementById("scoreShowContainer");
+        scoreList.innerHTML = "";
+        const table = document.createElement("table");
+        const thead = document.createElement("thead");
+        const tbody = document.createElement("tbody");
+
+        // Create header row
+        const headerRow = document.createElement("tr");
+        const headers = ["Quiz", "Score"];
+        headers.forEach((headerText) => {
+          const th = document.createElement("th");
+          th.textContent = headerText;
+          headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        scores.forEach((score, index) => {
+          const tr = document.createElement("tr");
+
+          const rankCell = document.createElement("td");
+          rankCell.textContent = index + 1;
+          tr.appendChild(rankCell);
+
+          const scoreCell = document.createElement("td");
+          scoreCell.textContent = `${score.score.toFixed(0)}%`;
+          tr.appendChild(scoreCell);
+
+          tr.style.border = "1px solid black";
+          tr.style.textAlign = "center";
+          tr.style.padding = "0.7rem";
+          tbody.appendChild(tr);
+        });
+
+        table.appendChild(tbody);
+        table.style.border = "1px solid white";
+        table.style.borderRadius = "10px";
+        table.style.textAlign = "center";
+        table.style.margin = "auto";
+        table.style.backgroundColor = "#430f58";
+        table.style.padding = "0.7rem";
+        table.style.color = "white";
+        scoreList.style.overflow = "auto";
+        table.style.marginTop = "1rem";
+        scoreList.appendChild(table);
+      }
+
+      function showFeedback() {
+        retake.style.display = "block";
+        retake.style.position = "relative";
+        retake.style.bottom = "0";
+        userScore.style.display = "flex";
+        resultDiv2.style.display = "block";
+        resultDiv2.style.position = "relative";
+        resultDiv2.style.top = "0";
+        resultDiv.style.color = "green";
+        feedbackChoice.style.display = "none";
+        feedbackContainer.style.display = "block";
+        feedbackContainer.style.overflow = "scroll";
+        let score = 0;
+        let answeredQuestions = 0;
+
+        selectedQuestions.forEach((questionIndex) => {
+          if (userAnswers[questionIndex] !== null) {
+            answeredQuestions++;
+            if (
+              userAnswers[questionIndex] === questions[questionIndex].answer
+            ) {
+              score++;
+            }
+          }
+        });
+
+        const percentage = (score / answeredQuestions) * 100 || 0;
+
+        if (answeredQuestions === selectedQuestions.length) {
+          saveScore(percentage);
         }
 
-        function generateLectureSelection() {
-            const lectureCheckboxes = document.getElementById('lectureCheckboxes');
-            lectureCheckboxes.innerHTML = '';
+        const capitalizedUsername =
+          userName[0].toUpperCase() + userName.slice(1);
+        userScore.innerHTML = `<p>${capitalizedUsername}'s Score: <span style="color: ${
+          percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f"
+        };">${percentage.toFixed(
+          0
+        )}%</span></p> <p>Done: ${answeredQuestions}</p> <p>Ans: ${score}/${
+          selectedQuestions.length
+        }</p>`;
 
-            lectureRanges.forEach((lectureRange, index) => {
-                const label = document.createElement('label');
-                label.innerHTML = `
-            <input type="checkbox" name="lectureCheckbox" value="${index + 1}"> ${lectureRange.name}
+        displayFeedback();
+      }
+
+      function showQA() {
+        const username = document.getElementById("username").value;
+        if (username.trim() === "") {
+          alert("Please enter a username");
+          return;
+        }
+        userName = username;
+        retake.style.display = "block";
+        retake.style.position = "relative";
+        retake.style.bottom = "0";
+        feedbackChoice.style.display = "none";
+        feedbackContainer.style.display = "block";
+        feedbackContainer.style.overflow = "scroll";
+        function displayQA() {
+          feedbackContainer.style.overflow = "scroll";
+          feedbackContainer.innerHTML = "";
+          questions.forEach((q, index) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("question");
+            const questionTitle = document.createElement("p");
+            questionTitle.textContent = index + 1 + ". " + q.question;
+            questionDiv.appendChild(questionTitle);
+
+            q.options.forEach((option) => {
+              const optionLabel = document.createElement("label");
+              const optionInput = document.createElement("input");
+              optionInput.type = "radio";
+              optionInput.disabled = true;
+
+              if (option[0] === q.answer) {
+                optionInput.checked = true;
+                optionLabel.style.color = "green";
+                optionLabel.style.fontWeight = "bold";
+              } else if (option[0] === userAnswers[index]) {
+                optionInput.checked = true;
+                optionLabel.style.color = "red";
+                questionTitle.style.fontWeight = "bold";
+              }
+
+              optionLabel.appendChild(optionInput);
+              optionLabel.appendChild(document.createTextNode(option));
+              questionDiv.appendChild(optionLabel);
+              questionDiv.appendChild(document.createElement("br"));
+            });
+
+            feedbackContainer.appendChild(questionDiv);
+          });
+
+          document.getElementById("feedbackNextButton").disabled =
+            currentQuestion === questions.length - 1;
+        }
+        document.getElementById("quizContainer").style.display = "none";
+        document.getElementById("usernameDialog").style.display = "none";
+        displayQA();
+        currentQuestion = 0;
+        document.getElementById("feedbackNextButton").style.display = "none";
+        document.getElementById("retakeQuizButton").textContent = "Start Quiz";
+      }
+
+      function showQuestionSpanChange() {
+        let score = 0;
+        let answeredQuestions = 0;
+
+        selectedQuestions.forEach((questionIndex) => {
+          if (userAnswers[questionIndex] !== null) {
+            answeredQuestions++;
+            if (
+              userAnswers[questionIndex] === questions[questionIndex].answer
+            ) {
+              score++;
+            }
+          }
+        });
+
+        const percentage = (score / answeredQuestions) * 100 || 0;
+
+        questionCountContainer.style.background = "#434e52";
+        questionCountSpan.textContent = `Score: ${percentage.toFixed(0)}%`;
+        questionCountSpan.style.color =
+          percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f";
+
+        setTimeout(() => {
+          updateQuestionCount();
+        }, 1000);
+      }
+
+      function hideFeedback() {
+        let score = 0;
+        let answeredQuestions = 0;
+
+        selectedQuestions.forEach((questionIndex) => {
+          if (userAnswers[questionIndex] !== null) {
+            answeredQuestions++;
+            if (
+              userAnswers[questionIndex] === questions[questionIndex].answer
+            ) {
+              score++;
+            }
+          }
+        });
+
+        const percentage = (score / answeredQuestions) * 100 || 0;
+
+        const capitalizedUsername =
+          userName[0].toUpperCase() + userName.slice(1);
+
+        //resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span>... ${selectedQuestions.length - currentQuestion - 1} remain</p>`;
+
+        feedbackChoice.style.display = "none";
+        feedbackContainer.style.display = "none";
+        document.getElementById("quizContainer").style.display = "block";
+
+        showQuestion(currentQuestion);
+        showQuestionSpanChange();
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "s" || event.key === "S") {
+          showQuestionSpanChange();
+        }
+      });
+
+      function nextQuestion() {
+        saveAnswer();
+        if (currentQuestion < selectedQuestions.length - 1) {
+          currentQuestion++;
+          showQuestion(currentQuestion);
+        }
+        saveProgressLocally();
+      }
+
+      function displayFeedback() {
+        feedbackContainer.style.overflow = "scroll";
+        feedbackContainer.innerHTML = "";
+
+        let questionsCount = currentQuestion;
+        selectedQuestions
+          .slice(0, questionsCount + 1)
+          .forEach((questionIndex, index) => {
+            const q = questions[questionIndex];
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("question");
+            const questionTitle = document.createElement("p");
+            questionTitle.textContent = index + 1 + ". " + q.question;
+            questionDiv.appendChild(questionTitle);
+
+            q.options.forEach((option) => {
+              const optionLabel = document.createElement("label");
+              const optionInput = document.createElement("input");
+              optionInput.type = "radio";
+              optionInput.disabled = true;
+
+              if (option[0] === q.answer) {
+                optionInput.checked = true;
+                optionLabel.style.color = "green";
+                optionLabel.style.fontWeight = "bold";
+              } else if (option[0] === userAnswers[questionIndex]) {
+                optionInput.checked = true;
+                optionLabel.style.color = "red";
+                questionTitle.style.fontWeight = "bold";
+              }
+
+              optionLabel.appendChild(optionInput);
+              optionLabel.appendChild(document.createTextNode(option));
+              questionDiv.appendChild(optionLabel);
+              questionDiv.appendChild(document.createElement("br"));
+            });
+
+            feedbackContainer.appendChild(questionDiv);
+          });
+
+        document.getElementById("feedbackNextButton").disabled =
+          currentQuestion === selectedQuestions.length - 1;
+      }
+
+      function nextFeedback() {
+        if (currentQuestion < selectedQuestions.length - 1) {
+          currentQuestion++;
+          displayFeedback();
+        }
+      }
+
+      function previousFeedback() {
+        if (currentQuestion > 0) {
+          currentQuestion--;
+          displayFeedback();
+        }
+      }
+
+      function resetQuiz() {
+        const confirmRetake = confirm("Reset current Quiz?");
+        if (confirmRetake) {
+          currentQuestion = 0;
+          userAnswers.fill(null);
+          document.getElementById("feedbackContainer").style.display = "none";
+          retake.style.display = "none";
+          resultDiv.style.display = "none";
+          userScore.style.display = "none";
+          resultDiv2.style.display = "none";
+          scoreContainer.style.display = "none";
+          document.getElementById("quizContainer").style.display = "block";
+          showQuestion(currentQuestion);
+        } else {
+          return;
+        }
+      }
+
+      function disableResetAfterCheckboxPress() {
+        resetBtn.disabled = true;
+        setTimeout(() => {
+          resetBtn.disabled = false;
+        }, 400);
+      }
+
+      function retakeQuiz() {
+        const confirmRetake = confirm("Retake Quiz?");
+        if (confirmRetake) {
+          currentQuestion = 0;
+          userAnswers.fill(null);
+          document.getElementById("feedbackContainer").style.display = "none";
+          retake.style.display = "none";
+          resultDiv.style.display = "none";
+          userScore.style.display = "none";
+          resultDiv2.style.display = "none";
+          scoreContainer.style.display = "none";
+          document.getElementById("quizContainer").style.display = "block";
+          showQuestion(currentQuestion);
+        } else {
+          return;
+        }
+      }
+
+      const radioButtons = document.querySelectorAll('input[name="quizType"]');
+      radioButtons.forEach((radioButton) => {
+        radioButton.addEventListener("change", () => {
+          quizType = radioButton.value;
+          lectureSelectionDiv.style.display =
+            quizType === "custom" ? "block" : "none";
+          updateQuiz();
+        });
+      });
+
+      function showLectureSelection() {
+        const confirmShow = confirm(
+          "Do you want to manually select lectures to be quizzed on?"
+        );
+        if (confirmShow) {
+          document.getElementById("lectureSelectionDialog").style.display =
+            "flex";
+          generateLectureSelection();
+        } else {
+          return;
+        }
+      }
+
+      function generateLectureSelection() {
+        const lectureCheckboxes = document.getElementById("lectureCheckboxes");
+        lectureCheckboxes.innerHTML = "";
+
+        lectureRanges.forEach((lectureRange, index) => {
+          const label = document.createElement("label");
+          label.innerHTML = `
+            <input type="checkbox" name="lectureCheckbox" value="${
+              index + 1
+            }"> ${lectureRange.name}
         `;
-                lectureCheckboxes.appendChild(label);
-            });
+          lectureCheckboxes.appendChild(label);
+        });
+      }
+
+      function startSelectedLectures() {
+        const selectedLectureNumbers = Array.from(
+          document.querySelectorAll('input[name="lectureCheckbox"]:checked')
+        ).map((checkbox) => parseInt(checkbox.value));
+
+        if (selectedLectureNumbers.length === 0) {
+          alert("Please select at least one lecture.");
+          return;
         }
 
-        function startSelectedLectures() {
-            const selectedLectureNumbers = Array.from(document.querySelectorAll('input[name="lectureCheckbox"]:checked'))
-                .map(checkbox => parseInt(checkbox.value));
+        selectedQuestions = [];
+        selectedLectureNumbers.forEach((lectureNumber) => {
+          const lectureRange = getLectureRangeByNumber(lectureNumber);
+          for (let i = lectureRange.start; i <= lectureRange.end; i++) {
+            selectedQuestions.push(i);
+          }
+        });
 
-            if (selectedLectureNumbers.length === 0) {
-                alert("Please select at least one lecture.");
-                return;
-            }
+        document.getElementById("lectureSelectionDialog").style.display =
+          "none";
+        currentQuestion = 0;
 
-            selectedQuestions = [];
-            selectedLectureNumbers.forEach(lectureNumber => {
-                const lectureRange = getLectureRangeByNumber(lectureNumber);
-                for (let i = lectureRange.start; i <= lectureRange.end; i++) {
-                    selectedQuestions.push(i);
-                }
-            });
+        //reset answers to prevent default filling for different lecture in range
+        localStorage.setItem("userAnswers", userAnswers.fill(null));
 
-            document.getElementById('lectureSelectionDialog').style.display = 'none';
-            currentQuestion = 0;
-
-            //reset answers to prevent default filling for different lecture in range
-            localStorage.setItem("userAnswers", userAnswers.fill(null));
-
-            updateQuestionCount();
-            saveProgressLocally();
-            showQuestion(currentQuestion);
-        }
+        updateQuestionCount();
+        saveProgressLocally();
+        showQuestion(currentQuestion);
+      }
     </script>
-
-</body>
-
+  </body>
 </html>
