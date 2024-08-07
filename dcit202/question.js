@@ -683,5 +683,243 @@ let lecture4 = [
   },
 ];
 
-console.log(lecture4.length);
+// console.log(lecture4.length);
 //27
+
+let lecture6 = [
+  {
+    question:
+      "What is the primary method of user interaction with mobile applications?",
+    options: [
+      "A. Voice commands",
+      "B. Touch gestures",
+      "C. Keyboard input",
+      "D. Mouse movements",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which React Native component provides a pre-built button with platform-specific styling?",
+    options: [
+      "A. `TouchableHighlight`",
+      "B. `TouchableOpacity`",
+      "C. `Button`",
+      "D. `Pressable`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What prop is used to trigger an action when a 'Button' component is pressed?",
+    options: ["A. `onTouch`", "B. `onClick`", "C. `onPress`", "D. `onSubmit`"],
+    answer: "C",
+  },
+  {
+    question:
+      "If you want to create a custom button with more control over its appearance, which group of components would you likely use?",
+    options: [
+      "A. `View`, `Text`, `Image`",
+      "B. `FlatList`, `SectionList`, `ScrollView`",
+      "C. `TouchableHighlight`, `TouchableOpacity`, `TouchableWithoutFeedback`",
+      "D. `TextInput`, `Switch`, `Picker`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which of the following is NOT a Touchable component in React Native?",
+    options: [
+      "A. `TouchableHighlight`",
+      "B. `TouchableNativeEvent`",
+      "C. `TouchableOpacity`",
+      "D. `TouchableWithoutFeedback`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What prop would you use to handle an action when a 'Touchable' component is pressed for an extended period?",
+    options: [
+      "A. `onPressIn`",
+      "B. `onLongPress`",
+      "C. `onPressOut`",
+      "D. `onHold`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the primary benefit of using the 'react-native-gesture-handler' library?",
+    options: [
+      "A. It simplifies the process of creating basic buttons.",
+      "B. It provides more efficient scrolling behavior for long lists.",
+      "C. It enables advanced and performant gesture recognition and handling.",
+      "D. It automatically animates transitions between screens.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which component ensures that gesture handling works correctly at the root level of your component tree when using 'react-native-gesture-handler'?",
+    options: [
+      "A. `GestureHandlerRootView`",
+      "B. `PanGestureHandler`",
+      "C. `ScrollView`",
+      "D. `NavigationContainer`",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "Which 'ScrollView' event prop is triggered when the user starts dragging the scroll view?",
+    options: [
+      "A. `onScroll`",
+      "B. `onScrollBeginDrag`",
+      "C. `onScrollEndDrag`",
+      "D. `onScrollToTop`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the purpose of the 'NavigationContainer' component in React Navigation?",
+    options: [
+      "A. It defines the styling and appearance of the navigation bar.",
+      "B. It manages the navigation state and links the navigator to the app environment.",
+      "C. It handles user input for navigation gestures, such as swiping back.",
+      "D. It displays a list of available screens in a sidebar menu.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which prop within a 'Stack.Screen' component refers to the React Native component that will be rendered for that screen?",
+    options: ["A. `screen`", "B. `view`", "C. `component`", "D. `render`"],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the role of the 'navigation' prop that is passed to screen components in React Navigation?",
+    options: [
+      "A. It provides styling information for the screen.",
+      "B. It contains data passed from the previous screen.",
+      "C. It gives access to methods for navigating to other screens.",
+      "D. It displays a loading indicator during screen transitions.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which type of navigator would be most suitable for an app where screens are arranged hierarchically, with each new screen pushed onto a stack?",
+    options: [
+      "A. Stack Navigator",
+      "B. Bottom Tab Navigator",
+      "C. Drawer Navigator",
+      "D. Material Top Tab Navigator",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "Which navigator provides a tab bar at the bottom of the screen, allowing users to switch between different sections of the app?",
+    options: [
+      "A. Stack Navigator",
+      "B. Bottom Tab Navigator",
+      "C. Drawer Navigator",
+      "D. Material Top Tab Navigator",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What type of navigator is often used to implement a sidebar menu that can be opened and closed with a swipe gesture?",
+    options: [
+      "A. Stack Navigator",
+      "B. Bottom Tab Navigator",
+      "C. Drawer Navigator",
+      "D. Material Top Tab Navigator",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which navigator places a Material Design-themed tab bar at the top of the screen, enabling horizontal swiping between tabs?",
+    options: [
+      "A. Stack Navigator",
+      "B. Bottom Tab Navigator",
+      "C. Drawer Navigator",
+      "D. Material Top Tab Navigator",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What prop is used to specify default options for screens within a navigator component?",
+    options: [
+      "A. `screenConfig`",
+      "B. `defaultOptions`",
+      "C. `screenOptions`",
+      "D. `navigatorOptions`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which 'Stack.Screen' option controls whether transition animations are enabled when pushing or popping screens?",
+    options: [
+      "A. `transitionEnabled`",
+      "B. `animation`",
+      "C. `animateTransitions`",
+      "D. `animationEnabled`",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What is the purpose of the 'drawerLabel' option for a 'Drawer.Screen' component?",
+    options: [
+      "A. It sets the background color of the drawer.",
+      "B. It defines the text or component displayed for the drawer item.",
+      "C. It controls the animation speed when opening the drawer.",
+      "D. It specifies the width of the drawer when open.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which 'Bottom Tab.Screen' option determines whether the tab label is displayed below or beside the tab icon?",
+    options: [
+      "A. `tabBarLabelPlacement`",
+      "B. `tabBarLabelAlignment`",
+      "C. `tabBarLabelPosition`",
+      "D. `tabBarIconLocation`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the primary method for passing data to a route during navigation in React Navigation?",
+    options: [
+      "A. Using query parameters in the route URL.",
+      "B. Passing an object as a second argument to the 'navigation.navigate' function.",
+      "C. Storing data in a global state management library.",
+      "D. Using the browser's local storage.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "How do you access the parameters passed to a route within a screen component?",
+    options: [
+      "A. Through the 'params' property of the 'route' object.",
+      "B. Using the 'navigation.getParams()' method.",
+      "C. By accessing the 'props.navigation.params' object.",
+      "D. Through the 'data' property of the screen component's props.",
+    ],
+    answer: "A",
+  },
+];
+
+// console.log(lecture6.length);
+//22
