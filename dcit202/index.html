@@ -3799,3 +3799,3904 @@
 </body>
 
 </html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    window.va =
+      window.va ||
+      function () {
+        (window.vaq = window.vaq || []).push(arguments);
+      };
+  </script>
+  <script defer src="../_vercel/speed-insights/script.js"></script>
+  <script defer src="../_vercel/insights/script.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon" />
+  <title>DCIT 202 MOCK Quiz</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+    body {
+      font-family: "Poppins", Arial, Helvetica, sans-serif;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .hint {
+      height: 20px;
+      width: 20px;
+      position: absolute;
+    }
+
+    #hinting {
+      font-size: 1.5rem;
+    }
+
+    #hinting:hover {
+      cursor: pointer;
+    }
+
+    #removeHinting {
+      font-size: 1.5rem;
+    }
+
+    #removeHinting:hover {
+      cursor: pointer;
+    }
+
+    .result {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .feedback {
+      display: none;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+
+    .feedback div {
+      margin-bottom: 10px;
+    }
+
+    .feedback p.correct {
+      color: green;
+      font-weight: bold;
+    }
+
+    .feedback p.incorrect {
+      color: red;
+      font-weight: bold;
+    }
+
+    .button-group {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    #username {
+      border: none;
+      border-radius: 0.5rem;
+      padding: 1.1rem;
+      width: 80%;
+      border-color: rgb(60, 101, 143);
+    }
+
+    .lecturesDialog {
+      z-index: 10000;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lecturesDialog>div {
+      background: white;
+      padding: 4rem 4rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    #usernameDialog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #usernameDialog>div {
+      /* background: #2c5460; */
+      background: #003e21;
+      padding: 4rem 4rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    #feedbackChoice {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #feedbackChoice>div {
+      background: #53aca8;
+      padding: 8rem 8rem;
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    #scoreContainer {
+      z-index: 10000;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #scoreContainer>div {
+      background: #434e52;
+      padding: 5rem 5rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    #start-btn {
+      padding: 1.1rem 1.1rem;
+      border-radius: 0.8rem;
+      border-width: 0.1rem;
+      background: #6643b5;
+      color: white;
+      font-weight: bold;
+      border: none;
+    }
+
+    #see {
+      padding: 1.1rem 1.1rem;
+      border-radius: 0.8rem;
+      border-width: 0.1rem;
+      color: white;
+      font-weight: bold;
+      border: none;
+    }
+
+    .btn {
+      padding: 0.8rem 0.8rem;
+      border-radius: 0.8rem;
+      border-width: 0.1rem;
+      background-color: rgb(66, 137, 195);
+      color: white;
+      border: none;
+      font-weight: bold;
+    }
+
+    .btn:disabled {
+      opacity: 0.2;
+    }
+
+    .usr-score {
+      font-weight: bold;
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items: start;
+      gap: 0.8rem;
+      color: black;
+    }
+
+    #usr-h2 {
+      font-weight: bold;
+      font-size: 1.6rem;
+      color: white;
+      margin-bottom: 0;
+    }
+
+    #container-1 {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #quiz-h1 {
+      font-weight: bolder;
+      font-size: 2rem;
+      color: #3b5441;
+      margin-bottom: 0;
+    }
+
+    #result {
+      color: green;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    #lectureCheckboxes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: start;
+    }
+
+    #lectureCheckboxes {
+      padding: 0.8rem 0.8rem;
+      border-radius: 0.8rem;
+      border-width: 0.1rem;
+      background-color: rgba(30, 74, 109, 0.84);
+      color: white;
+      border: none;
+      font-weight: bold;
+    }
+
+    .feedbackContainer {
+      overflow: scroll;
+      display: contents;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    #quizContainer {
+      width: 85vw;
+    }
+
+    #quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 20px;
+    }
+
+    #quiz-options label {
+      display: flex;
+      align-items: center;
+    }
+
+    #quiz-options input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    #startSelectedLectures {
+      margin-top: 1.2rem;
+    }
+
+    #usernameDiv {
+      margin-top: 1rem;
+    }
+
+    #lectureSelection {
+      margin-top: 20px;
+      display: none;
+      /* Initially hide lecture selection */
+    }
+
+    #lectureSelection label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .btns {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    #question-count-container {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+      cursor: default;
+      margin-top: 0;
+      padding: 0.8rem 0.8rem;
+      border-radius: 0.8rem;
+      border-width: 0.1rem;
+      background: #430f58;
+      color: white;
+      border: solid;
+      font-weight: bold;
+    }
+
+    .submit {
+      background: #2c2955;
+    }
+
+    .select {
+      background: #6643b5;
+    }
+
+    .seeQNA {
+      background: #430f58;
+    }
+
+    .green {
+      background: #055049;
+    }
+
+    .start {
+      background: #6643b5;
+    }
+
+    .save {
+      background: #069a8e;
+    }
+
+    .next {
+      background: #7cbd1e;
+    }
+
+    .back {
+      background: #434e52;
+    }
+
+    #selectBox {
+      background: #ecce6d;
+      padding: 4rem 4rem;
+    }
+
+    .btnSize {
+      padding: 1.2rem 1.6rem;
+      font-size: 1.4rem;
+    }
+
+    .resetRed {
+      background: #84253e;
+    }
+
+    #resetButton:disabled {
+      background: #84253e71;
+    }
+
+    #showFeedOptions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    #usr-h4 {
+      margin-top: 0;
+      font-weight: 500;
+      color: rgb(217, 85, 85);
+      font-size: 0.9rem;
+    }
+
+    #scoreShowContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .usr-h2 {
+      margin-top: 0;
+    }
+
+    .logo {
+      margin-bottom: 0;
+    }
+
+    #countDown {
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    #typer {
+      color: #f89d13;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="usernameDialog">
+    <div>
+      <img id="logo" src="../assets/images/bbf-logo.svg" alt="bbf labs logo" />
+      <h2 id="usr-h2" class="usr-h2">Site UNDER MAINTENANCE</h2>
+      <h4 id="usr-h4">Please Use this Time to Read the slides</h4>
+      <input type="text" id="username" placeholder="Username" required style="display: none;" />
+      <div id="countDown"></div>
+      <div id="typer"></div>
+      <div id="usernameDiv" style="display: none;">
+        <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
+        <button class="btn seeQNA" id="see" onclick="showQA()">
+          See Q & A
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="lectureSelectionDialog" class="lecturesDialog" style="display: none">
+    <div id="selectBox">
+      <h2 id="usr-h2">Select Lectures</h2>
+      <div id="lectureCheckboxes"></div>
+      <button id="startSelectedLectures" class="btn start" onclick="startSelectedLectures()">
+        Start Quiz
+      </button>
+    </div>
+  </div>
+
+  <div id="container-1">
+    <div id="scoreContainer" style="display: none">
+      <div class="score-div">
+        <img id="logo" src="../assets/images/bbf-logo.svg" alt="bbf labs logo" />
+        <p id="usr-h2">Scores</p>
+        <div id="scoreShowContainer"></div>
+        <div id="showFeedOptions">
+          <button class="btn green btnSize" id="yesButton" onclick="previousQuestionFromFeedBack()">
+            Back
+          </button>
+          <button class="btn voilet btnSize" id="noButton" onclick="retakeQuiz()">
+            Retake
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="quizContainer" style="display: none">
+      <h1 id="quiz-h1">DCIT 202 Mock Quiz: A BBF Labs Initiative</h1>
+      <div id="question-count-container">
+        <div class="" style="display: flex; align-items: center; gap: 5px">
+          <!-- add hinting icon -->
+          <i class="fa-regular fa-lightbulb" id="hinting" title="Get hint with emoji expressions"></i>
+          <i class="fa-regular fa-ban" id="removeHinting" title="remove hint on this question"></i>
+          <button id="scoresBtn" class="btn next" onclick="checkScores()">
+            View Scores
+          </button>
+        </div>
+        <div id="question-count"></div>
+      </div>
+      <!-- <div id="quiz-options">
+                <label>
+                    <input type="radio" name="quizType" value="all" checked>
+                    All Lectures
+                </label>
+                <label>
+                    <input type="radio" name="quizType" value="custom">
+                    Select Lectures
+                </label>
+            </div> -->
+      <div id="lectureSelection">
+        <!-- Lecture selection checkboxes will be generated here -->
+      </div>
+      <form id="quizForm">
+        <!-- Quiz questions will be generated here -->
+      </form>
+      <div class="btns">
+        <div class="button-group">
+          <div>
+            <button class="btn back" id="backButton" onclick="previousQuestion()">
+              Back
+            </button>
+            <button class="btn save" onclick="saveAnswer()">Save</button>
+            <button class="btn next" id="nextButton" onclick="nextQuestion()">
+              Next
+            </button>
+          </div>
+          <div>
+            <button class="btn seeQNA" onclick="showQA()">Q & A</button>
+            <button id="submit-btn" class="btn submit" onclick="checkAnswers()">
+              Submit
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <button id="selectLectBtn" class="btn select" onclick="showLectureSelection()">
+            Lectures
+          </button>
+          <button class="btn resetRed" id="resetButton" onclick="resetQuiz()">
+            Reset Quiz
+          </button>
+        </div>
+      </div>
+      <div id="result" class="result"></div>
+    </div>
+    <div class="usr-score" id="user-answers"></div>
+
+    <div id="feedbackContainer" class="feedback">
+      <form id="feedbackForm">
+        <!-- Quiz questions with answers will be displayed here -->
+      </form>
+    </div>
+    <div class="button-group" id="retakeGroup" style="display: none">
+      <button class="btn backk" id="feedbackBackButton" onclick="previousQuestionFromFeedBack()">
+        Back to Quiz
+      </button>
+      <button class="btn next" id="feedbackNextButton" onclick="nextFeedback()">
+        Next
+      </button>
+      <button class="btn select" id="retakeQuizButton" onclick="retakeQuiz()">
+        Retake Quiz
+      </button>
+    </div>
+    <div id="result2" class="result"></div>
+    <div id="feedbackChoice" style="display: none">
+      <div>
+        <img id="logo" src="../assets/images/bbf-logo.svg" alt="bbf labs logo" width="70px" />
+        <p id="usr-h2" class="usr-h2" style="margin-bottom: 1rem">
+          Show feedback?
+        </p>
+        <div id="showFeedOptions">
+          <button class="btn green btnSize" id="yesButton" onclick="showFeedback()">
+            Yes
+          </button>
+          <button class="btn voilet btnSize" id="noButton" onclick="hideFeedback()">
+            No
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    function updateCountdown() {
+      const now = new Date();
+      const nextMidnight = new Date();
+      nextMidnight.setHours(24, 0, 0, 0); // Set to the next midnight
+
+      const timeDiff = nextMidnight - now;
+
+      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+      document.getElementById("countDown").textContent =
+        `${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
+
+      if (timeDiff <= 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countDown").textContent = "It's Midnight!";
+      }
+    }
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
+
+    function typeText(element, texts, speed) {
+      let currentTextIndex = 0; // Track the current text index in the array
+      let charIndex = 0; // Track the current character position in the current text
+      const typingDiv = document.getElementById(element);
+      let cursorVisible = true; // Track cursor visibility
+      const cursor = '|'; // Cursor character
+
+      function typeCharacter() {
+        // Add cursor if it is not already present
+        if (!typingDiv.textContent.endsWith(cursor)) {
+          typingDiv.textContent += cursor;
+        }
+
+        if (charIndex < texts[currentTextIndex].length) {
+          // Remove cursor for text typing
+          typingDiv.textContent = typingDiv.textContent.slice(0, -1);
+          typingDiv.textContent += texts[currentTextIndex][charIndex];
+          charIndex++;
+          setTimeout(typeCharacter, speed); // Call this function again after the specified speed
+        } else {
+          // Remove cursor before pausing
+          typingDiv.textContent = typingDiv.textContent.slice(0, -1);
+
+          // Move to the next text after a brief pause
+          setTimeout(() => {
+            typingDiv.textContent = ''; // Clear the text
+            charIndex = 0; // Reset character index
+            currentTextIndex = (currentTextIndex + 1) % texts.length; // Cycle through texts
+            typeCharacter(); // Start typing the next text
+          }, 1000); // Adjust this delay if needed
+        }
+      }
+
+      function toggleCursor() {
+        if (typingDiv.textContent.endsWith(cursor)) {
+          typingDiv.textContent = typingDiv.textContent.slice(0, -1); // Remove cursor
+        } else {
+          typingDiv.textContent += cursor; // Add cursor
+        }
+      }
+
+      function startTyping() {
+        typeCharacter(); // Start the typing effect
+
+        // Toggle cursor visibility every 500 milliseconds
+        setInterval(toggleCursor, 500);
+      }
+
+      startTyping(); // Start typing and cursor blinking
+    }
+
+    const textsToType = [
+      "Una no go clap?👏🏽👏🏽",
+      "What edey worry Una??😔😔",
+      "Oh chale life is good Awurade?🍾🥳😹",
+      "As3m b3n kra nie a😅😹",
+      "Afa papa😋😅",
+      "Quomodocunquize, Quomodocunquize👩🏽‍🎓📋"
+    ];
+    const typingSpeed = 200; // Speed in milliseconds between each character
+
+    typeText("typer", textsToType, typingSpeed);
+
+    let questions = [
+      {
+        question:
+          "What are native apps, and how do they differ from web apps?",
+        options: [
+          "A.  Native apps are built using web technologies.",
+          "B.  Native apps are developed for a specific platform using platform-specific programming languages.",
+          "C.  Native apps run on a web server and are accessed through a web browser.",
+          "D.  Native apps are cross-platform applications that work on any device.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the primary programming language used in React Native?",
+        options: ["A. Python", "B. Java", "C. JavaScript", "D. C++"],
+        answer: "C",
+      },
+      {
+        question: "Which of the following is NOT a type of mobile app?",
+        options: ["A. Native", "B. Hybrid", "C. Web", "D. Desktop"],
+        answer: "D",
+      },
+
+      {
+        question:
+          "Which of the following is a cross-platform development framework?",
+        options: [
+          "A. Swift",
+          "B. Kotlin",
+          "C. React Native",
+          "D. Objective-C",
+        ],
+        answer: "C",
+      },
+
+      {
+        question:
+          "Which two operating systems are most commonly targeted in mobile app development?",
+        options: [
+          "A.  Linux and Windows",
+          "B.  iOS and Android",
+          "C.  macOS and Chrome OS",
+          "D.  Blackberry OS and Symbian OS",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What significant event took place in mobile app development around 2008?",
+        options: [
+          "A.  The invention of the first smartphone.",
+          "B.  The launch of the iOS App Store and the introduction of the Android OS.",
+          "C.  The development of the first mobile web browser.",
+          "D.  The widespread adoption of 4G networks.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which programming language is associated with the introduction of iOS in 2007?",
+        options: ["A.  Java", "B.  Swift", "C.  Objective-C", "D.  Kotlin"],
+        answer: "C",
+      },
+      {
+        question:
+          "What programming language, known for its cleaner and more efficient code, received official support for Android app development around 2017?",
+        options: ["A.  Swift", "B.  Java", "C.  Kotlin", "D.  Python"],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following is NOT mentioned as a cross-platform development tool?",
+        options: [
+          "A.  React Native",
+          "B.  Flutter",
+          "C.  Xamarin",
+          "D.  Android Studio",
+        ],
+        answer: "D",
+      },
+      {
+        question: "What are Progressive Web Apps (PWAs)?",
+        options: [
+          "A.  Native apps specifically designed for high-performance gaming.",
+          "B.  Web apps that offer app-like functionalities, such as offline access and push notifications.",
+          "C.  Hybrid apps that prioritize access to device-specific features.",
+          "D.  Cross-platform apps built using a single codebase.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which of the following is NOT a characteristic of Native Apps?",
+        options: [
+          "A.  Developed specifically for a particular mobile platform (iOS or Android).",
+          "B.  Use platform-specific programming languages like Swift or Kotlin.",
+          "C.  Platform independence – they run on any device with a web browser.",
+          "D.  Offer high performance and a better user experience.",
+        ],
+        answer: "C",
+      },
+      {
+        question: "What is a key advantage of Web Apps over Native Apps?",
+        options: [
+          "A.  Full access to device-specific features like GPS and camera.",
+          "B.  Significantly better performance and a smoother user experience.",
+          "C.  Platform independence, eliminating the need for separate app store approvals.",
+          "D.  Lower development costs and a faster development cycle.",
+        ],
+        answer: "C",
+      },
+      {
+        question: "How are Hybrid Apps different from Native and Web Apps?",
+        options: [
+          "A.  They are developed using a combination of web technologies and native app components.",
+          "B.  They are exclusively designed for wearable devices like smartwatches.",
+          "C.  They prioritize security and are primarily used for financial transactions.",
+          "D.  They are built using a single programming language that works across all platforms.",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the first stage of the Mobile App Development Lifecycle?",
+        options: [
+          "A.  Design: Creating the user interface and user experience.",
+          "B.  Conceptualization: Defining the app's purpose, goals, and target audience.",
+          "C.  Development: Writing the code for the app's functionality.",
+          "D.  Testing: Identifying and fixing bugs in the app.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "In which stage of the Mobile App Development Lifecycle does User Acceptance Testing (UAT) take place?",
+        options: [
+          "A.  Planning",
+          "B.  Design",
+          "C.  Development",
+          "D.  Testing",
+        ],
+        answer: "D",
+      },
+      {
+        question: "What is the primary goal of cross-platform development?",
+        options: [
+          "A.  To create apps that run exclusively on wearable devices.",
+          "B.  To develop apps for multiple operating systems using a single codebase.",
+          "C.  To design apps with the highest level of security for financial transactions.",
+          "D.  To build apps that solely rely on a device's web browser for functionality.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which of the following is NOT a listed advantage of cross-platform development?",
+        options: [
+          "A.  Increased Development Time",
+          "B.  Wider Reach",
+          "C.  Cost Efficiency",
+          "D.  Faster Development Time",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which programming language is used in conjunction with React to build native mobile apps in React Native?",
+        options: ["A.  Java", "B.  Swift", "C.  Python", "D.  JavaScript"],
+        answer: "D",
+      },
+      {
+        question: "Which company is credited with developing React Native?",
+        options: ["A.  Google", "B.  Apple", "C.  Microsoft", "D.  Facebook"],
+        answer: "D",
+      },
+      {
+        question: "When was React Native officially open-sourced?",
+        options: [
+          "A.  January 2015",
+          "B.  March 2015",
+          "C.  February 2015",
+          "D.  September 2015",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What key feature did React Native introduce in September 2015?",
+        options: [
+          "A.  Support for iOS app development.",
+          "B.  Integration with machine learning algorithms.",
+          "C.  The ability to build apps for smart home devices.",
+          "D.  Support for Android app development.",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "Which of the following is NOT a listed advantage of using React Native?",
+        options: [
+          "A.  Limited Community and Ecosystem Support",
+          "B.  Cross-Platform Development",
+          "C.  Performance Close to Native Apps",
+          "D.  Live and Hot Reloading",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which of these apps is NOT mentioned as a real-world example of React Native in action?",
+        options: [
+          "A.  Twitter",
+          "B.  Instagram",
+          "C.  Walmart",
+          "D.  SoundCloud Pulse",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What JavaScript runtime environment, built on Chrome's V8 JavaScript engine, is required for React Native development?",
+        options: ["A.  Angular", "B.  Vue.js", "C.  Node.js", "D.  jQuery"],
+        answer: "C",
+      },
+      {
+        question:
+          "What are the two main command-line tools used for setting up and developing React Native applications?",
+        options: [
+          "A.  Xcode and Android Studio",
+          "B.  Expo CLI and React Native CLI",
+          "C.  Visual Studio Code and Atom",
+          "D.  Git and GitHub Desktop",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which of the following tasks is NOT typically performed by Expo CLI?",
+        options: [
+          "A.  Creating new React Native projects.",
+          "B.  Writing the source code for the app's functionality.",
+          "C.  Building binaries for app store distribution.",
+          "D.  Running the project server and viewing logs.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "After installing Node.js, which command is used to create a new React Native app with Expo CLI?",
+        options: [
+          "A.  `npm install expo-cli`",
+          "B.  `npx create-react-app my-app`",
+          "C.  `yarn add react-native`",
+          "D.  `npx create-expo-app --template <app-name>`",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "Where can you install the Expo client app to test your React Native application?",
+        options: [
+          "A.  On the official Expo website.",
+          "B.  On both the Apple App Store and Google Play Store.",
+          "C.  Through the command line using `npm install expo-client`.",
+          "D.  It comes pre-installed on all iOS and Android devices.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which command is used to start the development server and run your React Native app with Expo CLI?",
+        options: [
+          "A.  `npm start`",
+          "B.  `yarn run dev`",
+          "C.  `expo start`",
+          "D.  `react-native run-android`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which two components are used in the provided code example to display 'Hello, World!' in the app?",
+        options: [
+          "A.  `Div` and `Paragraph`",
+          "B.  `View` and `Text`",
+          "C.  `Header` and `Content`",
+          "D.  `Screen` and `Component`",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What happens to the application when you save changes made to the `App.js` file in Expo CLI?",
+        options: [
+          "A.  You need to manually refresh the app to see the changes.",
+          "B.  The application will automatically reload, displaying the changes.",
+          "C.  You have to restart the development server for the changes to take effect.",
+          "D.  The changes will only be visible after you build the app for production.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What is JavaScript described as?",
+        options: [
+          "A. A low-level, compiled programming language",
+          "B. A high-level, interpreted programming language",
+          "C. A markup language for creating web pages",
+          "D. A query language for retrieving data from databases",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which of the following is NOT a characteristic of JavaScript?",
+        options: [
+          "A.  It conforms to the ECMAScript specification.",
+          "B.  It can be executed in the browser and on the server.",
+          "C.  It is a statically-typed language.",
+          "D.  It supports multiple programming paradigms.",
+        ],
+        answer: "C",
+      },
+      {
+        question: "What is the purpose of variables in JavaScript?",
+        options: [
+          "A. To store data values",
+          "B. To define the structure of a web page",
+          "C. To style the elements of a web page",
+          "D. To handle user interactions",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which keyword is used to declare a block-scoped variable in JavaScript that cannot be reassigned?",
+        options: ["A.  var", "B.  let", "C.  const", "D.  define"],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the difference between 'let' and 'const' keywords in JavaScript?",
+        options: [
+          "A. 'let' is used for strings, while 'const' is used for numbers.",
+          "B. 'let' declares global variables, while 'const' declares local variables.",
+          "C. 'let' allows reassignment of values, while 'const' does not.",
+          "D. 'let' is used in older JavaScript versions, while 'const' is used in newer versions.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following is NOT a primitive data type in JavaScript?",
+        options: ["A.  String", "B.  Number", "C.  Object", "D.  Boolean"],
+        answer: "C",
+      },
+      {
+        question:
+          "What method is used to combine two or more strings in JavaScript?",
+        options: [
+          "A.  merge()",
+          "B.  concat()",
+          "C.  append()",
+          "D.  combine()",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What is the purpose of template literals in JavaScript?",
+        options: [
+          "A. To define styles for HTML elements",
+          "B. To create reusable components in JavaScript",
+          "C. To embed variables and expressions directly into strings",
+          "D. To handle events and user interactions",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What characters are used to define a template string in JavaScript?",
+        options: [
+          "A.  Single quotes",
+          "B.  Double quotes",
+          "C.  Back-ticks",
+          "D.  Forward slashes",
+          "E.  Parentheses",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which operator is used for modulo operation in JavaScript?",
+        options: ["A.  +", "B.  -", "C.  *", "D.  /", "E.  %"],
+        answer: "E",
+      },
+      {
+        question:
+          "What is the purpose of the 'if-else' statement in JavaScript?",
+        options: [
+          "A.  To execute a block of code repeatedly",
+          "B.  To define a function in JavaScript",
+          "C.  To perform different actions based on different conditions",
+          "D.  To declare variables in JavaScript",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the alternative syntax for an 'if-else' statement in JavaScript?",
+        options: [
+          "A.  Switch statement",
+          "B.  Ternary operator",
+          "C.  For loop",
+          "D.  While loop",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which loop in JavaScript is used to execute a block of code as long as a specified condition is true?",
+        options: [
+          "A.  for loop",
+          "B.  while loop",
+          "C.  do...while loop",
+          "D.  for...in loop",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the purpose of the 'switch' statement in JavaScript?",
+        options: [
+          "A.  To define a function in JavaScript",
+          "B.  To execute a block of code repeatedly",
+          "C.  To perform different actions based on the value of a variable",
+          "D.  To declare variables in JavaScript",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the purpose of the 'break' statement inside a 'switch' statement?",
+        options: [
+          "A.  To exit the entire script",
+          "B.  To skip the current iteration of a loop",
+          "C.  To stop the execution of the 'switch' statement",
+          "D.  To throw an error",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which loop is specifically designed for iterating over the properties of an object in JavaScript?",
+        options: [
+          "A.  for loop",
+          "B.  while loop",
+          "C.  do...while loop",
+          "D.  for...in loop",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "What type of data structures can the 'for...of' loop iterate over in JavaScript?",
+        options: [
+          "A. Only arrays",
+          "B. Only objects",
+          "C. Arrays, strings, maps, node lists, and more",
+          "D.  Numbers, booleans, and null values",
+        ],
+        answer: "C",
+      },
+      {
+        question: "What is a function in JavaScript?",
+        options: [
+          "A.  A block of code designed to perform a particular task",
+          "B.  A data type used to store a collection of values",
+          "C.  A way to style HTML elements",
+          "D.  A mechanism for handling user interactions",
+        ],
+        answer: "A",
+      },
+      {
+        question: "What keyword is used to define a function in JavaScript?",
+        options: ["A.  func", "B.  function", "C.  define", "D.  method"],
+        answer: "B",
+      },
+      {
+        question:
+          "What does a function return when it encounters a 'return' statement?",
+        options: [
+          "A.  The function stops executing and returns nothing.",
+          "B.  The function stops executing and returns a default value.",
+          "C.  The function continues executing after the 'return' statement.",
+          "D.  The function stops executing and returns a value specified in the 'return' statement.",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "What is the primary advantage of using arrow functions in JavaScript?",
+        options: [
+          "A.  They offer improved performance.",
+          "B.  They allow for more readable and concise code.",
+          "C.  They provide access to additional features.",
+          "D.  They are compatible with older JavaScript versions.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What is an anonymous function in JavaScript?",
+        options: [
+          "A.  A function that is not defined",
+          "B.  A function without a name",
+          "C.  A function that is automatically executed",
+          "D.  A function that returns no value",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What is an array in JavaScript?",
+        options: [
+          "A. A single variable that stores a single value",
+          "B. A single variable that stores different elements",
+          "C.  A way to define styles for HTML elements",
+          "D.  A mechanism for handling user interactions",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which array method is used to add an element to the end of an array in JavaScript?",
+        options: ["A.  pop()", "B.  push()", "C.  shift()", "D.  unshift()"],
+        answer: "B",
+      },
+      {
+        question:
+          "What does the 'length' property of an array return in JavaScript?",
+        options: [
+          "A.  The first element of the array",
+          "B.  The last element of the array",
+          "C.  The number of elements in the array",
+          "D.  The data type of the array",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which array method is used to remove the last element from an array and return that element in JavaScript?",
+        options: ["A.  pop()", "B.  push()", "C.  shift()", "D.  unshift()"],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the purpose of the 'find()' method in JavaScript arrays?",
+        options: [
+          "A.  To add an element to the array",
+          "B.  To remove an element from the array",
+          "C.  To check if an element exists in the array",
+          "D.  To retrieve the first element that satisfies a provided testing function",
+        ],
+        answer: "D",
+      },
+      {
+        question: "What does the 'map()' method do in JavaScript arrays?",
+        options: [
+          "A.  It sorts the elements of the array.",
+          "B.  It filters the elements of the array based on a condition.",
+          "C.  It creates a new array by applying a function to each element of the original array.",
+          "D.  It reduces the array to a single value.",
+        ],
+        answer: "C",
+      },
+      {
+        question: "What is a JavaScript object?",
+        options: [
+          "A.  A primitive data type",
+          "B.  A collection of named values",
+          "C.  A way to define styles for HTML elements",
+          "D.  A mechanism for handling user interactions",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What are the two ways to access the properties of a JavaScript object?",
+        options: [
+          "A. Dot notation and bracket notation",
+          "B. Parentheses notation and curly brace notation",
+          "C.  Single quote notation and double quote notation",
+          "D.  Forward slash notation and backward slash notation",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the purpose of 'try...catch' statements in JavaScript?",
+        options: [
+          "A. To define functions",
+          "B. To handle exceptions or errors",
+          "C.  To declare variables",
+          "D.  To create loops",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What does the 'throw' statement do in JavaScript?",
+        options: [
+          "A.  It defines a custom error.",
+          "B.  It handles an exception.",
+          "C.  It logs a message to the console.",
+          "D.  It terminates the script execution.",
+        ],
+        answer: "A",
+      },
+      {
+        question: "What is a callback function in JavaScript?",
+        options: [
+          "A.  A function that is executed immediately",
+          "B.  A function that is passed as an argument to another function and executed later",
+          "C.  A function that returns another function",
+          "D.  A function that is used to define a class",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What is a Promise in JavaScript?",
+        options: [
+          "A.  A guarantee that a function will be executed",
+          "B.  A way to handle synchronous operations",
+          "C.  An object that represents the eventual completion or failure of an asynchronous operation",
+          "D.  A way to define constants",
+        ],
+        answer: "C",
+      },
+      {
+        question: "What is the purpose of the 'async' keyword in JavaScript?",
+        options: [
+          "A.  To define a synchronous function",
+          "B.  To make a function asynchronous",
+          "C.  To handle errors",
+          "D. To define a class",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What does the 'await' keyword do in JavaScript?",
+        options: [
+          "A.  It defines a custom error.",
+          "B.  It pauses the execution of an asynchronous function until a Promise is resolved.",
+          "C.  It logs a message to the console.",
+          "D.  It terminates the script execution.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What is the purpose of modules in JavaScript?",
+        options: [
+          "A.  To combine multiple JavaScript files into one",
+          "B.  To break up code into separate files for better organization and reusability",
+          "C.  To define styles for HTML elements",
+          "D.  To handle user interactions",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What are the two types of exports in JavaScript modules?",
+        options: [
+          "A.  Named exports and default exports",
+          "B.  Public exports and private exports",
+          "C.  Static exports and dynamic exports",
+          "D.  Function exports and variable exports",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the primary advantage of using React Native for mobile app development?",
+        options: [
+          "A. It allows developers to use their existing web development skills to create native apps.",
+          "B. It eliminates the need for platform-specific programming languages like Java or Swift.",
+          "C. It automatically optimizes app performance for different screen sizes and device capabilities.",
+          "D. It provides a drag-and-drop interface for designing app layouts and interactions.",
+        ],
+        answer: "A",
+      },
+      {
+        question: "What is Expo in the context of React Native development?",
+        options: [
+          "A. A programming language specifically designed for building mobile user interfaces.",
+          "B. A framework that simplifies React Native development by providing pre-built components and tools.",
+          "C. A cloud-based platform for hosting and deploying React Native applications.",
+          "D. A type of database commonly used for storing data in React Native apps.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the purpose of the following command: `npx create-expo-app MyApp --template blank`?",
+        options: [
+          "A. It runs an existing React Native app on an Android emulator.",
+          "B. It installs the necessary dependencies for React Native development.",
+          "C. It creates a new React Native project using the Expo framework with a blank template.",
+          "D. It updates an existing React Native project to the latest version of Expo.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "In a React Native project, what is the main function of the 'App.js' file?",
+        options: [
+          "A. It stores styling information for the app's components.",
+          "B. It manages the navigation flow between different screens of the app.",
+          "C. It defines the entry point and the root component of the React Native app.",
+          "D. It handles communication with external servers and APIs.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the role of 'import' statements in React Native code?",
+        options: [
+          "A. They define custom functions that can be reused throughout the app.",
+          "B. They include external libraries and components for use in the current file.",
+          "C. They establish connections to databases for data storage and retrieval.",
+          "D. They specify the styling rules for the app's user interface elements.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What is JSX in the context of React Native?",
+        options: [
+          "A. A JavaScript library for making network requests.",
+          "B. A syntax extension that allows writing HTML-like code within JavaScript.",
+          "C. A type of database optimized for mobile app development.",
+          "D. A tool for debugging React Native applications.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the primary difference between 'Pure JS' and 'JSX' in React Native?",
+        options: [
+          "A. Pure JS is used for styling components, while JSX is used for defining their structure.",
+          "B. Pure JS is executed on the server, while JSX is executed on the client device.",
+          "C. Pure JS is the older way of writing React code, while JSX is the newer, preferred approach.",
+          "D. Pure JS is faster for complex applications, while JSX is easier to read and write.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the main advantage of using JSX over Pure JS in React Native development?",
+        options: [
+          "A. JSX allows for more concise and readable code for defining UI components.",
+          "B. JSX provides better performance for rendering complex user interfaces.",
+          "C. JSX offers more advanced debugging tools for identifying and fixing errors.",
+          "D. JSX enables direct manipulation of device hardware, such as the camera or GPS.",
+        ],
+        answer: "A",
+      },
+      {
+        question: "In React Native, what are 'components'?",
+        options: [
+          "A. Individual lines of code that perform specific tasks.",
+          "B. Reusable pieces of code that encapsulate the logic and UI of a part of the app.",
+          "C. Variables that store data used within the app.",
+          "D. Functions that handle user interactions, like button clicks.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What are the two main types of components in React?",
+        options: [
+          "A. Static components and Dynamic components",
+          "B. Presentational components and Container components",
+          "C. Class components and Function components",
+          "D. Stateful components and Stateless components",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the key difference between 'Function components' and 'Class components' in React?",
+        options: [
+          "A. Function components can only be used for displaying static content, while class components can handle dynamic data.",
+          "B. Function components are written in a newer syntax using Hooks, while class components use an older, class-based syntax.",
+          "C. Function components are rendered only once, while class components can be re-rendered multiple times.",
+          "D. Function components are used for small, reusable elements, while class components are used for larger, more complex parts of the UI.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What is the purpose of 'props' in React components?",
+        options: [
+          "A. To store data that is private to the component and not accessible from outside.",
+          "B. To define the visual appearance and styling of the component.",
+          "C. To pass data from a parent component to a child component.",
+          "D. To handle user interactions, like button clicks or form submissions.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "How is 'state' different from 'props' in React components?",
+        options: [
+          "A. State is used for passing data from a child component to its parent component, while props are used for the reverse.",
+          "B. State is typically immutable (cannot be changed), while props are mutable (can be changed).",
+          "C. State is managed within the component itself, while props are passed down from parent components.",
+          "D. State is used for storing static data, while props are used for storing dynamic data that can change over time.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "In a class component, how do you typically update the state?",
+        options: [
+          "A. By directly modifying the `this.state` object.",
+          "B. By using the `setState` method.",
+          "C. By passing a new state object as props to the component.",
+          "D. By using the `useState` Hook.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "In a function component, how do you work with state?",
+        options: [
+          "A. By using the `this.state` object and the `this.setState` method.",
+          "B. By using the `useState` Hook.",
+          "C. By passing state as props from a parent component.",
+          "D. By directly modifying global variables.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the main purpose of debugging tools in React Native development?",
+        options: [
+          "A. To automate the process of writing code.",
+          "B. To identify and fix errors or bugs in the app's code.",
+          "C. To improve the app's performance by optimizing code execution.",
+          "D. To design the user interface and layout of the app.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which of the following is NOT a common debugging tool used in React Native development?",
+        options: [
+          "A. React Developer Tools",
+          "B. Redux Developer Tools",
+          "C. Adobe Photoshop",
+          "D. Flipper",
+        ],
+        answer: "C",
+      },
+      {
+        question: "What is the primary function of 'React Developer Tools'?",
+        options: [
+          "A. To track network requests made by the app.",
+          "B. To inspect and debug the component tree and state of the app.",
+          "C. To monitor the performance of the app and identify bottlenecks.",
+          "D. To simulate different device environments for testing purposes.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "When would you typically use 'Native Debugging' tools in React Native development?",
+        options: [
+          "A. When you need to debug issues related to JavaScript code execution.",
+          "B. When you are working with platform-specific code, such as Java for Android or Swift for iOS.",
+          "C. When you want to test the app's user interface on different screen sizes.",
+          "D. When you are ready to deploy the app to the App Store or Google Play Store.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the purpose of the command 'npx react-native log-android'?",
+        options: [
+          "A. It launches the React Native app on an Android emulator.",
+          "B. It displays the console logs from the running Android app.",
+          "C. It compiles the React Native code into a native Android application package (APK).",
+          "D. It connects a physical Android device to the development machine for debugging.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which debugging tool is particularly useful for monitoring changes in the Redux store?",
+        options: [
+          "A. React Developer Tools",
+          "B. Redux Developer Tools",
+          "C. Flipper",
+          "D. Xcode",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is 'Flipper' primarily used for in React Native development?",
+        options: [
+          "A. Designing user interfaces and creating animations.",
+          "B. Managing and debugging the application's database.",
+          "C. Writing automated tests for the app's functionality.",
+          "D. Deploying the app to app stores and distributing it to users.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What does the process of 'building' a React Native app involve?",
+        options: [
+          "A. Converting the JavaScript code into a format that can be run on iOS and Android devices.",
+          "B. Uploading the app's code to a server where it can be accessed by users.",
+          "C. Designing the app's user interface and creating its visual elements.",
+          "D. Testing the app on different devices to ensure it functions correctly.",
+        ],
+        answer: "A",
+      },
+      {
+        question: "What is the role of 'Xcode' in React Native development?",
+        options: [
+          "A. It's the integrated development environment (IDE) used for building iOS apps.",
+          "B. It's a framework that provides pre-built components and tools for React Native.",
+          "C. It's a programming language used for writing platform-specific code for iOS.",
+          "D. It's a cloud-based platform for hosting and deploying React Native applications.",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which file in an Android project is typically updated for configuring permissions and SDK versions?",
+        options: [
+          "A. `App.js`",
+          "B. `package.json`",
+          "C. `AndroidManifest.xml`",
+          "D. `build.gradle`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the command to build a React Native app for iOS from the command line?",
+        options: [
+          "A. `npx react-native build-ios`",
+          "B. `npm run build-ios`",
+          "C. `react-native run-ios`",
+          "D. `xcodebuild -exportArchive`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the purpose of 'TestFlight' in iOS app development?",
+        options: [
+          "A. It's a tool for designing user interfaces for iOS apps.",
+          "B. It's a service for distributing beta versions of apps to testers.",
+          "C. It's a programming language used for writing platform-specific code for iOS.",
+          "D. It's a cloud-based platform for storing and managing iOS app data.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the final step in deploying a React Native app to the Apple App Store?",
+        options: [
+          "A. Uploading the app's code to a GitHub repository.",
+          "B. Submitting the app through App Store Connect.",
+          "C. Distributing the app directly to users through a website.",
+          "D. Testing the app on a physical iOS device.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is 'Android Studio' primarily used for in React Native development?",
+        options: [
+          "A. Designing the user interface of Android apps.",
+          "B. Developing and debugging Android apps, including those built with React Native.",
+          "C. Testing the performance of Android apps on different devices.",
+          "D. Distributing Android apps to users through the Google Play Store.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the command to run a React Native app on an Android emulator from the command line?",
+        options: [
+          "A. `npx react-native start-android`",
+          "B. `npm run android`",
+          "C. `react-native run-android`",
+          "D. `adb install app-debug.apk`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following statements is true about React Components?",
+        options: [
+          "A. They are hidden elements that control the logic of a React Native app.",
+          "B. They represent the visual elements displayed on the screen in a React Native app.",
+          "C. They are used to store and manage data within a React Native app.",
+          "D. They handle network requests and data fetching in a React Native app.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which of these components is NOT classified as a 'Basic Component' in React Native?",
+        options: ["A. ScrollView", "B. TextInput", "C. Image", "D. Text"],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the primary function of the 'View' component in React Native?",
+        options: [
+          "A. Displaying images from local storage or remote URLs.",
+          "B. Rendering text content with various styling options.",
+          "C. Acting as a container element that supports layout using flexbox.",
+          "D. Enabling scrolling through a list of components.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "How do you import the 'Text', 'View', and 'Image' components from 'react-native'?",
+        options: [
+          "A. import { Text, View, Image } from 'react-native';",
+          "B. require('react-native').Text, View, Image;",
+          "C. import ReactNative.Text, ReactNative.View, ReactNative.Image;",
+          "D. const { Text, View, Image } = react-native;",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which statement accurately describes the default style inheritance behavior of 'Text' components?",
+        options: [
+          "A. Text components do not inherit style information from their parent Text components.",
+          "B. Text components only inherit style information from their direct parent component, not from grandparent components.",
+          "C. Text components inherit style information from their parent Text components, but this inheritance can be overridden.",
+          "D. Text components can inherit style information from any ancestor component, regardless of nesting level.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "How can you display an image from a local file named 'my-image.jpg' using the 'Image' component?",
+        options: [
+          "A. <Image source='./my-image.jpg' />",
+          "B. <Image source={require('./my-image.jpg')} />",
+          "C. <Image source={uri: './my-image.jpg'} />",
+          "D. <Image url='./my-image.jpg' />",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is an essential requirement for a 'ScrollView' component to function correctly?",
+        options: [
+          "A. It must have a fixed width and height defined in its style.",
+          "B. It should not contain any nested 'View' components.",
+          "C. It must have a bounded height, either directly or through its parent views.",
+          "D. It must be placed within a 'FlatList' component.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which 'ScrollView' prop ensures that the content bounces back when the user scrolls beyond the edges?",
+        options: [
+          "A. alwaysBounceVertical",
+          "B. showsHorizontalScrollIndicator",
+          "C. centerContent",
+          "D. zoomScale",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the primary purpose of the 'TouchableHighlight' component?",
+        options: [
+          "A. Displaying a scrollable list of items.",
+          "B. Rendering text with customizable font styles.",
+          "C. Making views interactive and responsive to touch events.",
+          "D. Showing a loading indicator while data is being fetched.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which components are considered siblings of 'TouchableHighlight' in React Native?",
+        options: [
+          "A. TouchableOpacity, TouchableWithoutFeedback, TouchableNativeFeedback",
+          "B. Button, Pressable, Switch",
+          "C. TextInput, FlatList, SectionList",
+          "D. ActivityIndicator, Modal, WebView",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which component is most suitable for allowing users to input text using a keyboard?",
+        options: ["A. Text", "B. TextInput", "C. Button", "D. Switch"],
+        answer: "B",
+      },
+      {
+        question:
+          "What does the 'Switch' component represent in a React Native application?",
+        options: [
+          "A. A button with customizable appearance and behavior.",
+          "B. A text input field for entering numerical values.",
+          "C. A binary choice or toggle, similar to a checkbox.",
+          "D. A dropdown menu for selecting from a list of options.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following describes the 'Button' component in React Native?",
+        options: [
+          "A. A highly customizable button with numerous styling options.",
+          "B. A basic button component with minimal customization support.",
+          "C. A component used to display a modal or popup window.",
+          "D. A component for rendering web content within a React Native app.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "When is the 'onPressIn' event triggered on a 'Pressable' component?",
+        options: [
+          "A. When the user releases their finger from the component.",
+          "B. When the user's finger drags outside the boundaries of the component.",
+          "C. When the user's finger begins touching the component.",
+          "D. When the user's touch interaction with the component is canceled.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which statement accurately contrasts 'FlatList' and 'ScrollView' in React Native?",
+        options: [
+          "A. 'FlatList' is used for displaying simple lists, while 'ScrollView' is for more complex, sectioned lists.",
+          "B. 'FlatList' renders only visible items on screen for performance, while 'ScrollView' renders all items at once.",
+          "C. 'FlatList' requires a bounded height, while 'ScrollView' can handle unbounded content.",
+          "D. 'FlatList' supports horizontal scrolling, while 'ScrollView' only allows vertical scrolling.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What type of list is 'FlatList' specifically designed to render efficiently?",
+        options: [
+          "A. Lists with multiple levels of nesting and hierarchy.",
+          "B. Simple, flat lists with a single dimension of data.",
+          "C. Lists that require dynamic resizing and rearrangement.",
+          "D. Lists that are primarily used for navigation purposes.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "Which of these features is NOT supported by 'FlatList'?",
+        options: [
+          "A. Pull to Refresh",
+          "B. ScrollToIndex",
+          "C. Drag and Drop Reordering",
+          "D. Multiple Column Layout",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What distinguishes 'SectionList' from 'FlatList' in React Native?",
+        options: [
+          "A. 'SectionList' is designed for rendering simple, flat lists, while 'FlatList' is for sectioned lists.",
+          "B. 'SectionList' only supports vertical scrolling, while 'FlatList' allows both vertical and horizontal scrolling.",
+          "C. 'SectionList' is a more performant choice for handling very large lists compared to 'FlatList'.",
+          "D. 'SectionList' is specifically designed for rendering sectioned lists, while 'FlatList' is for flat lists.",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "Which component would you use to provide visual feedback during a long-running operation in your app?",
+        options: [
+          "A. Modal",
+          "B. WebView",
+          "C. ActivityIndicator",
+          "D. Switch",
+        ],
+        answer: "C",
+      },
+      {
+        question: "What is the primary role of the 'Modal' component?",
+        options: [
+          "A. Displaying web content from a remote URL.",
+          "B. Showing a progress bar during data loading.",
+          "C. Presenting content that temporarily overlays the main view.",
+          "D. Handling user input through a touch-sensitive area.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which component allows you to embed web content within your React Native application?",
+        options: [
+          "A. WebView",
+          "B. Modal",
+          "C. ActivityIndicator",
+          "D. FlatList",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the purpose of the 'SafeAreaView' component, specific to iOS devices?",
+        options: [
+          "A. Providing a secure storage mechanism for sensitive data.",
+          "B. Ensuring that content is rendered within the safe area boundaries of a device, avoiding notches and status bars.",
+          "C. Displaying a native action sheet with a list of options.",
+          "D. Managing the appearance of the keyboard input accessory view.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which component, specific to Android, provides touch feedback using native state drawables?",
+        options: [
+          "A. DrawerLayoutAndroid",
+          "B. TouchableNativeFeedback",
+          "C. ActionSheetIOS",
+          "D. SafeAreaView",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What best describes the nature of React Native APIs?",
+        options: [
+          "A. They are UI components that offer visual elements for app design.",
+          "B. They are pre-built backend services that handle data storage and user authentication.",
+          "C. They are collections of functions that allow you to interact with device features and perform various tasks.",
+          "D. They are configuration files that determine the structure and behavior of your React Native application.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following is NOT a React Native API category?",
+        options: [
+          "A. AccessibilityInfo",
+          "B. Database Management",
+          "C. Animated",
+          "D. Dimensions",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the key difference between 'TouchableHighlight' and 'TouchableOpacity'?",
+        options: [
+          "A. 'TouchableHighlight' only works on iOS, while 'TouchableOpacity' is for Android.",
+          "B. 'TouchableHighlight' provides visual feedback by changing opacity, while 'TouchableOpacity' animates the opacity change.",
+          "C. 'TouchableHighlight' requires a child component, while 'TouchableOpacity' can be used without a child.",
+          "D. 'TouchableHighlight' handles single taps, while 'TouchableOpacity' supports double taps and long presses.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which touch component does NOT provide any visual feedback during touch interactions?",
+        options: [
+          "A. TouchableHighlight",
+          "B. TouchableOpacity",
+          "C. TouchableWithoutFeedback",
+          "D. TouchableNativeFeedback",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "How are styles applied to React Native components compared to traditional web development?",
+        options: [
+          "A. React Native uses CSS stylesheets in separate files.",
+          "B. React Native uses inline styles exclusively.",
+          "C. React Native uses JavaScript-based style objects linked to components.",
+          "D. React Native uses a combination of CSS stylesheets and inline styles.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the correct way to apply inline styles in React Native?",
+        options: [
+          "A. `<Text style='font-style: italic;'>Italic Text</Text>`",
+          "B. `<Text style={{ fontStyle: 'italic' }}>Italic Text</Text>`",
+          "C. `<Text style={fontStyle: italic}>Italic Text</Text>`",
+          "D. `<Text style='{fontStyle: italic}'>Italic Text</Text>`",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the purpose of using `StyleSheet.create` in React Native?",
+        options: [
+          "A. To create animations and transitions for components.",
+          "B. To define multiple styles in one place and improve performance.",
+          "C. To manage the layout structure of components on the screen.",
+          "D. To handle user input events and component interactions.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "How can you combine multiple styles for a single component in React Native?",
+        options: [
+          "A. By using the `+` operator to concatenate style strings.",
+          "B. By passing an array of style objects to the `style` prop.",
+          "C. By nesting style objects within each other.",
+          "D. By using the `&` operator to merge style properties.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the syntax for applying conditional styles based on component state?",
+        options: [
+          "A. `<View style={styles.button, this.state.active ? styles.active : null} />`",
+          "B. `<View style={[styles.button, this.state.active && styles.active]} />`",
+          "C. `<View style={if (this.state.active) styles.active else styles.button} />`",
+          "D. `<View style={styles.button + (this.state.active ? ' ' + styles.active : '')} />`",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What layout mechanism is primarily used for positioning elements in React Native?",
+        options: [
+          "A. CSS Grid",
+          "B. Bootstrap",
+          "C. Flexbox",
+          "D. Constraint Layout",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What does the `flex: 1` property indicate in a React Native component's style?",
+        options: [
+          "A. The component should take up all available space in its parent container.",
+          "B. The component should be fixed to a specific position on the screen.",
+          "C. The component should be hidden from view.",
+          "D. The component should have a fixed width and height.",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the default value of the `flexDirection` property in React Native?",
+        options: [
+          "A. `row`",
+          "B. `column`",
+          "C. `row-reverse`",
+          "D. `column-reverse`",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which value for `flexDirection` would you use to arrange components horizontally from left to right?",
+        options: [
+          "A. `row`",
+          "B. `column`",
+          "C. `row-reverse`",
+          "D. `column-reverse`",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the purpose of the `justifyContent` property in Flexbox?",
+        options: [
+          "A. To control the alignment of items along the main axis of the container.",
+          "B. To control the alignment of items along the cross axis of the container.",
+          "C. To control the wrapping behavior of items within the container.",
+          "D. To control the spacing between items in the container.",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which value for `justifyContent` would you use to distribute space evenly between items along the main axis?",
+        options: [
+          "A. `flex-start`",
+          "B. `flex-end`",
+          "C. `center`",
+          "D. `space-around`",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "What is the difference between `alignItems` and `alignSelf` in Flexbox?",
+        options: [
+          "A. `alignItems` aligns items along the main axis, while `alignSelf` aligns items along the cross axis.",
+          "B. `alignItems` is used on the parent container, while `alignSelf` is used on individual child items.",
+          "C. `alignItems` controls wrapping behavior, while `alignSelf` controls stretching behavior.",
+          "D. There is no difference; they are interchangeable properties.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What does the `flexWrap: 'wrap'` property do in Flexbox?",
+        options: [
+          "A. It prevents items from wrapping and forces them into a single line.",
+          "B. It allows items to wrap onto multiple lines if they exceed the container's width.",
+          "C. It reverses the order of items in the container.",
+          "D. It stretches items to fill the available space.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which property is used to set the space between rows in a Flexbox container?",
+        options: [
+          "A. `rowSpacing`",
+          "B. `rowGap`",
+          "C. `verticalSpacing`",
+          "D. `gutter`",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What value would you use for the `width` property to make a component take up 50% of its parent's width?",
+        options: ["A. `50px`", "B. `50%`", "C. `0.5`", "D. `half`"],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the key difference between `position: 'relative'` and `position: 'absolute'` in React Native?",
+        options: [
+          "A. `relative` positioning is calculated from the edge of the screen, while `absolute` positioning is calculated from the parent container.",
+          "B. `relative` positioning allows for overlapping elements, while `absolute` positioning prevents overlaps.",
+          "C. `relative` positioning is based on the normal layout flow, while `absolute` positioning removes the element from the flow.",
+          "D. `relative` positioning is used for static elements, while `absolute` positioning is used for dynamic or animated elements.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the primary method of user interaction with mobile applications?",
+        options: [
+          "A. Voice commands",
+          "B. Touch gestures",
+          "C. Keyboard input",
+          "D. Mouse movements",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which React Native component provides a pre-built button with platform-specific styling?",
+        options: [
+          "A. `TouchableHighlight`",
+          "B. `TouchableOpacity`",
+          "C. `Button`",
+          "D. `Pressable`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What prop is used to trigger an action when a 'Button' component is pressed?",
+        options: [
+          "A. `onTouch`",
+          "B. `onClick`",
+          "C. `onPress`",
+          "D. `onSubmit`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "If you want to create a custom button with more control over its appearance, which group of components would you likely use?",
+        options: [
+          "A. `View`, `Text`, `Image`",
+          "B. `FlatList`, `SectionList`, `ScrollView`",
+          "C. `TouchableHighlight`, `TouchableOpacity`, `TouchableWithoutFeedback`",
+          "D. `TextInput`, `Switch`, `Picker`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following is NOT a Touchable component in React Native?",
+        options: [
+          "A. `TouchableHighlight`",
+          "B. `TouchableNativeEvent`",
+          "C. `TouchableOpacity`",
+          "D. `TouchableWithoutFeedback`",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What prop would you use to handle an action when a 'Touchable' component is pressed for an extended period?",
+        options: [
+          "A. `onPressIn`",
+          "B. `onLongPress`",
+          "C. `onPressOut`",
+          "D. `onHold`",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the primary benefit of using the 'react-native-gesture-handler' library?",
+        options: [
+          "A. It simplifies the process of creating basic buttons.",
+          "B. It provides more efficient scrolling behavior for long lists.",
+          "C. It enables advanced and performant gesture recognition and handling.",
+          "D. It automatically animates transitions between screens.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which component ensures that gesture handling works correctly at the root level of your component tree when using 'react-native-gesture-handler'?",
+        options: [
+          "A. `GestureHandlerRootView`",
+          "B. `PanGestureHandler`",
+          "C. `ScrollView`",
+          "D. `NavigationContainer`",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which 'ScrollView' event prop is triggered when the user starts dragging the scroll view?",
+        options: [
+          "A. `onScroll`",
+          "B. `onScrollBeginDrag`",
+          "C. `onScrollEndDrag`",
+          "D. `onScrollToTop`",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the purpose of the 'NavigationContainer' component in React Navigation?",
+        options: [
+          "A. It defines the styling and appearance of the navigation bar.",
+          "B. It manages the navigation state and links the navigator to the app environment.",
+          "C. It handles user input for navigation gestures, such as swiping back.",
+          "D. It displays a list of available screens in a sidebar menu.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which prop within a 'Stack.Screen' component refers to the React Native component that will be rendered for that screen?",
+        options: [
+          "A. `screen`",
+          "B. `view`",
+          "C. `component`",
+          "D. `render`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the role of the 'navigation' prop that is passed to screen components in React Navigation?",
+        options: [
+          "A. It provides styling information for the screen.",
+          "B. It contains data passed from the previous screen.",
+          "C. It gives access to methods for navigating to other screens.",
+          "D. It displays a loading indicator during screen transitions.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which type of navigator would be most suitable for an app where screens are arranged hierarchically, with each new screen pushed onto a stack?",
+        options: [
+          "A. Stack Navigator",
+          "B. Bottom Tab Navigator",
+          "C. Drawer Navigator",
+          "D. Material Top Tab Navigator",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which navigator provides a tab bar at the bottom of the screen, allowing users to switch between different sections of the app?",
+        options: [
+          "A. Stack Navigator",
+          "B. Bottom Tab Navigator",
+          "C. Drawer Navigator",
+          "D. Material Top Tab Navigator",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What type of navigator is often used to implement a sidebar menu that can be opened and closed with a swipe gesture?",
+        options: [
+          "A. Stack Navigator",
+          "B. Bottom Tab Navigator",
+          "C. Drawer Navigator",
+          "D. Material Top Tab Navigator",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which navigator places a Material Design-themed tab bar at the top of the screen, enabling horizontal swiping between tabs?",
+        options: [
+          "A. Stack Navigator",
+          "B. Bottom Tab Navigator",
+          "C. Drawer Navigator",
+          "D. Material Top Tab Navigator",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "What prop is used to specify default options for screens within a navigator component?",
+        options: [
+          "A. `screenConfig`",
+          "B. `defaultOptions`",
+          "C. `screenOptions`",
+          "D. `navigatorOptions`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which 'Stack.Screen' option controls whether transition animations are enabled when pushing or popping screens?",
+        options: [
+          "A. `transitionEnabled`",
+          "B. `animation`",
+          "C. `animateTransitions`",
+          "D. `animationEnabled`",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "What is the purpose of the 'drawerLabel' option for a 'Drawer.Screen' component?",
+        options: [
+          "A. It sets the background color of the drawer.",
+          "B. It defines the text or component displayed for the drawer item.",
+          "C. It controls the animation speed when opening the drawer.",
+          "D. It specifies the width of the drawer when open.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which 'Bottom Tab.Screen' option determines whether the tab label is displayed below or beside the tab icon?",
+        options: [
+          "A. `tabBarLabelPlacement`",
+          "B. `tabBarLabelAlignment`",
+          "C. `tabBarLabelPosition`",
+          "D. `tabBarIconLocation`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the primary method for passing data to a route during navigation in React Navigation?",
+        options: [
+          "A. Using query parameters in the route URL.",
+          "B. Passing an object as a second argument to the 'navigation.navigate' function.",
+          "C. Storing data in a global state management library.",
+          "D. Using the browser's local storage.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "How do you access the parameters passed to a route within a screen component?",
+        options: [
+          "A. Through the 'params' property of the 'route' object.",
+          "B. Using the 'navigation.getParams()' method.",
+          "C. By accessing the 'props.navigation.params' object.",
+          "D. Through the 'data' property of the screen component's props.",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What does 'state management' refer to in the context of React Native applications?",
+        options: [
+          "A. Managing the navigation stack and transitions between screens.",
+          "B. Handling network requests and responses from APIs.",
+          "C. Storing, retrieving, and manipulating data that determines the UI rendering and app behavior.",
+          "D. Controlling the styling and appearance of components.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following is NOT a common challenge associated with managing state in larger React Native applications?",
+        options: [
+          "A. Prop drilling, where data is passed through multiple layers of components unnecessarily.",
+          "B. State synchronization, ensuring consistency across components when data updates.",
+          "C. Handling user input events, such as button clicks and text input.",
+          "D. Choosing the right state management solution for the app's complexity and scale.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the primary purpose of the `useState` hook in React?",
+        options: [
+          "A. To fetch data from an API and update the component.",
+          "B. To manage the navigation state of the application.",
+          "C. To add state management capabilities to functional components.",
+          "D. To style components and control their appearance.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What does the `useState` hook return when used in a component?",
+        options: [
+          "A. An object containing the current state and a function to update it.",
+          "B. An array containing the current state and a function to update it.",
+          "C. A string representing the current state.",
+          "D. A boolean value indicating whether the state has been initialized.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What is 'prop drilling' in React?",
+        options: [
+          "A. The process of drilling down into nested objects to access specific properties.",
+          "B. A technique for securely storing sensitive data in a React Native application.",
+          "C. Passing data through multiple layers of components, even if some components don't directly use the data.",
+          "D. A method for optimizing component performance by reducing unnecessary re-renders.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following is a potential drawback of prop drilling?",
+        options: [
+          "A. It can make components more reusable and easier to test in isolation.",
+          "B. It can lead to increased complexity and make debugging more challenging.",
+          "C. It reduces the amount of code needed to pass data between components.",
+          "D. It improves application performance by minimizing data transfer.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What is the purpose of the Context API in React?",
+        options: [
+          "A. To manage the navigation stack and handle transitions between screens.",
+          "B. To provide a global store for managing the application's state.",
+          "C. To share data between components without prop drilling, especially for deeply nested components.",
+          "D. To handle side effects, such as fetching data from an API.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following is a typical use case for the Context API?",
+        options: [
+          "A. Managing a complex data structure, such as a large list of items.",
+          "B. Handling user authentication and storing user session data.",
+          "C. Implementing animations and transitions for UI elements.",
+          "D. Storing and managing the application's theme or color scheme.",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "What is the first step in using the Context API in a React component?",
+        options: [
+          "A. Wrap the root component with a Provider component.",
+          "B. Use the `useContext` hook to access the context value.",
+          "C. Create a context object using `createContext`.",
+          "D. Define the initial state value for the context.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which component is responsible for providing the context value to its children?",
+        options: [
+          "A. `Context.Provider`",
+          "B. `Context.Consumer`",
+          "C. `useContext`",
+          "D. `createContext`",
+        ],
+        answer: "A",
+      },
+      {
+        question: "How do you access the context value within a component?",
+        options: [
+          "A. By using the `useContext` hook and passing in the context object.",
+          "B. By reading the `context` prop passed to the component.",
+          "C. By calling the `getContext` method on the component's props.",
+          "D. By directly importing the context object and accessing its value.",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Can you have multiple context objects in a single React Native application?",
+        options: [
+          "A. No, React only allows a single context object per application.",
+          "B. Yes, you can create and use multiple context objects for different purposes.",
+          "C. Yes, but only if the context objects are nested within each other.",
+          "D. Yes, but only if you use a third-party state management library like Redux.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "How do you override a context value for a specific part of the component tree?",
+        options: [
+          "A. By passing a new value directly to the `useContext` hook.",
+          "B. By modifying the context value in the parent component.",
+          "C. By wrapping the specific part of the tree with another Provider component and a different value.",
+          "D. It's not possible to override a context value once it's defined.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Why do React Native applications often need local storage mechanisms?",
+        options: [
+          "A. To improve network connectivity.",
+          "B. To enhance app security.",
+          "C. To store user credentials for login purposes.",
+          "D. To persist data across app restarts and enable offline functionality.",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "Which of the following statements about local storage in React Native is NOT true?",
+        options: [
+          "A. React Native framework itself does not include built-in data storage APIs.",
+          "B. Local storage APIs are available through external libraries.",
+          "C. Local storage is primarily used for storing large multimedia files like images and videos.",
+          "D. Expo framework provides some libraries for local storage.",
+        ],
+        answer: "C",
+      },
+      {
+        question: "What is AsyncStorage in React Native?",
+        options: [
+          "A. A secure storage mechanism for sensitive data.",
+          "B. A library for interacting with remote databases.",
+          "C. An asynchronous, unencrypted, persistent, key-value storage API.",
+          "D. A file system API for accessing local files and directories.",
+        ],
+        answer: "C",
+      },
+      {
+        question: "What type of data can be directly stored in AsyncStorage?",
+        options: [
+          "A. Only strings",
+          "B. Objects and arrays",
+          "C. Images and binary data",
+          "D. Any JavaScript data type",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the purpose of using `JSON.stringify()` and `JSON.parse()` with AsyncStorage?",
+        options: [
+          "A. To encrypt and decrypt data for security.",
+          "B. To store and retrieve complex objects as strings.",
+          "C. To compress and decompress data to save space.",
+          "D. To convert data between different character encodings.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which Expo library provides a way to encrypt and securely store key-value pairs on the device?",
+        options: [
+          "A. `expo-file-system`",
+          "B. `@react-native-async-storage/async-storage`",
+          "C. `expo-secure-store`",
+          "D. `expo-sqlite`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "On which platform is Expo SecureStore NOT compatible with devices running version 5 or lower?",
+        options: [
+          "A. iOS",
+          "B. Android",
+          "C. Both iOS and Android",
+          "D. Neither iOS nor Android",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the approximate size limit for storing a single value in Expo SecureStore?",
+        options: [
+          "A. 2 KB (2048 bytes)",
+          "B. 2 MB (2048 kilobytes)",
+          "C. 20 KB (20480 bytes)",
+          "D. There is no size limit.",
+        ],
+        answer: "A",
+      },
+      {
+        question: "What is the primary function of the Expo FileSystem API?",
+        options: [
+          "A. Securely storing sensitive user data.",
+          "B. Managing network requests and handling responses.",
+          "C. Providing access to the device's local file system for reading and writing files.",
+          "D. Displaying interactive maps and location data within the app.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following directories does an app have read-only access to using Expo FileSystem?",
+        options: [
+          "A. `FileSystem.documentDirectory`",
+          "B. `FileSystem.cacheDirectory`",
+          "C. `FileSystem.bundleDirectory`",
+          "D. All of the above",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which Expo FileSystem API is used to create a new directory?",
+        options: [
+          "A. `FileSystem.createDirectoryAsync()`",
+          "B. `FileSystem.makeDirectory()`",
+          "C. `FileSystem.newDirectoryAsync()`",
+          "D. `FileSystem.makeDirectoryAsync()`",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "What encoding type is commonly used with Expo FileSystem for reading and writing text files?",
+        options: [
+          "A. `FileSystem.EncodingType.ASCII`",
+          "B. `FileSystem.EncodingType.UTF8`",
+          "C. `FileSystem.EncodingType.BASE64`",
+          "D. `FileSystem.EncodingType.BINARY`",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which Expo SQLite API is used to open a connection to an existing database or create a new one if it doesn't exist?",
+        options: [
+          "A. `SQLite.connectAsync()`",
+          "B. `SQLite.openDatabase()`",
+          "C. `SQLite.createDatabaseAsync()`",
+          "D. `SQLite.openDatabaseAsync()`",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "What is the purpose of the `execAsync()` method in Expo SQLite?",
+        options: [
+          "A. To execute a single SQL query and retrieve the first matching row.",
+          "B. To execute multiple SQL queries as a batch.",
+          "C. To prepare a SQL statement for later execution.",
+          "D. To close the connection to the database.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which Expo SQLite API would you use to insert, update, or delete data in a database?",
+        options: [
+          "A. `db.queryAsync()`",
+          "B. `db.runAsync()`",
+          "C. `db.getFirstAsync()`",
+          "D. `db.getAllAsync()`",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the benefit of using prepared statements with Expo SQLite?",
+        options: [
+          "A. They improve query performance for frequently executed statements.",
+          "B. They simplify error handling for database operations.",
+          "C. They reduce the need for data serialization.",
+          "D. They enhance data security by preventing SQL injection vulnerabilities.",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which Expo SQLite API retrieves all rows from a query result as an array of objects?",
+        options: [
+          "A. `db.getRowsAsync()`",
+          "B. `db.queryAllAsync()`",
+          "C. `db.getAllAsync()`",
+          "D. `db.fetchAllAsync()`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the primary purpose of the Fetch API in React Native?",
+        options: [
+          "A. Managing user interface elements and their interactions.",
+          "B. Storing and retrieving data locally on the device.",
+          "C. Making HTTP requests to interact with remote servers and resources.",
+          "D. Handling animations and transitions between different screens.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which HTTP method is used to retrieve data from a remote resource?",
+        options: ["A. POST", "B. PUT", "C. DELETE", "D. GET"],
+        answer: "D",
+      },
+      {
+        question:
+          "If you want to completely replace a resource with new data, which HTTP method would you use?",
+        options: ["A. PATCH", "B. PUT", "C. POST", "D. DELETE"],
+        answer: "B",
+      },
+      {
+        question: "What is the function of the 'body' in an HTTP request?",
+        options: [
+          "A. It contains information about the request itself, such as the browser being used.",
+          "B. It holds the data being sent to the server, typically in POST requests.",
+          "C. It specifies the format of the response expected from the server.",
+          "D. It defines the actions that the server should perform on the requested resource.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What does an HTTP status code of 401 Unauthorized indicate?",
+        options: [
+          "A. The server encountered an internal error while processing the request.",
+          "B. The requested resource was not found on the server.",
+          "C. The client's request was malformed or contained incorrect syntax.",
+          "D. Authentication is required to access the requested resource.",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "What is the significance of the 'ok' property of the 'Response' object in the Fetch API?",
+        options: [
+          "A. It indicates if the server responded with a successful status code (2xx range).",
+          "B. It checks if the response body contains valid JSON data.",
+          "C. It verifies if the client is authorized to access the requested resource.",
+          "D. It determines if the response has been cached locally.",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which of the following methods from the 'Response' interface returns the response body as a JavaScript object if it is in JSON format?",
+        options: [
+          "A. Response.text()",
+          "B. Response.blob()",
+          "C. Response.json()",
+          "D. Response.formData()",
+        ],
+        answer: "C",
+      },
+      {
+        question: "What is Axios in the context of React Native development?",
+        options: [
+          "A. A built-in React Native component for displaying loading indicators.",
+          "B. A state management library for managing data flow in applications.",
+          "C. A JavaScript library for making HTTP requests from React Native and Node.js environments.",
+          "D. A testing framework for writing unit and integration tests for React Native components.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following is NOT a benefit of using Axios for making HTTP requests?",
+        options: [
+          "A. Automatic transformation of response data to JSON format.",
+          "B. Built-in support for handling web sockets and real-time communication.",
+          "C. Interceptors for modifying requests and responses globally.",
+          "D. Support for making requests from both browser and Node.js environments.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the purpose of the 'data' property in an Axios response object?",
+        options: [
+          "A. It contains the HTTP status code returned by the server.",
+          "B. It holds the headers sent by the server along with the response.",
+          "C. It stores the actual data payload returned by the server.",
+          "D. It indicates whether the request was successful or not.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Why are loading states important when handling network requests in a user interface?",
+        options: [
+          "A. They help developers debug issues with network connectivity.",
+          "B. They provide visual feedback to the user, indicating that data is being processed.",
+          "C. They improve the overall security of the application by masking sensitive data.",
+          "D. They reduce the amount of data being transferred over the network.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which built-in React Native component is often used to display a loading indicator during data fetching?",
+        options: [
+          "A. ScrollView",
+          "B. ActivityIndicator",
+          "C. Modal",
+          "D. Text",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "How can state management libraries like Redux or Context API be helpful when managing loading states?",
+        options: [
+          "A. They can store the loading state globally, making it accessible to multiple components.",
+          "B. They directly make network requests and handle responses without the need for the Fetch API or Axios.",
+          "C. They automatically detect and display error messages to the user.",
+          "D. They provide caching mechanisms to store network responses locally, reducing the need for repeated requests.",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the purpose of using 'try/catch' blocks when making network requests?",
+        options: [
+          "A. To modify the headers of the request before it is sent to the server.",
+          "B. To format the data being sent to the server in a specific way.",
+          "C. To handle potential errors that may occur during the network request.",
+          "D. To cache the response from the server to improve performance.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following is an example of a client-side error (4xx) that might occur during a network request?",
+        options: [
+          "A. 500 Internal Server Error",
+          "B. 404 Not Found",
+          "C. 503 Service Unavailable",
+          "D. Connection Timeout",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What type of network error indicates a problem with the user's internet connection?",
+        options: [
+          "A. Server Error (5xx)",
+          "B. Timeout Error",
+          "C. Connection Issues",
+          "D. Client Error (4xx)",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the primary reason for requiring permissions in mobile applications?",
+        options: [
+          "A. To track user activity for advertising purposes.",
+          "B. To enhance app functionality and provide a richer user experience.",
+          "C. To protect user privacy and prevent unauthorized access to sensitive data.",
+          "D. To enable communication between different apps on the device.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "In Android development with Expo, how are permissions typically configured?",
+        options: [
+          "A. By modifying the `AndroidManifest.xml` file directly.",
+          "B. Using the `permissions` and `blockedPermissions` keys in the `android` section of `app.json`.",
+          "C. Through a dedicated permissions settings screen within the app.",
+          "D. By sending requests to a remote permissions server.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the purpose of using the `blockedPermissions` property in the `android` section of `app.json`?",
+        options: [
+          "A. To grant specific permissions to the app.",
+          "B. To prevent the app from accessing certain device features even if requested by libraries.",
+          "C. To display a custom permission request dialog to the user.",
+          "D. To check the status of previously granted permissions.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which of the following is NOT a valid Android permission string?",
+        options: [
+          "A. `android.permission.READ_CONTACTS`",
+          "B. `android.permission.ACCESS_FINE_LOCATION`",
+          "C. `android.permission.SEND_EMAIL`",
+          "D. `android.permission.RECORD_AUDIO`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "In iOS development with Expo, what is the primary mechanism for setting permission messages displayed to the user?",
+        options: [
+          "A. Modifying the `Info.plist` file directly.",
+          "B. Using the `permissions` key in the `ios` section of `app.json`.",
+          "C. Calling specific permission request methods in the app code.",
+          "D. Using the `infoPlist` key within the `ios` section of `app.json`.",
+        ],
+        answer: "D",
+      },
+      {
+        question: "What is a config plugin in Expo?",
+        options: [
+          "A. A tool for managing user interface components.",
+          "B. A system for extending app configuration and customizing the native project build process.",
+          "C. A library for handling network requests and responses.",
+          "D. A way to store data locally on the device.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What is the main purpose of the Expo SDK?",
+        options: [
+          "A. To provide a set of pre-built UI components for faster app development.",
+          "B. To offer access to device and system functionalities through JavaScript APIs.",
+          "C. To manage the app's navigation structure and screen transitions.",
+          "D. To handle user authentication and authorization.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which Expo SDK package allows you to access and manage the user's contacts?",
+        options: [
+          "A. `expo-camera`",
+          "B. `expo-location`",
+          "C. `expo-contacts`",
+          "D. `expo-media-library`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the function of the `MediaLibrary.usePermissions()` hook in Expo Media Library?",
+        options: [
+          "A. To display a list of media files from the device's library.",
+          "B. To play audio or video files from the media library.",
+          "C. To request and manage permissions for accessing the user's media library.",
+          "D. To create new albums and add media files to them.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which Expo component provides a live preview of the device's camera feed?",
+        options: [
+          "A. `CameraRoll`",
+          "B. `ImagePicker`",
+          "C. `CameraView`",
+          "D. `Video`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is the primary purpose of push notifications in mobile applications?",
+        options: [
+          "A. To send emails to users with important updates.",
+          "B. To display in-app advertisements to generate revenue.",
+          "C. To establish a real-time communication channel between the app and users even when the app is not actively in use.",
+          "D. To track user location for personalized content recommendations.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What are the two main types of push notifications in React Native?",
+        options: [
+          "A. SMS notifications and email notifications",
+          "B. Foreground notifications and background notifications",
+          "C. Local notifications and remote notifications",
+          "D. System notifications and app notifications",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which push notification service is primarily associated with Android devices?",
+        options: [
+          "A. APNs (Apple Push Notification service)",
+          "B. FCM (Firebase Cloud Messaging)",
+          "C. GCM (Google Cloud Messaging)",
+          "D. SNS (Amazon Simple Notification Service)",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the role of a device token in push notification architecture?",
+        options: [
+          "A. It authenticates the user and grants access to the app.",
+          "B. It stores the notification content to be displayed.",
+          "C. It serves as a unique identifier for addressing notifications to a specific device.",
+          "D. It encrypts the notification data for security purposes.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which Expo package simplifies the implementation of push notifications in React Native?",
+        options: [
+          "A. `expo-firebase-messaging`",
+          "B. `react-native-push-notification`",
+          "C. `expo-notifications`",
+          "D. `expo-messaging`",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What is a key advantage of using Expo Notifications compared to other push notification solutions?",
+        options: [
+          "A. It requires less configuration and handles both local and remote notifications.",
+          "B. It supports a wider range of notification customization options.",
+          "C. It offers significantly faster notification delivery speeds.",
+          "D. It guarantees higher notification delivery rates.",
+        ],
+        answer: "A",
+      },
+      {
+        question: "Mobile app development is the process of creating software applications that run on __________.",
+        options: ["mobile devices"],
+        answer: "mobile devices"
+      },
+      {
+        question: "Mobile applications can be pre-installed on devices, downloaded from app stores, or accessed via __________.",
+        options: ["mobile web browsers"],
+        answer: "mobile web browsers"
+      },
+      {
+        question: "The two most common operating systems for mobile apps are __________ and iOS.",
+        options: ["Android"],
+        answer: "Android"
+      },
+      {
+        question: "The __________ App Store, launched in 2008, revolutionized app distribution and monetization.",
+        options: ["iOS"],
+        answer: "iOS"
+      },
+      {
+        question: "In 2008, __________ introduced an open-source approach to mobile app development with the Google Play Store.",
+        options: ["Android"],
+        answer: "Android"
+      },
+      {
+        question: "Native apps are developed using platform-specific languages like Objective-C for iOS and __________ for Android.",
+        options: ["Java"],
+        answer: "Java"
+      },
+      {
+        question: "The launch of the __________ OS and Google Play Store in 2008 fostered a competitive app market.",
+        options: ["Android"],
+        answer: "Android"
+      },
+      {
+        question: "The programming language __________ was introduced in 2014 as a safer and easier alternative to Objective-C for iOS development.",
+        options: ["Swift"],
+        answer: "Swift"
+      },
+      {
+        question: "For Android development, __________ became an officially supported language in 2017, offering cleaner and more efficient code.",
+        options: ["Kotlin"],
+        answer: "Kotlin"
+      },
+      {
+        question: "React Native is a popular framework for __________ development, enabling code reuse across platforms.",
+        options: ["cross-platform"],
+        answer: "cross-platform"
+      },
+      {
+        question: "Frameworks like React Native, Flutter, and Xamarin are used for __________ development.",
+        options: ["cross-platform"],
+        answer: "cross-platform"
+      },
+      {
+        question: "Mobile applications can be classified into three types: Native, Hybrid, and __________.",
+        options: ["Web"],
+        answer: "Web"
+      },
+      {
+        question: "__________ apps are built using web technologies like HTML, CSS, and JavaScript, and run in a web browser.",
+        options: ["Web"],
+        answer: "Web"
+      },
+      {
+        question: "Hybrid apps combine elements of both native and web apps, often using a web view within a __________ container.",
+        options: ["native"],
+        answer: "native"
+      },
+      {
+        question: "__________ apps are developed specifically for one platform, using platform-specific languages and tools.",
+        options: ["Native"],
+        answer: "Native"
+      },
+      {
+        question: "In mobile app development, __________ allows for the use of a single codebase to build apps for both iOS and Android.",
+        options: ["cross-platform development"],
+        answer: "cross-platform development"
+      },
+      {
+        question: "The language __________ was historically used for iOS app development before the introduction of Swift.",
+        options: ["Objective-C"],
+        answer: "Objective-C"
+      },
+      {
+        question: "The emergence of frameworks like __________ has significantly impacted cross-platform development.",
+        options: ["React Native"],
+        answer: "React Native"
+      },
+      {
+        question: "The 1990s saw the introduction of __________, which featured basic built-in applications like calendars and calculators.",
+        options: ["early mobile devices"],
+        answer: "early mobile devices"
+      },
+      {
+        question: "The mobile app development process includes creating software applications for devices like smartphones and __________.",
+        options: ["tablets"],
+        answer: "tablets"
+      }
+    ];
+
+    let all = { start: 0, end: questions.length - 1, name: "All" };
+    let lect1 = { start: 0, end: 30, name: "Lecture 1" };
+    let lect2 = { start: 31, end: 68, name: "Lecture 2" };
+    let lect3 = { start: 69, end: 98, name: "Lecture 3" };
+    let lect4 = { start: 99, end: 125, name: "Lecture 4" };
+    let lect5 = { start: 126, end: 142, name: "Lecture 5" };
+    let lect6 = { start: 143, end: 163, name: "Lecture 6" };
+    let lect7 = { start: 164, end: 176, name: "Lecture 7" };
+    let lect8 = { start: 177, end: 193, name: "Lecture 8" };
+    let lect9 = { start: 194, end: 209, name: "Lecture 9" };
+    let lect10 = { start: 210, end: 224, name: "Lecture 10" };
+    let fillIns = { start: 226, end: 245, name: "Fill In" };
+
+    const lectureRanges = [
+      all,
+      lect1,
+      lect2,
+      lect3,
+      lect4,
+      lect5,
+      lect6,
+      lect7,
+      lect8,
+      lect9,
+      lect10,
+      fillIns
+    ];
+
+    let currentQuestion = 0;
+    let userAnswers = Array(questions.length).fill(null);
+    let selectedQuestions = [];
+    let quizType = "all";
+
+    const usernameDialog = document.getElementById("usernameDialog");
+    const quizContainer = document.getElementById("quizContainer");
+    const quizOptionsDiv = document.getElementById("quiz-options");
+    const lectureSelectionDiv = document.getElementById("lectureSelection");
+    const quizForm = document.getElementById("quizForm");
+    const feedbackContainer = document.getElementById("feedbackContainer");
+    const feedbackChoice = document.getElementById("feedbackChoice");
+    const resultDiv = document.getElementById("result");
+    const resultDiv2 = document.getElementById("result2");
+    const sectionTitle = document.getElementById("quiz-h1");
+    const retake = document.getElementById("retakeGroup");
+    const userScore = document.getElementById("user-answers");
+    const scoreContainer = document.getElementById("scoreContainer");
+    const resetBtn = document.getElementById("resetButton");
+    const questionCountSpan = document.getElementById("question-count");
+    const questionCountContainer = document.getElementById(
+      "question-count-container"
+    );
+    let userName = "" || localStorage.getItem("username");
+    const usernameInput = (document.getElementById("username").value =
+      userName);
+
+    function saveScore(score) {
+      let scores = JSON.parse(localStorage.getItem("scores")) || [];
+      scores.push({ username: userName, score: score });
+      localStorage.setItem("scores", JSON.stringify(scores));
+    }
+
+    function startQuiz() {
+      const usernameInput = document.getElementById("username");
+      let username = usernameInput.value.trim();
+
+      if (username === "") {
+        if (localStorage.getItem("username")) {
+          username = localStorage.getItem("username");
+          userName = username;
+          usernameInput.value = username;
+        } else {
+          alert("Please enter a username");
+          return;
+        }
+      } else {
+        localStorage.setItem("username", username);
+        userName = username;
+      }
+
+      if (
+        username === localStorage.getItem("previousUser") &&
+        localStorage.getItem("currentQuestion") !== "" &&
+        JSON.parse(localStorage.getItem("userAnswers")).length > 0 &&
+        JSON.parse(localStorage.getItem("selectedQuestions")).length > 0
+      ) {
+        userAnswers = JSON.parse(localStorage.getItem("userAnswers"));
+        currentQuestion = parseInt(localStorage.getItem("currentQuestion"));
+        selectedQuestions = JSON.parse(
+          localStorage.getItem("selectedQuestions")
+        );
+        usernameDialog.style.display = "none";
+        quizContainer.style.display = "block";
+        showQuestion(currentQuestion);
+      } else {
+        userAnswers = Array(questions.length).fill(null);
+        currentQuestion = 0;
+        selectedQuestions = [];
+        generateLectureSelection();
+        usernameDialog.style.display = "none";
+        quizContainer.style.display = "block";
+        updateQuiz();
+      }
+    }
+
+    function generateLectureSelection() {
+      lectureSelectionDiv.innerHTML = "";
+
+      lectureRanges.forEach((lectureRange, index) => {
+        const label = document.createElement("label");
+        label.innerHTML = `
+                        <input type="checkbox" name="lectureCheckbox" value="${index + 1
+          }"> Lecture ${index + 1}
+                    `;
+
+        if (index === 6) {
+          const label = document.createElement("label");
+          label.innerHTML = `
+                        <input type="checkbox" name="lectureCheckbox" value="${index + 1
+            }"> All
+                    `;
+        }
+        lectureSelectionDiv.appendChild(label);
+      });
+    }
+
+    function updateQuiz() {
+      selectedQuestions = [];
+      currentQuestion = 0;
+
+      if (quizType === "custom") {
+        const selectedLectureNumbers = Array.from(
+          document.querySelectorAll('input[name="lectureCheckbox"]:checked')
+        ).map((checkbox) => parseInt(checkbox.value));
+
+        if (selectedLectureNumbers.length === 0) {
+          alert("Please select at least one lecture.");
+          return;
+        }
+
+        selectedLectureNumbers.forEach((lectureNumber) => {
+          const lectureRange = getLectureRangeByNumber(lectureNumber);
+          for (let i = lectureRange.start; i <= lectureRange.end; i++) {
+            selectedQuestions.push(i);
+          }
+        });
+
+        currentQuestion = document
+          .querySelectorAll('input[name="lectureCheckbox"]:checked')
+          .map((checkbox) => parseInt(checkbox.value))[0];
+      } else {
+        selectedQuestions = questions.map((_, index) => index);
+      }
+      updateQuestionCount();
+      showQuestion(currentQuestion);
+    }
+
+    function getLectureRangeByNumber(number) {
+      return lectureRanges[number - 1];
+    }
+
+    function updateQuestionCount() {
+      questionCountContainer.style.background = "#430f58";
+      questionCountSpan.style.color = "white";
+      questionCountSpan.textContent = `Question ${currentQuestion + 1
+        } out of ${selectedQuestions.length}`;
+    }
+
+    function showQuestion(index) {
+      quizForm.innerHTML = "";
+      const questionIndex = selectedQuestions[index];
+      const question = questions[questionIndex];
+      const questionDiv = document.createElement("div");
+      questionDiv.classList.add("question");
+
+      const questionTitle = document.createElement("p");
+      questionTitle.style.fontSize = "1rem";
+      questionTitle.textContent = question.question;
+
+      questionTitle.style.fontWeight = "500";
+      questionTitle.style.fontSize = "1.2rem";
+
+      questionDiv.appendChild(questionTitle);
+      if (question.options.length === 1) {
+        // Create an input field for the fill-in-the-blank question
+        const fillInInput = document.createElement("input");
+        fillInInput.type = "text";
+        fillInInput.style.border = "none"
+        fillInInput.style.borderBottom = "1px solid #430f58";
+        fillInInput.style.outline = "none"
+        fillInInput.style.fontSize = "1rem";
+        fillInInput.name = "q" + (index + 1);
+        fillInInput.value = userAnswers[questionIndex] || "";
+
+
+        fillInInput.addEventListener("input", () => {
+          userAnswers[questionIndex] = fillInInput.value.toLocaleLowerCase();
+          saveProgressLocally();
+        });
+
+        questionDiv.appendChild(fillInInput);
+      } else {
+
+        question.options.forEach((option) => {
+          const optionLabel = document.createElement("label");
+          const optionInput = document.createElement("input");
+          const optionHint = document.createElement("img");
+
+          optionInput.type = "radio";
+          optionInput.name = "q" + (index + 1);
+          optionInput.value = option[0];
+
+          optionHint.classList.add("hint");
+          optionHint.style.display = "none";
+          const correctEmoji =
+            "https://fonts.gstatic.com/s/e/notoemoji/latest/1f601/512.webp";
+          const incorrectEmoji =
+            "https://fonts.gstatic.com/s/e/notoemoji/latest/1f9d0/512.webp";
+
+          optionHint.src =
+            optionInput.value === questions[questionIndex].answer
+              ? correctEmoji
+              : incorrectEmoji;
+          optionHint.alt =
+            optionInput.value === questions[questionIndex].answer
+              ? "correct"
+              : "incorrect";
+
+          if (userAnswers[questionIndex] === option[0]) {
+            optionInput.checked = true;
+          }
+
+          optionLabel.appendChild(optionInput);
+          optionLabel.appendChild(document.createTextNode(option));
+
+          hinting.addEventListener("click", () => {
+            optionLabel.appendChild(optionHint);
+          });
+
+          removeHinting.addEventListener("click", () => {
+            optionLabel.removeChild(optionHint);
+          });
+
+          optionLabel.addEventListener("mouseover", () => {
+            optionHint.style.display = "inline-block";
+          });
+
+          optionLabel.addEventListener("mouseout", () => {
+            optionHint.style.display = "none";
+          });
+          questionDiv.appendChild(optionLabel);
+          optionLabel.addEventListener("click", () => {
+            userAnswers[questionIndex] = option[0];
+            disableResetAfterCheckboxPress();
+            saveProgressLocally();
+          });
+          questionDiv.appendChild(document.createElement("br"));
+        });
+      }
+
+      quizForm.appendChild(questionDiv);
+
+      document.getElementById("backButton").disabled = index === 0;
+      document.getElementById("nextButton").disabled =
+        index === selectedQuestions.length - 1;
+      updateQuestionCount();
+    }
+
+    function previousQuestion() {
+      saveAnswer();
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+      }
+      saveProgressLocally();
+    }
+
+    function previousQuestionFromFeedBack() {
+      hideFeedback();
+      scoreContainer.style.display = "none";
+      function start() {
+        retake.style.display = "none";
+        showQuestion(currentQuestion);
+      }
+      start();
+      retake.style.display = "none";
+      resultDiv.style.display = "none";
+      resultDiv2.style.display = "none";
+      userScore.style.display = "none";
+    }
+
+    function saveProgressLocally() {
+      localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
+      localStorage.setItem("currentQuestion", currentQuestion);
+      localStorage.setItem(
+        "selectedQuestions",
+        JSON.stringify(selectedQuestions)
+      );
+    }
+
+    function saveAnswer() {
+      const selectedOption = document.querySelector(
+        'input[name="q' + (currentQuestion + 1) + '"]:checked'
+      );
+      if (selectedOption) {
+        userAnswers[currentQuestion] = selectedOption.value;
+      }
+      saveProgressLocally();
+    }
+
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("previousUser", userName);
+      saveProgressLocally();
+    });
+
+    function checkAnswers() {
+      saveAnswer();
+      let score = 0;
+      let answeredQuestions = 0;
+
+      selectedQuestions.forEach((questionIndex) => {
+        if (userAnswers[questionIndex] !== null) {
+          answeredQuestions++;
+          if (
+            userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].includes(questions[questionIndex].answer)
+          ) {
+            score++;
+          }
+        }
+      });
+
+      const percentage = (score / answeredQuestions) * 100;
+
+      const capitalizedUsername =
+        userName[0].toUpperCase() + userName.slice(1);
+
+      //resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span></p>`;
+
+      document.getElementById("quizContainer").style.display = "none";
+      feedbackChoice.style.display = "contents";
+    }
+
+    function checkScores() {
+      let scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+      if (!scores || scores.length === 0) {
+        alert("You must complete a quiz first to view scores");
+        return;
+      }
+      scoreContainer.style.display = "flex";
+      scores.sort((a, b) => b.score - a.score);
+      let scoreList = document.getElementById("scoreShowContainer");
+      scoreList.innerHTML = "";
+      const table = document.createElement("table");
+      const thead = document.createElement("thead");
+      const tbody = document.createElement("tbody");
+
+      // Create header row
+      const headerRow = document.createElement("tr");
+      const headers = ["Quiz", "Score"];
+      headers.forEach((headerText) => {
+        const th = document.createElement("th");
+        th.textContent = headerText;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      scores.forEach((score, index) => {
+        const tr = document.createElement("tr");
+
+        const rankCell = document.createElement("td");
+        rankCell.textContent = index + 1;
+        tr.appendChild(rankCell);
+
+        const scoreCell = document.createElement("td");
+        scoreCell.textContent = `${score.score.toFixed(0)}%`;
+        tr.appendChild(scoreCell);
+
+        tr.style.border = "1px solid black";
+        tr.style.textAlign = "center";
+        tr.style.padding = "0.7rem";
+        tbody.appendChild(tr);
+      });
+
+      table.appendChild(tbody);
+      table.style.border = "1px solid white";
+      table.style.borderRadius = "10px";
+      table.style.textAlign = "center";
+      table.style.margin = "auto";
+      table.style.backgroundColor = "#430f58";
+      table.style.padding = "0.7rem";
+      table.style.color = "white";
+      scoreList.style.overflow = "auto";
+      table.style.marginTop = "1rem";
+      scoreList.appendChild(table);
+    }
+
+    function showFeedback() {
+      retake.style.display = "block";
+      retake.style.position = "relative";
+      retake.style.bottom = "0";
+      userScore.style.display = "flex";
+      resultDiv2.style.display = "block";
+      resultDiv2.style.position = "relative";
+      resultDiv2.style.top = "0";
+      resultDiv.style.color = "green";
+      feedbackChoice.style.display = "none";
+      feedbackContainer.style.display = "block";
+      feedbackContainer.style.overflow = "scroll";
+      let score = 0;
+      let answeredQuestions = 0;
+
+      selectedQuestions.forEach((questionIndex) => {
+        if (userAnswers[questionIndex] !== null) {
+          answeredQuestions++;
+          if (
+            userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].includes(questions[questionIndex].answer)
+          ) {
+            score++;
+          }
+        }
+      });
+
+      const percentage = (score / answeredQuestions) * 100 || 0;
+
+      if (answeredQuestions === selectedQuestions.length) {
+        saveScore(percentage);
+      }
+
+      const capitalizedUsername =
+        userName[0].toUpperCase() + userName.slice(1);
+      userScore.innerHTML = `<p>${capitalizedUsername}'s Score: <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f"
+        };">${percentage.toFixed(
+          0
+        )}%</span></p> <p>Done: ${answeredQuestions}</p> <p>Ans: ${score}/${selectedQuestions.length
+        }</p>`;
+
+      displayFeedback();
+    }
+
+    function showQA() {
+      const username = document.getElementById("username").value;
+      if (username.trim() === "") {
+        alert("Please enter a username");
+        return;
+      }
+      userName = username;
+      retake.style.display = "block";
+      retake.style.position = "relative";
+      retake.style.bottom = "0";
+      feedbackChoice.style.display = "none";
+      feedbackContainer.style.display = "block";
+      feedbackContainer.style.overflow = "scroll";
+      function displayQA() {
+        feedbackContainer.style.overflow = "scroll";
+        feedbackContainer.innerHTML = "";
+
+        questions.forEach((q, index) => {
+          const questionDiv = document.createElement("div");
+          questionDiv.classList.add("question");
+
+          const questionTitle = document.createElement("p");
+          questionTitle.textContent = index + 1 + ". " + q.question;
+          questionDiv.appendChild(questionTitle);
+
+          // Check if the question is a fill-in-the-blank type (only one option)
+          if (q.options.length === 1) {
+            const correctAnswer = q.answer;
+
+            const correctAnswerParagraph = document.createElement("p");
+            correctAnswerParagraph.textContent = `Answer: ${correctAnswer}`;
+            correctAnswerParagraph.style.color = "green";
+            correctAnswerParagraph.style.fontWeight = "bold";
+            correctAnswerParagraph.style.marginTop = "0.5rem";
+            questionDiv.appendChild(correctAnswerParagraph);
+
+          } else {
+            // Existing logic for multiple-choice questions
+            q.options.forEach((option) => {
+              const optionLabel = document.createElement("label");
+              const optionInput = document.createElement("input");
+              optionInput.type = "radio";
+              optionInput.disabled = true;
+
+              if (option[0] === q.answer) {
+                optionInput.checked = true;
+                optionLabel.style.color = "green";
+                optionLabel.style.fontWeight = "bold";
+              }
+
+              optionLabel.appendChild(optionInput);
+              optionLabel.appendChild(document.createTextNode(option));
+              questionDiv.appendChild(optionLabel);
+              questionDiv.appendChild(document.createElement("br"));
+            });
+          }
+
+          feedbackContainer.appendChild(questionDiv);
+        });
+
+        document.getElementById("feedbackNextButton").disabled =
+          currentQuestion === questions.length - 1;
+      }
+
+      document.getElementById("quizContainer").style.display = "none";
+      document.getElementById("usernameDialog").style.display = "none";
+      displayQA();
+      currentQuestion = 0;
+      document.getElementById("feedbackNextButton").style.display = "none";
+      document.getElementById("retakeQuizButton").textContent = "Start Quiz";
+    }
+
+    function showQuestionSpanChange() {
+      let score = 0;
+      let answeredQuestions = 0;
+
+      selectedQuestions.forEach((questionIndex) => {
+        if (userAnswers[questionIndex] !== null) {
+          answeredQuestions++;
+          if (
+            userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].includes(questions[questionIndex].answer)
+          ) {
+            score++;
+          }
+        }
+      });
+
+      const percentage = (score / answeredQuestions) * 100 || 0;
+
+      questionCountContainer.style.background = "#434e52";
+      questionCountSpan.textContent = `Score: ${percentage.toFixed(0)}%`;
+      questionCountSpan.style.color =
+        percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f";
+
+      setTimeout(() => {
+        updateQuestionCount();
+      }, 1000);
+    }
+
+    function hideFeedback() {
+      let score = 0;
+      let answeredQuestions = 0;
+
+      selectedQuestions.forEach((questionIndex) => {
+        if (userAnswers[questionIndex] !== null) {
+          answeredQuestions++;
+          if (
+            userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].includes(questions[questionIndex].answer)
+          ) {
+            score++;
+          }
+        }
+      });
+
+      const percentage = (score / answeredQuestions) * 100 || 0;
+
+      const capitalizedUsername =
+        userName[0].toUpperCase() + userName.slice(1);
+
+      //resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span>... ${selectedQuestions.length - currentQuestion - 1} remain</p>`;
+
+      feedbackChoice.style.display = "none";
+      feedbackContainer.style.display = "none";
+      document.getElementById("quizContainer").style.display = "block";
+
+      showQuestion(currentQuestion);
+      showQuestionSpanChange();
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "s" || event.key === "S") {
+        showQuestionSpanChange();
+      }
+    });
+
+    function nextQuestion() {
+      saveAnswer();
+      if (currentQuestion < selectedQuestions.length - 1) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+      }
+      saveProgressLocally();
+    }
+
+    function displayFeedback() {
+      feedbackContainer.style.overflow = "scroll";
+      feedbackContainer.innerHTML = "";
+
+      let questionsCount = currentQuestion;
+      selectedQuestions
+        .slice(0, questionsCount + 1)
+        .forEach((questionIndex, index) => {
+          const q = questions[questionIndex];
+          const questionDiv = document.createElement("div");
+          questionDiv.classList.add("question");
+
+          const questionTitle = document.createElement("p");
+          questionTitle.textContent = index + 1 + ". " + q.question;
+          questionDiv.appendChild(questionTitle);
+
+          q.options.forEach((option) => {
+
+            // Check if the question is a fill-in-the-blank type
+            if (q.options.length === 1) {
+              const userAnswer = userAnswers[questionIndex];
+              const correctAnswer = q.answer.toLowerCase();
+
+              const feedbackParagraph = document.createElement("p");
+              feedbackParagraph.textContent = "Your Answer: " + (userAnswer || "No answer given");
+
+              if (userAnswer.toLowerCase().includes(correctAnswer.toLowerCase()) && userAnswer !== "") {
+                feedbackParagraph.style.color = "green";
+                feedbackParagraph.style.fontWeight = "bold";
+                const correctAnswerParagraph = document.createElement("p");
+                correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
+                correctAnswerParagraph.style.color = "green";
+                correctAnswerParagraph.style.fontWeight = "bold";
+                questionDiv.appendChild(correctAnswerParagraph);
+              } else {
+                feedbackParagraph.style.color = "red";
+                feedbackParagraph.style.fontWeight = "bold";
+
+                const correctAnswerParagraph = document.createElement("p");
+                correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
+                correctAnswerParagraph.style.color = "green";
+                correctAnswerParagraph.style.fontWeight = "bold";
+                questionDiv.appendChild(correctAnswerParagraph);
+              }
+
+              questionDiv.appendChild(feedbackParagraph);
+              feedbackContainer.appendChild(questionDiv);
+            } else {
+              const optionLabel = document.createElement("label");
+              const optionInput = document.createElement("input");
+              optionInput.type = "radio";
+              optionInput.disabled = true;
+
+              if (option[0] === q.answer) {
+                optionInput.checked = true;
+                optionLabel.style.color = "green";
+                optionLabel.style.fontWeight = "bold";
+              } else if (option[0] === userAnswers[questionIndex]) {
+                optionInput.checked = true;
+                optionLabel.style.color = "red";
+                questionTitle.style.fontWeight = "bold";
+              }
+
+              optionLabel.appendChild(optionInput);
+              optionLabel.appendChild(document.createTextNode(option));
+              questionDiv.appendChild(optionLabel);
+              questionDiv.appendChild(document.createElement("br"));
+            };
+            feedbackContainer.appendChild(questionDiv);
+          })
+        });
+
+      document.getElementById("feedbackNextButton").disabled =
+        currentQuestion === selectedQuestions.length - 1;
+    }
+
+    function nextFeedback() {
+      if (currentQuestion < selectedQuestions.length - 1) {
+        currentQuestion++;
+        displayFeedback();
+      }
+    }
+
+    function previousFeedback() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        displayFeedback();
+      }
+    }
+
+    function resetQuiz() {
+      const confirmRetake = confirm("Reset current Quiz?");
+      if (confirmRetake) {
+        currentQuestion = 0;
+        userAnswers.fill(null);
+        document.getElementById("feedbackContainer").style.display = "none";
+        retake.style.display = "none";
+        resultDiv.style.display = "none";
+        userScore.style.display = "none";
+        resultDiv2.style.display = "none";
+        scoreContainer.style.display = "none";
+        document.getElementById("quizContainer").style.display = "block";
+        showQuestion(currentQuestion);
+      } else {
+        return;
+      }
+    }
+
+    function disableResetAfterCheckboxPress() {
+      resetBtn.disabled = true;
+      setTimeout(() => {
+        resetBtn.disabled = false;
+      }, 400);
+    }
+
+    function retakeQuiz() {
+      const confirmRetake = confirm("Retake Quiz?");
+      if (confirmRetake) {
+        currentQuestion = 0;
+        userAnswers.fill(null);
+        document.getElementById("feedbackContainer").style.display = "none";
+        retake.style.display = "none";
+        resultDiv.style.display = "none";
+        userScore.style.display = "none";
+        resultDiv2.style.display = "none";
+        scoreContainer.style.display = "none";
+        document.getElementById("quizContainer").style.display = "block";
+        showQuestion(currentQuestion);
+      } else {
+        return;
+      }
+    }
+
+    const radioButtons = document.querySelectorAll('input[name="quizType"]');
+    radioButtons.forEach((radioButton) => {
+      radioButton.addEventListener("change", () => {
+        quizType = radioButton.value;
+        lectureSelectionDiv.style.display =
+          quizType === "custom" ? "block" : "none";
+        updateQuiz();
+      });
+    });
+
+    function showLectureSelection() {
+      const confirmShow = confirm(
+        "Do you want to manually select lectures to be quizzed on?"
+      );
+      if (confirmShow) {
+        document.getElementById("lectureSelectionDialog").style.display =
+          "flex";
+        generateLectureSelection();
+      } else {
+        return;
+      }
+    }
+
+    function generateLectureSelection() {
+      const lectureCheckboxes = document.getElementById("lectureCheckboxes");
+      lectureCheckboxes.innerHTML = "";
+
+      lectureRanges.forEach((lectureRange, index) => {
+        const label = document.createElement("label");
+        label.innerHTML = `
+                <input type="checkbox" name="lectureCheckbox" value="${index + 1
+          }"> ${lectureRange.name}
+            `;
+        lectureCheckboxes.appendChild(label);
+      });
+    }
+
+    function startSelectedLectures() {
+      const selectedLectureNumbers = Array.from(
+        document.querySelectorAll('input[name="lectureCheckbox"]:checked')
+      ).map((checkbox) => parseInt(checkbox.value));
+
+      if (selectedLectureNumbers.length === 0) {
+        alert("Please select at least one lecture.");
+        return;
+      }
+
+      selectedQuestions = [];
+      selectedLectureNumbers.forEach((lectureNumber) => {
+        const lectureRange = getLectureRangeByNumber(lectureNumber);
+        for (let i = lectureRange.start; i <= lectureRange.end; i++) {
+          selectedQuestions.push(i);
+        }
+      });
+
+      document.getElementById("lectureSelectionDialog").style.display =
+        "none";
+      currentQuestion = 0;
+
+      //reset answers to prevent default filling for different lecture in range
+      localStorage.setItem("userAnswers", userAnswers.fill(null));
+
+      updateQuestionCount();
+      saveProgressLocally();
+      showQuestion(currentQuestion);
+    }
+  </script>
+</body>
+
+</html>
