@@ -1,14 +1,22 @@
 import { IQuestion } from "@/interfaces";
-import mongoose, {Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const QuestionSchema:Schema = new Schema<IQuestion>({
-    username: {type: String, unique: true, required: true},
-    question: {type: String, required: true}
-}, {
+const QuestionSchema: Schema<IQuestion> = new Schema(
+  {
+    username: { type: String, unique: true, required: true },
+    question: { type: String, required: true },
+  },
+  {
     timestamps: true,
-})
+  }
+);
 
-const Questions = mongoose.models.Questions || mongoose.model('Questions', QuestionSchema);
+console.log("Checking existing models:", mongoose.models);
+const Questions =
+  mongoose.models.Questions || mongoose.model("Questions", QuestionSchema);
 
+if (!Questions) {
+  console.error("Questions model is not defined");
+}
 
-export default Questions
+export default Questions;

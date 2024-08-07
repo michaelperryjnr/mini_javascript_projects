@@ -15,9 +15,6 @@ const config: Config = {
       },
     },
       colors: {
-        "teal" : {
-          400: '#83e85a'
-        },
             "border": "hsl(var(--border))",
             "input": "hsl(var(--input))",
             "ring": "hsl(var(--ring))",

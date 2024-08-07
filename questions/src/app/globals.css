@@ -64,6 +64,6 @@
     @apply border-border;
   }
   body {
-    @apply text-foreground bg-teal-400;
+    @apply text-foreground bg-[#83e85a];
   }
 }

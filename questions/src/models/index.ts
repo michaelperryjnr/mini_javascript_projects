@@ -1,4 +1,3 @@
 import Questions from "./Question";
 
-
-export {Questions}
+export { Questions };
