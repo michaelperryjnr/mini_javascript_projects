@@ -3336,7 +3336,7 @@
         if (userAnswers[questionIndex] !== null) {
           answeredQuestions++;
           if (
-            userAnswers[questionIndex] === questions[questionIndex].answer
+            userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].includes(questions[questionIndex].answer)
           ) {
             score++;
           }
@@ -3429,7 +3429,7 @@
         if (userAnswers[questionIndex] !== null) {
           answeredQuestions++;
           if (
-            userAnswers[questionIndex] === questions[questionIndex].answer
+            userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].includes(questions[questionIndex].answer)
           ) {
             score++;
           }
@@ -3533,7 +3533,7 @@
         if (userAnswers[questionIndex] !== null) {
           answeredQuestions++;
           if (
-            userAnswers[questionIndex] === questions[questionIndex].answer
+            userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].includes(questions[questionIndex].answer)
           ) {
             score++;
           }
@@ -3560,7 +3560,7 @@
         if (userAnswers[questionIndex] !== null) {
           answeredQuestions++;
           if (
-            userAnswers[questionIndex] === questions[questionIndex].answer
+            userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].includes(questions[questionIndex].answer)
           ) {
             score++;
           }
@@ -3613,38 +3613,38 @@
           questionTitle.textContent = index + 1 + ". " + q.question;
           questionDiv.appendChild(questionTitle);
 
-          // Check if the question is a fill-in-the-blank type
-          if (q.options.length === 1) {
-            const userAnswer = userAnswers[questionIndex];
-            const correctAnswer = q.answer.toLowerCase();
+          q.options.forEach((option) => {
 
-            const feedbackParagraph = document.createElement("p");
-            feedbackParagraph.textContent = "Your Answer: " + (userAnswer || "No answer given");
+            // Check if the question is a fill-in-the-blank type
+            if (q.options.length === 1) {
+              const userAnswer = userAnswers[questionIndex];
+              const correctAnswer = q.answer.toLowerCase();
 
-            if (correctAnswer.includes(userAnswer.toLowerCase())) {
-              feedbackParagraph.style.color = "green";
-              feedbackParagraph.style.fontWeight = "bold";
-              const correctAnswerParagraph = document.createElement("p");
-              correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
-              correctAnswerParagraph.style.color = "green";
-              correctAnswerParagraph.style.fontWeight = "bold";
-              questionDiv.appendChild(correctAnswerParagraph);
+              const feedbackParagraph = document.createElement("p");
+              feedbackParagraph.textContent = "Your Answer: " + (userAnswer || "No answer given");
+
+              if (userAnswer.toLowerCase().includes(correctAnswer.toLowerCase()) && userAnswer !== "") {
+                feedbackParagraph.style.color = "green";
+                feedbackParagraph.style.fontWeight = "bold";
+                const correctAnswerParagraph = document.createElement("p");
+                correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
+                correctAnswerParagraph.style.color = "green";
+                correctAnswerParagraph.style.fontWeight = "bold";
+                questionDiv.appendChild(correctAnswerParagraph);
+              } else {
+                feedbackParagraph.style.color = "red";
+                feedbackParagraph.style.fontWeight = "bold";
+
+                const correctAnswerParagraph = document.createElement("p");
+                correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
+                correctAnswerParagraph.style.color = "green";
+                correctAnswerParagraph.style.fontWeight = "bold";
+                questionDiv.appendChild(correctAnswerParagraph);
+              }
+
+              questionDiv.appendChild(feedbackParagraph);
+              feedbackContainer.appendChild(questionDiv);
             } else {
-              feedbackParagraph.style.color = "red";
-              feedbackParagraph.style.fontWeight = "bold";
-
-              const correctAnswerParagraph = document.createElement("p");
-              correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
-              correctAnswerParagraph.style.color = "green";
-              correctAnswerParagraph.style.fontWeight = "bold";
-              questionDiv.appendChild(correctAnswerParagraph);
-            }
-
-            questionDiv.appendChild(feedbackParagraph);
-
-          } else {
-            // Existing logic for multiple-choice questions
-            q.options.forEach((option) => {
               const optionLabel = document.createElement("label");
               const optionInput = document.createElement("input");
               optionInput.type = "radio";
@@ -3664,10 +3664,9 @@
               optionLabel.appendChild(document.createTextNode(option));
               questionDiv.appendChild(optionLabel);
               questionDiv.appendChild(document.createElement("br"));
-            });
-          }
-
-          feedbackContainer.appendChild(questionDiv);
+            };
+            feedbackContainer.appendChild(questionDiv);
+          })
         });
 
       document.getElementById("feedbackNextButton").disabled =
