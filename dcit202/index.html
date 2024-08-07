@@ -129,8 +129,7 @@
     }
 
     #usernameDialog>div {
-      /* background: #2c5460; */
-      background: #003e21;
+      background: #2c5460;
       padding: 4rem 4rem;
       border-radius: 10px;
       text-align: center;
@@ -413,18 +412,6 @@
     .logo {
       margin-bottom: 0;
     }
-
-    #countDown {
-      font-size: 2rem;
-      font-weight: bold;
-      color: white;
-    }
-
-    #typer {
-      color: #f89d13;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
   </style>
 </head>
 
@@ -432,12 +419,12 @@
   <div id="usernameDialog">
     <div>
       <img id="logo" src="../assets/images/bbf-logo.svg" alt="bbf labs logo" />
-      <h2 id="usr-h2" class="usr-h2">Site UNDER MAINTENANCE</h2>
-      <h4 id="usr-h4">Plesew User this Time to Read the slodes</h4>
-      <input type="text" id="username" placeholder="Username" required style="display: none;" />
-      <div id="countDown"></div>
-      <div id="typer"></div>
-      <div id="usernameDiv" style="display: none;">
+      <h2 id="usr-h2" class="usr-h2">Choose a username</h2>
+      <h4 id="usr-h4">
+        A username is required to access anything on the page
+      </h4>
+      <input type="text" id="username" placeholder="Username" required />
+      <div id="usernameDiv">
         <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
         <button class="btn seeQNA" id="see" onclick="showQA()">
           See Q & A
@@ -569,92 +556,6 @@
   </div>
 
   <script>
-
-    function updateCountdown() {
-      const now = new Date();
-      const nextMidnight = new Date();
-      nextMidnight.setHours(24, 0, 0, 0); // Set to the next midnight
-
-      const timeDiff = nextMidnight - now;
-
-      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
-      document.getElementById("countDown").textContent =
-        `${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
-
-      if (timeDiff <= 0) {
-        clearInterval(countdownInterval);
-        document.getElementById("countDown").textContent = "It's Midnight!";
-      }
-    }
-    updateCountdown();
-    const countdownInterval = setInterval(updateCountdown, 1000);
-
-    function typeText(element, texts, speed) {
-      let currentTextIndex = 0; // Track the current text index in the array
-      let charIndex = 0; // Track the current character position in the current text
-      const typingDiv = document.getElementById(element);
-      let cursorVisible = true; // Track cursor visibility
-      const cursor = '|'; // Cursor character
-
-      function typeCharacter() {
-        // Add cursor if it is not already present
-        if (!typingDiv.textContent.endsWith(cursor)) {
-          typingDiv.textContent += cursor;
-        }
-
-        if (charIndex < texts[currentTextIndex].length) {
-          // Remove cursor for text typing
-          typingDiv.textContent = typingDiv.textContent.slice(0, -1);
-          typingDiv.textContent += texts[currentTextIndex][charIndex];
-          charIndex++;
-          setTimeout(typeCharacter, speed); // Call this function again after the specified speed
-        } else {
-          // Remove cursor before pausing
-          typingDiv.textContent = typingDiv.textContent.slice(0, -1);
-
-          // Move to the next text after a brief pause
-          setTimeout(() => {
-            typingDiv.textContent = ''; // Clear the text
-            charIndex = 0; // Reset character index
-            currentTextIndex = (currentTextIndex + 1) % texts.length; // Cycle through texts
-            typeCharacter(); // Start typing the next text
-          }, 1000); // Adjust this delay if needed
-        }
-      }
-
-      function toggleCursor() {
-        if (typingDiv.textContent.endsWith(cursor)) {
-          typingDiv.textContent = typingDiv.textContent.slice(0, -1); // Remove cursor
-        } else {
-          typingDiv.textContent += cursor; // Add cursor
-        }
-      }
-
-      function startTyping() {
-        typeCharacter(); // Start the typing effect
-
-        // Toggle cursor visibility every 500 milliseconds
-        setInterval(toggleCursor, 500);
-      }
-
-      startTyping(); // Start typing and cursor blinking
-    }
-
-    const textsToType = [
-      "Una no go clap?👏🏽👏🏽",
-      "What edey worry Una??😔😔",
-      "Oh chale life is good Awurade?🍾🥳😹",
-      "As3m b3n kra nie a😅😹",
-      "Afa papa😋😅",
-      "Quomodocunquize, Quomodocunquize👩🏽‍🎓📋"
-    ];
-    const typingSpeed = 200; // Speed in milliseconds between each character
-
-    typeText("typer", textsToType, typingSpeed);
-
     let questions = [
       {
         question:
