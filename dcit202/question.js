@@ -686,6 +686,180 @@ let lecture4 = [
 // console.log(lecture4.length);
 //27
 
+let lecture5 = [
+  {
+    question:
+      "How are styles applied to React Native components compared to traditional web development?",
+    options: [
+      "A. React Native uses CSS stylesheets in separate files.",
+      "B. React Native uses inline styles exclusively.",
+      "C. React Native uses JavaScript-based style objects linked to components.",
+      "D. React Native uses a combination of CSS stylesheets and inline styles.",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What is the correct way to apply inline styles in React Native?",
+    options: [
+      "A. `<Text style='font-style: italic;'>Italic Text</Text>`",
+      "B. `<Text style={{ fontStyle: 'italic' }}>Italic Text</Text>`",
+      "C. `<Text style={fontStyle: italic}>Italic Text</Text>`",
+      "D. `<Text style='{fontStyle: italic}'>Italic Text</Text>`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the purpose of using `StyleSheet.create` in React Native?",
+    options: [
+      "A. To create animations and transitions for components.",
+      "B. To define multiple styles in one place and improve performance.",
+      "C. To manage the layout structure of components on the screen.",
+      "D. To handle user input events and component interactions.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "How can you combine multiple styles for a single component in React Native?",
+    options: [
+      "A. By using the `+` operator to concatenate style strings.",
+      "B. By passing an array of style objects to the `style` prop.",
+      "C. By nesting style objects within each other.",
+      "D. By using the `&` operator to merge style properties.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the syntax for applying conditional styles based on component state?",
+    options: [
+      "A. `<View style={styles.button, this.state.active ? styles.active : null} />`",
+      "B. `<View style={[styles.button, this.state.active && styles.active]} />`",
+      "C. `<View style={if (this.state.active) styles.active else styles.button} />`",
+      "D. `<View style={styles.button + (this.state.active ? ' ' + styles.active : '')} />`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What layout mechanism is primarily used for positioning elements in React Native?",
+    options: [
+      "A. CSS Grid",
+      "B. Bootstrap",
+      "C. Flexbox",
+      "D. Constraint Layout",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What does the `flex: 1` property indicate in a React Native component's style?",
+    options: [
+      "A. The component should take up all available space in its parent container.",
+      "B. The component should be fixed to a specific position on the screen.",
+      "C. The component should be hidden from view.",
+      "D. The component should have a fixed width and height.",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "What is the default value of the `flexDirection` property in React Native?",
+    options: [
+      "A. `row`",
+      "B. `column`",
+      "C. `row-reverse`",
+      "D. `column-reverse`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which value for `flexDirection` would you use to arrange components horizontally from left to right?",
+    options: [
+      "A. `row`",
+      "B. `column`",
+      "C. `row-reverse`",
+      "D. `column-reverse`",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "What is the purpose of the `justifyContent` property in Flexbox?",
+    options: [
+      "A. To control the alignment of items along the main axis of the container.",
+      "B. To control the alignment of items along the cross axis of the container.",
+      "C. To control the wrapping behavior of items within the container.",
+      "D. To control the spacing between items in the container.",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "Which value for `justifyContent` would you use to distribute space evenly between items along the main axis?",
+    options: [
+      "A. `flex-start`",
+      "B. `flex-end`",
+      "C. `center`",
+      "D. `space-around`",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What is the difference between `alignItems` and `alignSelf` in Flexbox?",
+    options: [
+      "A. `alignItems` aligns items along the main axis, while `alignSelf` aligns items along the cross axis.",
+      "B. `alignItems` is used on the parent container, while `alignSelf` is used on individual child items.",
+      "C. `alignItems` controls wrapping behavior, while `alignSelf` controls stretching behavior.",
+      "D. There is no difference; they are interchangeable properties.",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What does the `flexWrap: 'wrap'` property do in Flexbox?",
+    options: [
+      "A. It prevents items from wrapping and forces them into a single line.",
+      "B. It allows items to wrap onto multiple lines if they exceed the container's width.",
+      "C. It reverses the order of items in the container.",
+      "D. It stretches items to fill the available space.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which property is used to set the space between rows in a Flexbox container?",
+    options: [
+      "A. `rowSpacing`",
+      "B. `rowGap`",
+      "C. `verticalSpacing`",
+      "D. `gutter`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What value would you use for the `width` property to make a component take up 50% of its parent's width?",
+    options: ["A. `50px`", "B. `50%`", "C. `0.5`", "D. `half`"],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the key difference between `position: 'relative'` and `position: 'absolute'` in React Native?",
+    options: [
+      "A. `relative` positioning is calculated from the edge of the screen, while `absolute` positioning is calculated from the parent container.",
+      "B. `relative` positioning allows for overlapping elements, while `absolute` positioning prevents overlaps.",
+      "C. `relative` positioning is based on the normal layout flow, while `absolute` positioning removes the element from the flow.",
+      "D. `relative` positioning is used for static elements, while `absolute` positioning is used for dynamic or animated elements.",
+    ],
+    answer: "C",
+  },
+];
+// console.log("lect5: " + lecture5.length);
+//16
+
 let lecture6 = [
   {
     question:
@@ -924,6 +1098,149 @@ let lecture6 = [
 // console.log(lecture6.length);
 //22
 
+let lecture7 = [
+  {
+    question:
+      "What does 'state management' refer to in the context of React Native applications?",
+    options: [
+      "A. Managing the navigation stack and transitions between screens.",
+      "B. Handling network requests and responses from APIs.",
+      "C. Storing, retrieving, and manipulating data that determines the UI rendering and app behavior.",
+      "D. Controlling the styling and appearance of components.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which of the following is NOT a common challenge associated with managing state in larger React Native applications?",
+    options: [
+      "A. Prop drilling, where data is passed through multiple layers of components unnecessarily.",
+      "B. State synchronization, ensuring consistency across components when data updates.",
+      "C. Handling user input events, such as button clicks and text input.",
+      "D. Choosing the right state management solution for the app's complexity and scale.",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What is the primary purpose of the `useState` hook in React?",
+    options: [
+      "A. To fetch data from an API and update the component.",
+      "B. To manage the navigation state of the application.",
+      "C. To add state management capabilities to functional components.",
+      "D. To style components and control their appearance.",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What does the `useState` hook return when used in a component?",
+    options: [
+      "A. An object containing the current state and a function to update it.",
+      "B. An array containing the current state and a function to update it.",
+      "C. A string representing the current state.",
+      "D. A boolean value indicating whether the state has been initialized.",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What is 'prop drilling' in React?",
+    options: [
+      "A. The process of drilling down into nested objects to access specific properties.",
+      "B. A technique for securely storing sensitive data in a React Native application.",
+      "C. Passing data through multiple layers of components, even if some components don't directly use the data.",
+      "D. A method for optimizing component performance by reducing unnecessary re-renders.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which of the following is a potential drawback of prop drilling?",
+    options: [
+      "A. It can make components more reusable and easier to test in isolation.",
+      "B. It can lead to increased complexity and make debugging more challenging.",
+      "C. It reduces the amount of code needed to pass data between components.",
+      "D. It improves application performance by minimizing data transfer.",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What is the purpose of the Context API in React?",
+    options: [
+      "A. To manage the navigation stack and handle transitions between screens.",
+      "B. To provide a global store for managing the application's state.",
+      "C. To share data between components without prop drilling, especially for deeply nested components.",
+      "D. To handle side effects, such as fetching data from an API.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which of the following is a typical use case for the Context API?",
+    options: [
+      "A. Managing a complex data structure, such as a large list of items.",
+      "B. Handling user authentication and storing user session data.",
+      "C. Implementing animations and transitions for UI elements.",
+      "D. Storing and managing the application's theme or color scheme.",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What is the first step in using the Context API in a React component?",
+    options: [
+      "A. Wrap the root component with a Provider component.",
+      "B. Use the `useContext` hook to access the context value.",
+      "C. Create a context object using `createContext`.",
+      "D. Define the initial state value for the context.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which component is responsible for providing the context value to its children?",
+    options: [
+      "A. `Context.Provider`",
+      "B. `Context.Consumer`",
+      "C. `useContext`",
+      "D. `createContext`",
+    ],
+    answer: "A",
+  },
+  {
+    question: "How do you access the context value within a component?",
+    options: [
+      "A. By using the `useContext` hook and passing in the context object.",
+      "B. By reading the `context` prop passed to the component.",
+      "C. By calling the `getContext` method on the component's props.",
+      "D. By directly importing the context object and accessing its value.",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "Can you have multiple context objects in a single React Native application?",
+    options: [
+      "A. No, React only allows a single context object per application.",
+      "B. Yes, you can create and use multiple context objects for different purposes.",
+      "C. Yes, but only if the context objects are nested within each other.",
+      "D. Yes, but only if you use a third-party state management library like Redux.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "How do you override a context value for a specific part of the component tree?",
+    options: [
+      "A. By passing a new value directly to the `useContext` hook.",
+      "B. By modifying the context value in the parent component.",
+      "C. By wrapping the specific part of the tree with another Provider component and a different value.",
+      "D. It's not possible to override a context value once it's defined.",
+    ],
+    answer: "C",
+  },
+];
+
+// console.log("lect7: " + lecture7.length);
+//13
 let lecture8 = [
   {
     question:
@@ -1111,6 +1428,169 @@ let lecture8 = [
 
 // console.log(lecture8.length);
 // 17
+
+let lecture9 = [
+  {
+    question: "What is the primary purpose of the Fetch API in React Native?",
+    options: [
+      "A. Managing user interface elements and their interactions.",
+      "B. Storing and retrieving data locally on the device.",
+      "C. Making HTTP requests to interact with remote servers and resources.",
+      "D. Handling animations and transitions between different screens.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which HTTP method is used to retrieve data from a remote resource?",
+    options: ["A. POST", "B. PUT", "C. DELETE", "D. GET"],
+    answer: "D",
+  },
+  {
+    question:
+      "If you want to completely replace a resource with new data, which HTTP method would you use?",
+    options: ["A. PATCH", "B. PUT", "C. POST", "D. DELETE"],
+    answer: "B",
+  },
+  {
+    question: "What is the function of the 'body' in an HTTP request?",
+    options: [
+      "A. It contains information about the request itself, such as the browser being used.",
+      "B. It holds the data being sent to the server, typically in POST requests.",
+      "C. It specifies the format of the response expected from the server.",
+      "D. It defines the actions that the server should perform on the requested resource.",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What does an HTTP status code of 401 Unauthorized indicate?",
+    options: [
+      "A. The server encountered an internal error while processing the request.",
+      "B. The requested resource was not found on the server.",
+      "C. The client's request was malformed or contained incorrect syntax.",
+      "D. Authentication is required to access the requested resource.",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What is the significance of the 'ok' property of the 'Response' object in the Fetch API?",
+    options: [
+      "A. It indicates if the server responded with a successful status code (2xx range).",
+      "B. It checks if the response body contains valid JSON data.",
+      "C. It verifies if the client is authorized to access the requested resource.",
+      "D. It determines if the response has been cached locally.",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "Which of the following methods from the 'Response' interface returns the response body as a JavaScript object if it is in JSON format?",
+    options: [
+      "A. Response.text()",
+      "B. Response.blob()",
+      "C. Response.json()",
+      "D. Response.formData()",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What is Axios in the context of React Native development?",
+    options: [
+      "A. A built-in React Native component for displaying loading indicators.",
+      "B. A state management library for managing data flow in applications.",
+      "C. A JavaScript library for making HTTP requests from React Native and Node.js environments.",
+      "D. A testing framework for writing unit and integration tests for React Native components.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which of the following is NOT a benefit of using Axios for making HTTP requests?",
+    options: [
+      "A. Automatic transformation of response data to JSON format.",
+      "B. Built-in support for handling web sockets and real-time communication.",
+      "C. Interceptors for modifying requests and responses globally.",
+      "D. Support for making requests from both browser and Node.js environments.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the purpose of the 'data' property in an Axios response object?",
+    options: [
+      "A. It contains the HTTP status code returned by the server.",
+      "B. It holds the headers sent by the server along with the response.",
+      "C. It stores the actual data payload returned by the server.",
+      "D. It indicates whether the request was successful or not.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Why are loading states important when handling network requests in a user interface?",
+    options: [
+      "A. They help developers debug issues with network connectivity.",
+      "B. They provide visual feedback to the user, indicating that data is being processed.",
+      "C. They improve the overall security of the application by masking sensitive data.",
+      "D. They reduce the amount of data being transferred over the network.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which built-in React Native component is often used to display a loading indicator during data fetching?",
+    options: ["A. ScrollView", "B. ActivityIndicator", "C. Modal", "D. Text"],
+    answer: "B",
+  },
+  {
+    question:
+      "How can state management libraries like Redux or Context API be helpful when managing loading states?",
+    options: [
+      "A. They can store the loading state globally, making it accessible to multiple components.",
+      "B. They directly make network requests and handle responses without the need for the Fetch API or Axios.",
+      "C. They automatically detect and display error messages to the user.",
+      "D. They provide caching mechanisms to store network responses locally, reducing the need for repeated requests.",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "What is the purpose of using 'try/catch' blocks when making network requests?",
+    options: [
+      "A. To modify the headers of the request before it is sent to the server.",
+      "B. To format the data being sent to the server in a specific way.",
+      "C. To handle potential errors that may occur during the network request.",
+      "D. To cache the response from the server to improve performance.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which of the following is an example of a client-side error (4xx) that might occur during a network request?",
+    options: [
+      "A. 500 Internal Server Error",
+      "B. 404 Not Found",
+      "C. 503 Service Unavailable",
+      "D. Connection Timeout",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What type of network error indicates a problem with the user's internet connection?",
+    options: [
+      "A. Server Error (5xx)",
+      "B. Timeout Error",
+      "C. Connection Issues",
+      "D. Client Error (4xx)",
+    ],
+    answer: "C",
+  },
+];
+
+console.log("lect9: " + lecture9.length);
+//16
 
 let lecture10 = [
   {
