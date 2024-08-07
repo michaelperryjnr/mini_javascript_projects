@@ -2468,6 +2468,190 @@
           ],
           answer: "C",
         },
+        {
+          question:
+            "Why do React Native applications often need local storage mechanisms?",
+          options: [
+            "A. To improve network connectivity.",
+            "B. To enhance app security.",
+            "C. To store user credentials for login purposes.",
+            "D. To persist data across app restarts and enable offline functionality.",
+          ],
+          answer: "D",
+        },
+        {
+          question:
+            "Which of the following statements about local storage in React Native is NOT true?",
+          options: [
+            "A. React Native framework itself does not include built-in data storage APIs.",
+            "B. Local storage APIs are available through external libraries.",
+            "C. Local storage is primarily used for storing large multimedia files like images and videos.",
+            "D. Expo framework provides some libraries for local storage.",
+          ],
+          answer: "C",
+        },
+        {
+          question: "What is AsyncStorage in React Native?",
+          options: [
+            "A. A secure storage mechanism for sensitive data.",
+            "B. A library for interacting with remote databases.",
+            "C. An asynchronous, unencrypted, persistent, key-value storage API.",
+            "D. A file system API for accessing local files and directories.",
+          ],
+          answer: "C",
+        },
+        {
+          question: "What type of data can be directly stored in AsyncStorage?",
+          options: [
+            "A. Only strings",
+            "B. Objects and arrays",
+            "C. Images and binary data",
+            "D. Any JavaScript data type",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "What is the purpose of using `JSON.stringify()` and `JSON.parse()` with AsyncStorage?",
+          options: [
+            "A. To encrypt and decrypt data for security.",
+            "B. To store and retrieve complex objects as strings.",
+            "C. To compress and decompress data to save space.",
+            "D. To convert data between different character encodings.",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "Which Expo library provides a way to encrypt and securely store key-value pairs on the device?",
+          options: [
+            "A. `expo-file-system`",
+            "B. `@react-native-async-storage/async-storage`",
+            "C. `expo-secure-store`",
+            "D. `expo-sqlite`",
+          ],
+          answer: "C",
+        },
+        {
+          question:
+            "On which platform is Expo SecureStore NOT compatible with devices running version 5 or lower?",
+          options: [
+            "A. iOS",
+            "B. Android",
+            "C. Both iOS and Android",
+            "D. Neither iOS nor Android",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "What is the approximate size limit for storing a single value in Expo SecureStore?",
+          options: [
+            "A. 2 KB (2048 bytes)",
+            "B. 2 MB (2048 kilobytes)",
+            "C. 20 KB (20480 bytes)",
+            "D. There is no size limit.",
+          ],
+          answer: "A",
+        },
+        {
+          question: "What is the primary function of the Expo FileSystem API?",
+          options: [
+            "A. Securely storing sensitive user data.",
+            "B. Managing network requests and handling responses.",
+            "C. Providing access to the device's local file system for reading and writing files.",
+            "D. Displaying interactive maps and location data within the app.",
+          ],
+          answer: "C",
+        },
+        {
+          question:
+            "Which of the following directories does an app have read-only access to using Expo FileSystem?",
+          options: [
+            "A. `FileSystem.documentDirectory`",
+            "B. `FileSystem.cacheDirectory`",
+            "C. `FileSystem.bundleDirectory`",
+            "D. All of the above",
+          ],
+          answer: "C",
+        },
+        {
+          question:
+            "Which Expo FileSystem API is used to create a new directory?",
+          options: [
+            "A. `FileSystem.createDirectoryAsync()`",
+            "B. `FileSystem.makeDirectory()`",
+            "C. `FileSystem.newDirectoryAsync()`",
+            "D. `FileSystem.makeDirectoryAsync()`",
+          ],
+          answer: "D",
+        },
+        {
+          question:
+            "What encoding type is commonly used with Expo FileSystem for reading and writing text files?",
+          options: [
+            "A. `FileSystem.EncodingType.ASCII`",
+            "B. `FileSystem.EncodingType.UTF8`",
+            "C. `FileSystem.EncodingType.BASE64`",
+            "D. `FileSystem.EncodingType.BINARY`",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "Which Expo SQLite API is used to open a connection to an existing database or create a new one if it doesn't exist?",
+          options: [
+            "A. `SQLite.connectAsync()`",
+            "B. `SQLite.openDatabase()`",
+            "C. `SQLite.createDatabaseAsync()`",
+            "D. `SQLite.openDatabaseAsync()`",
+          ],
+          answer: "D",
+        },
+        {
+          question:
+            "What is the purpose of the `execAsync()` method in Expo SQLite?",
+          options: [
+            "A. To execute a single SQL query and retrieve the first matching row.",
+            "B. To execute multiple SQL queries as a batch.",
+            "C. To prepare a SQL statement for later execution.",
+            "D. To close the connection to the database.",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "Which Expo SQLite API would you use to insert, update, or delete data in a database?",
+          options: [
+            "A. `db.queryAsync()`",
+            "B. `db.runAsync()`",
+            "C. `db.getFirstAsync()`",
+            "D. `db.getAllAsync()`",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "What is the benefit of using prepared statements with Expo SQLite?",
+          options: [
+            "A. They improve query performance for frequently executed statements.",
+            "B. They simplify error handling for database operations.",
+            "C. They reduce the need for data serialization.",
+            "D. They enhance data security by preventing SQL injection vulnerabilities.",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "Which Expo SQLite API retrieves all rows from a query result as an array of objects?",
+          options: [
+            "A. `db.getRowsAsync()`",
+            "B. `db.queryAllAsync()`",
+            "C. `db.getAllAsync()`",
+            "D. `db.fetchAllAsync()`",
+          ],
+          answer: "C",
+        },
       ];
 
       let all = { start: 0, end: questions.length - 1, name: "All" };
@@ -2477,7 +2661,8 @@
       let lect4 = { start: 99, end: 125, name: "Lecture 4" };
       let lect5 = { start: 126, end: 142, name: "Lecture 5" };
       let lect6 = { start: 143, end: 164, name: "Lecture 6" };
-      let lect7 = { start: 165, end: 177, name: "Lecture 6" };
+      let lect7 = { start: 165, end: 177, name: "Lecture 7" };
+      let lect8 = { start: 178, end: 194, name: "Lecture 8" };
       // let all = { start: 0, end: questions.length - 1, name: "All: In Order" };
 
       const lectureRanges = [
