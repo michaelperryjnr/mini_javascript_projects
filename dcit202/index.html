@@ -1530,6 +1530,279 @@
           "D. `adb install app-debug.apk`"
         ],
         answer: "C"
+      },
+      {
+        question:
+          "Which of the following statements is true about React Components?",
+        options: [
+          "A. They are hidden elements that control the logic of a React Native app.",
+          "B. They represent the visual elements displayed on the screen in a React Native app.",
+          "C. They are used to store and manage data within a React Native app.",
+          "D. They handle network requests and data fetching in a React Native app.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which of these components is NOT classified as a 'Basic Component' in React Native?",
+        options: ["A. ScrollView", "B. TextInput", "C. Image", "D. Text"],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the primary function of the 'View' component in React Native?",
+        options: [
+          "A. Displaying images from local storage or remote URLs.",
+          "B. Rendering text content with various styling options.",
+          "C. Acting as a container element that supports layout using flexbox.",
+          "D. Enabling scrolling through a list of components.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "How do you import the 'Text', 'View', and 'Image' components from 'react-native'?",
+        options: [
+          "A. import { Text, View, Image } from 'react-native';",
+          "B. require('react-native').Text, View, Image;",
+          "C. import ReactNative.Text, ReactNative.View, ReactNative.Image;",
+          "D. const { Text, View, Image } = react-native;",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which statement accurately describes the default style inheritance behavior of 'Text' components?",
+        options: [
+          "A. Text components do not inherit style information from their parent Text components.",
+          "B. Text components only inherit style information from their direct parent component, not from grandparent components.",
+          "C. Text components inherit style information from their parent Text components, but this inheritance can be overridden.",
+          "D. Text components can inherit style information from any ancestor component, regardless of nesting level.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "How can you display an image from a local file named 'my-image.jpg' using the 'Image' component?",
+        options: [
+          "A. <Image source='./my-image.jpg' />",
+          "B. <Image source={require('./my-image.jpg')} />",
+          "C. <Image source={uri: './my-image.jpg'} />",
+          "D. <Image url='./my-image.jpg' />",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is an essential requirement for a 'ScrollView' component to function correctly?",
+        options: [
+          "A. It must have a fixed width and height defined in its style.",
+          "B. It should not contain any nested 'View' components.",
+          "C. It must have a bounded height, either directly or through its parent views.",
+          "D. It must be placed within a 'FlatList' component.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which 'ScrollView' prop ensures that the content bounces back when the user scrolls beyond the edges?",
+        options: [
+          "A. alwaysBounceVertical",
+          "B. showsHorizontalScrollIndicator",
+          "C. centerContent",
+          "D. zoomScale",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the primary purpose of the 'TouchableHighlight' component?",
+        options: [
+          "A. Displaying a scrollable list of items.",
+          "B. Rendering text with customizable font styles.",
+          "C. Making views interactive and responsive to touch events.",
+          "D. Showing a loading indicator while data is being fetched.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which components are considered siblings of 'TouchableHighlight' in React Native?",
+        options: [
+          "A. TouchableOpacity, TouchableWithoutFeedback, TouchableNativeFeedback",
+          "B. Button, Pressable, Switch",
+          "C. TextInput, FlatList, SectionList",
+          "D. ActivityIndicator, Modal, WebView",
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Which component is most suitable for allowing users to input text using a keyboard?",
+        options: ["A. Text", "B. TextInput", "C. Button", "D. Switch"],
+        answer: "B",
+      },
+      {
+        question:
+          "What does the 'Switch' component represent in a React Native application?",
+        options: [
+          "A. A button with customizable appearance and behavior.",
+          "B. A text input field for entering numerical values.",
+          "C. A binary choice or toggle, similar to a checkbox.",
+          "D. A dropdown menu for selecting from a list of options.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which of the following describes the 'Button' component in React Native?",
+        options: [
+          "A. A highly customizable button with numerous styling options.",
+          "B. A basic button component with minimal customization support.",
+          "C. A component used to display a modal or popup window.",
+          "D. A component for rendering web content within a React Native app.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "When is the 'onPressIn' event triggered on a 'Pressable' component?",
+        options: [
+          "A. When the user releases their finger from the component.",
+          "B. When the user's finger drags outside the boundaries of the component.",
+          "C. When the user's finger begins touching the component.",
+          "D. When the user's touch interaction with the component is canceled.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which statement accurately contrasts 'FlatList' and 'ScrollView' in React Native?",
+        options: [
+          "A. 'FlatList' is used for displaying simple lists, while 'ScrollView' is for more complex, sectioned lists.",
+          "B. 'FlatList' renders only visible items on screen for performance, while 'ScrollView' renders all items at once.",
+          "C. 'FlatList' requires a bounded height, while 'ScrollView' can handle unbounded content.",
+          "D. 'FlatList' supports horizontal scrolling, while 'ScrollView' only allows vertical scrolling.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What type of list is 'FlatList' specifically designed to render efficiently?",
+        options: [
+          "A. Lists with multiple levels of nesting and hierarchy.",
+          "B. Simple, flat lists with a single dimension of data.",
+          "C. Lists that require dynamic resizing and rearrangement.",
+          "D. Lists that are primarily used for navigation purposes.",
+        ],
+        answer: "B",
+      },
+      {
+        question: "Which of these features is NOT supported by 'FlatList'?",
+        options: [
+          "A. Pull to Refresh",
+          "B. ScrollToIndex",
+          "C. Drag and Drop Reordering",
+          "D. Multiple Column Layout",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "What distinguishes 'SectionList' from 'FlatList' in React Native?",
+        options: [
+          "A. 'SectionList' is designed for rendering simple, flat lists, while 'FlatList' is for sectioned lists.",
+          "B. 'SectionList' only supports vertical scrolling, while 'FlatList' allows both vertical and horizontal scrolling.",
+          "C. 'SectionList' is a more performant choice for handling very large lists compared to 'FlatList'.",
+          "D. 'SectionList' is specifically designed for rendering sectioned lists, while 'FlatList' is for flat lists.",
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "Which component would you use to provide visual feedback during a long-running operation in your app?",
+        options: ["A. Modal", "B. WebView", "C. ActivityIndicator", "D. Switch"],
+        answer: "C",
+      },
+      {
+        question: "What is the primary role of the 'Modal' component?",
+        options: [
+          "A. Displaying web content from a remote URL.",
+          "B. Showing a progress bar during data loading.",
+          "C. Presenting content that temporarily overlays the main view.",
+          "D. Handling user input through a touch-sensitive area.",
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Which component allows you to embed web content within your React Native application?",
+        options: ["A. WebView", "B. Modal", "C. ActivityIndicator", "D. FlatList"],
+        answer: "A",
+      },
+      {
+        question:
+          "What is the purpose of the 'SafeAreaView' component, specific to iOS devices?",
+        options: [
+          "A. Providing a secure storage mechanism for sensitive data.",
+          "B. Ensuring that content is rendered within the safe area boundaries of a device, avoiding notches and status bars.",
+          "C. Displaying a native action sheet with a list of options.",
+          "D. Managing the appearance of the keyboard input accessory view.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which component, specific to Android, provides touch feedback using native state drawables?",
+        options: [
+          "A. DrawerLayoutAndroid",
+          "B. TouchableNativeFeedback",
+          "C. ActionSheetIOS",
+          "D. SafeAreaView",
+        ],
+        answer: "B",
+      },
+      {
+        question: "What best describes the nature of React Native APIs?",
+        options: [
+          "A. They are UI components that offer visual elements for app design.",
+          "B. They are pre-built backend services that handle data storage and user authentication.",
+          "C. They are collections of functions that allow you to interact with device features and perform various tasks.",
+          "D. They are configuration files that determine the structure and behavior of your React Native application.",
+        ],
+        answer: "C",
+      },
+      {
+        question: "Which of the following is NOT a React Native API category?",
+        options: [
+          "A. AccessibilityInfo",
+          "B. Database Management",
+          "C. Animated",
+          "D. Dimensions",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "What is the key difference between 'TouchableHighlight' and 'TouchableOpacity'?",
+        options: [
+          "A. 'TouchableHighlight' only works on iOS, while 'TouchableOpacity' is for Android.",
+          "B. 'TouchableHighlight' provides visual feedback by changing opacity, while 'TouchableOpacity' animates the opacity change.",
+          "C. 'TouchableHighlight' requires a child component, while 'TouchableOpacity' can be used without a child.",
+          "D. 'TouchableHighlight' handles single taps, while 'TouchableOpacity' supports double taps and long presses.",
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Which touch component does NOT provide any visual feedback during touch interactions?",
+        options: [
+          "A. TouchableHighlight",
+          "B. TouchableOpacity",
+          "C. TouchableWithoutFeedback",
+          "D. TouchableNativeFeedback",
+        ],
+        answer: "C",
       }
     ];
 
@@ -1538,12 +1811,12 @@
     let lect1 = { start: 0, end: 30, name: "Lecture 1" };
     let lect2 = { start: 31, end: 68, name: "Lecture 2" };
     let lect3 = { start: 69, end: 98, name: "Lecture 3" };
-    // let lect4 = { start: 198, end: 218, name: "Lecture 4" };
+    let lect4 = { start: 99, end: 125, name: "Lecture 4" };
     // let lect5 = { start: 218, end: 256, name: "Lecture 5" };
     // let lect6 = { start: 257, end: questions.length - 1, name: "Lecture 6" };
     // let all = { start: 0, end: questions.length - 1, name: "All: In Order" };
 
-    const lectureRanges = [all, lect1, lect2, lect3];
+    const lectureRanges = [all, lect1, lect2, lect3, lect4];
 
     let currentQuestion = 0;
     let userAnswers = Array(questions.length).fill(null);
