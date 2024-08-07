@@ -12,6 +12,7 @@ async function updateDetailsToAPIOnReload() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, scores }),
+      mode: "cors",
     });
     const data = await response.json();
     console.log(data);
@@ -30,6 +31,7 @@ function updateDetailsToAPI() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, scores }),
+      mode: "cors",
     });
     console.log(response);
   } catch (error) {
