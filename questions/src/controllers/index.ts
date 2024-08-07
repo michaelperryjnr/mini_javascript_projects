@@ -1,9 +1,11 @@
 import { addQuestion } from "./questionController";
-
+import { updateUserScores, addUser, getUserScores } from "./userControllers";
 
 const User = {
-    addQuestion
-}
+  addQuestion,
+  updateUserScores,
+  addUser,
+  getUserScores,
+};
 
-
-export {User}
+export { User };

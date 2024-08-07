@@ -10,8 +10,7 @@ export async function GET(request: Request) {
     _id: 0,
     createdAt: 0,
     updatedAt: 0,
-  }).sort({ createdAt: -1 });
-  console.log(questions);
+  });
   return NextResponse.json({ questions });
 }
 
