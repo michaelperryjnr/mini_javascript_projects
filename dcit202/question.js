@@ -686,6 +686,180 @@ let lecture4 = [
 // console.log(lecture4.length);
 //27
 
+let lecture5 = [
+  {
+    question:
+      "How are styles applied to React Native components compared to traditional web development?",
+    options: [
+      "A. React Native uses CSS stylesheets in separate files.",
+      "B. React Native uses inline styles exclusively.",
+      "C. React Native uses JavaScript-based style objects linked to components.",
+      "D. React Native uses a combination of CSS stylesheets and inline styles.",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What is the correct way to apply inline styles in React Native?",
+    options: [
+      "A. `<Text style='font-style: italic;'>Italic Text</Text>`",
+      "B. `<Text style={{ fontStyle: 'italic' }}>Italic Text</Text>`",
+      "C. `<Text style={fontStyle: italic}>Italic Text</Text>`",
+      "D. `<Text style='{fontStyle: italic}'>Italic Text</Text>`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the purpose of using `StyleSheet.create` in React Native?",
+    options: [
+      "A. To create animations and transitions for components.",
+      "B. To define multiple styles in one place and improve performance.",
+      "C. To manage the layout structure of components on the screen.",
+      "D. To handle user input events and component interactions.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "How can you combine multiple styles for a single component in React Native?",
+    options: [
+      "A. By using the `+` operator to concatenate style strings.",
+      "B. By passing an array of style objects to the `style` prop.",
+      "C. By nesting style objects within each other.",
+      "D. By using the `&` operator to merge style properties.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the syntax for applying conditional styles based on component state?",
+    options: [
+      "A. `<View style={styles.button, this.state.active ? styles.active : null} />`",
+      "B. `<View style={[styles.button, this.state.active && styles.active]} />`",
+      "C. `<View style={if (this.state.active) styles.active else styles.button} />`",
+      "D. `<View style={styles.button + (this.state.active ? ' ' + styles.active : '')} />`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What layout mechanism is primarily used for positioning elements in React Native?",
+    options: [
+      "A. CSS Grid",
+      "B. Bootstrap",
+      "C. Flexbox",
+      "D. Constraint Layout",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What does the `flex: 1` property indicate in a React Native component's style?",
+    options: [
+      "A. The component should take up all available space in its parent container.",
+      "B. The component should be fixed to a specific position on the screen.",
+      "C. The component should be hidden from view.",
+      "D. The component should have a fixed width and height.",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "What is the default value of the `flexDirection` property in React Native?",
+    options: [
+      "A. `row`",
+      "B. `column`",
+      "C. `row-reverse`",
+      "D. `column-reverse`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which value for `flexDirection` would you use to arrange components horizontally from left to right?",
+    options: [
+      "A. `row`",
+      "B. `column`",
+      "C. `row-reverse`",
+      "D. `column-reverse`",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "What is the purpose of the `justifyContent` property in Flexbox?",
+    options: [
+      "A. To control the alignment of items along the main axis of the container.",
+      "B. To control the alignment of items along the cross axis of the container.",
+      "C. To control the wrapping behavior of items within the container.",
+      "D. To control the spacing between items in the container.",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "Which value for `justifyContent` would you use to distribute space evenly between items along the main axis?",
+    options: [
+      "A. `flex-start`",
+      "B. `flex-end`",
+      "C. `center`",
+      "D. `space-around`",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What is the difference between `alignItems` and `alignSelf` in Flexbox?",
+    options: [
+      "A. `alignItems` aligns items along the main axis, while `alignSelf` aligns items along the cross axis.",
+      "B. `alignItems` is used on the parent container, while `alignSelf` is used on individual child items.",
+      "C. `alignItems` controls wrapping behavior, while `alignSelf` controls stretching behavior.",
+      "D. There is no difference; they are interchangeable properties.",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What does the `flexWrap: 'wrap'` property do in Flexbox?",
+    options: [
+      "A. It prevents items from wrapping and forces them into a single line.",
+      "B. It allows items to wrap onto multiple lines if they exceed the container's width.",
+      "C. It reverses the order of items in the container.",
+      "D. It stretches items to fill the available space.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which property is used to set the space between rows in a Flexbox container?",
+    options: [
+      "A. `rowSpacing`",
+      "B. `rowGap`",
+      "C. `verticalSpacing`",
+      "D. `gutter`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What value would you use for the `width` property to make a component take up 50% of its parent's width?",
+    options: ["A. `50px`", "B. `50%`", "C. `0.5`", "D. `half`"],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the key difference between `position: 'relative'` and `position: 'absolute'` in React Native?",
+    options: [
+      "A. `relative` positioning is calculated from the edge of the screen, while `absolute` positioning is calculated from the parent container.",
+      "B. `relative` positioning allows for overlapping elements, while `absolute` positioning prevents overlaps.",
+      "C. `relative` positioning is based on the normal layout flow, while `absolute` positioning removes the element from the flow.",
+      "D. `relative` positioning is used for static elements, while `absolute` positioning is used for dynamic or animated elements.",
+    ],
+    answer: "C",
+  },
+];
+// console.log("lect5: " + lecture5.length);
+//16
+
 let lecture6 = [
   {
     question:
