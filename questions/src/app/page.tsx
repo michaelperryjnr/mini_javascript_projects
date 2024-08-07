@@ -50,12 +50,14 @@ export default function Form() {
         className="w-full max-w-md bg-[#3b5441] justify-center px-5 py-5 rounded rounded-lg"
       >
         <div className="flex flex-col items-start">
-          <h1 className="text-[#ffffff] text-xl font-bold">
-            Submit a Question
+          <h1 className="text-[#fdb44b] text-2xl font-bold">
+            BBF Labs, Question Bank
           </h1>
+          <h2 className="text-[#ffffff] text-xl font-semi bold">
+            Submit a Question
+          </h2>
           <h3 className="text-lg text-[#ffffff]">
-            Share your questions with our community. We'll do our best to
-            provide helpful answers.
+            Share your questions with our community to update our question bank
           </h3>
         </div>
         <div className="grid gap-4 mt-4">
