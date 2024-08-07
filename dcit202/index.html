@@ -13,7 +13,6 @@
   </script>
   <script defer src="../_vercel/speed-insights/script.js"></script>
   <script defer src="../_vercel/insights/script.js"></script>
-  <script src="./tracker.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon" />
   <title>DCIT 202 MOCK Quiz</title>
@@ -2912,6 +2911,106 @@
         ],
         answer: "A",
       },
+      {
+        question: "Mobile app development is the process of creating software applications that run on __________.",
+        options: ["mobile devices"],
+        answer: "mobile devices"
+      },
+      {
+        question: "Mobile applications can be pre-installed on devices, downloaded from app stores, or accessed via __________.",
+        options: ["mobile web browsers"],
+        answer: "mobile web browsers"
+      },
+      {
+        question: "The two most common operating systems for mobile apps are __________ and iOS.",
+        options: ["Android"],
+        answer: "Android"
+      },
+      {
+        question: "The __________ App Store, launched in 2008, revolutionized app distribution and monetization.",
+        options: ["iOS"],
+        answer: "iOS"
+      },
+      {
+        question: "In 2008, __________ introduced an open-source approach to mobile app development with the Google Play Store.",
+        options: ["Android"],
+        answer: "Android"
+      },
+      {
+        question: "Native apps are developed using platform-specific languages like Objective-C for iOS and __________ for Android.",
+        options: ["Java"],
+        answer: "Java"
+      },
+      {
+        question: "The launch of the __________ OS and Google Play Store in 2008 fostered a competitive app market.",
+        options: ["Android"],
+        answer: "Android"
+      },
+      {
+        question: "The programming language __________ was introduced in 2014 as a safer and easier alternative to Objective-C for iOS development.",
+        options: ["Swift"],
+        answer: "Swift"
+      },
+      {
+        question: "For Android development, __________ became an officially supported language in 2017, offering cleaner and more efficient code.",
+        options: ["Kotlin"],
+        answer: "Kotlin"
+      },
+      {
+        question: "React Native is a popular framework for __________ development, enabling code reuse across platforms.",
+        options: ["cross-platform"],
+        answer: "cross-platform"
+      },
+      {
+        question: "Frameworks like React Native, Flutter, and Xamarin are used for __________ development.",
+        options: ["cross-platform"],
+        answer: "cross-platform"
+      },
+      {
+        question: "Mobile applications can be classified into three types: Native, Hybrid, and __________.",
+        options: ["Web"],
+        answer: "Web"
+      },
+      {
+        question: "__________ apps are built using web technologies like HTML, CSS, and JavaScript, and run in a web browser.",
+        options: ["Web"],
+        answer: "Web"
+      },
+      {
+        question: "Hybrid apps combine elements of both native and web apps, often using a web view within a __________ container.",
+        options: ["native"],
+        answer: "native"
+      },
+      {
+        question: "__________ apps are developed specifically for one platform, using platform-specific languages and tools.",
+        options: ["Native"],
+        answer: "Native"
+      },
+      {
+        question: "In mobile app development, __________ allows for the use of a single codebase to build apps for both iOS and Android.",
+        options: ["cross-platform development"],
+        answer: "cross-platform development"
+      },
+      {
+        question: "The language __________ was historically used for iOS app development before the introduction of Swift.",
+        options: ["Objective-C"],
+        answer: "Objective-C"
+      },
+      {
+        question: "The emergence of frameworks like __________ has significantly impacted cross-platform development.",
+        options: ["React Native"],
+        answer: "React Native"
+      },
+      {
+        question: "The 1990s saw the introduction of __________, which featured basic built-in applications like calendars and calculators.",
+        options: ["early mobile devices"],
+        answer: "early mobile devices"
+      },
+      {
+        question: "The mobile app development process includes creating software applications for devices like smartphones and __________.",
+        options: ["tablets"],
+        answer: "tablets"
+      }
     ];
 
     let all = { start: 0, end: questions.length - 1, name: "All" };
@@ -2925,7 +3024,7 @@
     let lect8 = { start: 177, end: 193, name: "Lecture 8" };
     let lect9 = { start: 194, end: 209, name: "Lecture 9" };
     let lect10 = { start: 210, end: 224, name: "Lecture 10" };
-    // let all = { start: 0, end: questions.length - 1, name: "All: In Order" };
+    let fillIns = { start: 226, end: 245, name: "Fill In" };
 
     const lectureRanges = [
       all,
@@ -2939,6 +3038,7 @@
       lect8,
       lect9,
       lect10,
+      fillIns
     ];
 
     let currentQuestion = 0;
@@ -3095,62 +3195,82 @@
       questionTitle.style.fontSize = "1.2rem";
 
       questionDiv.appendChild(questionTitle);
+      if (question.options.length === 1) {
+        // Create an input field for the fill-in-the-blank question
+        const fillInInput = document.createElement("input");
+        fillInInput.type = "text";
+        fillInInput.style.border = "none"
+        fillInInput.style.borderBottom = "1px solid #430f58";
+        fillInInput.style.outline = "none"
+        fillInInput.style.fontSize = "1rem";
+        fillInInput.name = "q" + (index + 1);
+        fillInInput.value = userAnswers[questionIndex] || "";
 
-      question.options.forEach((option) => {
-        const optionLabel = document.createElement("label");
-        const optionInput = document.createElement("input");
-        const optionHint = document.createElement("img");
 
-        optionInput.type = "radio";
-        optionInput.name = "q" + (index + 1);
-        optionInput.value = option[0];
-
-        optionHint.classList.add("hint");
-        optionHint.style.display = "none";
-        const correctEmoji =
-          "https://fonts.gstatic.com/s/e/notoemoji/latest/1f601/512.webp";
-        const incorrectEmoji =
-          "https://fonts.gstatic.com/s/e/notoemoji/latest/1f9d0/512.webp";
-
-        optionHint.src =
-          optionInput.value === questions[questionIndex].answer
-            ? correctEmoji
-            : incorrectEmoji;
-        optionHint.alt =
-          optionInput.value === questions[questionIndex].answer
-            ? "correct"
-            : "incorrect";
-
-        if (userAnswers[questionIndex] === option[0]) {
-          optionInput.checked = true;
-        }
-
-        optionLabel.appendChild(optionInput);
-        optionLabel.appendChild(document.createTextNode(option));
-
-        hinting.addEventListener("click", () => {
-          optionLabel.appendChild(optionHint);
-        });
-
-        removeHinting.addEventListener("click", () => {
-          optionLabel.removeChild(optionHint);
-        });
-
-        optionLabel.addEventListener("mouseover", () => {
-          optionHint.style.display = "inline-block";
-        });
-
-        optionLabel.addEventListener("mouseout", () => {
-          optionHint.style.display = "none";
-        });
-        questionDiv.appendChild(optionLabel);
-        optionLabel.addEventListener("click", () => {
-          userAnswers[questionIndex] = option[0];
-          disableResetAfterCheckboxPress();
+        fillInInput.addEventListener("input", () => {
+          userAnswers[questionIndex] = fillInInput.value.toLocaleLowerCase();
           saveProgressLocally();
         });
-        questionDiv.appendChild(document.createElement("br"));
-      });
+
+        questionDiv.appendChild(fillInInput);
+      } else {
+
+        question.options.forEach((option) => {
+          const optionLabel = document.createElement("label");
+          const optionInput = document.createElement("input");
+          const optionHint = document.createElement("img");
+
+          optionInput.type = "radio";
+          optionInput.name = "q" + (index + 1);
+          optionInput.value = option[0];
+
+          optionHint.classList.add("hint");
+          optionHint.style.display = "none";
+          const correctEmoji =
+            "https://fonts.gstatic.com/s/e/notoemoji/latest/1f601/512.webp";
+          const incorrectEmoji =
+            "https://fonts.gstatic.com/s/e/notoemoji/latest/1f9d0/512.webp";
+
+          optionHint.src =
+            optionInput.value === questions[questionIndex].answer
+              ? correctEmoji
+              : incorrectEmoji;
+          optionHint.alt =
+            optionInput.value === questions[questionIndex].answer
+              ? "correct"
+              : "incorrect";
+
+          if (userAnswers[questionIndex] === option[0]) {
+            optionInput.checked = true;
+          }
+
+          optionLabel.appendChild(optionInput);
+          optionLabel.appendChild(document.createTextNode(option));
+
+          hinting.addEventListener("click", () => {
+            optionLabel.appendChild(optionHint);
+          });
+
+          removeHinting.addEventListener("click", () => {
+            optionLabel.removeChild(optionHint);
+          });
+
+          optionLabel.addEventListener("mouseover", () => {
+            optionHint.style.display = "inline-block";
+          });
+
+          optionLabel.addEventListener("mouseout", () => {
+            optionHint.style.display = "none";
+          });
+          questionDiv.appendChild(optionLabel);
+          optionLabel.addEventListener("click", () => {
+            userAnswers[questionIndex] = option[0];
+            disableResetAfterCheckboxPress();
+            saveProgressLocally();
+          });
+          questionDiv.appendChild(document.createElement("br"));
+        });
+      }
 
       quizForm.appendChild(questionDiv);
 
@@ -3349,34 +3469,46 @@
       function displayQA() {
         feedbackContainer.style.overflow = "scroll";
         feedbackContainer.innerHTML = "";
+
         questions.forEach((q, index) => {
           const questionDiv = document.createElement("div");
           questionDiv.classList.add("question");
+
           const questionTitle = document.createElement("p");
           questionTitle.textContent = index + 1 + ". " + q.question;
           questionDiv.appendChild(questionTitle);
 
-          q.options.forEach((option) => {
-            const optionLabel = document.createElement("label");
-            const optionInput = document.createElement("input");
-            optionInput.type = "radio";
-            optionInput.disabled = true;
+          // Check if the question is a fill-in-the-blank type (only one option)
+          if (q.options.length === 1) {
+            const correctAnswer = q.answer;
 
-            if (option[0] === q.answer) {
-              optionInput.checked = true;
-              optionLabel.style.color = "green";
-              optionLabel.style.fontWeight = "bold";
-            } else if (option[0] === userAnswers[index]) {
-              optionInput.checked = true;
-              optionLabel.style.color = "red";
-              questionTitle.style.fontWeight = "bold";
-            }
+            const correctAnswerParagraph = document.createElement("p");
+            correctAnswerParagraph.textContent = `Answer: ${correctAnswer}`;
+            correctAnswerParagraph.style.color = "green";
+            correctAnswerParagraph.style.fontWeight = "bold";
+            correctAnswerParagraph.style.marginTop = "0.5rem";
+            questionDiv.appendChild(correctAnswerParagraph);
 
-            optionLabel.appendChild(optionInput);
-            optionLabel.appendChild(document.createTextNode(option));
-            questionDiv.appendChild(optionLabel);
-            questionDiv.appendChild(document.createElement("br"));
-          });
+          } else {
+            // Existing logic for multiple-choice questions
+            q.options.forEach((option) => {
+              const optionLabel = document.createElement("label");
+              const optionInput = document.createElement("input");
+              optionInput.type = "radio";
+              optionInput.disabled = true;
+
+              if (option[0] === q.answer) {
+                optionInput.checked = true;
+                optionLabel.style.color = "green";
+                optionLabel.style.fontWeight = "bold";
+              }
+
+              optionLabel.appendChild(optionInput);
+              optionLabel.appendChild(document.createTextNode(option));
+              questionDiv.appendChild(optionLabel);
+              questionDiv.appendChild(document.createElement("br"));
+            });
+          }
 
           feedbackContainer.appendChild(questionDiv);
         });
@@ -3384,6 +3516,7 @@
         document.getElementById("feedbackNextButton").disabled =
           currentQuestion === questions.length - 1;
       }
+
       document.getElementById("quizContainer").style.display = "none";
       document.getElementById("usernameDialog").style.display = "none";
       displayQA();
@@ -3475,31 +3608,64 @@
           const q = questions[questionIndex];
           const questionDiv = document.createElement("div");
           questionDiv.classList.add("question");
+
           const questionTitle = document.createElement("p");
           questionTitle.textContent = index + 1 + ". " + q.question;
           questionDiv.appendChild(questionTitle);
 
-          q.options.forEach((option) => {
-            const optionLabel = document.createElement("label");
-            const optionInput = document.createElement("input");
-            optionInput.type = "radio";
-            optionInput.disabled = true;
+          // Check if the question is a fill-in-the-blank type
+          if (q.options.length === 1) {
+            const userAnswer = userAnswers[questionIndex];
+            const correctAnswer = q.answer.toLowerCase();
 
-            if (option[0] === q.answer) {
-              optionInput.checked = true;
-              optionLabel.style.color = "green";
-              optionLabel.style.fontWeight = "bold";
-            } else if (option[0] === userAnswers[questionIndex]) {
-              optionInput.checked = true;
-              optionLabel.style.color = "red";
-              questionTitle.style.fontWeight = "bold";
+            const feedbackParagraph = document.createElement("p");
+            feedbackParagraph.textContent = "Your Answer: " + (userAnswer || "No answer given");
+
+            if (correctAnswer.includes(userAnswer.toLowerCase())) {
+              feedbackParagraph.style.color = "green";
+              feedbackParagraph.style.fontWeight = "bold";
+              const correctAnswerParagraph = document.createElement("p");
+              correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
+              correctAnswerParagraph.style.color = "green";
+              correctAnswerParagraph.style.fontWeight = "bold";
+              questionDiv.appendChild(correctAnswerParagraph);
+            } else {
+              feedbackParagraph.style.color = "red";
+              feedbackParagraph.style.fontWeight = "bold";
+
+              const correctAnswerParagraph = document.createElement("p");
+              correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
+              correctAnswerParagraph.style.color = "green";
+              correctAnswerParagraph.style.fontWeight = "bold";
+              questionDiv.appendChild(correctAnswerParagraph);
             }
 
-            optionLabel.appendChild(optionInput);
-            optionLabel.appendChild(document.createTextNode(option));
-            questionDiv.appendChild(optionLabel);
-            questionDiv.appendChild(document.createElement("br"));
-          });
+            questionDiv.appendChild(feedbackParagraph);
+
+          } else {
+            // Existing logic for multiple-choice questions
+            q.options.forEach((option) => {
+              const optionLabel = document.createElement("label");
+              const optionInput = document.createElement("input");
+              optionInput.type = "radio";
+              optionInput.disabled = true;
+
+              if (option[0] === q.answer) {
+                optionInput.checked = true;
+                optionLabel.style.color = "green";
+                optionLabel.style.fontWeight = "bold";
+              } else if (option[0] === userAnswers[questionIndex]) {
+                optionInput.checked = true;
+                optionLabel.style.color = "red";
+                questionTitle.style.fontWeight = "bold";
+              }
+
+              optionLabel.appendChild(optionInput);
+              optionLabel.appendChild(document.createTextNode(option));
+              questionDiv.appendChild(optionLabel);
+              questionDiv.appendChild(document.createElement("br"));
+            });
+          }
 
           feedbackContainer.appendChild(questionDiv);
         });
