@@ -1,3 +1,4 @@
 import Questions from "./Question";
+import BBFUser from "./User";
 
-export { Questions };
+export { Questions, BBFUser };
