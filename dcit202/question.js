@@ -682,3 +682,6 @@ let lecture4 = [
     answer: "C",
   },
 ];
+
+console.log(lecture4.length);
+//27
