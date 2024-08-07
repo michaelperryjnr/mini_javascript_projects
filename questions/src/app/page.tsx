@@ -11,7 +11,10 @@ export default function Form() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { id, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [id]: value }));
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: id === "username" ? value.toLowerCase() : value,
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
