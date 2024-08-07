@@ -1111,3 +1111,183 @@ let lecture8 = [
 
 // console.log(lecture8.length);
 // 17
+
+let lecture10 = [
+  {
+    question:
+      "What is the primary reason for requiring permissions in mobile applications?",
+    options: [
+      "A. To track user activity for advertising purposes.",
+      "B. To enhance app functionality and provide a richer user experience.",
+      "C. To protect user privacy and prevent unauthorized access to sensitive data.",
+      "D. To enable communication between different apps on the device.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "In Android development with Expo, how are permissions typically configured?",
+    options: [
+      "A. By modifying the `AndroidManifest.xml` file directly.",
+      "B. Using the `permissions` and `blockedPermissions` keys in the `android` section of `app.json`.",
+      "C. Through a dedicated permissions settings screen within the app.",
+      "D. By sending requests to a remote permissions server.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the purpose of using the `blockedPermissions` property in the `android` section of `app.json`?",
+    options: [
+      "A. To grant specific permissions to the app.",
+      "B. To prevent the app from accessing certain device features even if requested by libraries.",
+      "C. To display a custom permission request dialog to the user.",
+      "D. To check the status of previously granted permissions.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which of the following is NOT a valid Android permission string?",
+    options: [
+      "A. `android.permission.READ_CONTACTS`",
+      "B. `android.permission.ACCESS_FINE_LOCATION`",
+      "C. `android.permission.SEND_EMAIL`",
+      "D. `android.permission.RECORD_AUDIO`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "In iOS development with Expo, what is the primary mechanism for setting permission messages displayed to the user?",
+    options: [
+      "A. Modifying the `Info.plist` file directly.",
+      "B. Using the `permissions` key in the `ios` section of `app.json`.",
+      "C. Calling specific permission request methods in the app code.",
+      "D. Using the `infoPlist` key within the `ios` section of `app.json`.",
+    ],
+    answer: "D",
+  },
+  {
+    question: "What is a config plugin in Expo?",
+    options: [
+      "A. A tool for managing user interface components.",
+      "B. A system for extending app configuration and customizing the native project build process.",
+      "C. A library for handling network requests and responses.",
+      "D. A way to store data locally on the device.",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What is the main purpose of the Expo SDK?",
+    options: [
+      "A. To provide a set of pre-built UI components for faster app development.",
+      "B. To offer access to device and system functionalities through JavaScript APIs.",
+      "C. To manage the app's navigation structure and screen transitions.",
+      "D. To handle user authentication and authorization.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which Expo SDK package allows you to access and manage the user's contacts?",
+    options: [
+      "A. `expo-camera`",
+      "B. `expo-location`",
+      "C. `expo-contacts`",
+      "D. `expo-media-library`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the function of the `MediaLibrary.usePermissions()` hook in Expo Media Library?",
+    options: [
+      "A. To display a list of media files from the device's library.",
+      "B. To play audio or video files from the media library.",
+      "C. To request and manage permissions for accessing the user's media library.",
+      "D. To create new albums and add media files to them.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which Expo component provides a live preview of the device's camera feed?",
+    options: [
+      "A. `CameraRoll`",
+      "B. `ImagePicker`",
+      "C. `CameraView`",
+      "D. `Video`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the primary purpose of push notifications in mobile applications?",
+    options: [
+      "A. To send emails to users with important updates.",
+      "B. To display in-app advertisements to generate revenue.",
+      "C. To establish a real-time communication channel between the app and users even when the app is not actively in use.",
+      "D. To track user location for personalized content recommendations.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What are the two main types of push notifications in React Native?",
+    options: [
+      "A. SMS notifications and email notifications",
+      "B. Foreground notifications and background notifications",
+      "C. Local notifications and remote notifications",
+      "D. System notifications and app notifications",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which push notification service is primarily associated with Android devices?",
+    options: [
+      "A. APNs (Apple Push Notification service)",
+      "B. FCM (Firebase Cloud Messaging)",
+      "C. GCM (Google Cloud Messaging)",
+      "D. SNS (Amazon Simple Notification Service)",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the role of a device token in push notification architecture?",
+    options: [
+      "A. It authenticates the user and grants access to the app.",
+      "B. It stores the notification content to be displayed.",
+      "C. It serves as a unique identifier for addressing notifications to a specific device.",
+      "D. It encrypts the notification data for security purposes.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which Expo package simplifies the implementation of push notifications in React Native?",
+    options: [
+      "A. `expo-firebase-messaging`",
+      "B. `react-native-push-notification`",
+      "C. `expo-notifications`",
+      "D. `expo-messaging`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is a key advantage of using Expo Notifications compared to other push notification solutions?",
+    options: [
+      "A. It requires less configuration and handles both local and remote notifications.",
+      "B. It supports a wider range of notification customization options.",
+      "C. It offers significantly faster notification delivery speeds.",
+      "D. It guarantees higher notification delivery rates.",
+    ],
+    answer: "A",
+  },
+];
+
+// console.log(lecture10.length);
+//16
