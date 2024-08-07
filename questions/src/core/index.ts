@@ -1,3 +1,3 @@
-const MONGO_URI = "mongodb+srv://michael:Michael%4006@cluster0.lwbwc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+const MONGO_URI = process.env.NEXT_PUBLIC_MONGO_URI!;
 
 export { MONGO_URI };

@@ -32,7 +32,7 @@ export default function Form() {
 
       const result = await response.json();
 
-      if (response.ok) {
+      if (result.success === true) {
         toast.success("Question submitted successfully!");
         setFormData({ username: "", question: "" });
       } else {

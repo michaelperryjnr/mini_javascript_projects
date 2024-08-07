@@ -12,7 +12,11 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   await connectToDb();
-  const body = await request.json();
-  const newQuestion = User.addQuestion(body);
-  return NextResponse.json({ message: "Question created successfully" });
+  try {
+    const body = await request.json();
+    const newQuestion = await User.addQuestion(body);
+    return NextResponse.json(newQuestion);
+  } catch (err: any) {
+    return NextResponse.json({ error: "Error adding question" });
+  }
 }
