@@ -38,3 +38,6 @@ function updateDetailsToAPI() {
 }
 
 updateDetailsToAPI();
+
+//fire on windowclose
+window.addEventListener("beforeunload", updateDetailsToAPIOnReload);
