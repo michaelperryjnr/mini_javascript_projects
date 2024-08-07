@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 
 const QuestionSchema: Schema<IQuestion> = new Schema(
   {
-    username: { type: String, unique: true, required: true },
+    username: { type: String, required: true },
     question: { type: String, required: true },
   },
   {
