@@ -627,9 +627,319 @@
     </div>
 
     <script>
-      let questions = [];
+      let questions = [
+        {
+          question:
+            "What is the main focus of the 'DCIT 202 - Mobile Application Development' course?",
+          options: [
+            "A.  Web development using HTML, CSS, and JavaScript.",
+            "B.  Creating software applications for mobile devices.",
+            "C.  Designing and developing computer hardware.",
+            "D.  Understanding the principles of artificial intelligence.",
+          ],
+          answer: "B",
+        },
+        {
+          question: "What are the two main learning outcomes for this course?",
+          options: [
+            "A.  Mastering Java and Swift for native app development.",
+            "B.  Understanding cross-platform development and gaining practical experience with React Native.",
+            "C.  Becoming proficient in web development frameworks like Angular and Vue.js.",
+            "D.  Learning the basics of UI/UX design and app monetization strategies.",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "According to the slides, which of the following is NOT a prerequisite for this course?",
+          options: [
+            "A.  Basic understanding of programming concepts.",
+            "B.  Familiarity with at least one programming language (preferably JavaScript).",
+            "C.  Prior experience in mobile app development.",
+            "D.  None of the above. All are listed as prerequisites.",
+          ],
+          answer: "C",
+        },
+        {
+          question:
+            "Which of the following is NOT a topic covered in the 'Session Outline' for this session?",
+          options: [
+            "A.  Overview of Game Development Engines.",
+            "B.  Introduction to React Native.",
+            "C.  Overview of Mobile App Development.",
+            "D.  Types of mobile apps: Native, Hybrid, Web",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "Which two operating systems are most commonly targeted in mobile app development?",
+          options: [
+            "A.  Linux and Windows",
+            "B.  iOS and Android",
+            "C.  macOS and Chrome OS",
+            "D.  Blackberry OS and Symbian OS",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "What significant event took place in mobile app development around 2008?",
+          options: [
+            "A.  The invention of the first smartphone.",
+            "B.  The launch of the iOS App Store and the introduction of the Android OS.",
+            "C.  The development of the first mobile web browser.",
+            "D.  The widespread adoption of 4G networks.",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "Which programming language is associated with the introduction of iOS in 2007?",
+          options: ["A.  Java", "B.  Swift", "C.  Objective-C", "D.  Kotlin"],
+          answer: "C",
+        },
+        {
+          question:
+            "What programming language, known for its cleaner and more efficient code, received official support for Android app development around 2017?",
+          options: ["A.  Swift", "B.  Java", "C.  Kotlin", "D.  Python"],
+          answer: "C",
+        },
+        {
+          question:
+            "Which of the following is NOT mentioned as a cross-platform development tool?",
+          options: [
+            "A.  React Native",
+            "B.  Flutter",
+            "C.  Xamarin",
+            "D.  Android Studio",
+          ],
+          answer: "D",
+        },
+        {
+          question: "What are Progressive Web Apps (PWAs)?",
+          options: [
+            "A.  Native apps specifically designed for high-performance gaming.",
+            "B.  Web apps that offer app-like functionalities, such as offline access and push notifications.",
+            "C.  Hybrid apps that prioritize access to device-specific features.",
+            "D.  Cross-platform apps built using a single codebase.",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "Which of the following is NOT a characteristic of Native Apps?",
+          options: [
+            "A.  Developed specifically for a particular mobile platform (iOS or Android).",
+            "B.  Use platform-specific programming languages like Swift or Kotlin.",
+            "C.  Platform independence – they run on any device with a web browser.",
+            "D.  Offer high performance and a better user experience.",
+          ],
+          answer: "C",
+        },
+        {
+          question: "What is a key advantage of Web Apps over Native Apps?",
+          options: [
+            "A.  Full access to device-specific features like GPS and camera.",
+            "B.  Significantly better performance and a smoother user experience.",
+            "C.  Platform independence, eliminating the need for separate app store approvals.",
+            "D.  Lower development costs and a faster development cycle.",
+          ],
+          answer: "C",
+        },
+        {
+          question: "How are Hybrid Apps different from Native and Web Apps?",
+          options: [
+            "A.  They are developed using a combination of web technologies and native app components.",
+            "B.  They are exclusively designed for wearable devices like smartwatches.",
+            "C.  They prioritize security and are primarily used for financial transactions.",
+            "D.  They are built using a single programming language that works across all platforms.",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "What is the first stage of the Mobile App Development Lifecycle?",
+          options: [
+            "A.  Design: Creating the user interface and user experience.",
+            "B.  Conceptualization: Defining the app's purpose, goals, and target audience.",
+            "C.  Development: Writing the code for the app's functionality.",
+            "D.  Testing: Identifying and fixing bugs in the app.",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "In which stage of the Mobile App Development Lifecycle does User Acceptance Testing (UAT) take place?",
+          options: [
+            "A.  Planning",
+            "B.  Design",
+            "C.  Development",
+            "D.  Testing",
+          ],
+          answer: "D",
+        },
+        {
+          question: "What is the primary goal of cross-platform development?",
+          options: [
+            "A.  To create apps that run exclusively on wearable devices.",
+            "B.  To develop apps for multiple operating systems using a single codebase.",
+            "C.  To design apps with the highest level of security for financial transactions.",
+            "D.  To build apps that solely rely on a device's web browser for functionality.",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "Which of the following is NOT a listed advantage of cross-platform development?",
+          options: [
+            "A.  Increased Development Time",
+            "B.  Wider Reach",
+            "C.  Cost Efficiency",
+            "D.  Faster Development Time",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "Which programming language is used in conjunction with React to build native mobile apps in React Native?",
+          options: ["A.  Java", "B.  Swift", "C.  Python", "D.  JavaScript"],
+          answer: "D",
+        },
+        {
+          question: "Which company is credited with developing React Native?",
+          options: ["A.  Google", "B.  Apple", "C.  Microsoft", "D.  Facebook"],
+          answer: "D",
+        },
+        {
+          question: "When was React Native officially open-sourced?",
+          options: [
+            "A.  January 2015",
+            "B.  March 2015",
+            "C.  February 2015",
+            "D.  September 2015",
+          ],
+          answer: "C",
+        },
+        {
+          question:
+            "What key feature did React Native introduce in September 2015?",
+          options: [
+            "A.  Support for iOS app development.",
+            "B.  Integration with machine learning algorithms.",
+            "C.  The ability to build apps for smart home devices.",
+            "D.  Support for Android app development.",
+          ],
+          answer: "D",
+        },
+        {
+          question:
+            "Which of the following is NOT a listed advantage of using React Native?",
+          options: [
+            "A.  Limited Community and Ecosystem Support",
+            "B.  Cross-Platform Development",
+            "C.  Performance Close to Native Apps",
+            "D.  Live and Hot Reloading",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "Which of these apps is NOT mentioned as a real-world example of React Native in action?",
+          options: [
+            "A.  Twitter",
+            "B.  Instagram",
+            "C.  Walmart",
+            "D.  SoundCloud Pulse",
+          ],
+          answer: "A",
+        },
+        {
+          question:
+            "What JavaScript runtime environment, built on Chrome's V8 JavaScript engine, is required for React Native development?",
+          options: ["A.  Angular", "B.  Vue.js", "C.  Node.js", "D.  jQuery"],
+          answer: "C",
+        },
+        {
+          question:
+            "What are the two main command-line tools used for setting up and developing React Native applications?",
+          options: [
+            "A.  Xcode and Android Studio",
+            "B.  Expo CLI and React Native CLI",
+            "C.  Visual Studio Code and Atom",
+            "D.  Git and GitHub Desktop",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "Which of the following tasks is NOT typically performed by Expo CLI?",
+          options: [
+            "A.  Creating new React Native projects.",
+            "B.  Writing the source code for the app's functionality.",
+            "C.  Building binaries for app store distribution.",
+            "D.  Running the project server and viewing logs.",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "After installing Node.js, which command is used to create a new React Native app with Expo CLI?",
+          options: [
+            "A.  `npm install expo-cli`",
+            "B.  `npx create-react-app my-app`",
+            "C.  `yarn add react-native`",
+            "D.  `npx create-expo-app --template <app-name>`",
+          ],
+          answer: "D",
+        },
+        {
+          question:
+            "Where can you install the Expo client app to test your React Native application?",
+          options: [
+            "A.  On the official Expo website.",
+            "B.  On both the Apple App Store and Google Play Store.",
+            "C.  Through the command line using `npm install expo-client`.",
+            "D.  It comes pre-installed on all iOS and Android devices.",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "Which command is used to start the development server and run your React Native app with Expo CLI?",
+          options: [
+            "A.  `npm start`",
+            "B.  `yarn run dev`",
+            "C.  `expo start`",
+            "D.  `react-native run-android`",
+          ],
+          answer: "C",
+        },
+        {
+          question:
+            "Which two components are used in the provided code example to display 'Hello, World!' in the app?",
+          options: [
+            "A.  `Div` and `Paragraph`",
+            "B.  `View` and `Text`",
+            "C.  `Header` and `Content`",
+            "D.  `Screen` and `Component`",
+          ],
+          answer: "B",
+        },
+        {
+          question:
+            "What happens to the application when you save changes made to the `App.js` file in Expo CLI?",
+          options: [
+            "A.  You need to manually refresh the app to see the changes.",
+            "B.  The application will automatically reload, displaying the changes.",
+            "C.  You have to restart the development server for the changes to take effect.",
+            "D.  The changes will only be visible after you build the app for production.",
+          ],
+          answer: "B",
+        },
+      ];
 
-      let ia = { start: 0, end: questions.length - 1, name: "IA" };
+      let ia = { start: 0, end: questions.length - 1, name: "Lecture 1" };
       // let lect1 = { start: 97, end: 133, name: "Lecture 1" };
       // let lect2 = { start: 134, end: 172, name: "Lecture 2" };
       // let lect3 = { start: 173, end: 197, name: "Lecture 3" };
