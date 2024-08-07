@@ -405,7 +405,7 @@ let lecture2 = [
 
 // let lecture2Length = lecture2.length;
 // console.log(lecture2.length);
-// lecture 2 length = 42
+// lecture 2 length = 38
 
 let lecture4 = [
   {
