@@ -1,11 +1,8 @@
 import { Questions } from "@/models";
 
-export async function addQuestion(username: string, question: string) {
+export async function addQuestion(body: any) {
   try {
-    const newQuestion = new Questions({
-      username,
-      question,
-    });
+    const newQuestion = new Questions(body);
 
     await newQuestion.save();
     return { success: true, message: "Question added successfully" };

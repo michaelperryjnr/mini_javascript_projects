@@ -1,20 +1,11 @@
 "use client";
 import { InputLabel, Input, Button } from "@mui/material";
-import { User } from "@/controllers";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import { connectToDb } from "@/db";
 
 export default function Form() {
   const [formData, setFormData] = useState({ username: "", question: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  useEffect(() => {
-    connectToDb().catch((error) => {
-      toast.error("Failed to connect to the database.");
-      console.error("Database connection error:", error);
-    });
-  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,15 +19,21 @@ export default function Form() {
     setIsSubmitting(true);
 
     try {
-      const result = await User.addQuestion(
-        formData.username,
-        formData.question
-      );
-      if (result.success) {
-        toast.success(result.message);
+      const response = await fetch("/api/questions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast.success("Question submitted successfully!");
         setFormData({ username: "", question: "" });
       } else {
-        toast.error(result.message);
+        toast.error(result.message || "Failed to submit question.");
       }
     } catch (error) {
       toast.error("An error occurred while submitting the question.");
