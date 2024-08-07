@@ -683,5 +683,611 @@ let lecture4 = [
   },
 ];
 
-console.log(lecture4.length);
+// console.log(lecture4.length);
 //27
+
+let lecture6 = [
+  {
+    question:
+      "What is the primary method of user interaction with mobile applications?",
+    options: [
+      "A. Voice commands",
+      "B. Touch gestures",
+      "C. Keyboard input",
+      "D. Mouse movements",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which React Native component provides a pre-built button with platform-specific styling?",
+    options: [
+      "A. `TouchableHighlight`",
+      "B. `TouchableOpacity`",
+      "C. `Button`",
+      "D. `Pressable`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What prop is used to trigger an action when a 'Button' component is pressed?",
+    options: ["A. `onTouch`", "B. `onClick`", "C. `onPress`", "D. `onSubmit`"],
+    answer: "C",
+  },
+  {
+    question:
+      "If you want to create a custom button with more control over its appearance, which group of components would you likely use?",
+    options: [
+      "A. `View`, `Text`, `Image`",
+      "B. `FlatList`, `SectionList`, `ScrollView`",
+      "C. `TouchableHighlight`, `TouchableOpacity`, `TouchableWithoutFeedback`",
+      "D. `TextInput`, `Switch`, `Picker`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which of the following is NOT a Touchable component in React Native?",
+    options: [
+      "A. `TouchableHighlight`",
+      "B. `TouchableNativeEvent`",
+      "C. `TouchableOpacity`",
+      "D. `TouchableWithoutFeedback`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What prop would you use to handle an action when a 'Touchable' component is pressed for an extended period?",
+    options: [
+      "A. `onPressIn`",
+      "B. `onLongPress`",
+      "C. `onPressOut`",
+      "D. `onHold`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the primary benefit of using the 'react-native-gesture-handler' library?",
+    options: [
+      "A. It simplifies the process of creating basic buttons.",
+      "B. It provides more efficient scrolling behavior for long lists.",
+      "C. It enables advanced and performant gesture recognition and handling.",
+      "D. It automatically animates transitions between screens.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which component ensures that gesture handling works correctly at the root level of your component tree when using 'react-native-gesture-handler'?",
+    options: [
+      "A. `GestureHandlerRootView`",
+      "B. `PanGestureHandler`",
+      "C. `ScrollView`",
+      "D. `NavigationContainer`",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "Which 'ScrollView' event prop is triggered when the user starts dragging the scroll view?",
+    options: [
+      "A. `onScroll`",
+      "B. `onScrollBeginDrag`",
+      "C. `onScrollEndDrag`",
+      "D. `onScrollToTop`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the purpose of the 'NavigationContainer' component in React Navigation?",
+    options: [
+      "A. It defines the styling and appearance of the navigation bar.",
+      "B. It manages the navigation state and links the navigator to the app environment.",
+      "C. It handles user input for navigation gestures, such as swiping back.",
+      "D. It displays a list of available screens in a sidebar menu.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which prop within a 'Stack.Screen' component refers to the React Native component that will be rendered for that screen?",
+    options: ["A. `screen`", "B. `view`", "C. `component`", "D. `render`"],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the role of the 'navigation' prop that is passed to screen components in React Navigation?",
+    options: [
+      "A. It provides styling information for the screen.",
+      "B. It contains data passed from the previous screen.",
+      "C. It gives access to methods for navigating to other screens.",
+      "D. It displays a loading indicator during screen transitions.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which type of navigator would be most suitable for an app where screens are arranged hierarchically, with each new screen pushed onto a stack?",
+    options: [
+      "A. Stack Navigator",
+      "B. Bottom Tab Navigator",
+      "C. Drawer Navigator",
+      "D. Material Top Tab Navigator",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "Which navigator provides a tab bar at the bottom of the screen, allowing users to switch between different sections of the app?",
+    options: [
+      "A. Stack Navigator",
+      "B. Bottom Tab Navigator",
+      "C. Drawer Navigator",
+      "D. Material Top Tab Navigator",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What type of navigator is often used to implement a sidebar menu that can be opened and closed with a swipe gesture?",
+    options: [
+      "A. Stack Navigator",
+      "B. Bottom Tab Navigator",
+      "C. Drawer Navigator",
+      "D. Material Top Tab Navigator",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which navigator places a Material Design-themed tab bar at the top of the screen, enabling horizontal swiping between tabs?",
+    options: [
+      "A. Stack Navigator",
+      "B. Bottom Tab Navigator",
+      "C. Drawer Navigator",
+      "D. Material Top Tab Navigator",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What prop is used to specify default options for screens within a navigator component?",
+    options: [
+      "A. `screenConfig`",
+      "B. `defaultOptions`",
+      "C. `screenOptions`",
+      "D. `navigatorOptions`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which 'Stack.Screen' option controls whether transition animations are enabled when pushing or popping screens?",
+    options: [
+      "A. `transitionEnabled`",
+      "B. `animation`",
+      "C. `animateTransitions`",
+      "D. `animationEnabled`",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What is the purpose of the 'drawerLabel' option for a 'Drawer.Screen' component?",
+    options: [
+      "A. It sets the background color of the drawer.",
+      "B. It defines the text or component displayed for the drawer item.",
+      "C. It controls the animation speed when opening the drawer.",
+      "D. It specifies the width of the drawer when open.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which 'Bottom Tab.Screen' option determines whether the tab label is displayed below or beside the tab icon?",
+    options: [
+      "A. `tabBarLabelPlacement`",
+      "B. `tabBarLabelAlignment`",
+      "C. `tabBarLabelPosition`",
+      "D. `tabBarIconLocation`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the primary method for passing data to a route during navigation in React Navigation?",
+    options: [
+      "A. Using query parameters in the route URL.",
+      "B. Passing an object as a second argument to the 'navigation.navigate' function.",
+      "C. Storing data in a global state management library.",
+      "D. Using the browser's local storage.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "How do you access the parameters passed to a route within a screen component?",
+    options: [
+      "A. Through the 'params' property of the 'route' object.",
+      "B. Using the 'navigation.getParams()' method.",
+      "C. By accessing the 'props.navigation.params' object.",
+      "D. Through the 'data' property of the screen component's props.",
+    ],
+    answer: "A",
+  },
+];
+
+// console.log(lecture6.length);
+//22
+
+let lecture8 = [
+  {
+    question:
+      "Why do React Native applications often need local storage mechanisms?",
+    options: [
+      "A. To improve network connectivity.",
+      "B. To enhance app security.",
+      "C. To store user credentials for login purposes.",
+      "D. To persist data across app restarts and enable offline functionality.",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "Which of the following statements about local storage in React Native is NOT true?",
+    options: [
+      "A. React Native framework itself does not include built-in data storage APIs.",
+      "B. Local storage APIs are available through external libraries.",
+      "C. Local storage is primarily used for storing large multimedia files like images and videos.",
+      "D. Expo framework provides some libraries for local storage.",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What is AsyncStorage in React Native?",
+    options: [
+      "A. A secure storage mechanism for sensitive data.",
+      "B. A library for interacting with remote databases.",
+      "C. An asynchronous, unencrypted, persistent, key-value storage API.",
+      "D. A file system API for accessing local files and directories.",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What type of data can be directly stored in AsyncStorage?",
+    options: [
+      "A. Only strings",
+      "B. Objects and arrays",
+      "C. Images and binary data",
+      "D. Any JavaScript data type",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "What is the purpose of using `JSON.stringify()` and `JSON.parse()` with AsyncStorage?",
+    options: [
+      "A. To encrypt and decrypt data for security.",
+      "B. To store and retrieve complex objects as strings.",
+      "C. To compress and decompress data to save space.",
+      "D. To convert data between different character encodings.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which Expo library provides a way to encrypt and securely store key-value pairs on the device?",
+    options: [
+      "A. `expo-file-system`",
+      "B. `@react-native-async-storage/async-storage`",
+      "C. `expo-secure-store`",
+      "D. `expo-sqlite`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "On which platform is Expo SecureStore NOT compatible with devices running version 5 or lower?",
+    options: [
+      "A. iOS",
+      "B. Android",
+      "C. Both iOS and Android",
+      "D. Neither iOS nor Android",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the approximate size limit for storing a single value in Expo SecureStore?",
+    options: [
+      "A. 2 KB (2048 bytes)",
+      "B. 2 MB (2048 kilobytes)",
+      "C. 20 KB (20480 bytes)",
+      "D. There is no size limit.",
+    ],
+    answer: "A",
+  },
+  {
+    question: "What is the primary function of the Expo FileSystem API?",
+    options: [
+      "A. Securely storing sensitive user data.",
+      "B. Managing network requests and handling responses.",
+      "C. Providing access to the device's local file system for reading and writing files.",
+      "D. Displaying interactive maps and location data within the app.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which of the following directories does an app have read-only access to using Expo FileSystem?",
+    options: [
+      "A. `FileSystem.documentDirectory`",
+      "B. `FileSystem.cacheDirectory`",
+      "C. `FileSystem.bundleDirectory`",
+      "D. All of the above",
+    ],
+    answer: "C",
+  },
+  {
+    question: "Which Expo FileSystem API is used to create a new directory?",
+    options: [
+      "A. `FileSystem.createDirectoryAsync()`",
+      "B. `FileSystem.makeDirectory()`",
+      "C. `FileSystem.newDirectoryAsync()`",
+      "D. `FileSystem.makeDirectoryAsync()`",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What encoding type is commonly used with Expo FileSystem for reading and writing text files?",
+    options: [
+      "A. `FileSystem.EncodingType.ASCII`",
+      "B. `FileSystem.EncodingType.UTF8`",
+      "C. `FileSystem.EncodingType.BASE64`",
+      "D. `FileSystem.EncodingType.BINARY`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which Expo SQLite API is used to open a connection to an existing database or create a new one if it doesn't exist?",
+    options: [
+      "A. `SQLite.connectAsync()`",
+      "B. `SQLite.openDatabase()`",
+      "C. `SQLite.createDatabaseAsync()`",
+      "D. `SQLite.openDatabaseAsync()`",
+    ],
+    answer: "D",
+  },
+  {
+    question: "What is the purpose of the `execAsync()` method in Expo SQLite?",
+    options: [
+      "A. To execute a single SQL query and retrieve the first matching row.",
+      "B. To execute multiple SQL queries as a batch.",
+      "C. To prepare a SQL statement for later execution.",
+      "D. To close the connection to the database.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which Expo SQLite API would you use to insert, update, or delete data in a database?",
+    options: [
+      "A. `db.queryAsync()`",
+      "B. `db.runAsync()`",
+      "C. `db.getFirstAsync()`",
+      "D. `db.getAllAsync()`",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the benefit of using prepared statements with Expo SQLite?",
+    options: [
+      "A. They improve query performance for frequently executed statements.",
+      "B. They simplify error handling for database operations.",
+      "C. They reduce the need for data serialization.",
+      "D. They enhance data security by preventing SQL injection vulnerabilities.",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "Which Expo SQLite API retrieves all rows from a query result as an array of objects?",
+    options: [
+      "A. `db.getRowsAsync()`",
+      "B. `db.queryAllAsync()`",
+      "C. `db.getAllAsync()`",
+      "D. `db.fetchAllAsync()`",
+    ],
+    answer: "C",
+  },
+];
+
+// console.log(lecture8.length);
+// 17
+
+let lecture10 = [
+  {
+    question:
+      "What is the primary reason for requiring permissions in mobile applications?",
+    options: [
+      "A. To track user activity for advertising purposes.",
+      "B. To enhance app functionality and provide a richer user experience.",
+      "C. To protect user privacy and prevent unauthorized access to sensitive data.",
+      "D. To enable communication between different apps on the device.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "In Android development with Expo, how are permissions typically configured?",
+    options: [
+      "A. By modifying the `AndroidManifest.xml` file directly.",
+      "B. Using the `permissions` and `blockedPermissions` keys in the `android` section of `app.json`.",
+      "C. Through a dedicated permissions settings screen within the app.",
+      "D. By sending requests to a remote permissions server.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the purpose of using the `blockedPermissions` property in the `android` section of `app.json`?",
+    options: [
+      "A. To grant specific permissions to the app.",
+      "B. To prevent the app from accessing certain device features even if requested by libraries.",
+      "C. To display a custom permission request dialog to the user.",
+      "D. To check the status of previously granted permissions.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which of the following is NOT a valid Android permission string?",
+    options: [
+      "A. `android.permission.READ_CONTACTS`",
+      "B. `android.permission.ACCESS_FINE_LOCATION`",
+      "C. `android.permission.SEND_EMAIL`",
+      "D. `android.permission.RECORD_AUDIO`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "In iOS development with Expo, what is the primary mechanism for setting permission messages displayed to the user?",
+    options: [
+      "A. Modifying the `Info.plist` file directly.",
+      "B. Using the `permissions` key in the `ios` section of `app.json`.",
+      "C. Calling specific permission request methods in the app code.",
+      "D. Using the `infoPlist` key within the `ios` section of `app.json`.",
+    ],
+    answer: "D",
+  },
+  {
+    question: "What is a config plugin in Expo?",
+    options: [
+      "A. A tool for managing user interface components.",
+      "B. A system for extending app configuration and customizing the native project build process.",
+      "C. A library for handling network requests and responses.",
+      "D. A way to store data locally on the device.",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What is the main purpose of the Expo SDK?",
+    options: [
+      "A. To provide a set of pre-built UI components for faster app development.",
+      "B. To offer access to device and system functionalities through JavaScript APIs.",
+      "C. To manage the app's navigation structure and screen transitions.",
+      "D. To handle user authentication and authorization.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which Expo SDK package allows you to access and manage the user's contacts?",
+    options: [
+      "A. `expo-camera`",
+      "B. `expo-location`",
+      "C. `expo-contacts`",
+      "D. `expo-media-library`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the function of the `MediaLibrary.usePermissions()` hook in Expo Media Library?",
+    options: [
+      "A. To display a list of media files from the device's library.",
+      "B. To play audio or video files from the media library.",
+      "C. To request and manage permissions for accessing the user's media library.",
+      "D. To create new albums and add media files to them.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which Expo component provides a live preview of the device's camera feed?",
+    options: [
+      "A. `CameraRoll`",
+      "B. `ImagePicker`",
+      "C. `CameraView`",
+      "D. `Video`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the primary purpose of push notifications in mobile applications?",
+    options: [
+      "A. To send emails to users with important updates.",
+      "B. To display in-app advertisements to generate revenue.",
+      "C. To establish a real-time communication channel between the app and users even when the app is not actively in use.",
+      "D. To track user location for personalized content recommendations.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What are the two main types of push notifications in React Native?",
+    options: [
+      "A. SMS notifications and email notifications",
+      "B. Foreground notifications and background notifications",
+      "C. Local notifications and remote notifications",
+      "D. System notifications and app notifications",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which push notification service is primarily associated with Android devices?",
+    options: [
+      "A. APNs (Apple Push Notification service)",
+      "B. FCM (Firebase Cloud Messaging)",
+      "C. GCM (Google Cloud Messaging)",
+      "D. SNS (Amazon Simple Notification Service)",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the role of a device token in push notification architecture?",
+    options: [
+      "A. It authenticates the user and grants access to the app.",
+      "B. It stores the notification content to be displayed.",
+      "C. It serves as a unique identifier for addressing notifications to a specific device.",
+      "D. It encrypts the notification data for security purposes.",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which Expo package simplifies the implementation of push notifications in React Native?",
+    options: [
+      "A. `expo-firebase-messaging`",
+      "B. `react-native-push-notification`",
+      "C. `expo-notifications`",
+      "D. `expo-messaging`",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is a key advantage of using Expo Notifications compared to other push notification solutions?",
+    options: [
+      "A. It requires less configuration and handles both local and remote notifications.",
+      "B. It supports a wider range of notification customization options.",
+      "C. It offers significantly faster notification delivery speeds.",
+      "D. It guarantees higher notification delivery rates.",
+    ],
+    answer: "A",
+  },
+];
+
+// console.log(lecture10.length);
+//16
