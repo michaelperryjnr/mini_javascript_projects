@@ -25,7 +25,7 @@ const questions = [
   {
     question: "A full binary tree of height n has _________________ leaves.",
     options: ["A. 2n", "B. 3n", "C. 2^n", "D. 2^(n+1)", "E. 3^(n+1)"],
-    answer: "D",
+    answer: "A",
   },
   {
     question:
@@ -1947,75 +1947,3 @@ const questions = [
     answer: "B",
   },
 ];
-
-// questions.forEach((value, index) => {
-//   if (
-//     value.question
-//       .toLowerCase()
-//       .includes(
-//         "is the process of finding a designated target element within a group of items."
-//       )
-//   ) {
-//     console.log(index, value.question);
-//   }
-// });
-
-// questions.forEach((value, index) => {
-//   if (
-//     value.question
-//       .toLowerCase()
-//       .includes(
-//         "is the process of arranging a group of items into a defined order"
-//       )
-//   ) {
-//     console.log(index, value.question);
-//   }
-// });
-
-// questions.forEach((value, index) => {
-//   if (
-//     value.question
-//       .toLowerCase()
-//       .includes("a method that calls itself is a __________________ method")
-//   ) {
-//     console.log(index, value.question);
-//   }
-// });
-
-// questions.forEach((value, index) => {
-//   if (value.question.toLowerCase().includes("an iterator is")) {
-//     console.log(index, value.question);
-//   }
-// });
-
-// questions.forEach((value, index) => {
-//   if (
-//     value.question
-//       .toLowerCase()
-//       .includes(
-//         "a(n) _____________________ is a list collection has elements that are ordered by a characteristic of the elements."
-//       )
-//   ) {
-//     console.log(index, value.question);
-//   }
-// });
-
-// questions.forEach((value, index) => {
-//   if (
-//     value.question
-//       .toLowerCase()
-//       .includes(
-//         "a user has designed an interface for a binary tree abstract data type (ADT).  Which method below requires knowledge of the purpose and organization of the binary tree in order to design an implementation?"
-//       )
-//   ) {
-//     console.log(index, value.question);
-//   } else {
-//     console.log("not found");
-//   }
-// });
-
-// questions.forEach((value, index) => {
-//   if (value.question.toLowerCase().includes("divide and conquer")) {
-//     console.log(index, value.question);
-//   }
-// });

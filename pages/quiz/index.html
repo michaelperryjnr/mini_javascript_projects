@@ -2,17 +2,25 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        window.va =
+            window.va ||
+            function () {
+                (window.vaq = window.vaq || []).push(arguments);
+            };
     </script>
     <script defer src="../_vercel/speed-insights/script.js"></script>
     <script defer src="../_vercel/insights/script.js"></script>
-    <title>DCIT 204 Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon" />
+    <title>DCIT 204 MOCK Quiz</title>
     <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Poppins", Arial, Helvetica, sans-serif;
             max-width: 800px;
             margin: 20px auto;
             padding: 10px;
@@ -20,6 +28,28 @@
 
         .question {
             margin-bottom: 20px;
+        }
+
+        .hint {
+            height: 20px;
+            width: 20px;
+            position: absolute;
+        }
+
+        #hinting {
+            font-size: 1.5rem;
+        }
+
+        #hinting:hover {
+            cursor: pointer;
+        }
+
+        #removeHinting {
+            font-size: 1.5rem;
+        }
+
+        #removeHinting:hover {
+            cursor: pointer;
         }
 
         .result {
@@ -59,11 +89,32 @@
         }
 
         #username {
-            border: solid;
+            border: none;
             border-radius: 0.5rem;
-            border-width: 0.1rem;
-            padding: 0.8rem 0.8rem;
+            padding: 1.1rem;
+            width: 80%;
             border-color: rgb(60, 101, 143);
+            outline: none;
+        }
+
+        .lecturesDialog {
+            z-index: 10000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lecturesDialog>div {
+            background: white;
+            padding: 4rem 4rem;
+            border-radius: 10px;
+            text-align: center;
         }
 
         #usernameDialog {
@@ -79,20 +130,69 @@
         }
 
         #usernameDialog>div {
-            background: white;
+            background: #2d4059;
             padding: 4rem 4rem;
             border-radius: 10px;
             text-align: center;
         }
 
+        #feedbackChoice {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #feedbackChoice>div {
+            background: #53aca8;
+            padding: 8rem 8rem;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+
+        #scoreContainer {
+            z-index: 10000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #scoreContainer>div {
+            background: #434e52;
+            padding: 5rem 5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
         #start-btn {
-            padding: 0.8rem 0.8rem;
+            padding: 1.1rem 1.1rem;
             border-radius: 0.8rem;
             border-width: 0.1rem;
-            background-color: rgb(66, 137, 195);
+            background: #6643b5;
             color: white;
-            border: solid;
             font-weight: bold;
+            border: none;
+        }
+
+        #see {
+            padding: 1.1rem 1.1rem;
+            border-radius: 0.8rem;
+            border-width: 0.1rem;
+            color: white;
+            font-weight: bold;
+            border: none;
         }
 
         .btn {
@@ -101,7 +201,7 @@
             border-width: 0.1rem;
             background-color: rgb(66, 137, 195);
             color: white;
-            border: solid;
+            border: none;
             font-weight: bold;
         }
 
@@ -109,10 +209,21 @@
             opacity: 0.2;
         }
 
+        .usr-score {
+            font-weight: bold;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: start;
+            gap: 0.8rem;
+            color: black;
+        }
+
         #usr-h2 {
-            font-weight: bolder;
-            font-size: 2rem;
-            color: rgb(66, 137, 195);
+            font-weight: bold;
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 0;
         }
 
         #container-1 {
@@ -126,13 +237,31 @@
         #quiz-h1 {
             font-weight: bolder;
             font-size: 2rem;
-            color: rgb(66, 137, 195);
+            color: #01252a;
+            margin-bottom: 0;
         }
 
         #result {
             color: green;
             font-weight: bold;
             font-size: 1.5rem;
+        }
+
+        #lectureCheckboxes {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: start;
+        }
+
+        #lectureCheckboxes {
+            padding: 0.8rem 0.8rem;
+            border-radius: 0.8rem;
+            border-width: 0.1rem;
+            background-color: rgba(30, 74, 109, 0.84);
+            color: white;
+            border: none;
+            font-weight: bold;
         }
 
         .feedbackContainer {
@@ -147,88 +276,297 @@
         #quizContainer {
             width: 85vw;
         }
+
+        #quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 20px;
+        }
+
+        #quiz-options label {
+            display: flex;
+            align-items: center;
+        }
+
+        #quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        #startSelectedLectures {
+            margin-top: 1.2rem;
+        }
+
+        #usernameDiv {
+            margin-top: 1rem;
+        }
+
+        #lectureSelection {
+            margin-top: 20px;
+            display: none;
+            /* Initially hide lecture selection */
+        }
+
+        #lectureSelection label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .btns {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        #question-count-container {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+            cursor: default;
+            margin-top: 0;
+            padding: 0.8rem 0.8rem;
+            border-radius: 0.8rem;
+            border-width: 0.1rem;
+            background: #430f58;
+            color: white;
+            border: solid;
+            font-weight: bold;
+        }
+
+        .submit {
+            background: #2c2955;
+        }
+
+        .select {
+            background: #6643b5;
+        }
+
+        .seeQNA {
+            background: #430f58;
+        }
+
+        .green {
+            background: #055049;
+        }
+
+        .start {
+            background: #6643b5;
+        }
+
+        .save {
+            background: #069a8e;
+        }
+
+        .next {
+            background: #7cbd1e;
+        }
+
+        .back {
+            background: #434e52;
+        }
+
+        #selectBox {
+            background: #ecce6d;
+            padding: 4rem 4rem;
+        }
+
+        .btnSize {
+            padding: 1.2rem 1.6rem;
+            font-size: 1.4rem;
+        }
+
+        .resetRed {
+            background: #84253e;
+        }
+
+        #resetButton:disabled {
+            background: #84253e71;
+        }
+
+        #showFeedOptions {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        #usr-h4 {
+            margin-top: 0;
+            font-weight: 500;
+            color: rgb(217, 85, 85);
+            font-size: 0.9rem;
+        }
+
+        #scoreShowContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .usr-h2 {
+            margin-top: 0;
+        }
+
+        .logo {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 
 <body>
     <div id="usernameDialog">
         <div>
-            <h2 id="usr-h2">Enter your username</h2>
-            <input type="text" id="username" placeholder="Username" required>
-            <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
-            <button class="btn" id="see" onclick="showQA()">See Q & A</button>
+            <img id="logo" src="../../assets/images/bbf-logo.svg" alt="bbf labs logo" />
+            <h2 id="usr-h2" class="usr-h2">Choose a username</h2>
+            <h4 id="usr-h4">
+                A username is required to access anything on the page
+            </h4>
+            <input type="text" id="username" placeholder="Username" required />
+            <div id="usernameDiv">
+                <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
+                <button class="btn seeQNA" id="see" onclick="showQA()">
+                    See Q & A
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="lectureSelectionDialog" class="lecturesDialog" style="display: none">
+        <div id="selectBox">
+            <h2 id="usr-h2">Select Lectures</h2>
+            <div id="lectureCheckboxes"></div>
+            <button id="startSelectedLectures" class="btn start" onclick="startSelectedLectures()">
+                Start Quiz
+            </button>
         </div>
     </div>
 
     <div id="container-1">
-        <div id="quizContainer">
-            <h1 id="quiz-h1">DCIT 204 Quiz: A BBF Labs Initiative</h1>
+        <div id="scoreContainer" style="display: none">
+            <div class="score-div">
+                <img id="logo" src="../../assets/images/bbf-logo.svg" alt="bbf labs logo" />
+                <p id="usr-h2">Scores</p>
+                <div id="scoreShowContainer"></div>
+                <div id="showFeedOptions">
+                    <button class="btn green btnSize" id="yesButton" onclick="previousQuestionFromFeedBack()">
+                        Back
+                    </button>
+                    <button class="btn voilet btnSize" id="noButton" onclick="retakeQuiz()">
+                        Retake
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="quizContainer" style="display: none">
+            <h1 id="quiz-h1">DCIT 204 Mock Quiz: A BBF Labs Initiative</h1>
+            <div id="question-count-container">
+                <div class="" style="display: flex; align-items: center; gap: 5px">
+                    <!-- add hinting icon -->
+                    <i class="fa-regular fa-lightbulb" id="hinting" title="Get hint with emoji expressions"></i>
+                    <i class="fa-regular fa-ban" id="removeHinting" title="remove hint on this question"></i>
+                    <button id="scoresBtn" class="btn next" onclick="checkScores()">
+                        View Scores
+                    </button>
+                </div>
+                <div id="question-count"></div>
+            </div>
+            <!-- <div id="quiz-options">
+                <label>
+                    <input type="radio" name="quizType" value="all" checked>
+                    All Lectures
+                </label>
+                <label>
+                    <input type="radio" name="quizType" value="custom">
+                    Select Lectures
+                </label>
+            </div> -->
+            <div id="lectureSelection">
+            </div>
             <form id="quizForm">
-                <!-- Quiz questions will be generated here -->
             </form>
-            <div class="button-group">
-                <div>
-                    <button class="btn" id="backButton" onclick="previousQuestion()">Back</button>
-                    <button class="btn" onclick="saveAnswer()">Save</button>
-                    <button class="btn" id="nextButton" onclick="nextQuestion()">Next</button>
+            <div class="btns">
+                <div class="button-group">
+                    <div>
+                        <button class="btn back" id="backButton" onclick="previousQuestion()">
+                            Back
+                        </button>
+                        <button class="btn save" onclick="saveAnswer()">Save</button>
+                        <button class="btn next" id="nextButton" onclick="nextQuestion()">
+                            Next
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn seeQNA" onclick="showQA()">Q & A</button>
+                        <button id="submit-btn" class="btn submit" onclick="checkAnswers()">
+                            Submit
+                        </button>
+                    </div>
                 </div>
 
                 <div>
-                    <button class="btn" onclick="showQA()">Q & A</button>
-                    <button class="btn" onclick="checkAnswers()">Submit</button>
+                    <button id="selectLectBtn" class="btn select" onclick="showLectureSelection()">
+                        Lectures
+                    </button>
+                    <button class="btn resetRed" id="resetButton" onclick="resetQuiz()">
+                        Reset Quiz
+                    </button>
                 </div>
-
             </div>
             <div id="result" class="result"></div>
         </div>
+        <div class="usr-score" id="user-answers"></div>
 
-        <div id="feedbackContainer" style="overflow: scroll;" class="feedback">
-
+        <div id="feedbackContainer" class="feedback">
             <form id="feedbackForm">
                 <!-- Quiz questions with answers will be displayed here -->
             </form>
-            <!-- <div class="button-group" id="retakeGroup">
-                <button class="btn" id="feedbackBackButton" onclick="previousFeedback()">Back</button>
-                <button class="btn" id="feedbackNextButton" onclick="nextFeedback()">Next</button>
-                <button class="btn" id="retakeQuizButton" onclick="retakeQuiz()">Retake Quiz</button>
-            </div> -->
         </div>
-        <div class="button-group" id="retakeGroup" style="display: none;">
-            <button class="btn" id="feedbackBackButton" onclick="previousQuestionFromFeedBack()">Back to Quiz</button>
-            <button class="btn" id="feedbackNextButton" onclick="nextFeedback()">Next</button>
-            <button class="btn" id="retakeQuizButton" onclick="retakeQuiz()">Retake Quiz</button>
+        <div class="button-group" id="retakeGroup" style="display: none">
+            <button class="btn backk" id="feedbackBackButton" onclick="previousQuestionFromFeedBack()">
+                Back to Quiz
+            </button>
+            <button class="btn next" id="feedbackNextButton" onclick="nextFeedback()">
+                Next
+            </button>
+            <button class="btn select" id="retakeQuizButton" onclick="retakeQuiz()">
+                Retake Quiz
+            </button>
         </div>
         <div id="result2" class="result"></div>
-        <div id="feedbackChoice" style="display: none;">
-            <p>Show feedback?</p>
-            <button class="btn" id="yesButton" onclick="showFeedback()">Yes</button>
-            <button class="btn" id="noButton" onclick="hideFeedback()">No</button>
+        <div id="feedbackChoice" style="display: none">
+            <div>
+                <img id="logo" src="../assets/images/bbf-logo.svg" alt="bbf labs logo" width="70px" />
+                <p id="usr-h2" class="usr-h2" style="margin-bottom: 1rem">
+                    Show feedback?
+                </p>
+                <div id="showFeedOptions">
+                    <button class="btn green btnSize" id="yesButton" onclick="showFeedback()">
+                        Yes
+                    </button>
+                    <button class="btn voilet btnSize" id="noButton" onclick="hideFeedback()">
+                        No
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        const questions = [
+        let questions = [
             {
-                question: "A user has designed an interface for a binary tree abstract data type (ADT). Which method below requires knowledge of the purpose and organization of the binary tree in order to design an implementation?",
-                options: [
-                    "A. find",
-                    "B. add",
-                    "C. contains",
-                    "D. isEmpty",
-                    "E. size"
-                ],
-                answer: "B"
+                question:
+                    "A user has designed an interface for a binary tree abstract data type (ADT). Which method below requires knowledge of the purpose and organization of the binary tree in order to design an implementation?",
+                options: ["A. find", "B. add", "C. contains", "D. isEmpty", "E. size"],
+                answer: "B",
             },
             {
-                question: "A tree in which every node can have at most n children is referred to as a __________________ tree.",
-                options: [
-                    "A. binary",
-                    "B. ternary",
-                    "C. n-ary",
-                    "D. general",
-                    "E. graph"
-                ],
-                answer: "C"
+                question:
+                    "A tree in which every node can have at most n children is referred to as a __________________ tree.",
+                options: ["A. binary", "B. ternary", "C. n-ary", "D. general", "E. graph"],
+                answer: "C",
             },
             {
                 question: "Which of the following best describes a balanced tree?",
@@ -237,64 +575,62 @@
                     "B. A balanced tree has no nodes at exactly the same level.",
                     "C. A balanced tree has half of the nodes at one level and half the nodes at another level.",
                     "D. A balanced tree has all of the nodes within one level of each other.",
-                    "E. none of the above correctly describe a balanced tree."
+                    "E. none of the above correctly describe a balanced tree.",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
                 question: "A full binary tree of height n has _________________ leaves.",
-                options: [
-                    "A. 2n",
-                    "B. 3n",
-                    "C. 2^n",
-                    "D. 2^(n+1)",
-                    "E. 3^(n+1)"
-                ],
-                answer: "A"
+                options: ["A. 2n", "B. 3n", "C. 2^n", "D. 2^(n+1)", "E. 3^(n+1)"],
+                answer: "A",
             },
             {
-                question: "Which of the following tree traversals traverses the subtrees from left to right and then visits the root?",
+                question:
+                    "Which of the following tree traversals traverses the subtrees from left to right and then visits the root?",
                 options: [
                     "A. Preorder",
                     "B. Inorder",
                     "C. Postorder",
                     "D. Level-order",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
-                question: "Which of the following traversals is not easily implemented recursively?",
+                question:
+                    "Which of the following traversals is not easily implemented recursively?",
                 options: [
                     "A. Preorder",
                     "B. Inorder",
                     "C. Postorder",
                     "D. Level-order",
-                    "E. all of the above are easily implemented recursively"
+                    "E. all of the above are easily implemented recursively",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
-                question: "Which of the following traversals is implemented using a queue as a supporting data structure?",
+                question:
+                    "Which of the following traversals is implemented using a queue as a supporting data structure?",
                 options: [
                     "A. Preorder",
                     "B. Inorder",
                     "C. Postorder",
                     "D. Level-order",
-                    "E. none of the above are implemented using a queue"
+                    "E. none of the above are implemented using a queue",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
-                question: "One method of implementing a tree using an array involves storing the child of the element at the index n in the array at indexes ______________________________ .",
+                question:
+                    "One method of implementing a tree using an array involves storing the child of the element at the index n in the array at indexes ______________________________ .",
                 options: [
                     "A. n+1 and n+2",
                     "B. 2n and 22n",
                     "C. 2n+1 and 2n+2",
                     "D. n-1 and n-2",
-                    "E. none of the above will work"
+                    "E. none of the above will work",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
                 question: "What property of the tree does its order specify?",
@@ -303,53 +639,57 @@
                     "B. maximum number of leaves",
                     "C. maximum number of internal nodes",
                     "D. maximum number of edges",
-                    "E. maximum number of children per node"
+                    "E. maximum number of children per node",
                 ],
-                answer: "E"
+                answer: "E",
             },
             {
-                question: "A balanced binary tree with m elements will have height ______________ .",
+                question:
+                    "A balanced binary tree with m elements will have height ______________ .",
                 options: [
                     "A. 2m",
                     "B. 2^m",
                     "C. logm 2",
                     "D. log2 m",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
-                question: "A _________________ can be used as the basis for an expert system.",
+                question:
+                    "A _________________ can be used as the basis for an expert system.",
                 options: [
                     "A. queue",
                     "B. stack",
                     "C. ternary tree",
                     "D. 4-ary tree",
-                    "E. decision tree"
+                    "E. decision tree",
                 ],
-                answer: "E"
+                answer: "E",
             },
             {
-                question: "Which of the following traversals visits the root before visiting the left and right subtrees?",
+                question:
+                    "Which of the following traversals visits the root before visiting the left and right subtrees?",
                 options: [
                     "A. Preorder",
                     "B. Inorder",
                     "C. Postorder",
                     "D. Level-order",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "A"
+                answer: "A",
             },
             {
-                question: "The find method to locate an element in a binary tree can be implemented",
+                question:
+                    "The find method to locate an element in a binary tree can be implemented",
                 options: [
                     "A. iteratively",
                     "B. recursively",
                     "C. independently",
                     "D. both A. and B. are correct",
-                    "E. all of A., B., and C. are correct"
+                    "E. all of A., B., and C. are correct",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
                 question: "Which of the following traversals never visits the root?",
@@ -358,145 +698,141 @@
                     "B. Inorder",
                     "C. Postorder",
                     "D. Level-order",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "E"
+                answer: "E",
             },
             {
-                question: "Which of the following traversals visits the nodes that are closer to the top of the tree before visiting those that are closer to the bottom?",
+                question:
+                    "Which of the following traversals visits the nodes that are closer to the top of the tree before visiting those that are closer to the bottom?",
                 options: [
                     "A. Preorder",
                     "B. Inorder",
                     "C. Postorder",
                     "D. Level-order",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
-                question: "In a tree, a node that does not have any children is called a leaf.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "In a tree, a node that does not have any children is called a leaf.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
                 question: "The height of a tree and the depth of a tree are different.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "A binary tree is a tree in which any node can have at most two children.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "A binary tree is a tree in which any node can have at most two children.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "Since trees are nonlinear structures, it is impossible to implement them using an array.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "Since trees are nonlinear structures, it is impossible to implement them using an array.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "The methods in the Binary Tree ADT all return references to elements.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "The methods in the Binary Tree ADT all return references to elements.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "There are four basic ways to traverse a tree, and they are all implemented recursively.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "There are four basic ways to traverse a tree, and they are all implemented recursively.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "A decision tree cannot be used as the basis for an expert system.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "A decision tree cannot be used as the basis for an expert system.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "In an inorder traversal, the elements of a tree are visited in order of their distance from the root.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "In an inorder traversal, the elements of a tree are visited in order of their distance from the root.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "In a postorder traversal, the root is the last element visited in the tree.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "In a postorder traversal, the root is the last element visited in the tree.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "Recursive methods that work with binary trees are often implemented with a private support method.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "Recursive methods that work with binary trees are often implemented with a private support method.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
                 question:
                     "________ is the process of finding a designated target element within a group of items.",
-                options: ["A. Sorting", "B. Searching", "C. Recursing", "D. Helping", "E. None of the above"],
+                options: [
+                    "A. Sorting",
+                    "B. Searching",
+                    "C. Recursing",
+                    "D. Helping",
+                    "E. None of the above",
+                ],
                 answer: "B",
-            }, {
+            },
+            {
                 question:
                     "As the number of items in a search pool grows, the number of comparisons required to search _______________ .",
-                options: ["A. increases", "B. decreases",
+                options: [
+                    "A. increases",
+                    "B. decreases",
                     "C. stays the same",
                     "D. goes to 0",
-                    "E.none of the above"],
+                    "E.none of the above",
+                ],
                 answer: "A",
             },
             {
-                question: "A _______________ search is more efficient than a linear search.",
+                question:
+                    "A _______________ search is more efficient than a linear search.",
 
-                options: ["A. binary",
+                options: [
+                    "A. binary",
                     "B. selection",
                     "C. insertion",
                     "D. bubble",
-                    "E. none of the above"],
-                answer: "A"
+                    "E. none of the above",
+                ],
+                answer: "A",
             },
             {
                 question: " In a binary search, _______________________________ .",
 
-                options: ["A. it is assumed that all of the elements are integers",
+                options: [
+                    "A. it is assumed that all of the elements are integers",
                     "B. it is assumed that all of the elements are Strings",
                     "C. it is assumed that the search pool is small",
                     "D. it is assumed that the search pool is ordered",
-                    "E. it is assumed that the search pool is large"],
-                answer: "D"
+                    "E. it is assumed that the search pool is large",
+                ],
+                answer: "D",
             },
             {
-                question: "_____________________ is the process of arranging a group of items into a defined order.",
+                question:
+                    "_____________________ is the process of arranging a group of items into a defined order.",
                 options: [
                     "A. Searching",
                     "B. Sorting",
                     "C. Selecting",
                     "D. Helping",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "B"
+                answer: "B",
             },
             {
                 question: "Which of the following is not a sorting algorithm?",
@@ -505,9 +841,9 @@
                     "B. Quick sort",
                     "C. Merge sort",
                     "D. Selection sort",
-                    "E. all of the above are sorting algorithms"
+                    "E. all of the above are sorting algorithms",
                 ],
-                answer: "E"
+                answer: "E",
             },
             {
                 question: "Which data structures are used by a radix sort?",
@@ -516,53 +852,57 @@
                     "B. queues",
                     "C. heaps",
                     "D. both A. and B. are correct",
-                    "E. A., B., and C. are all correct"
+                    "E. A., B., and C. are all correct",
                 ],
-                answer: "B"
+                answer: "B",
             },
             {
-                question: "The ___________________ algorithm sorts values by repeatedly comparing neighboring elements in the list and swapping their position if they are not in order relative to each other.",
+                question:
+                    "The ___________________ algorithm sorts values by repeatedly comparing neighboring elements in the list and swapping their position if they are not in order relative to each other.",
                 options: [
                     "A. insertion sort",
                     "B. selection sort",
                     "C. bubble sort",
                     "D. quick sort",
-                    "E. merge sort"
+                    "E. merge sort",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
-                question: "The __________________ algorithm sorts a list of values by repetitively inserting a particular value into a subset of the list that has already been sorted.",
+                question:
+                    "The __________________ algorithm sorts a list of values by repetitively inserting a particular value into a subset of the list that has already been sorted.",
                 options: [
                     "A. insertion sort",
                     "B. selection sort",
                     "C. bubble sort",
                     "D. quick sort",
-                    "E. merge sort"
+                    "E. merge sort",
                 ],
-                answer: "A"
+                answer: "A",
             },
             {
-                question: "The ___________________ is the number of possible values of the digits or characters in a sort key.",
+                question:
+                    "The ___________________ is the number of possible values of the digits or characters in a sort key.",
                 options: [
                     "A. radix",
                     "B. asymptote",
                     "C. thread",
                     "D. order",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "A"
+                answer: "A",
             },
             {
-                question: "________ can be used to sort the same set of objects in multiple ways",
+                question:
+                    "________ can be used to sort the same set of objects in multiple ways",
                 options: [
                     "A. insertion sort",
                     "B. selection sort",
                     "C. bubble sort",
                     "D. random sort",
-                    "E. Comparator objects"
+                    "E. Comparator objects",
                 ],
-                answer: "E"
+                answer: "E",
             },
             {
                 question: "In order to compare objects of a class in different ways,",
@@ -571,154 +911,132 @@
                     "B. the class must implement the Comparator interface",
                     "C. the class must inherit from the Comparator class",
                     "D. a separate class must be created that implements the Comparator interface and provides a body for the compare method",
-                    "E. None of these is correct."
+                    "E. None of these is correct.",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
-                question: "Suppose we have algorithms that solve a particular problem that have the following complexities. Which one is most efficient?",
-                options: [
-                    "A. O(1)",
-                    "B. O(log2n)",
-                    "C. O(n2)",
-                    "D. O(n3)",
-                    "E. O(2n)"
-                ],
-                answer: "A"
+                question:
+                    "Suppose we have algorithms that solve a particular problem that have the following complexities. Which one is most efficient?",
+                options: ["A. O(1)", "B. O(log2n)", "C. O(n2)", "D. O(n3)", "E. O(2n)"],
+                answer: "A",
             },
             {
-                question: "Which of the following algorithms has a worst case complexity of O(n log2n)?",
+                question:
+                    "Which of the following algorithms has a worst case complexity of O(n log2n)?",
                 options: [
                     "A. insertion sort",
                     "B. selection sort",
                     "C. bubble sort",
                     "D. merge sort",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
-                question: "In a radix sort, the radix is the number of elements to be sorted.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "In a radix sort, the radix is the number of elements to be sorted.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
                 question: "The underlying data structure used in a radix sort is a stack.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "A linear search always requires more comparisons than a binary search.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "A linear search always requires more comparisons than a binary search.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "If there are more items in a search pool, then it will typically require more comparisons to find an item.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "If there are more items in a search pool, then it will typically require more comparisons to find an item.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
                 question: "Bubble sort is the most efficient searching algorithm.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "Quick sort works by separating a list into two lists, and recursively sorting the two lists using quick sort.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "Quick sort works by separating a list into two lists, and recursively sorting the two lists using quick sort.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "The sort method of the Arrays class sorts the elements of an array by using a comparator.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "The sort method of the Arrays class sorts the elements of an array by using a comparator.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "Implementing the Comparator interface requires writing a body for the compareTo method.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "Implementing the Comparator interface requires writing a body for the compareTo method.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "With each comparison, a binary search eliminates approximately half of the items remaining in the search pool.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "With each comparison, a binary search eliminates approximately half of the items remaining in the search pool.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "The selection sort algorithm sorts a list of values by repeatedly putting a particular value into its final, sorted position.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
-            }, {
+                question:
+                    "The selection sort algorithm sorts a list of values by repeatedly putting a particular value into its final, sorted position.",
+                options: ["A. True", "B. False"],
+                answer: "A",
+            },
+            {
                 question: "A method that calls itself is a __________________ method.",
                 options: [
                     "A. invalid",
                     "B. static",
                     "C. final",
                     "D. recursive",
-                    "E. public"
+                    "E. public",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
-                question: "____________________ recursion occurs when a method calls itself, while _________________ recursion occurs when a method calls another method that then calls the original method.",
+                question:
+                    "____________________ recursion occurs when a method calls itself, while _________________ recursion occurs when a method calls another method that then calls the original method.",
                 options: [
                     "A. upward, downward",
                     "B. downward, upward",
                     "C. direct, indirect",
                     "D. indirect, direct",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
-                question: "__________________ recursion results from the lack of a base case.",
+                question:
+                    "__________________ recursion results from the lack of a base case.",
                 options: [
                     "A. Indirect",
                     "B. Direct",
                     "C. Infinite",
                     "D. Spiral",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
-                question: "The _______________________ puzzle is a favorite of computer scientists because of its elegant recursive solution.",
+                question:
+                    "The _______________________ puzzle is a favorite of computer scientists because of its elegant recursive solution.",
                 options: [
                     "A. Tower of Hanoi",
                     "B. Sudoku",
                     "C. Tetris",
                     "D. Tic-Tac-Toe",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "A"
+                answer: "A",
             },
             {
                 question: "In the Towers of Hanoi puzzle, there are ________________ pegs.",
@@ -727,20 +1045,21 @@
                     "B. 3",
                     "C. 4",
                     "D. 5",
-                    "E. The Towers of Hanoi puzzle can include any number of pegs"
+                    "E. The Towers of Hanoi puzzle can include any number of pegs",
                 ],
-                answer: "B"
+                answer: "B",
             },
             {
-                question: "In indirect recursion, how many method calls can occur between one call to a method and the next one that completes the indirect recursion?",
+                question:
+                    "In indirect recursion, how many method calls can occur between one call to a method and the next one that completes the indirect recursion?",
                 options: [
                     "A. 2",
                     "B. 3",
                     "C. 4",
                     "D. 5",
-                    "E. There is no limit to the number of intervening calls between a method and its indirect recursive call."
+                    "E. There is no limit to the number of intervening calls between a method and its indirect recursive call.",
                 ],
-                answer: "E"
+                answer: "E",
             },
             {
                 question: "Which of the following statements is true?",
@@ -749,20 +1068,21 @@
                     "B. Recursion should be avoided all the time.",
                     "C. Solutions that are easily expressed recursively should be programmed recursively.",
                     "D. Solutions that are easily expressed recursively should be programmed iteratively.",
-                    "E. None of the above."
+                    "E. None of the above.",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
-                question: "Which of the following will result from infinite recursion in Java?",
+                question:
+                    "Which of the following will result from infinite recursion in Java?",
                 options: [
                     "A. The program will hang as though there is an infinite loop.",
                     "B. The program will throw an ArrayOutOfBoundsException.",
                     "C. The program will not compile.",
                     "D. The program will run out of memory.",
-                    "E. none of the above."
+                    "E. none of the above.",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
                 question: "How many base cases must a recursive method have?",
@@ -771,9 +1091,9 @@
                     "B. at least 1",
                     "C. more than 1",
                     "D. more than 2",
-                    "E. more than 3"
+                    "E. more than 3",
                 ],
-                answer: "B"
+                answer: "B",
             },
             {
                 question: "All recursive programs ____________________________________ .",
@@ -782,144 +1102,119 @@
                     "B. can be implemented iteratively.",
                     "C. are easier to read than iterative programs.",
                     "D. are shorter than iterative programs.",
-                    "E. none of the above are true."
+                    "E. none of the above are true.",
                 ],
-                answer: "B"
+                answer: "B",
             },
             {
-                question: "The recursive solution of the Towers of Hanoi problem has _______________ complexity.",
+                question:
+                    "The recursive solution of the Towers of Hanoi problem has _______________ complexity.",
                 options: [
                     "A. exponential",
                     "B. polynomial",
                     "C. logarithmic",
                     "D. low",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "A"
+                answer: "A",
             },
             {
-                question: "Which of the following is a proper recursive definition of x raised to the y power?",
+                question:
+                    "Which of the following is a proper recursive definition of x raised to the y power?",
                 options: [
                     "A. x^y=x*x^(y-1)",
                     "B. x^y=x*x^(y-2)",
                     "C. x^y=x*x^(y-1) for y > 1; x^y = x for y = 1",
                     "D. x^y=x*x^(y-1) for all x",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
-                question: "There is (are) ____________ base case(s) in the recursive solution to finding a path through a maze.",
-                options: [
-                    "A. 0",
-                    "B. 1",
-                    "C. 2",
-                    "D. 3",
-                    "E. 4"
-                ],
-                answer: "C"
+                question:
+                    "There is (are) ____________ base case(s) in the recursive solution to finding a path through a maze.",
+                options: ["A. 0", "B. 1", "C. 2", "D. 3", "E. 4"],
+                answer: "C",
             },
             {
-                question: "A solution with exponential complexity is ____________________ .",
+                question:
+                    "A solution with exponential complexity is ____________________ .",
                 options: [
                     "A. efficient",
                     "B. inefficient",
                     "C. easy to implement",
                     "D. difficult to implement",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "B"
+                answer: "B",
             },
             {
-                question: "In a recursive solution, _______________ is (are) always necessary.",
+                question:
+                    "In a recursive solution, _______________ is (are) always necessary.",
                 options: [
                     "A. short, efficient code",
                     "B. several variables",
                     "C. numerous lines of code",
                     "D. a base case",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
                 question: "In Java, it is possible for a method to call itself.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
                 question: "Some problems can only be solved recursively.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
                 question: "All recursive methods must have a base case.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "A method that calls a different method, which then calls the original calling method, is a recursive method.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "A method that calls a different method, which then calls the original calling method, is a recursive method.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "Recursive solutions to problems should be used whenever possible.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "Recursive solutions to problems should be used whenever possible.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "In the Towers of Hanoi puzzle, it is legal to move a larger disk to a peg that already contains a smaller disk.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "In the Towers of Hanoi puzzle, it is legal to move a larger disk to a peg that already contains a smaller disk.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
                 question: "The Towers of Hanoi puzzle cannot be solved iteratively.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "Determining whether or not there is a path through a maze has a recursive solution.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "Determining whether or not there is a path through a maze has a recursive solution.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "A program with infinite recursion will act similarly to a program with an infinite loop.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "A program with infinite recursion will act similarly to a program with an infinite loop.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "Recursive solutions are always more efficient than iterative solutions.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "Recursive solutions are always more efficient than iterative solutions.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
                 question: "An iterator is",
@@ -928,9 +1223,9 @@
                     "B. an object that allows access to each element in a collection individually.",
                     "C. an interface",
                     "D. a loop control variable",
-                    "E. a five syllable word"
+                    "E. a five syllable word",
                 ],
-                answer: "B"
+                answer: "B",
             },
             {
                 question: "Which method below is not part of the Iterator interface?",
@@ -939,9 +1234,9 @@
                     "B. remove",
                     "C. next",
                     "D. hasNext",
-                    "E. all of these are methods in the Iterator interface."
+                    "E. all of these are methods in the Iterator interface.",
                 ],
-                answer: "A"
+                answer: "A",
             },
             {
                 question: "The only method in the Iterable interface is",
@@ -950,101 +1245,93 @@
                     "B. iterator",
                     "C. destroy",
                     "D. remove",
-                    "E. hasNext"
+                    "E. hasNext",
                 ],
-                answer: "B"
+                answer: "B",
             },
             {
-                question: "When writing a class for an array-based implementation of a list, the class that defines an iterator for the list should be",
+                question:
+                    "When writing a class for an array-based implementation of a list, the class that defines an iterator for the list should be",
                 options: [
                     "A. public",
                     "B. iterable",
                     "C. an interface",
                     "D. an inner class",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
-                question: "A user defines a class to implement an iterator for a user-defined collection. When an iterator object is created, it needs to know",
+                question:
+                    "A user defines a class to implement an iterator for a user-defined collection. When an iterator object is created, it needs to know",
                 options: [
                     "A. when it was created",
                     "B. why it was created",
                     "C. the number of elements in the collection",
                     "D. the datatype of the elements in the collection",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
-                question: "Using the hasNext() and next() methods in a loop is the only way to retrieve all of the list elements using an iterator.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "Using the hasNext() and next() methods in a loop is the only way to retrieve all of the list elements using an iterator.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "A user may not be able to predict the order in which an iterator will return elements from a collection",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "A user may not be able to predict the order in which an iterator will return elements from a collection",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "‘Fail-fast’ means that a program will crash if a collection class supports the Iterable interface but no Iterator object is created.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "‘Fail-fast’ means that a program will crash if a collection class supports the Iterable interface but no Iterator object is created.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "An iterator’s remove method requires the use of a for-each loop.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "An iterator’s remove method requires the use of a for-each loop.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "When a user writes code to implement a collection class that implements the Iterable interface, they have to write code for the next and hasNext methods.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "When a user writes code to implement a collection class that implements the Iterable interface, they have to write code for the next and hasNext methods.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "When a user defines an Iterator class for a user-defined collection, the user must implement the methods in the Iterator interface in a way that detects if the collection is modified independent of the iterator object.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "When a user defines an Iterator class for a user-defined collection, the user must implement the methods in the Iterator interface in a way that detects if the collection is modified independent of the iterator object.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "A(n) _____________________ is a list collection has elements that are ordered by a characteristic of the elements.",
+                question:
+                    "A(n) _____________________ is a list collection has elements that are ordered by a characteristic of the elements.",
                 options: [
                     "A. ordered list",
                     "B. unordered list",
                     "C. indexed list",
                     "D. linked list",
-                    "E. array"
+                    "E. array",
                 ],
-                answer: "A"
+                answer: "A",
             },
             {
-                question: "A(n) _____________________ is a list collection has elements whose elements can be referenced using a numeric index.",
+                question:
+                    "A(n) _____________________ is a list collection has elements whose elements can be referenced using a numeric index.",
                 options: [
                     "A. ordered list",
                     "B. unordered list",
                     "C. indexed list",
                     "D. linked list",
-                    "E. array"
+                    "E. array",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
                 question: "Which operation below is not part of the List interface?",
@@ -1053,9 +1340,9 @@
                     "B. remove an element from the list",
                     "C. replace an element in the list with another element",
                     "D. get the size of the list",
-                    "E. grow the size of the list"
+                    "E. grow the size of the list",
                 ],
-                answer: "E"
+                answer: "E",
             },
             {
                 question: "The List interface is implemented by the ________ class.",
@@ -1064,31 +1351,27 @@
                     "B. ArrayList",
                     "C. String",
                     "D. Object",
-                    "E. Exception"
+                    "E. Exception",
                 ],
-                answer: "B"
+                answer: "B",
             },
             {
-                question: "The List ADT (Abstract Data Type) provides how many operations to remove an element from a list?",
-                options: [
-                    "A. 1",
-                    "B. 2",
-                    "C. 3",
-                    "D. 4",
-                    "E. more than 4"
-                ],
-                answer: "C"
+                question:
+                    "The List ADT (Abstract Data Type) provides how many operations to remove an element from a list?",
+                options: ["A. 1", "B. 2", "C. 3", "D. 4", "E. more than 4"],
+                answer: "C",
             },
             {
-                question: "What is the nature of the methods that are added to the OrderedListADT and UnorderedListADT interfaces that extend the ListADT interface?",
+                question:
+                    "What is the nature of the methods that are added to the OrderedListADT and UnorderedListADT interfaces that extend the ListADT interface?",
                 options: [
                     "A. They are methods to add elements to the list",
                     "B. They are methods to remove elements from the list",
                     "C. They are methods to delete the list",
                     "D. They add a method to determine the location of an element in the list",
-                    "E. They add a method to determine the size of the list"
+                    "E. They add a method to determine the size of the list",
                 ],
-                answer: "A"
+                answer: "A",
             },
             {
                 question: "A list collection can be implemented using either",
@@ -1097,9 +1380,9 @@
                     "B. an Exception or an Error",
                     "C. add or remove operations",
                     "D. an array or a linked structure",
-                    "E. both C and D are correct"
+                    "E. both C and D are correct",
                 ],
-                answer: "D"
+                answer: "D",
             },
             {
                 question: "The Serializable interface allows",
@@ -1108,9 +1391,9 @@
                     "B. objects to be read from and written to external files.",
                     "C. Object class elements to be added to list collections.",
                     "D. compiler warning messages to be suppressed.",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "B"
+                answer: "B",
             },
             {
                 question: "The remove operation returns",
@@ -1119,20 +1402,21 @@
                     "B. a boolean value indicating if the remove was successful or not.",
                     "C. the element that was removed.",
                     "D. a pointer to the list",
-                    "E. The remove operation does not return any of these."
+                    "E. The remove operation does not return any of these.",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
-                question: "The find method, as used in the array-based implementation of the remove and contains operations, returns",
+                question:
+                    "The find method, as used in the array-based implementation of the remove and contains operations, returns",
                 options: [
                     "A. the element that was found",
                     "B. the index of the element that was found",
                     "C. a true or false value indicating whether the element was found",
                     "D. the element whose reference variable points to the element that was found",
-                    "E. none of the above"
+                    "E. none of the above",
                 ],
-                answer: "B"
+                answer: "B",
             },
             {
                 question: "The addAfter operation of an unordered list collection is",
@@ -1141,133 +1425,109 @@
                     "B. O(log n)",
                     "C. O(n)",
                     "D. O(n log n)",
-                    "E. a higher order than O(n log n)"
+                    "E. a higher order than O(n log n)",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
-                question: "As with queues and stacks, the first step in removing an element from a list collection is to",
+                question:
+                    "As with queues and stacks, the first step in removing an element from a list collection is to",
                 options: [
                     "A. determine that the collection is not empty.",
                     "B. determine if the element is in the collection.",
                     "C. determine if the element is in the first or the last position in the collection.",
                     "D. determine if the collection will be empty once the element is removed.",
-                    "E. none of these is a reasonable first step in removing an element from a collection."
+                    "E. none of these is a reasonable first step in removing an element from a collection.",
                 ],
-                answer: "A"
+                answer: "A",
             },
             {
-                question: "Which of the following is a method in the java.util.List interface?",
-                options: [
-                    "A. addBefore",
-                    "B. addAfter",
-                    "C. add",
-                    "D. shift",
-                    "E. resize"
-                ],
-                answer: "C"
+                question:
+                    "Which of the following is a method in the java.util.List interface?",
+                options: ["A. addBefore", "B. addAfter", "C. add", "D. shift", "E. resize"],
+                answer: "C",
             },
             {
-                question: "Which of the following is not a way to categorize list collections?",
+                question:
+                    "Which of the following is not a way to categorize list collections?",
                 options: [
                     "A. public",
                     "B. ordered",
                     "C. unordered",
                     "D. indexed",
-                    "E. all of the above are ways to categorize list collections"
+                    "E. all of the above are ways to categorize list collections",
                 ],
-                answer: "A"
+                answer: "A",
             },
             {
-                question: "When adding elements to an ordered list, the elements are ordered according to",
+                question:
+                    "When adding elements to an ordered list, the elements are ordered according to",
                 options: [
                     "A. the order of the calls to the add operation to add them to the list.",
                     "B. increasing size of storage to hold the element",
                     "C. the key value of each element",
                     "D. the address of the location in memory that holds the element.",
-                    "E. none of the above is used to determine the order of the elements in an ordered list."
+                    "E. none of the above is used to determine the order of the elements in an ordered list.",
                 ],
-                answer: "C"
+                answer: "C",
             },
             {
-                question: "A linked list is a conceptual notion of organizing things in a linear list",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "A linked list is a conceptual notion of organizing things in a linear list",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
                 question: "The size of a list collection is unbounded",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
                 question: "An array is an example of an indexed list",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "A user does not have any control over the order of the elements in an unordered list",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "A user does not have any control over the order of the elements in an unordered list",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "The LinkedList class is an example of a class that implements the List interface.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "The LinkedList class is an example of a class that implements the List interface.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "The contains method of the List ADT (Abstract Data Type) lets you know if a particular element is in a list.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "The contains method of the List ADT (Abstract Data Type) lets you know if a particular element is in a list.",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "The primary difference between the OrderedList ADT and the UnorderedList ADT is in how elements are removed from the list",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "The primary difference between the OrderedList ADT and the UnorderedList ADT is in how elements are removed from the list",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "Using a circular array for an array-based implementation of a list would improve the performance of the operation to remove an element from the middle of a list",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "Using a circular array for an array-based implementation of a list would improve the performance of the operation to remove an element from the middle of a list",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
-                question: "The operation to remove an element from an array implementation of a list collection is O(n).",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "A"
+                question:
+                    "The operation to remove an element from an array implementation of a list collection is O(n).",
+                options: ["A. True", "B. False"],
+                answer: "A",
             },
             {
-                question: "The remove operation returns a boolean value that indicates if the element to be removed was found in the list.",
-                options: [
-                    "A. True",
-                    "B. False"
-                ],
-                answer: "B"
+                question:
+                    "The remove operation returns a boolean value that indicates if the element to be removed was found in the list.",
+                options: ["A. True", "B. False"],
+                answer: "B",
             },
             {
                 question:
@@ -1299,9 +1559,14 @@
             {
                 question:
                     "Which notation is commonly used to represent the worst-case time complexity of an algorithm?",
-                options: ["A. O(1)", "B. O(log n)", "C. O(n)", "D. O(n^2)", "E. All of the above"],
-                answer:
-                    "E",
+                options: [
+                    "A. O(1)",
+                    "B. O(log n)",
+                    "C. O(n)",
+                    "D. O(n^2)",
+                    "E. All of the above",
+                ],
+                answer: "E",
             },
             {
                 question:
@@ -2240,83 +2505,247 @@
             },
         ];
 
+        let all = { start: 0, end: questions.length - 1, name: "All" };
 
+        const lectureRanges = [all];
 
         let currentQuestion = 0;
-        const userAnswers = Array(questions.length).fill(null);
+        let userAnswers = Array(questions.length).fill(null);
+        let selectedQuestions = [];
+        let quizType = "all";
 
-        const retake = document.getElementById("retakeGroup")
-        const quizForm = document.getElementById('quizForm');
-        const feedbackContainer = document.getElementById('feedbackContainer');
-        const feedbackChoice = document.getElementById('feedbackChoice');
-        const resultDiv = document.getElementById('result');
-        const resultDiv2 = document.getElementById('result2');
+        const usernameDialog = document.getElementById("usernameDialog");
+        const quizContainer = document.getElementById("quizContainer");
+        const quizOptionsDiv = document.getElementById("quiz-options");
+        const lectureSelectionDiv = document.getElementById("lectureSelection");
+        const quizForm = document.getElementById("quizForm");
+        const feedbackContainer = document.getElementById("feedbackContainer");
+        const feedbackChoice = document.getElementById("feedbackChoice");
+        const resultDiv = document.getElementById("result");
+        const resultDiv2 = document.getElementById("result2");
         const sectionTitle = document.getElementById("quiz-h1");
-        let userName = ""
+        const retake = document.getElementById("retakeGroup");
+        const userScore = document.getElementById("user-answers");
+        const scoreContainer = document.getElementById("scoreContainer");
+        const resetBtn = document.getElementById("resetButton");
+        const questionCountSpan = document.getElementById("question-count");
+        const questionCountContainer = document.getElementById(
+            "question-count-container"
+        );
+        let userName = "" || localStorage.getItem("username");
+        const usernameInput = (document.getElementById("username").value =
+            userName);
+
+        function saveScore(score) {
+            let scores = JSON.parse(localStorage.getItem("scores")) || [];
+            scores.push({ username: userName, score: score });
+            localStorage.setItem("scores", JSON.stringify(scores));
+        }
 
         function startQuiz() {
-            const username = document.getElementById('username').value;
-            if (username.trim() === "") {
-                alert("Please enter a username");
-                return;
+            const usernameInput = document.getElementById("username");
+            let username = usernameInput.value.trim();
+
+            if (username === "") {
+                if (localStorage.getItem("username")) {
+                    username = localStorage.getItem("username");
+                    userName = username;
+                    usernameInput.value = username;
+                } else {
+                    alert("Please enter a username");
+                    return;
+                }
+            } else {
+                localStorage.setItem("username", username);
+                userName = username;
             }
-            userName = username
-            document.getElementById('usernameDialog').style.display = 'none';
-            retake.style.display = "none"
+
+            if (
+                username === localStorage.getItem("previousUser") &&
+                localStorage.getItem("currentQuestion") !== "" &&
+                JSON.parse(localStorage.getItem("userAnswers")).length > 0 &&
+                JSON.parse(localStorage.getItem("selectedQuestions")).length > 0
+            ) {
+                userAnswers = JSON.parse(localStorage.getItem("userAnswers"));
+                currentQuestion = parseInt(localStorage.getItem("currentQuestion"));
+                selectedQuestions = JSON.parse(
+                    localStorage.getItem("selectedQuestions")
+                );
+                usernameDialog.style.display = "none";
+                quizContainer.style.display = "block";
+                showQuestion(currentQuestion);
+            } else {
+                userAnswers = Array(questions.length).fill(null);
+                currentQuestion = 0;
+                selectedQuestions = [];
+                generateLectureSelection();
+                usernameDialog.style.display = "none";
+                quizContainer.style.display = "block";
+                updateQuiz();
+            }
+        }
+
+        function generateLectureSelection() {
+            lectureSelectionDiv.innerHTML = "";
+
+            lectureRanges.forEach((lectureRange, index) => {
+                const label = document.createElement("label");
+                label.innerHTML = `
+                        <input type="checkbox" name="lectureCheckbox" value="${index + 1
+                    }"> Lecture ${index + 1}
+                    `;
+
+                if (index === 6) {
+                    const label = document.createElement("label");
+                    label.innerHTML = `
+                        <input type="checkbox" name="lectureCheckbox" value="${index + 1
+                        }"> All
+                    `;
+                }
+                lectureSelectionDiv.appendChild(label);
+            });
+        }
+
+        function updateQuiz() {
+            selectedQuestions = [];
+            currentQuestion = 0;
+
+            if (quizType === "custom") {
+                const selectedLectureNumbers = Array.from(
+                    document.querySelectorAll('input[name="lectureCheckbox"]:checked')
+                ).map((checkbox) => parseInt(checkbox.value));
+
+                if (selectedLectureNumbers.length === 0) {
+                    alert("Please select at least one lecture.");
+                    return;
+                }
+
+                selectedLectureNumbers.forEach((lectureNumber) => {
+                    const lectureRange = getLectureRangeByNumber(lectureNumber);
+                    for (let i = lectureRange.start; i <= lectureRange.end; i++) {
+                        selectedQuestions.push(i);
+                    }
+                });
+
+                currentQuestion = document
+                    .querySelectorAll('input[name="lectureCheckbox"]:checked')
+                    .map((checkbox) => parseInt(checkbox.value))[0];
+            } else {
+                selectedQuestions = questions.map((_, index) => index);
+            }
+            updateQuestionCount();
             showQuestion(currentQuestion);
         }
 
+        function getLectureRangeByNumber(number) {
+            return lectureRanges[number - 1];
+        }
+
+        function updateQuestionCount() {
+            questionCountContainer.style.background = "#430f58";
+            questionCountSpan.style.color = "white";
+            questionCountSpan.textContent = `Question ${currentQuestion + 1
+                } out of ${selectedQuestions.length}`;
+        }
+
         function showQuestion(index) {
-            quizForm.innerHTML = '';
-            const question = questions[index];
-            const questionDiv = document.createElement('div');
-            questionDiv.classList.add('question');
+            quizForm.innerHTML = "";
+            const questionIndex = selectedQuestions[index];
+            const question = questions[questionIndex];
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("question");
 
-            const questionTitle = document.createElement('p');
-            questionTitle.style.fontSize = "1rem"
-            questionTitle.textContent = (index + 1) + ". " + question.question;
-            if (index == 4) {
-                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, ADTS: Trees"
-            } else if (index == 25) {
-                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, Searching and Sorting"
-            } else if (index == 49) {
-                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, Recursion"
-            } else if (index == 74) {
-                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, Iterators"
-            } else if (index == 85) {
-                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, Lists"
-            } else if (index == 110) {
-                sectionTitle.textContent = "DCIT 204 Quiz:BBF Labs, IA Questions: Mixed"
-            }
+            const questionTitle = document.createElement("p");
+            questionTitle.style.fontSize = "1rem";
+            questionTitle.textContent = question.question;
+
+            questionTitle.style.fontWeight = "500";
+            questionTitle.style.fontSize = "1.2rem";
+
             questionDiv.appendChild(questionTitle);
+            if (question.options.length === 1) {
+                // Create an input field for the fill-in-the-blank question
+                const fillInInput = document.createElement("input");
+                fillInInput.type = "text";
+                fillInInput.style.border = "none"
+                fillInInput.style.borderBottom = "1px solid #430f58";
+                fillInInput.style.outline = "none"
+                fillInInput.style.fontSize = "1rem";
+                fillInInput.name = "q" + (index + 1);
+                fillInInput.value = userAnswers[questionIndex] || "";
 
-            question.options.forEach(option => {
-                const optionLabel = document.createElement('label');
-                const optionInput = document.createElement('input');
-                optionInput.type = "radio";
-                optionInput.name = "q" + (index + 1);
-                optionInput.value = option[0];
-                if (userAnswers[index] === option[0]) {
-                    optionInput.checked = true;
-                }
-                optionLabel.appendChild(optionInput);
-                optionLabel.appendChild(document.createTextNode(option));
-                questionDiv.appendChild(optionLabel);
-                questionDiv.appendChild(document.createElement('br'));
-            });
+
+                fillInInput.addEventListener("input", () => {
+                    userAnswers[questionIndex] = fillInInput.value.toLocaleLowerCase();
+                    saveProgressLocally();
+                });
+
+                questionDiv.appendChild(fillInInput);
+            } else {
+
+                question.options.forEach((option) => {
+                    const optionLabel = document.createElement("label");
+                    const optionInput = document.createElement("input");
+                    const optionHint = document.createElement("img");
+
+                    optionInput.type = "radio";
+                    optionInput.name = "q" + (index + 1);
+                    optionInput.value = option[0];
+
+                    optionHint.classList.add("hint");
+                    optionHint.style.display = "none";
+                    const correctEmoji =
+                        "https://fonts.gstatic.com/s/e/notoemoji/latest/1f601/512.webp";
+                    const incorrectEmoji =
+                        "https://fonts.gstatic.com/s/e/notoemoji/latest/1f9d0/512.webp";
+
+                    optionHint.src =
+                        optionInput.value === questions[questionIndex].answer
+                            ? correctEmoji
+                            : incorrectEmoji;
+                    optionHint.alt =
+                        optionInput.value === questions[questionIndex].answer
+                            ? "correct"
+                            : "incorrect";
+
+                    if (userAnswers[questionIndex] === option[0]) {
+                        optionInput.checked = true;
+                    }
+
+                    optionLabel.appendChild(optionInput);
+                    optionLabel.appendChild(document.createTextNode(option));
+
+                    hinting.addEventListener("click", () => {
+                        optionLabel.appendChild(optionHint);
+                    });
+
+                    removeHinting.addEventListener("click", () => {
+                        optionLabel.removeChild(optionHint);
+                    });
+
+                    optionLabel.addEventListener("mouseover", () => {
+                        optionHint.style.display = "inline-block";
+                    });
+
+                    optionLabel.addEventListener("mouseout", () => {
+                        optionHint.style.display = "none";
+                    });
+                    questionDiv.appendChild(optionLabel);
+                    optionLabel.addEventListener("click", () => {
+                        userAnswers[questionIndex] = option[0];
+                        disableResetAfterCheckboxPress();
+                        saveProgressLocally();
+                    });
+                    questionDiv.appendChild(document.createElement("br"));
+                });
+            }
 
             quizForm.appendChild(questionDiv);
 
-            document.getElementById('backButton').disabled = index === 0;
-            document.getElementById('nextButton').disabled = index === questions.length - 1;
-        }
-
-        function nextQuestion() {
-            saveAnswer();
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-            }
+            document.getElementById("backButton").disabled = index === 0;
+            document.getElementById("nextButton").disabled =
+                index === selectedQuestions.length - 1;
+            updateQuestionCount();
         }
 
         function previousQuestion() {
@@ -2325,195 +2754,395 @@
                 currentQuestion--;
                 showQuestion(currentQuestion);
             }
+            saveProgressLocally();
         }
 
         function previousQuestionFromFeedBack() {
-            hideFeedback()
+            hideFeedback();
+            scoreContainer.style.display = "none";
             function start() {
-                retake.style.display = "none"
+                retake.style.display = "none";
                 showQuestion(currentQuestion);
             }
-            start()
-            retake.style.display = "none"
-            resultDiv.style.display = "none"
-            resultDiv2.style.display = "none"
+            start();
+            retake.style.display = "none";
+            resultDiv.style.display = "none";
+            resultDiv2.style.display = "none";
+            userScore.style.display = "none";
+        }
+
+        function saveProgressLocally() {
+            localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
+            localStorage.setItem("currentQuestion", currentQuestion);
+            localStorage.setItem(
+                "selectedQuestions",
+                JSON.stringify(selectedQuestions)
+            );
         }
 
         function saveAnswer() {
-            const selectedOption = document.querySelector('input[name="q' + (currentQuestion + 1) + '"]:checked');
+            const selectedOption = document.querySelector(
+                'input[name="q' + (currentQuestion + 1) + '"]:checked'
+            );
             if (selectedOption) {
                 userAnswers[currentQuestion] = selectedOption.value;
             }
+            saveProgressLocally();
         }
+
+        window.addEventListener("beforeunload", () => {
+            localStorage.setItem("previousUser", userName);
+            saveProgressLocally();
+        });
 
         function checkAnswers() {
             saveAnswer();
             let score = 0;
-            questions.forEach((q, index) => {
-                if (userAnswers[index] === q.answer) {
-                    score++;
+            let answeredQuestions = 0;
+
+            selectedQuestions.forEach((questionIndex) => {
+                if (userAnswers[questionIndex] !== null) {
+                    answeredQuestions++;
+                    if (
+                        userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].toLowerCase().includes(questions[questionIndex].answer.toLowerCase())
+                    ) {
+                        score++;
+                    }
                 }
             });
 
-            const totalQuestions = questions.length;
-            const percentage = (score / totalQuestions) * 100;
+            const percentage = (score / answeredQuestions) * 100;
 
-            const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
+            const capitalizedUsername =
+                userName[0].toUpperCase() + userName.slice(1);
 
-            resultDiv.textContent = `${capitalizedUsername}, you got ${score} out of ${totalQuestions} correct! That's ${percentage.toFixed(2)}%`;
+            //resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span></p>`;
 
-            document.getElementById('quizContainer').style.display = 'none';
-            feedbackChoice.style.display = 'block';
+            document.getElementById("quizContainer").style.display = "none";
+            feedbackChoice.style.display = "contents";
+        }
+
+        function checkScores() {
+            let scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+            if (!scores || scores.length === 0) {
+                alert("You must complete a quiz first to view scores");
+                return;
+            }
+            scoreContainer.style.display = "flex";
+            scores.sort((a, b) => b.score - a.score);
+            let scoreList = document.getElementById("scoreShowContainer");
+            scoreList.innerHTML = "";
+            const table = document.createElement("table");
+            const thead = document.createElement("thead");
+            const tbody = document.createElement("tbody");
+
+            // Create header row
+            const headerRow = document.createElement("tr");
+            const headers = ["Quiz", "Score"];
+            headers.forEach((headerText) => {
+                const th = document.createElement("th");
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            scores.forEach((score, index) => {
+                const tr = document.createElement("tr");
+
+                const rankCell = document.createElement("td");
+                rankCell.textContent = index + 1;
+                tr.appendChild(rankCell);
+
+                const scoreCell = document.createElement("td");
+                scoreCell.textContent = `${score.score.toFixed(0)}%`;
+                tr.appendChild(scoreCell);
+
+                tr.style.border = "1px solid black";
+                tr.style.textAlign = "center";
+                tr.style.padding = "0.7rem";
+                tbody.appendChild(tr);
+            });
+
+            table.appendChild(tbody);
+            table.style.border = "1px solid white";
+            table.style.borderRadius = "10px";
+            table.style.textAlign = "center";
+            table.style.margin = "auto";
+            table.style.backgroundColor = "#430f58";
+            table.style.padding = "0.7rem";
+            table.style.color = "white";
+            scoreList.style.overflow = "auto";
+            table.style.marginTop = "1rem";
+            scoreList.appendChild(table);
         }
 
         function showFeedback() {
-            retake.style.display = 'block';
-            retake.style.position = "relative"
-            retake.style.bottom = "0"
-            resultDiv2.style.display = 'block';
-            resultDiv2.style.position = "relative"
-            resultDiv2.style.top = "0"
-            resultDiv.style.color = "green"
-            feedbackChoice.style.display = "none"
-            feedbackContainer.style.display = 'block';
+            retake.style.display = "block";
+            retake.style.position = "relative";
+            retake.style.bottom = "0";
+            userScore.style.display = "flex";
+            resultDiv2.style.display = "block";
+            resultDiv2.style.position = "relative";
+            resultDiv2.style.top = "0";
+            resultDiv.style.color = "green";
+            feedbackChoice.style.display = "none";
+            feedbackContainer.style.display = "block";
             feedbackContainer.style.overflow = "scroll";
             let score = 0;
-            questions.forEach((q, index) => {
-                if (userAnswers[index] === q.answer) {
-                    score++;
+            let answeredQuestions = 0;
+
+            selectedQuestions.forEach((questionIndex) => {
+                if (userAnswers[questionIndex] !== null) {
+                    answeredQuestions++;
+                    if (
+                        userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].toLowerCase().includes(questions[questionIndex].answer.toLowerCase())
+                    ) {
+                        score++;
+                    }
                 }
             });
 
-            const totalQuestions = questions.length;
-            const percentage = (score / (currentQuestion + 1)) * 100;
+            const percentage = (score / answeredQuestions) * 100 || 0;
 
-            // Capitalize the first letter of the username
-            const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
+            if (answeredQuestions === selectedQuestions.length) {
+                saveScore(percentage);
+            }
 
-            resultDiv2.textContent = `${capitalizedUsername}, you got ${score} out of ${currentQuestion + 1} correct! That's ${percentage.toFixed(2)}% .... ${totalQuestions - currentQuestion - 1} remain`;
+            const capitalizedUsername =
+                userName[0].toUpperCase() + userName.slice(1);
+            userScore.innerHTML = `<p>${capitalizedUsername}'s Score: <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f"
+                };">${percentage.toFixed(
+                    0
+                )}%</span></p> <p>Done: ${answeredQuestions}</p> <p>Ans: ${score}/${selectedQuestions.length
+                }</p>`;
+
             displayFeedback();
         }
 
         function showQA() {
-            const username = document.getElementById('username').value;
+            const username = document.getElementById("username").value;
             if (username.trim() === "") {
                 alert("Please enter a username");
                 return;
             }
-            userName = username
-            retake.style.display = 'block';
-            retake.style.position = "relative"
-            retake.style.bottom = "0"
-            feedbackChoice.style.display = "none"
-            feedbackContainer.style.display = 'block';
+            userName = username;
+            retake.style.display = "block";
+            retake.style.position = "relative";
+            retake.style.bottom = "0";
+            feedbackChoice.style.display = "none";
+            feedbackContainer.style.display = "block";
             feedbackContainer.style.overflow = "scroll";
             function displayQA() {
                 feedbackContainer.style.overflow = "scroll";
-                feedbackContainer.innerHTML = '';
+                feedbackContainer.innerHTML = "";
+
                 questions.forEach((q, index) => {
-                    const questionDiv = document.createElement('div');
-                    questionDiv.classList.add('question');
-                    const questionTitle = document.createElement('p');
-                    questionTitle.textContent = (index + 1) + ". " + q.question;
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionTitle = document.createElement("p");
+                    questionTitle.textContent = index + 1 + ". " + q.question;
                     questionDiv.appendChild(questionTitle);
 
-                    q.options.forEach(option => {
-                        const optionLabel = document.createElement('label');
-                        const optionInput = document.createElement('input');
-                        optionInput.type = "radio";
-                        optionInput.disabled = true;
+                    // Check if the question is a fill-in-the-blank type (only one option)
+                    if (q.options.length === 1) {
+                        const correctAnswer = q.answer;
 
-                        if (option[0] === q.answer) {
-                            optionInput.checked = true;
-                            optionLabel.style.color = 'green';
-                            optionLabel.style.fontWeight = "bold"
-                        } else if (option[0] === userAnswers[index]) {
-                            optionInput.checked = true;
-                            optionLabel.style.color = "red";
-                            questionTitle.style.fontWeight = "bold"
-                        }
+                        const correctAnswerParagraph = document.createElement("p");
+                        correctAnswerParagraph.textContent = `Answer: ${correctAnswer}`;
+                        correctAnswerParagraph.style.color = "green";
+                        correctAnswerParagraph.style.fontWeight = "bold";
+                        correctAnswerParagraph.style.marginTop = "0.5rem";
+                        questionDiv.appendChild(correctAnswerParagraph);
 
-                        optionLabel.appendChild(optionInput);
-                        optionLabel.appendChild(document.createTextNode(option));
-                        questionDiv.appendChild(optionLabel);
-                        questionDiv.appendChild(document.createElement('br'));
-                    });
+                    } else {
+                        // Existing logic for multiple-choice questions
+                        q.options.forEach((option) => {
+                            const optionLabel = document.createElement("label");
+                            const optionInput = document.createElement("input");
+                            optionInput.type = "radio";
+                            optionInput.disabled = true;
+
+                            if (option[0] === q.answer) {
+                                optionInput.checked = true;
+                                optionLabel.style.color = "green";
+                                optionLabel.style.fontWeight = "bold";
+                            }
+
+                            optionLabel.appendChild(optionInput);
+                            optionLabel.appendChild(document.createTextNode(option));
+                            questionDiv.appendChild(optionLabel);
+                            questionDiv.appendChild(document.createElement("br"));
+                        });
+                    }
 
                     feedbackContainer.appendChild(questionDiv);
                 });
 
-                document.getElementById('feedbackNextButton').disabled = currentQuestion === questions.length - 1;
+                document.getElementById("feedbackNextButton").disabled =
+                    currentQuestion === questions.length - 1;
             }
-            document.getElementById("quizContainer").style.display = "none"
-            document.getElementById("usernameDialog").style.display = "none"
-            displayQA()
+
+            document.getElementById("quizContainer").style.display = "none";
+            document.getElementById("usernameDialog").style.display = "none";
+            displayQA();
             currentQuestion = 0;
-            document.getElementById("feedbackNextButton").style.display = "none"
-            document.getElementById("retakeQuizButton").textContent = "Start Quiz"
+            document.getElementById("feedbackNextButton").style.display = "none";
+            document.getElementById("retakeQuizButton").textContent = "Start Quiz";
+        }
+
+        function showQuestionSpanChange() {
+            let score = 0;
+            let answeredQuestions = 0;
+
+            selectedQuestions.forEach((questionIndex) => {
+                if (userAnswers[questionIndex] !== null) {
+                    answeredQuestions++;
+                    if (
+                        userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].toLowerCase().includes(questions[questionIndex].answer.toLowerCase())
+                    ) {
+                        score++;
+                    }
+                }
+            });
+
+            const percentage = (score / answeredQuestions) * 100 || 0;
+
+            questionCountContainer.style.background = "#434e52";
+            questionCountSpan.textContent = `Score: ${percentage.toFixed(0)}%`;
+            questionCountSpan.style.color =
+                percentage >= 80 ? "green" : percentage <= 50 ? "red" : "#bbdc2f";
+
+            setTimeout(() => {
+                updateQuestionCount();
+            }, 1000);
         }
 
         function hideFeedback() {
             let score = 0;
-            questions.forEach((q, index) => {
-                if (userAnswers[index] === q.answer) {
-                    score++;
+            let answeredQuestions = 0;
+
+            selectedQuestions.forEach((questionIndex) => {
+                if (userAnswers[questionIndex] !== null) {
+                    answeredQuestions++;
+                    if (
+                        userAnswers[questionIndex] === questions[questionIndex].answer || userAnswers[questionIndex].toLowerCase().includes(questions[questionIndex].answer.toLowerCase())
+                    ) {
+                        score++;
+                    }
                 }
             });
 
-            const totalQuestions = questions.length;
-            const percentage = (score / (currentQuestion + 1)) * 100;
+            const percentage = (score / answeredQuestions) * 100 || 0;
 
-            // Capitalize the first letter of the username
-            const capitalizedUsername = userName[0].toUpperCase() + userName.slice(1);
+            const capitalizedUsername =
+                userName[0].toUpperCase() + userName.slice(1);
 
-            resultDiv.textContent = `${capitalizedUsername}, you got ${score} out of ${currentQuestion + 1} correct! That's ${percentage.toFixed(2)}% .... ${totalQuestions - currentQuestion - 1} remain`;
+            //resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span>... ${selectedQuestions.length - currentQuestion - 1} remain</p>`;
 
-            feedbackChoice.style.display = 'none';
-            feedbackContainer.style.display = 'none';
-            document.getElementById('quizContainer').style.display = 'block';
-            showQuestion(currentQuestion); // Display the last answered question
+            feedbackChoice.style.display = "none";
+            feedbackContainer.style.display = "none";
+            document.getElementById("quizContainer").style.display = "block";
+
+            showQuestion(currentQuestion);
+            showQuestionSpanChange();
+        }
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "s" || event.key === "S") {
+                showQuestionSpanChange();
+            }
+        });
+
+        function nextQuestion() {
+            saveAnswer();
+            if (currentQuestion < selectedQuestions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+            saveProgressLocally();
         }
 
         function displayFeedback() {
             feedbackContainer.style.overflow = "scroll";
-            feedbackContainer.innerHTML = '';
-            questions.slice(0, currentQuestion + 1).forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.classList.add('question');
-                const questionTitle = document.createElement('p');
-                questionTitle.textContent = (index + 1) + ". " + q.question;
-                questionDiv.appendChild(questionTitle);
+            feedbackContainer.innerHTML = "";
 
-                q.options.forEach(option => {
-                    const optionLabel = document.createElement('label');
-                    const optionInput = document.createElement('input');
-                    optionInput.type = "radio";
-                    optionInput.disabled = true;
+            let questionsCount = currentQuestion;
+            selectedQuestions
+                .slice(0, questionsCount + 1)
+                .forEach((questionIndex, index) => {
+                    const q = questions[questionIndex];
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
 
-                    if (option[0] === q.answer) {
-                        optionInput.checked = true;
-                        optionLabel.style.color = 'green';
-                        optionLabel.style.fontWeight = "bold"
-                    } else if (option[0] === userAnswers[index]) {
-                        optionInput.checked = true;
-                        optionLabel.style.color = "red";
-                        questionTitle.style.fontWeight = "bold"
-                    }
+                    const questionTitle = document.createElement("p");
+                    questionTitle.textContent = index + 1 + ". " + q.question;
+                    questionDiv.appendChild(questionTitle);
 
-                    optionLabel.appendChild(optionInput);
-                    optionLabel.appendChild(document.createTextNode(option));
-                    questionDiv.appendChild(optionLabel);
-                    questionDiv.appendChild(document.createElement('br'));
+                    q.options.forEach((option) => {
+
+                        // Check if the question is a fill-in-the-blank type
+                        if (q.options.length === 1) {
+                            const userAnswer = userAnswers[questionIndex];
+                            const correctAnswer = q.answer.toLowerCase();
+
+                            const feedbackParagraph = document.createElement("p");
+                            feedbackParagraph.textContent = "Your Answer: " + (userAnswer || "No answer given");
+
+                            if (userAnswer.toLowerCase().includes(correctAnswer.toLowerCase()) && userAnswer !== "") {
+                                feedbackParagraph.style.color = "green";
+                                feedbackParagraph.style.fontWeight = "bold";
+                                const correctAnswerParagraph = document.createElement("p");
+                                correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
+                                correctAnswerParagraph.style.color = "green";
+                                correctAnswerParagraph.style.fontWeight = "bold";
+                                questionDiv.appendChild(correctAnswerParagraph);
+                            } else {
+                                feedbackParagraph.style.color = "red";
+                                feedbackParagraph.style.fontWeight = "bold";
+
+                                const correctAnswerParagraph = document.createElement("p");
+                                correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
+                                correctAnswerParagraph.style.color = "green";
+                                correctAnswerParagraph.style.fontWeight = "bold";
+                                questionDiv.appendChild(correctAnswerParagraph);
+                            }
+
+                            questionDiv.appendChild(feedbackParagraph);
+                            feedbackContainer.appendChild(questionDiv);
+                        } else {
+                            const optionLabel = document.createElement("label");
+                            const optionInput = document.createElement("input");
+                            optionInput.type = "radio";
+                            optionInput.disabled = true;
+
+                            if (option[0] === q.answer) {
+                                optionInput.checked = true;
+                                optionLabel.style.color = "green";
+                                optionLabel.style.fontWeight = "bold";
+                            } else if (option[0] === userAnswers[questionIndex]) {
+                                optionInput.checked = true;
+                                optionLabel.style.color = "red";
+                                questionTitle.style.fontWeight = "bold";
+                            }
+
+                            optionLabel.appendChild(optionInput);
+                            optionLabel.appendChild(document.createTextNode(option));
+                            questionDiv.appendChild(optionLabel);
+                            questionDiv.appendChild(document.createElement("br"));
+                        };
+                        feedbackContainer.appendChild(questionDiv);
+                    })
                 });
 
-                feedbackContainer.appendChild(questionDiv);
-            });
-
-            document.getElementById('feedbackNextButton').disabled = currentQuestion === questions.length - 1;
+            document.getElementById("feedbackNextButton").disabled =
+                currentQuestion === selectedQuestions.length - 1;
         }
 
         function nextFeedback() {
-            if (currentQuestion < questions.length - 1) {
+            if (currentQuestion < selectedQuestions.length - 1) {
                 currentQuestion++;
                 displayFeedback();
             }
@@ -2526,18 +3155,116 @@
             }
         }
 
+        function resetQuiz() {
+            const confirmRetake = confirm("Reset current Quiz?");
+            if (confirmRetake) {
+                currentQuestion = 0;
+                userAnswers.fill(null);
+                document.getElementById("feedbackContainer").style.display = "none";
+                retake.style.display = "none";
+                resultDiv.style.display = "none";
+                userScore.style.display = "none";
+                resultDiv2.style.display = "none";
+                scoreContainer.style.display = "none";
+                document.getElementById("quizContainer").style.display = "block";
+                showQuestion(currentQuestion);
+            } else {
+                return;
+            }
+        }
+
+        function disableResetAfterCheckboxPress() {
+            resetBtn.disabled = true;
+            setTimeout(() => {
+                resetBtn.disabled = false;
+            }, 400);
+        }
+
         function retakeQuiz() {
+            const confirmRetake = confirm("Retake Quiz?");
+            if (confirmRetake) {
+                currentQuestion = 0;
+                userAnswers.fill(null);
+                document.getElementById("feedbackContainer").style.display = "none";
+                retake.style.display = "none";
+                resultDiv.style.display = "none";
+                userScore.style.display = "none";
+                resultDiv2.style.display = "none";
+                scoreContainer.style.display = "none";
+                document.getElementById("quizContainer").style.display = "block";
+                showQuestion(currentQuestion);
+            } else {
+                return;
+            }
+        }
+
+        const radioButtons = document.querySelectorAll('input[name="quizType"]');
+        radioButtons.forEach((radioButton) => {
+            radioButton.addEventListener("change", () => {
+                quizType = radioButton.value;
+                lectureSelectionDiv.style.display =
+                    quizType === "custom" ? "block" : "none";
+                updateQuiz();
+            });
+        });
+
+        function showLectureSelection() {
+            const confirmShow = confirm(
+                "Do you want to manually select lectures to be quizzed on?"
+            );
+            if (confirmShow) {
+                document.getElementById("lectureSelectionDialog").style.display =
+                    "flex";
+                generateLectureSelection();
+            } else {
+                return;
+            }
+        }
+
+        function generateLectureSelection() {
+            const lectureCheckboxes = document.getElementById("lectureCheckboxes");
+            lectureCheckboxes.innerHTML = "";
+
+            lectureRanges.forEach((lectureRange, index) => {
+                const label = document.createElement("label");
+                label.innerHTML = `
+                <input type="checkbox" name="lectureCheckbox" value="${index + 1
+                    }"> ${lectureRange.name}
+            `;
+                lectureCheckboxes.appendChild(label);
+            });
+        }
+
+        function startSelectedLectures() {
+            const selectedLectureNumbers = Array.from(
+                document.querySelectorAll('input[name="lectureCheckbox"]:checked')
+            ).map((checkbox) => parseInt(checkbox.value));
+
+            if (selectedLectureNumbers.length === 0) {
+                alert("Please select at least one lecture.");
+                return;
+            }
+
+            selectedQuestions = [];
+            selectedLectureNumbers.forEach((lectureNumber) => {
+                const lectureRange = getLectureRangeByNumber(lectureNumber);
+                for (let i = lectureRange.start; i <= lectureRange.end; i++) {
+                    selectedQuestions.push(i);
+                }
+            });
+
+            document.getElementById("lectureSelectionDialog").style.display =
+                "none";
             currentQuestion = 0;
-            userAnswers.fill(null);
-            document.getElementById('feedbackContainer').style.display = 'none';
-            retake.style.display = "none";
-            resultDiv.style.display = "none"
-            resultDiv2.style.display = "none"
-            document.getElementById('quizContainer').style.display = 'block';
+
+            //reset answers to prevent default filling for different lecture in range
+            localStorage.setItem("userAnswers", userAnswers.fill(null));
+
+            updateQuestionCount();
+            saveProgressLocally();
             showQuestion(currentQuestion);
         }
     </script>
-
 </body>
 
 </html>
