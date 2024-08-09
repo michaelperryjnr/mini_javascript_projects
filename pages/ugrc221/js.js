@@ -2686,6 +2686,937 @@ const questions = [
     ],
     answer: "B",
   },
+  {
+    question: "What is the primary geographical location of the Akan people?",
+    options: [
+      "A. Northern Nigeria",
+      "B. Southern Ghana",
+      "C. Eastern Senegal",
+      "D. Western Ivory Coast",
+    ],
+    answer: "B",
+  },
+  {
+    question: "Which of these is a sub-group of the Akan people?",
+    options: ["A. Yoruba", "B. Asante", "C. Fon", "D. Dogon"],
+    answer: "B",
+  },
+  {
+    question: "In the Akan political system, who leads a village?",
+    options: ["A. Abusua Panyin", "B. Odikro", "C. Ohene", "D. Omanhene"],
+    answer: "B",
+  },
+  {
+    question: "What is the Asantehene's role in the Akan political hierarchy?",
+    options: [
+      "A. Village leader",
+      "B. Head of a town",
+      "C. Paramount chief of a state",
+      "D. King over multiple states",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "Which of the following is NOT a traditional reason for appointing Akan chiefs?",
+    options: [
+      "A. Warrior role",
+      "B. Accumulation of wealth",
+      "C. Religious reasons",
+      "D. Reward for service",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the modern political structure that integrates Akan chiefs?",
+    options: [
+      "A. Parliament",
+      "B. Council of Elders",
+      "C. House of Chiefs",
+      "D. Supreme Court",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What type of kinship system is dominant among the Akan people?",
+    options: [
+      "A. Patrilineal",
+      "B. Matrilineal",
+      "C. Bilateral",
+      "D. Ambilineal",
+    ],
+    answer: "B",
+  },
+  {
+    question: "How many matrilineal clans (abusua) are there in Akan society?",
+    options: ["A. Five", "B. Seven", "C. Nine", "D. Twelve"],
+    answer: "B",
+  },
+  {
+    question: "What does the Akan concept of 'Ntoro' represent?",
+    options: [
+      "A. Bloodline",
+      "B. Character",
+      "C. Spiritual energy",
+      "D. Ancestral spirit",
+    ],
+    answer: "B",
+  },
+  {
+    question: "According to Akan belief, what is inherited from the mother?",
+    options: [
+      "A. Mogya (blood)",
+      "B. Ntoro (character)",
+      "C. Sunsum (soul)",
+      "D. Abusua (clan)",
+    ],
+    answer: "A",
+  },
+  {
+    question: "How is land ownership primarily structured in Akan culture?",
+    options: [
+      "A. Individual ownership",
+      "B. Controlled by the chief",
+      "C. Vested in matrilineages",
+      "D. Equally distributed",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the Akan practice regarding marriage outside one's clan?",
+    options: [
+      "A. Clan endogamy (marrying within)",
+      "B. Clan exogamy (marrying outside)",
+      "C. Arranged marriages by elders",
+      "D. No specific rules or customs",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What is the name of the Supreme Being in Akan religion?",
+    options: ["A. Ogun", "B. Shango", "C. Onyame", "D. Orisha"],
+    answer: "C",
+  },
+  {
+    question: "What natural element is associated with the Akan Supreme Being?",
+    options: ["A. Earth", "B. Fire", "C. Water", "D. Sky"],
+    answer: "D",
+  },
+  {
+    question: "Why are there no images made of the Akan Supreme Being?",
+    options: [
+      "A. It is considered taboo",
+      "B. It is believed to be impossible",
+      "C. It is seen as disrespectful",
+      "D. It is regarded as a spirit",
+    ],
+    answer: "D",
+  },
+  {
+    question: "What does the Akan deity, Asaase Yaa, symbolize?",
+    options: [
+      "A. War and conquest",
+      "B. Love and beauty",
+      "C. Wisdom and knowledge",
+      "D. Femininity and earth's spirit",
+    ],
+    answer: "D",
+  },
+  {
+    question: "What is the significance of black stools in Akan culture?",
+    options: [
+      "A. Seats of power for chiefs",
+      "B. Representations of ancestors",
+      "C. Altars for offering sacrifices",
+      "D. Symbols of fertility",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What are 'Abosom' in Akan religious belief?",
+    options: [
+      "A. Malevolent spirits",
+      "B. Supernatural entities or deities",
+      "C. Ancestral guides",
+      "D. Ritual objects",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What are 'Suman' in Akan culture?",
+    options: [
+      "A. Powerful priests",
+      "B. Man-made charms or magical objects",
+      "C. Sacred groves or forests",
+      "D. Ritual dances or ceremonies",
+    ],
+    answer: "B",
+  },
+  {
+    question: "How many days are there in an Akan 'adae' cycle?",
+    options: ["A. Seven", "B. Fourteen", "C. Forty-two", "D. Fifty-two"],
+    answer: "C",
+  },
+  {
+    question: "What event marks every eighth adae cycle in the Akan calendar?",
+    options: [
+      "A. A new moon",
+      "B. A festival",
+      "C. A day of fasting",
+      "D. A planting season",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What is the primary purpose of Akan festivals?",
+    options: [
+      "A. To celebrate victories in war",
+      "B. To honor the gods and ancestors",
+      "C. To mark rites of passage",
+      "D. To entertain the community",
+    ],
+    answer: "B",
+  },
+  {
+    question: "Who assisted Osei Tutu in founding the Asante kingdom?",
+    options: [
+      "A. Okomfo Anokye",
+      "B. Abusua Panyin",
+      "C. Odikro",
+      "D. Omanhene",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "What is the historical significance of the city of Kumasi for the Asante?",
+    options: [
+      "A. Birthplace of Osei Tutu",
+      "B. Center of early Asante states",
+      "C. Location of the first gold mine",
+      "D. Burial ground for Asantehene",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which powerful kingdom did the Asante states unite against in the 17th century?",
+    options: ["A. Oyo", "B. Benin", "C. Denkyira", "D. Kongo"],
+    answer: "C",
+  },
+  {
+    question:
+      "What symbolic object did Okomfo Anokye conjure to represent Asante unity?",
+    options: [
+      "A. Golden Stool",
+      "B. Sacred Spear",
+      "C. Royal Mask",
+      "D. Iron Throne",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "What was the main function of the council established by Osei Tutu and Okomfo Anokye?",
+    options: [
+      "A. Maintaining religious harmony",
+      "B. Governing trade and commerce",
+      "C. Resolving legal disputes",
+      "D. Managing politico-military affairs",
+    ],
+    answer: "D",
+  },
+  {
+    question: "Which Asante craft village is known for its brass casting?",
+    options: ["A. Ntonso", "B. Krofofrom", "C. Bonwire", "D. Ahwia"],
+    answer: "B",
+  },
+  {
+    question: "What is the role of the 'Mpaboahene' in the Asante court?",
+    options: [
+      "A. Keeper of the swords",
+      "B. Caretaker of the stools",
+      "C. Responsible for clothing",
+      "D. In charge of the sandals",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "Why were Asante chiefs prohibited from using regalia identical to the Asantehene's?",
+    options: [
+      "A. To maintain social hierarchy",
+      "B. To prevent imitation",
+      "C. To conserve precious materials",
+      "D. To avoid spiritual conflicts",
+    ],
+    answer: "A",
+  },
+  {
+    question:
+      "How did the Asante acquire additional regalia besides crafting it themselves?",
+    options: [
+      "A. Trade with other kingdoms",
+      "B. Gifts from tributary states",
+      "C. War spoils from conquests",
+      "D. All of the above",
+    ],
+    answer: "D",
+  },
+  {
+    question: "What types of events showcased Asante art and creativity?",
+    options: [
+      "A. Installation rites",
+      "B. Festivals",
+      "C. Funerals",
+      "D. All of the above",
+    ],
+    answer: "D",
+  },
+  {
+    question: "What is the meaning of the Asante term 'Asipim'?",
+    options: [
+      "A. Golden ornament",
+      "B. Royal throne",
+      "C. I stand firm",
+      "D. Symbol of peace",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What is the primary function of an Asante palanquin?",
+    options: [
+      "A. Storage chest for valuables",
+      "B. Ceremonial carrier for chiefs",
+      "C. War drum used in battle",
+      "D. Altar for religious offerings",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What are 'Ntuati' in Asante art?",
+    options: [
+      "A. Carved umbrella tops",
+      "B. Golden staffs for spokespersons",
+      "C. Ceremonial swords",
+      "D. Royal sandals",
+    ],
+    answer: "A",
+  },
+  {
+    question: "Who is the 'Okyeame' in Asante society?",
+    options: [
+      "A. Chief priest or spiritual leader",
+      "B. Head warrior or military commander",
+      "C. Spokesperson and advisor to the chief",
+      "D. Master craftsman or artisan",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What object serves as the official insignia of the Asante Okyeame?",
+    options: [
+      "A. Asipim chair",
+      "B. Golden stool",
+      "C. Spokesperson's staff",
+      "D. Ntuati",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What are the two main types of swords used by the Asante?",
+    options: [
+      "A. Iron and bronze",
+      "B. Short and long",
+      "C. Ceremonial and ritual",
+      "D. Hunting and battle",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What does the 'abosodee' symbol on an Asante sword represent?",
+    options: [
+      "A. Victory in battle",
+      "B. Protection from evil",
+      "C. Asantehene's connection to his heritage",
+      "D. Power and authority",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the name of the feather hat worn by the Asantehene's soul bearer?",
+    options: ["A. Asipim", "B. Ntuati", "C. Ntakerakye", "D. Abosodee"],
+    answer: "C",
+  },
+  {
+    question: "What is the typical use of Asante hats?",
+    options: [
+      "A. Worn during festivals",
+      "B. Used in coming-of-age rituals",
+      "C. Part of wedding attire",
+      "D. Worn for funerals",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "Why are sandals particularly important in an Asante chief's regalia?",
+    options: [
+      "A. They symbolize wealth and status",
+      "B. They protect his feet from the ground, considered sacred",
+      "C. They are a gift from the Asantehene",
+      "D. They are believed to hold magical powers",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What does a snail symbolize on Asante sandals?",
+    options: [
+      "A. Contentment",
+      "B. Speed and agility",
+      "C. Strength and power",
+      "D. Wisdom and knowledge",
+    ],
+    answer: "A",
+  },
+  {
+    question: "What is the significance of music for Akan chiefs?",
+    options: [
+      "A. Primarily for entertainment",
+      "B. Accompanies important events and communication",
+      "C. Performed only by religious figures",
+      "D. Forbidden during ceremonies",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "Which type of drum is exclusively played by the Asantehene's musicians?",
+    options: ["A. Fontomfrom", "B. Djembe", "C. Bougarabou", "D. Tama"],
+    answer: "A",
+  },
+  {
+    question: "What is believed to be the origin of Adinkra symbols?",
+    options: [
+      "A. Carvings on a chief's stool",
+      "B. Ancient cave paintings",
+      "C. Designs on royal clothing",
+      "D. Patterns on pottery",
+    ],
+    answer: "A",
+  },
+  {
+    question: "How are Adinkra symbols traditionally applied to cloth?",
+    options: ["A. Stamping", "B. Painting", "C. Embroidery", "D. Weaving"],
+    answer: "A",
+  },
+  {
+    question:
+      "What distinguishes the Kongo Kingdom as a significant political entity in Africa?",
+    options: [
+      "A. It was the smallest kingdom in Africa.",
+      "B. It is one of the best known and studied.",
+      "C. It never engaged in trade.",
+      "D. It had no central leadership.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "During which centuries did Bantu speaking populations begin migrating to the Kongo Kingdom?",
+    options: [
+      "A. 10th and 11th",
+      "B. 1st and 2nd",
+      "C. 5th and 6th",
+      "D. 13th and 14th",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What triggered the wave of migration lasting over a century in the Kongo region?",
+    options: [
+      "A. Religious persecution",
+      "B. Drought and famine",
+      "C. Arrival of European colonists",
+      "D. Need for more land for pastoral groups",
+    ],
+    answer: "D",
+  },
+  {
+    question: "Who is credited with founding the Kongo Kingdom?",
+    options: [
+      "A. Shaka",
+      "B. Nimi Lukemi",
+      "C. Shyaam a-Mbul a Ngoong",
+      "D. Diego Cao",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What was a major export of the Kongo Kingdom, traded to the Portuguese?",
+    options: ["A. Gold", "B. Spices", "C. Slaves", "D. Coffee"],
+    answer: "C",
+  },
+  {
+    question:
+      "Which European explorer first encountered the Kongo Kingdom in 1482?",
+    options: [
+      "A. Vasco da Gama",
+      "B. Christopher Columbus",
+      "C. Ferdinand Magellan",
+      "D. Diego Cao",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What material did Kongo weavers produce that impressed the Portuguese king?",
+    options: ["A. Cotton", "B. Silk", "C. Raffia", "D. Wool"],
+    answer: "C",
+  },
+  {
+    question:
+      "What names did the King and Queen of Kongo adopt after their baptism?",
+    options: [
+      "A. David and Victoria",
+      "B. Joao and Leonora",
+      "C. Louis and Antoinette",
+      "D. Ferdinand and Isabella",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What was the new name given to the capital of the Kongo Kingdom after its conversion to Christianity?",
+    options: ["A. Luanda", "B. Kinshasa", "C. San Salvador", "D. Brazzaville"],
+    answer: "C",
+  },
+  {
+    question: "What is the meaning of the term 'Nkisi' in Kongo belief?",
+    options: ["A. Medicine", "B. Spirit", "C. King", "D. Dance"],
+    answer: "A",
+  },
+  {
+    question: "What type of objects are used as Nkisi?",
+    options: [
+      "A. Paintings",
+      "B. Musical instruments",
+      "C. Vessels, gourds, carved works, etc.",
+      "D. Only wooden statues",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What is the role of the 'Nganga' in relation to Nkisi?",
+    options: [
+      "A. They are priests who pray to them.",
+      "B. They are chiefs who own them.",
+      "C. They are sculptors who create and empower them.",
+      "D. They are musicians who play for them.",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What is the purpose of driving nails into Nkisi figures?",
+    options: [
+      "A. To decorate them",
+      "B. To activate their spiritual power",
+      "C. To ward off evil spirits",
+      "D. To represent ancestors",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What type of Nkisi is known for its menacing appearance and use of weapons?",
+    options: ["A. Nkondi", "B. Npezo", "C. Na moganga", "D. Mbula"],
+    answer: "A",
+  },
+  {
+    question:
+      "Which Nkisi is believed to protect against sickness and dangerous spirits?",
+    options: ["A. Nkondi", "B. Npezo", "C. Na moganga", "D. Mbula"],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the name for the magical substances used to empower Nkisi?",
+    options: ["A. Ashe", "B. Bilongo", "C. Nyama", "D. Mana"],
+    answer: "B",
+  },
+  {
+    question:
+      "What type of textile was produced in the Kongo Kingdom and used in royal courts?",
+    options: ["A. Cotton", "B. Silk", "C. Raffia", "D. Wool"],
+    answer: "C",
+  },
+  {
+    question:
+      "What was the traditional purpose of the lozenge designs found on Kongo textiles and scarification?",
+    options: [
+      "A. To represent animals",
+      "B. To ward off evil",
+      "C. To denote status",
+      "D. To attract good luck",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the Kongo term for the ritually wrapped mummies used in funerary practices?",
+    options: ["A. Nkisi", "B. Nganga", "C. Niombo", "D. Bocio"],
+    answer: "C",
+  },
+  {
+    question:
+      "Why were cloths and mats collected and displayed with the deceased in Kongo funerals?",
+    options: [
+      "A. To provide warmth for the afterlife",
+      "B. To ward off evil spirits",
+      "C. To show respect and commemorate the dead",
+      "D. To symbolize wealth and status",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What event led to the Kongo people's initial difficulty in accepting the crucifixion of Christ?",
+    options: [
+      "A. Lack of understanding of Roman customs",
+      "B. Belief that only criminals were crucified",
+      "C. The concept of a god dying was unfamiliar",
+      "D. The use of nails in crucifixes seemed strange",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "How did the Kongo people reconcile their belief in Nkisi with the concept of the Christian cross?",
+    options: [
+      "A. They saw the cross as a powerful Nkisi.",
+      "B. They rejected Christianity altogether.",
+      "C. They believed Christ was a Nganga.",
+      "D. They saw both nails in Nkisi and crucifixes as linking worlds.",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What was the name given to Saint Anthony of Padua in the Kongo language?",
+    options: [
+      "A. Saint Augustine",
+      "B. Toni Malau",
+      "C. Saint Francis",
+      "D. Saint Peter",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "How were Christian saints incorporated into Kongo belief system?",
+    options: [
+      "A. They were seen as ancestors.",
+      "B. They were worshipped as gods.",
+      "C. They were considered protective figures.",
+      "D. They were ignored and forgotten.",
+    ],
+    answer: "C",
+  },
+  {
+    question: "What material was commonly used to create Kongo crucifixes?",
+    options: ["A. Wood", "B. Gold", "C. Ivory", "D. Copper"],
+    answer: "D",
+  },
+  {
+    question: "What event led to the dissolution of the Kongo Kingdom?",
+    options: [
+      "A. Internal rebellion",
+      "B. Invasion by a neighboring kingdom",
+      "C. Portuguese colonization",
+      "D. A combination of factors",
+    ],
+    answer: "D",
+  },
+  {
+    question: "What factors contributed to the rise of the Kuba Kingdom?",
+    options: [
+      "A. Decline of the Kongo Kingdom",
+      "B. Introduction of new agricultural techniques",
+      "C. Unification of smaller principalities",
+      "D. All of the above",
+    ],
+    answer: "D",
+  },
+  {
+    question: "Who is credited with unifying the Kuba Kingdom?",
+    options: [
+      "A. Nimi Lukemi",
+      "B. Shaka",
+      "C. Shyaam a-Mbul a Ngoong",
+      "D. Mzilikazi",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What new crops from the Americas were introduced to the Kuba Kingdom?",
+    options: [
+      "A. Rice and wheat",
+      "B. Maize, tobacco, cassava",
+      "C. Coffee and sugarcane",
+      "D. Potatoes and tomatoes",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What is the title of the Kuba king?",
+    options: ["A. Oba", "B. Asantehene", "C. Nyim", "D. Mwami"],
+    answer: "C",
+  },
+  {
+    question: "What is the purpose of the raised dais used by the Kuba king?",
+    options: [
+      "A. To display his wealth",
+      "B. To separate him from the earth",
+      "C. To intimidate his subjects",
+      "D. To make him taller",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the Kuba term for the symbolic portraits of their kings?",
+    options: ["A. Nkisi", "B. Ndop", "C. Niombo", "D. Bocio"],
+    answer: "B",
+  },
+  {
+    question: "What material is typically used to create Kuba Ndop figures?",
+    options: ["A. Clay", "B. Bronze", "C. Wood", "D. Ivory"],
+    answer: "C",
+  },
+  {
+    question:
+      "What object serves as a symbol of each Kuba king's reign in Ndop figures?",
+    options: ["A. A crown", "B. A scepter", "C. An ibol", "D. A weapon"],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the belief regarding the connection between the Kuba king and his Ndop figure?",
+    options: [
+      "A. The Ndop is a magical replica of the king.",
+      "B. The Ndop contains the king's soul.",
+      "C. The Ndop protects the king from harm.",
+      "D. The Ndop enhances the king's power.",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What natural material is primarily used to create Kuba textiles?",
+    options: ["A. Cotton", "B. Silk", "C. Raffia", "D. Wool"],
+    answer: "C",
+  },
+  {
+    question:
+      "Who is responsible for weaving the raffia cloth in Kuba textile production?",
+    options: ["A. Men", "B. Women", "C. Children", "D. Elders"],
+    answer: "A",
+  },
+  {
+    question: "How are Kuba raffia textiles decorated?",
+    options: ["A. Embroidery", "B. Appliqué", "C. Both A and B", "D. Painting"],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the most common contemporary use of traditional Kuba raffia cloth?",
+    options: [
+      "A. Everyday clothing",
+      "B. Royal ceremonies",
+      "C. Funerals",
+      "D. Wedding attire",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the largest ancient stone construction south of the Sahara Desert?",
+    options: [
+      "A. The Pyramids of Giza",
+      "B. Lalibela Churches",
+      "C. Great Zimbabwe",
+      "D. Timbuktu",
+    ],
+    answer: "C",
+  },
+  {
+    question: "Which people group is believed to have built Great Zimbabwe?",
+    options: ["A. Zulu", "B. Shona", "C. Ndebele", "D. Kongo"],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the estimated time period during which Great Zimbabwe was built?",
+    options: [
+      "A. 1st to 5th centuries",
+      "B. 6th to 10th centuries",
+      "C. 12th to 15th centuries",
+      "D. 16th to 19th centuries",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What are the three main architectural groupings of Great Zimbabwe?",
+    options: [
+      "A. Palace, Temple, Market",
+      "B. Hill Complex, Valley Complex, Great Enclosure",
+      "C. Royal Quarters, Commoner Housing, Sacred Space",
+      "D. North Wing, South Wing, Central Tower",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What was the likely purpose of the massive stone walls at Great Zimbabwe?",
+    options: [
+      "A. Purely defensive fortifications",
+      "B. To enclose livestock",
+      "C. Symbolic display of authority and privacy",
+      "D. To create a labyrinth",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the construction technique used to build the walls at Great Zimbabwe?",
+    options: [
+      "A. Bricklaying with mortar",
+      "B. Dry stacking of stones",
+      "C. Concrete pouring",
+      "D. Wood framing with stone cladding",
+    ],
+    answer: "B",
+  },
+  {
+    question: "What are the most famous artworks found at Great Zimbabwe?",
+    options: [
+      "A. Gold masks",
+      "B. Soapstone birds",
+      "C. Terracotta figures",
+      "D. Bronze sculptures",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the symbolic significance of the soapstone birds at Great Zimbabwe?",
+    options: [
+      "A. Fertility and abundance",
+      "B. War and conquest",
+      "C. Royal authority and ancestors",
+      "D. Peace and harmony",
+    ],
+    answer: "C",
+  },
+  {
+    question:
+      "Which animal is depicted on the monolith with the bird at Great Zimbabwe?",
+    options: ["A. Lion", "B. Leopard", "C. Elephant", "D. Crocodile"],
+    answer: "D",
+  },
+  {
+    question: "What is the largest ethnic group in South Africa?",
+    options: ["A. Xhosa", "B. Sotho", "C. Zulu", "D. Ndebele"],
+    answer: "C",
+  },
+  {
+    question: "Under which leader did the Zulu form a powerful state in 1816?",
+    options: ["A. Mzilikazi", "B. Cetshwayo", "C. Shaka", "D. Dingane"],
+    answer: "C",
+  },
+  {
+    question: "What is the primary purpose of Zulu beadwork?",
+    options: [
+      "A. Decoration and adornment",
+      "B. Communication and social messaging",
+      "C. Religious rituals",
+      "D. Both A and B",
+    ],
+    answer: "D",
+  },
+  {
+    question:
+      "What is the Zulu term for the beaded panels worn by married women?",
+    options: ["A. Jocolo", "B. Nguba", "C. Isigolwani", "D. Isicholo"],
+    answer: "C",
+  },
+  {
+    question:
+      "What type of garment do Zulu women wear for protection during pregnancy and lactation?",
+    options: [
+      "A. Beaded cape",
+      "B. Leather apron",
+      "C. Woven shawl",
+      "D. Raffia skirt",
+    ],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the Zulu term for the 'warts' motif symbolizing herds of cattle?",
+    options: ["A. Indlamu", "B. Amasumpa", "C. Isicathulo", "D. Umzansi"],
+    answer: "B",
+  },
+  {
+    question:
+      "What is the Zulu term for the beaded capes or shawls worn by women?",
+    options: ["A. Jocolo", "B. Nguba", "C. Isigolwani", "D. Isicholo"],
+    answer: "D",
+  },
+  {
+    question:
+      "What type of object do the Zulu believe facilitates ancestral intervention through dreams?",
+    options: ["A. Mask", "B. Headrest", "C. Necklace", "D. Doll"],
+    answer: "B",
+  },
+  {
+    question: "Who led the Ndebele people to split from the Zulu Kingdom?",
+    options: ["A. Shaka", "B. Dingane", "C. Cetshwayo", "D. Mzilikazi"],
+    answer: "D",
+  },
+  {
+    question:
+      "What art form did Ndebele women develop as a response to Apartheid?",
+    options: ["A. Pottery", "B. Sculpture", "C. House painting", "D. Weaving"],
+    answer: "C",
+  },
+  {
+    question:
+      "What is the Ndebele term for the plain apron received by a woman upon marriage?",
+    options: ["A. Jocolo", "B. Nguba", "C. Isigolwani", "D. Isicholo"],
+    answer: "A",
+  },
+  {
+    question:
+      "What is the Ndebele term for the marriage blanket adorned with beadwork?",
+    options: ["A. Jocolo", "B. Nguba", "C. Isigolwani", "D. Isicholo"],
+    answer: "B",
+  },
 ];
 
-questions.forEach((question) => console.log(question.question));
+let lect1 = { start: 0, end: 98, name: "Lecture 1" };
+let lect2 = { start: 99, end: 199, name: "Lecture 2" };
+let lect3 = { start: 200, end: 249, name: "Lecture 3" };
+let lect4 = { start: 250, end: 281, name: "Lecture 4" };
+let lect5 = { start: 282, end: 328, name: "Lecture 5" };
+let lect6 = { start: 329, end: 388, name: "Lecture 6" };
+let lect7 = { start: 0, end: 388, name: "Lecture 7" };
+let all = { start: 0, end: questions.length - 1, name: "ALL" };
