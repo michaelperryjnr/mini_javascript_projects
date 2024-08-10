@@ -2646,6 +2646,159 @@
                     "D.  Decreasing the number of iterations in iterative methods"
                 ],
                 answer: "D"
+            }, {
+                question: "How many row operations are useful when solving a system of linear algebraic equation? Name them.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "There are three useful row operations: 1) <b>Scaling:</b> Multiplying a row by a non-zero constant, 2) <b>Pivoting:</b> Interchanging two rows, and 3) <b>Elimination:</b> Adding a multiple of one row to another row."
+            },
+            {
+                question: "What is the difference between the Doolittle and Crout method under LU factorization?",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "The main difference lies in where the '1's are placed on the diagonal. In Doolittle's method, the '1's are placed on the diagonal of the lower triangular matrix (<b>L</b>), while in Crout's method, they are placed on the diagonal of the upper triangular matrix (<b>U</b>)."
+            },
+            {
+                question: "Which property of a matrix denotes its original is equal to its transpose i.e. <b>A</b> = <b>A</b><sup>T</sup>?",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "Symmetry"
+            },
+            {
+                question: "Differentiate between a unit matrix and an Identity matrix.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "A unit matrix is a square matrix where all the diagonal elements are 1, but the off-diagonal elements can be any value. An identity matrix is a specific type of unit matrix where all off-diagonal elements are 0. The identity matrix acts like the number '1' in multiplication: <b>IA</b> = <b>AI</b> = <b>A</b>."
+            },
+            {
+                question: "Solve the system of linear equations using Gauss-Jordan elimination: 2x + y + 2z = 10, 2y + x + z = 8, 3x + y – z = 2",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "x = 1, y = 2, z = 3"
+            },
+            {
+                question: "Differentiate between a well-conditioned problem and an ill-conditioned problem.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "A well-conditioned problem is one where small changes in the input data result in small changes in the solution. An ill-conditioned problem is one where small changes in the input can lead to very large changes in the solution."
+            },
+            {
+                question: "Which of the system conditions (well-conditioned or ill-conditioned) is extremely sensitive to small changes?",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "Ill-conditioned problems"
+            },
+            {
+                question: "Round-off errors in direct elimination methods of solving systems of linear algebraic equations are reduced by using ……………………..",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "Scaled pivoting"
+            },
+            {
+                question: "Mention three iterative methods used in solving a system of linear algebraic equations.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "1. Jacobi Iteration Method, 2. Gauss-Seidel Iteration Method, 3. Successive Over-Relaxation (SOR) Method"
+            },
+            {
+                question: "Which parameters are useful when defining absolute error according to the Jacobi iteration method?",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "The absolute error in the Jacobi method is typically defined based on the change in the components of the solution vector between consecutive iterations (|x<sub>i</sub><sup>(k+1)</sup> - x<sub>i</sub><sup>(k)</sup>|) or the magnitude of the residual vector."
+            },
+            {
+                question: "To achieve faster convergence, which iterative method is advised?",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "In general, the Gauss-Seidel method converges faster than the Jacobi method. The SOR method, with an appropriate relaxation factor, can converge even faster."
+            },
+            {
+                question: "With the aid of an expression, state two properties of a norm.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "Two properties of a norm ||x|| are: 1. <b>Non-negativity:</b> ||x|| ≥ 0, and 2.  <b>Scalar Multiplication:</b> ||kx|| = |k| * ||x|| for any scalar k."
+            },
+            {
+                question: "When do we say a system is under-relaxed?",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "A system is considered under-relaxed in the SOR method when the relaxation factor (ω) is less than 1 (0 < ω < 1)."
+            },
+            {
+                question: "Name the two major pitfalls in the application of Gauss elimination.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "The two main pitfalls of Gauss elimination are: 1) <b>Round-off errors</b> due to finite precision arithmetic, and 2) <b>Ill-conditioned systems</b> where small changes in the input lead to large changes in the solution."
+            },
+            {
+                question: "Why can’t pivoting be used with the Thomas algorithm?",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "Pivoting (row or column interchanges) would disrupt the tridiagonal structure of the coefficient matrix, which is essential for the efficiency of the Thomas algorithm."
+            },
+            {
+                question: "Consider the linear eigenproblem <b>Ax</b> = λ<b>x</b> for the matrix below:<br><br><b>A</b> = <br>[1 −3 2]<br>[4 4 −1]<br>[6 3 5]<br><br>Find the numerically largest eigenvalue (λ) with its accompanying eigenvector of the matrix using the direct power method with initial guess <b>x</b><sub>0</sub><sup>T</sup> = [1 1 1].<br><br>Cue: Ending on the 4th iteration is advised.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "After 4 iterations of the power method, the largest eigenvalue (λ) is approximately 7, and its corresponding eigenvector is approximately [0.4082, 0.4082, 1].  (Note: Values may vary slightly depending on rounding.)"
+            },
+            {
+                question: "Using the inverse power method, solve for the numerically smallest eigenvalue of the matrix below using an initial guess guess <b>x</b><sub>0</sub><sup>T</sup> = [1 1 1].<br><br><b>A</b> = <br>[1 2 3]<br>[0 1 4]<br>[5 6 0]<br><br>Cue: <b>A</b><sup>-1</sup><b>x</b> = (1/λ)<b>x</b> = λ<sub>inverse</sub><b>x</b>",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "The smallest eigenvalue is approximately -2.3247. (Note: The eigenvector can also be determined but was not requested in the question.)"
+            },
+            {
+                question: "Define the Weierstrass approximation theorem and explain its significance in polynomial approximation.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "The Weierstrass Approximation Theorem states that any continuous function on a closed interval [a, b] can be uniformly approximated as closely as desired by a polynomial function. This theorem is significant because it guarantees that we can find a polynomial that is arbitrarily close to a given continuous function over a specific interval. This is foundational for many numerical methods that use polynomials to approximate more complex functions."
+            },
+            {
+                question: "Describe the uniqueness theorem for polynomials and its implications.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "The Uniqueness Theorem for Polynomials states that a polynomial of degree 'n' is uniquely determined by its values at 'n+1' distinct points. In other words, if two polynomials of degree 'n' agree at 'n+1' different points, they must be the same polynomial. This theorem has important implications for polynomial interpolation, assuring us that there is only one polynomial of a given degree that passes through a specific set of data points."
+            },
+            {
+                question: "Explain the error term associated with polynomial approximation and its relevance in numerical methods.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "When approximating a function using a polynomial, there is usually a difference between the true function value and the polynomial approximation at any given point. This difference is called the 'error term.' The error term is relevant in numerical methods because it helps us understand the accuracy of the approximation and provides bounds on how much the polynomial might deviate from the true function. Analyzing the error term helps us choose appropriate polynomial degrees and make informed decisions about the reliability of our numerical results."
+            },
+            {
+                question: "Describe the procedure for fitting a direct fit polynomial to a set of data points.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "To fit a direct fit polynomial to a set of 'n+1' data points, you typically follow these steps: 1. <b>Choose the degree:</b>  Decide on the degree 'n' of the polynomial you want to fit. This determines the number of coefficients you need to find. 2. <b>Set up a system of equations:</b> For each data point (x<sub>i</sub>, y<sub>i</sub>), substitute the values into the general polynomial equation P(x) = a<sub>0</sub> + a<sub>1</sub>x + a<sub>2</sub>x<sup>2</sup> + ... + a<sub>n</sub>x<sup>n</sup>.  This creates a system of 'n+1' linear equations with 'n+1' unknown coefficients (a<sub>0</sub>, a<sub>1</sub>, ..., a<sub>n</sub>). 3. <b>Solve the system:</b> Solve the system of linear equations using methods like Gaussian elimination or matrix inversion to find the coefficients. 4. <b>Form the polynomial:</b> Once you have the coefficients, substitute them back into the general polynomial equation to get the specific polynomial P(x) that fits the data."
+            },
+            {
+                question: "Data points: (0,1), (1,0), (2,1), (3,4). Find the polynomial P(x) of degree 3 that fits the given data points.",
+                options: [
+                    "Placeholder - See answer"
+                ],
+                answer: "P(x) = 1 - 2x + x<sup>2</sup>"
             }
 
         ];
@@ -2658,10 +2811,11 @@
         let lect5 = { start: 87, end: 101, name: "Lecture 5: Trivial" };
         let lect6 = { start: 102, end: 116, name: "Lecture 6: Trivial" }
         let notSoObvious = { start: 117, end: 210, name: "Not So Obvious" }
+        let groupQues = { start: 211, end: 232, name: "Group Questions" }
 
-        const lectureRanges = [all, lect1, lect2, lect3, lect4, lect5, lect6, notSoObvious];
+        const lectureRanges = [all, lect1, lect2, lect3, lect4, lect5, lect6, notSoObvious, groupQues];
         let currentQuestion = 0;
-        let userAnswers = Array(questions.length).fill(null);
+        let userAnswers = Array(questions.length).fill("");
         let selectedQuestions = [];
         let quizType = "all";
 
@@ -2726,7 +2880,7 @@
                 quizContainer.style.display = "block";
                 showQuestion(currentQuestion);
             } else {
-                userAnswers = Array(questions.length).fill(null);
+                userAnswers = Array(questions.length).fill("");
                 currentQuestion = 0;
                 selectedQuestions = [];
                 generateLectureSelection();
@@ -2808,7 +2962,7 @@
 
             const questionTitle = document.createElement("p");
             questionTitle.style.fontSize = "1rem";
-            questionTitle.textContent = question.question;
+            questionTitle.innerHTML = question.question;
 
             questionTitle.style.fontWeight = "500";
             questionTitle.style.fontSize = "1.2rem";
@@ -2827,6 +2981,7 @@
 
 
                 fillInInput.addEventListener("input", () => {
+                    console.log("input at fill in")
                     userAnswers[questionIndex] = fillInInput.value.toLocaleLowerCase();
                     saveProgressLocally();
                 });
@@ -3094,7 +3249,7 @@
                     questionDiv.classList.add("question");
 
                     const questionTitle = document.createElement("p");
-                    questionTitle.textContent = index + 1 + ". " + q.question;
+                    questionTitle.innerHTML = index + 1 + ". " + q.question;
                     questionDiv.appendChild(questionTitle);
 
                     // Check if the question is a fill-in-the-blank type (only one option)
@@ -3102,7 +3257,7 @@
                         const correctAnswer = q.answer;
 
                         const correctAnswerParagraph = document.createElement("p");
-                        correctAnswerParagraph.textContent = `Answer: ${correctAnswer}`;
+                        correctAnswerParagraph.innerHTML = `Answer: ${correctAnswer}`;
                         correctAnswerParagraph.style.color = "green";
                         correctAnswerParagraph.style.fontWeight = "bold";
                         correctAnswerParagraph.style.marginTop = "0.5rem";
@@ -3229,7 +3384,7 @@
                     questionDiv.classList.add("question");
 
                     const questionTitle = document.createElement("p");
-                    questionTitle.textContent = index + 1 + ". " + q.question;
+                    questionTitle.innerHTML = index + 1 + ". " + q.question;
                     questionDiv.appendChild(questionTitle);
 
                     q.options.forEach((option) => {
@@ -3240,13 +3395,13 @@
                             const correctAnswer = q.answer.toLowerCase();
 
                             const feedbackParagraph = document.createElement("p");
-                            feedbackParagraph.textContent = "Your Answer: " + (userAnswer || "No answer given");
+                            feedbackParagraph.innerHTML = "Your Answer: " + (userAnswer || "No answer given");
 
                             if (userAnswer.toLowerCase().includes(correctAnswer.toLowerCase()) && userAnswer !== "") {
                                 feedbackParagraph.style.color = "green";
                                 feedbackParagraph.style.fontWeight = "bold";
                                 const correctAnswerParagraph = document.createElement("p");
-                                correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
+                                correctAnswerParagraph.innerHTML = "Correct Answer: " + correctAnswer;
                                 correctAnswerParagraph.style.color = "green";
                                 correctAnswerParagraph.style.fontWeight = "bold";
                                 questionDiv.appendChild(correctAnswerParagraph);
@@ -3255,7 +3410,7 @@
                                 feedbackParagraph.style.fontWeight = "bold";
 
                                 const correctAnswerParagraph = document.createElement("p");
-                                correctAnswerParagraph.textContent = "Correct Answer: " + correctAnswer;
+                                correctAnswerParagraph.innerHTML = "Correct Answer: " + correctAnswer;
                                 correctAnswerParagraph.style.color = "green";
                                 correctAnswerParagraph.style.fontWeight = "bold";
                                 questionDiv.appendChild(correctAnswerParagraph);
@@ -3310,7 +3465,7 @@
             const confirmRetake = confirm("Reset current Quiz?");
             if (confirmRetake) {
                 currentQuestion = 0;
-                userAnswers.fill(null);
+                userAnswers.fill("");
                 document.getElementById("feedbackContainer").style.display = "none";
                 retake.style.display = "none";
                 resultDiv.style.display = "none";
@@ -3335,7 +3490,7 @@
             const confirmRetake = confirm("Retake Quiz?");
             if (confirmRetake) {
                 currentQuestion = 0;
-                userAnswers.fill(null);
+                userAnswers.fill("");
                 document.getElementById("feedbackContainer").style.display = "none";
                 retake.style.display = "none";
                 resultDiv.style.display = "none";
@@ -3409,7 +3564,7 @@
             currentQuestion = 0;
 
             //reset answers to prevent default filling for different lecture in range
-            localStorage.setItem("userAnswers", userAnswers.fill(null));
+            localStorage.setItem("userAnswers", userAnswers.fill(""));
 
             updateQuestionCount();
             saveProgressLocally();
