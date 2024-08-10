@@ -136,6 +136,26 @@
             text-align: center;
         }
 
+        #authPage {
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            position: fixed;
+            inset: 0;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #authPageDiv {
+            background: #2d4059;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 4rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
         #feedbackChoice {
             position: fixed;
             top: 0;
@@ -223,6 +243,21 @@
             font-weight: bold;
             font-size: 1.6rem;
             color: white;
+            margin-bottom: 0;
+        }
+
+        #auth-h2 {
+            font-weight: bold;
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 0;
+        }
+
+
+        .auth-h2 {
+            font-weight: bold;
+            font-size: 1.6rem;
+            color: #ecce6d;
             margin-bottom: 0;
         }
 
@@ -413,67 +448,155 @@
         .logo {
             margin-bottom: 0;
         }
+
+        #enter-btn {
+            margin-top: 0.9rem;
+            cursor: pointer;
+            transition: all ease-out 0.14s;
+            font-size: 1.4rem;
+            padding: 0.8rem 0.8rem;
+            border-radius: 0.8rem;
+            border-width: 0.1rem;
+            background-color: rgb(66, 137, 195);
+            color: white;
+            width: 80%;
+            border: none;
+            font-weight: bold;
+        }
+
+        #enter-btn:hover {
+            padding: 1.1rem 1.1rem;
+            background-color: #7cbd1e;
+        }
+
+        #authInput {
+            margin-top: 0.9rem;
+            padding: 1.2rem 1rem;
+            border-radius: 0.9rem;
+            border: none;
+            width: 100%;
+            outline: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        #authInputUsername {
+            margin-top: 0.9rem;
+            padding: 1.2rem 1rem;
+            border-radius: 0.9rem;
+            border: none;
+            width: 100%;
+            outline: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+
+        #authInputUsername::placeholder {
+            font-size: 1.2rem;
+        }
+
+
+        #authInput::placeholder {
+            font-size: 1.2rem;
+        }
+
+        #loader {
+            margin-top: 1rem;
+            display: none;
+            border: 0.5rem solid #069a8e;
+            border-top: 0.5em solid #6643b5;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div id="usernameDialog">
-        <div>
+
+    <div id="authPage" style="display: none;">
+        <div id="authPageDiv">
             <img id="logo" src="../../assets/images/bbf-logo.svg" alt="bbf labs logo" />
-            <h2 id="usr-h2" class="usr-h2">Choose a username</h2>
-            <h4 id="usr-h4">
-                A username is required to access anything on the page
-            </h4>
-            <input type="text" id="username" placeholder="Username" required />
-            <div id="usernameDiv">
-                <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
-                <button class="btn seeQNA" id="see" onclick="showQA()">
-                    See Q & A
+            <h2 id="auth-h2" class="usr-h2">You don't have access to the page</h2>
+            <h2 class="auth-h2" id="auth-key-text">Have an Auth key?</h2>
+            <div id="loader"></div>
+            <input id="authInputUsername" type="text" maxlength="20" placeholder="Enter username key" />
+            <input id="authInput" type="password" placeholder="Enter auth key" />
+            <div id="enter-btn">Enter it</div>
+        </div>
+    </div>
+    <div id="pageContents">
+        <div id="usernameDialog">
+            <div>
+                <img id="logo" src="../../assets/images/bbf-logo.svg" alt="bbf labs logo" />
+                <h2 id="usr-h2" class="usr-h2">Choose a username</h2>
+                <h4 id="usr-h4">
+                    A username is required to access anything on the page
+                </h4>
+                <input type="text" id="username" placeholder="Username" required />
+                <div id="usernameDiv">
+                    <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
+                    <button class="btn seeQNA" id="see" onclick="showQA()">
+                        See Q & A
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="lectureSelectionDialog" class="lecturesDialog" style="display: none">
+            <div id="selectBox">
+                <h2 id="usr-h2">Select Lectures</h2>
+                <div id="lectureCheckboxes"></div>
+                <button id="startSelectedLectures" class="btn start" onclick="startSelectedLectures()">
+                    Start Quiz
                 </button>
             </div>
         </div>
-    </div>
 
-    <div id="lectureSelectionDialog" class="lecturesDialog" style="display: none">
-        <div id="selectBox">
-            <h2 id="usr-h2">Select Lectures</h2>
-            <div id="lectureCheckboxes"></div>
-            <button id="startSelectedLectures" class="btn start" onclick="startSelectedLectures()">
-                Start Quiz
-            </button>
-        </div>
-    </div>
-
-    <div id="container-1">
-        <div id="scoreContainer" style="display: none">
-            <div class="score-div">
-                <img id="logo" src="../../assets/images/bbf-logo.svg" alt="bbf labs logo" />
-                <p id="usr-h2">Scores</p>
-                <div id="scoreShowContainer"></div>
-                <div id="showFeedOptions">
-                    <button class="btn green btnSize" id="yesButton" onclick="previousQuestionFromFeedBack()">
-                        Back
-                    </button>
-                    <button class="btn voilet btnSize" id="noButton" onclick="retakeQuiz()">
-                        Retake
-                    </button>
+        <div id="container-1">
+            <div id="scoreContainer" style="display: none">
+                <div class="score-div">
+                    <img id="logo" src="../../assets/images/bbf-logo.svg" alt="bbf labs logo" />
+                    <p id="usr-h2">Scores</p>
+                    <div id="scoreShowContainer"></div>
+                    <div id="showFeedOptions">
+                        <button class="btn green btnSize" id="yesButton" onclick="previousQuestionFromFeedBack()">
+                            Back
+                        </button>
+                        <button class="btn voilet btnSize" id="noButton" onclick="retakeQuiz()">
+                            Retake
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="quizContainer" style="display: none">
-            <h1 id="quiz-h1">DCIT 212 Mock Quiz: A BBF Labs Initiative</h1>
-            <div id="question-count-container">
-                <div class="" style="display: flex; align-items: center; gap: 5px">
-                    <!-- add hinting icon -->
-                    <i class="fa-regular fa-lightbulb" id="hinting" title="Get hint with emoji expressions"></i>
-                    <i class="fa-regular fa-ban" id="removeHinting" title="remove hint on this question"></i>
-                    <button id="scoresBtn" class="btn next" onclick="checkScores()">
-                        View Scores
-                    </button>
+            <div id="quizContainer" style="display: none">
+                <h1 id="quiz-h1">DCIT 212 Mock Quiz: A BBF Labs Initiative</h1>
+                <div id="question-count-container">
+                    <div class="" style="display: flex; align-items: center; gap: 5px">
+                        <!-- add hinting icon -->
+                        <i class="fa-regular fa-lightbulb" id="hinting" title="Get hint with emoji expressions"></i>
+                        <i class="fa-regular fa-ban" id="removeHinting" title="remove hint on this question"></i>
+                        <button id="scoresBtn" class="btn next" onclick="checkScores()">
+                            View Scores
+                        </button>
+                    </div>
+                    <div id="question-count"></div>
                 </div>
-                <div id="question-count"></div>
-            </div>
-            <!-- <div id="quiz-options">
+                <!-- <div id="quiz-options">
                 <label>
                     <input type="radio" name="quizType" value="all" checked>
                     All Lectures
@@ -483,458 +606,102 @@
                     Select Lectures
                 </label>
             </div> -->
-            <div id="lectureSelection">
-            </div>
-            <form id="quizForm">
-            </form>
-            <div class="btns">
-                <div class="button-group">
-                    <div>
-                        <button class="btn back" id="backButton" onclick="previousQuestion()">
-                            Back
-                        </button>
-                        <button class="btn save" onclick="saveAnswer()">Save</button>
-                        <button class="btn next" id="nextButton" onclick="nextQuestion()">
-                            Next
-                        </button>
+                <div id="lectureSelection">
+                </div>
+                <form id="quizForm">
+                </form>
+                <div class="btns">
+                    <div class="button-group">
+                        <div>
+                            <button class="btn back" id="backButton" onclick="previousQuestion()">
+                                Back
+                            </button>
+                            <button class="btn save" onclick="saveAnswer()">Save</button>
+                            <button class="btn next" id="nextButton" onclick="nextQuestion()">
+                                Next
+                            </button>
+                        </div>
+                        <div>
+                            <button class="btn seeQNA" onclick="showQA()">Q & A</button>
+                            <button id="submit-btn" class="btn submit" onclick="checkAnswers()">
+                                Submit
+                            </button>
+                        </div>
                     </div>
+
                     <div>
-                        <button class="btn seeQNA" onclick="showQA()">Q & A</button>
-                        <button id="submit-btn" class="btn submit" onclick="checkAnswers()">
-                            Submit
+                        <button id="selectLectBtn" class="btn select" onclick="showLectureSelection()">
+                            Lectures
+                        </button>
+                        <button class="btn resetRed" id="resetButton" onclick="resetQuiz()">
+                            Reset Quiz
                         </button>
                     </div>
                 </div>
+                <div id="result" class="result"></div>
+            </div>
+            <div class="usr-score" id="user-answers"></div>
 
+            <div id="feedbackContainer" class="feedback">
+                <form id="feedbackForm">
+                    <!-- Quiz questions with answers will be displayed here -->
+                </form>
+            </div>
+            <div class="button-group" id="retakeGroup" style="display: none">
+                <button class="btn backk" id="feedbackBackButton" onclick="previousQuestionFromFeedBack()">
+                    Back to Quiz
+                </button>
+                <button class="btn next" id="feedbackNextButton" onclick="nextFeedback()">
+                    Next
+                </button>
+                <button class="btn select" id="retakeQuizButton" onclick="retakeQuiz()">
+                    Retake Quiz
+                </button>
+            </div>
+            <div id="result2" class="result"></div>
+            <div id="feedbackChoice" style="display: none">
                 <div>
-                    <button id="selectLectBtn" class="btn select" onclick="showLectureSelection()">
-                        Lectures
-                    </button>
-                    <button class="btn resetRed" id="resetButton" onclick="resetQuiz()">
-                        Reset Quiz
-                    </button>
-                </div>
-            </div>
-            <div id="result" class="result"></div>
-        </div>
-        <div class="usr-score" id="user-answers"></div>
-
-        <div id="feedbackContainer" class="feedback">
-            <form id="feedbackForm">
-                <!-- Quiz questions with answers will be displayed here -->
-            </form>
-        </div>
-        <div class="button-group" id="retakeGroup" style="display: none">
-            <button class="btn backk" id="feedbackBackButton" onclick="previousQuestionFromFeedBack()">
-                Back to Quiz
-            </button>
-            <button class="btn next" id="feedbackNextButton" onclick="nextFeedback()">
-                Next
-            </button>
-            <button class="btn select" id="retakeQuizButton" onclick="retakeQuiz()">
-                Retake Quiz
-            </button>
-        </div>
-        <div id="result2" class="result"></div>
-        <div id="feedbackChoice" style="display: none">
-            <div>
-                <img id="logo" src="../../assets/images/bbf-logo.svg" alt="bbf labs logo" width="70px" />
-                <p id="usr-h2" class="usr-h2" style="margin-bottom: 1rem">
-                    Show feedback?
-                </p>
-                <div id="showFeedOptions">
-                    <button class="btn green btnSize" id="yesButton" onclick="showFeedback()">
-                        Yes
-                    </button>
-                    <button class="btn voilet btnSize" id="noButton" onclick="hideFeedback()">
-                        No
-                    </button>
+                    <img id="logo" src="../../assets/images/bbf-logo.svg" alt="bbf labs logo" width="70px" />
+                    <p id="usr-h2" class="usr-h2" style="margin-bottom: 1rem">
+                        Show feedback?
+                    </p>
+                    <div id="showFeedOptions">
+                        <button class="btn green btnSize" id="yesButton" onclick="showFeedback()">
+                            Yes
+                        </button>
+                        <button class="btn voilet btnSize" id="noButton" onclick="hideFeedback()">
+                            No
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
         let questions = [
             {
-                question: "What is the fundamental definition of a matrix?",
-                options: [
-                    "A. A set of linear equations.",
-                    "B. A rectangular array of elements arranged in rows and columns.",
-                    "C. A mathematical tool for performing calculus.",
-                    "D. A type of computer program.",
-                ],
-                answer: "B",
-            },
-            {
-                question: "What does the notation  𝑎𝑖𝑗 typically represent in a matrix?",
-                options: [
-                    "A. The element in the ith row and jth column.",
-                    "B. The sum of elements in the ith row.",
-                    "C. The product of elements in the jth column.",
-                    "D. The determinant of a submatrix.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "How is the size of a matrix typically defined?",
-                options: [
-                    "A. By the sum of its rows and columns.",
-                    "B. By the number of rows multiplied by the number of columns.",
-                    "C. By the largest element in the matrix.",
-                    "D. By the difference between its rows and columns.",
-                ],
-                answer: "B",
-            },
-            {
-                question: "What distinguishes a vector from other types of matrices?",
-                options: [
-                    "A. Vectors can only contain whole numbers.",
-                    "B. Vectors have only one row or one column.",
-                    "C. Vectors are always square.",
-                    "D. Vectors cannot be multiplied.",
-                ],
-                answer: "B",
-            },
-            {
-                question: "What characterizes a square matrix?",
-                options: [
-                    "A. It has an equal number of rows and columns.",
-                    "B. All its elements are equal.",
-                    "C. It can only be multiplied by itself.",
-                    "D. Its determinant is always zero.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "In matrix terms, what is the 'major diagonal'?",
-                options: [
-                    "A. The row with the largest sum.",
-                    "B. The column with the largest product.",
-                    "C. The line of elements from the top left to the bottom right.",
-                    "D. The elements surrounding a specific element.",
-                ],
-                answer: "C",
-            },
-            {
-                question: "What is the defining feature of a diagonal matrix?",
-                options: [
-                    "A. All elements are zero except those on the major diagonal.",
-                    "B. It's always a 2x2 matrix.",
-                    "C. It can only contain fractions.",
-                    "D. Its elements form an arithmetic sequence.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "Which statement accurately describes an identity matrix?",
-                options: [
-                    "A. A diagonal matrix with all elements equal to one.",
-                    "B. A matrix with alternating ones and zeros.",
-                    "C. A matrix with all elements equal to zero.",
-                    "D. A matrix whose inverse doesn't exist.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "What distinguishes an upper triangular matrix?",
-                options: [
-                    "A. It has zeros below its major diagonal.",
-                    "B. It has zeros above its major diagonal.",
-                    "C. It has zeros on its major diagonal.",
-                    "D. It's always larger than a lower triangular matrix.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "How is a lower triangular matrix defined?",
-                options: [
-                    "A. All elements above the major diagonal are zeros.",
-                    "B. All elements below the major diagonal are zeros.",
-                    "C. All elements on the major diagonal are zeros.",
-                    "D. The elements below the major diagonal are fractions.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "What characterizes a tridiagonal matrix?",
-                options: [
-                    "A. Only elements on the major diagonal and its two adjacent diagonals can be non-zero.",
-                    "B. It's always a 3x3 matrix.",
-                    "C. It has three distinct values for its elements.",
-                    "D. It only has non-zero elements in three rows.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "How would you describe a banded matrix?",
-                options: [
-                    "A. It has non-zero elements only along specific diagonals.",
-                    "B. It forms a visual band of numbers.",
-                    "C. It alternates between positive and negative numbers.",
-                    "D. It has a 'band' of identical elements.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "What is the relationship between a matrix and its transpose?",
-                options: [
-                    "A. The transpose is obtained by interchanging the rows and columns of the original matrix.",
-                    "B. The transpose is the inverse of the original matrix.",
-                    "C. The transpose is obtained by negating each element in the original matrix.",
-                    "D. The transpose is found by squaring each element in the original matrix.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "What defines a symmetric square matrix?",
-                options: [
-                    "A. Its elements are symmetrical about the major diagonal.",
-                    "B. All its elements are identical.",
-                    "C. It is equal to its own inverse.",
-                    "D. It has an even number of rows and columns.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "What is meant by the term 'sparse matrix'?",
-                options: [
-                    "A. A matrix primarily populated with zeros.",
-                    "B. A matrix with very few elements overall.",
-                    "C. A matrix with widely spaced elements.",
-                    "D. A matrix with very small element values.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "When is a matrix considered 'diagonally dominant'?",
-                options: [
-                    "A. The absolute value of each diagonal element is greater than or equal to the sum of the absolute values of the other elements in its row.",
-                    "B. All diagonal elements are equal.",
-                    "C. The diagonal elements are all positive numbers.",
-                    "D. The sum of the diagonal elements is greater than the sum of all other elements.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "Which operation is NOT typically part of matrix algebra?",
-                options: [
-                    "A. Addition",
-                    "B. Subtraction",
-                    "C. Multiplication",
-                    "D. Division",
-                ],
-                answer: "D",
-            },
-            {
-                question: "How is the addition or subtraction of matrices performed?",
-                options: [
-                    "A. By performing the operation on corresponding elements of matrices with the same size.",
-                    "B. By multiplying all elements in one matrix by the corresponding elements in the other.",
-                    "C. By adding or subtracting all elements in each matrix.",
-                    "D. Addition and subtraction are not defined for matrices.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "What does it mean for matrix addition to be associative?",
-                options: [
-                    "A. (A + B) + C = A + (B + C)",
-                    "B. A + B = B + A",
-                    "C. A + 0 = A",
-                    "D. A + (-A) = 0",
-                ],
-                answer: "A",
-            },
-            {
                 question:
-                    "What property allows for the order of matrices to be switched during addition without changing the result?",
+                    "Consider the matrix below",
                 options: [
-                    "A. Commutativity",
-                    "B. Associativity",
-                    "C. Distributivity",
-                    "D. Invertibility",
-                ],
-                answer: "A",
-            },
-            {
-                question: "How is matrix multiplication performed?",
-                options: [
-                    "A. By multiplying corresponding elements.",
-                    "B. By sum-product of row elements of the first matrix and column elements of the second matrix.",
-                    "C. By finding the average of all elements in both matrices.",
-                    "D. By taking the difference of corresponding elements.",
+                    "A.  Native apps are built using web technologies.",
+                    "B.  Native apps are developed for a specific platform using platform-specific programming languages.",
+                    "C.  Native apps run on a web server and are accessed through a web browser.",
+                    "D.  Native apps are cross-platform applications that work on any device.",
                 ],
                 answer: "B",
-            },
-            {
-                question: "What condition must be met for two matrices to be multiplied?",
-                options: [
-                    "A. They must have the same number of rows.",
-                    "B. They must have the same number of columns.",
-                    "C. The number of columns in the first matrix must equal the number of rows in the second matrix.",
-                    "D. They must both be square matrices.",
-                ],
-                answer: "C",
-            },
-            {
-                question: "What is the term for matrices that can be multiplied?",
-                options: [
-                    "A. Compatible",
-                    "B. Conformable",
-                    "C. Corresponding",
-                    "D. Consistent",
-                ],
-                answer: "B",
-            },
-            {
-                question: "What happens when a matrix is multiplied by a scalar?",
-                options: [
-                    "A. Each element in the matrix is multiplied by the scalar.",
-                    "B. The scalar is added to each element in the matrix.",
-                    "C. Only the diagonal elements are affected.",
-                    "D. The size of the matrix changes.",
-                ],
-                answer: "A",
-            },
-            {
-                question: "Are square matrices always commutative under multiplication?",
-                options: ["A. Yes", "B. No"],
-                answer: "B",
-            },
-            {
-                question: "What does the distributive property of matrices state?",
-                options: [
-                    "A. A(B + C) = AB + AC",
-                    "B. AB = BA",
-                    "C. (AB)C = A(BC)",
-                    "D. A(BC) = (AC)B",
-                ],
-                answer: "A",
-            },
-            {
-                question:
-                    "What condition defines the inverse of a matrix A, denoted as A⁻¹?",
-                options: [
-                    "A. A + A⁻¹ = I",
-                    "B. AA⁻¹ = I",
-                    "C. A - A⁻¹ = I",
-                    "D. A / A⁻¹ = I",
-                ],
-                answer: "B",
-            },
-            {
-                question: "Do matrix inverses commute under multiplication?",
-                options: ["A. Yes", "B. No"],
-                answer: "A",
-            },
-            {
-                question: "What is matrix factorization?",
-                options: [
-                    "A. Finding the prime factors of a matrix.",
-                    "B. Expressing a matrix as the product of two or more matrices.",
-                    "C. Reducing a matrix to its simplest form.",
-                    "D. Dividing a matrix into smaller submatrices.",
-                ],
-                answer: "B",
-            },
-            {
-                question: "Is matrix factorization a unique process?",
-                options: ["A. Yes", "B. No"],
-                answer: "B",
-            },
-            {
-                question: "What does LU factorization involve?",
-                options: [
-                    "A. Decomposing a square matrix into the product of a lower and an upper triangular matrix.",
-                    "B. Finding the eigenvalues and eigenvectors of a matrix.",
-                    "C. Calculating the determinant of a large matrix.",
-                    "D. Solving a system of linear equations graphically.",
-                ],
-                answer: "A",
-            },
-            {
-                question:
-                    "What is the compact matrix notation for a system of linear algebraic equations?",
-                options: ["A. A + x = b", "B. Ax = b", "C. x / A = b", "D. b - A = x"],
-                answer: "B",
-            },
-            {
-                question:
-                    "Which of the following is NOT a row operation used in solving linear equations?",
-                options: [
-                    "A. Scaling (multiplying a row by a constant)",
-                    "B. Pivoting (interchanging rows)",
-                    "C. Inversion (finding the inverse of a row)",
-                    "D. Elimination (using linear combinations of rows)",
-                ],
-                answer: "C",
-            },
-            {
-                question: "What does the determinant of a square matrix represent?",
-                options: [
-                    "A. The sum of its elements.",
-                    "B. A scalar value calculated from its elements.",
-                    "C. The number of rows divided by the number of columns.",
-                    "D. The product of its diagonal elements.",
-                ],
-                answer: "B",
-            },
-            {
-                question: "How is the determinant of a 2x2 matrix calculated?",
-                options: [
-                    "A. Product of major diagonal elements minus product of minor diagonal elements.",
-                    "B. Sum of all elements.",
-                    "C. Product of all elements.",
-                    "D. Difference between the sums of the first and second rows.",
-                ],
-                answer: "A",
-            },
-            {
-                question:
-                    "What is the method called when evaluating a determinant using minors?",
-                options: [
-                    "A. Gaussian Elimination",
-                    "B. LU Decomposition",
-                    "C. Expansion by Minors (Method of Cofactors)",
-                    "D. Cramer's Rule",
-                ],
-                answer: "C",
-            },
-            {
-                question: "What does a determinant of zero indicate about a matrix?",
-                options: [
-                    "A. The matrix is invertible.",
-                    "B. The matrix is symmetric.",
-                    "C. The matrix is singular.",
-                    "D. The matrix is diagonal.",
-                ],
-                answer: "C",
-            },
-            {
-                question:
-                    "What is the determinant of a triangular matrix (upper or lower) equal to?",
-                options: [
-                    "A. Zero",
-                    "B. One",
-                    "C. The sum of its diagonal elements.",
-                    "D. The product of its diagonal elements.",
-                ],
-                answer: "D",
-            },
+            }
         ];
 
         let all = { start: 0, end: questions.length - 1, name: "All" };
 
-        const lectureRanges = [
-            all
-        ];
+        const lectureRanges = [all];
 
         let currentQuestion = 0;
         let userAnswers = Array(questions.length).fill(null);
         let selectedQuestions = [];
         let quizType = "all";
 
+        const baseUrl = "https://bbfquestions.vercel.app/api/validate/"
         const usernameDialog = document.getElementById("usernameDialog");
         const quizContainer = document.getElementById("quizContainer");
         const quizOptionsDiv = document.getElementById("quiz-options");
@@ -957,11 +724,90 @@
         const usernameInput = (document.getElementById("username").value =
             userName);
 
+        const enterBtn = document.getElementById("enter-btn");
+        const loader = document.getElementById("loader");
+        const authInput = document.getElementById("authInput")
+        const authUsername = document.getElementById("authInputUsername")
+        const authHeader = document.getElementById("auth-h2");
+        const authKeyText = document.getElementById("auth-key-text")
+        const authDiv = document.getElementById("authPage");
+        let authKey = ""
+        const pageContents = document.getElementById("pageContents");
+
+
+        async function validateUserFromAPI() {
+            try {
+                userName = authUsername.value.trim();
+                localStorage.setItem("username", userName);
+                authKey = authInput.value.trim();
+                let payload = JSON.stringify({ username: userName, key: authKey });
+                console.log(payload)
+                authKeyText.innerText = "Validating Auth Key";
+                authHeader.innerText = "";
+                authInput.style.display = "none";
+                authUsername.style.display = "none"
+                enterBtn.style.display = "none";
+                loader.style.display = "block";
+
+                console.log(authKey)
+
+                const response = await fetch(baseUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: payload,
+                    mode: "cors"
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Authentication Error`);
+                }
+
+
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                if (data.isValid) {
+                    authKeyText.innerText = "Auth Key Validated!";
+                    authHeader.innerText = "Redirecting...";
+                    localStorage.setItem("authStatus", JSON.stringify({ username: userName, isAuthenticated: true }))
+                    setTimeout(() => {
+                        authDiv.style.display = "none"
+                        pageContents.style.display = "contents"
+                    }, 1000)
+                } else {
+                    authKeyText.innerText = "Invalid Auth Key!";
+                }
+            } catch (error) {
+                console.error("Fetch error:", error);
+                authHeader.innerText = error.message;
+                authInput.value = ""
+                authKeyText.innerText = "Have an auth key?";
+                authHeader.style.display = "block";
+                authInput.style.display = "block";
+                authUsername.style.display = "block"
+                enterBtn.style.display = "block";
+                loader.style.display = "none";
+            }
+        }
+
+        enterBtn.addEventListener("click", () => {
+            if (authInput.value.trim() === "") {
+                alert("Please enter your auth key")
+                return
+            }
+            validateUserFromAPI()
+        })
+
+
+
         function saveScore(score) {
             let scores = JSON.parse(localStorage.getItem("scores")) || [];
             scores.push({ username: userName, score: score });
             localStorage.setItem("scores", JSON.stringify(scores));
         }
+
 
         function startQuiz() {
             const usernameInput = document.getElementById("username");
@@ -972,6 +818,7 @@
                     username = localStorage.getItem("username");
                     userName = username;
                     usernameInput.value = username;
+                    validateUserOnLoad()
                 } else {
                     alert("Please enter a username");
                     return;
@@ -980,6 +827,8 @@
                 localStorage.setItem("username", username);
                 userName = username;
             }
+
+            validateUserOnLoad()
 
             if (
                 username === localStorage.getItem("previousUser") &&
@@ -1012,20 +861,31 @@
             lectureRanges.forEach((lectureRange, index) => {
                 const label = document.createElement("label");
                 label.innerHTML = `
-                        <input type="checkbox" name="lectureCheckbox" value="${index + 1
+                        < input type="checkbox" name="lectureCheckbox" value="${index + 1
                     }"> Lecture ${index + 1}
                     `;
 
                 if (index === 6) {
                     const label = document.createElement("label");
                     label.innerHTML = `
-                        <input type="checkbox" name="lectureCheckbox" value="${index + 1
+                < input type = "checkbox" name = "lectureCheckbox" value = "${index + 1
                         }"> All
                     `;
                 }
                 lectureSelectionDiv.appendChild(label);
             });
         }
+
+
+        if (JSON.parse(localStorage.getItem("authStatus")).isAuthenticated !== !undefined) {
+            const usernameValue = document.getElementById("username").value.trim()
+            const authDiv = document.getElementById("authPage")
+            if (usernameValue !== "n3tsh1t") {
+                pageContents.style.display = "none"
+                authDiv.style.display = "flex"
+            }
+        }
+
 
         function updateQuiz() {
             selectedQuestions = [];
@@ -1066,7 +926,7 @@
             questionCountContainer.style.background = "#430f58";
             questionCountSpan.style.color = "white";
             questionCountSpan.textContent = `Question ${currentQuestion + 1
-                } out of ${selectedQuestions.length}`;
+                } out of ${selectedQuestions.length} `;
         }
 
         function showQuestion(index) {
@@ -1237,11 +1097,55 @@
             const capitalizedUsername =
                 userName[0].toUpperCase() + userName.slice(1);
 
-            //resultDiv.innerHTML = `<p>${capitalizedUsername}, you got ${score} out of ${answeredQuestions} correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span></p>`;
+            //resultDiv.innerHTML = `< p > ${ capitalizedUsername }, you got ${ score } out of ${ answeredQuestions } correct! That's <span style="color: ${percentage >= 80 ? "green" : percentage <= 50 ? "yellow" : "red"};">${percentage.toFixed(2)}%</span></p>`;
 
             document.getElementById("quizContainer").style.display = "none";
             feedbackChoice.style.display = "contents";
         }
+
+
+        async function validateUserOnLoad() {
+            const usernameValue = document.getElementById("username").value.trim();
+
+            const localStat = JSON.parse(localStorage.getItem("authStatus"))
+
+            if (!localStat) {
+                localStorage.setItem("authStatus", JSON.stringify({ username: usernameValue, isAuthenticated: false }));
+                pageContents.style.display = "none"
+                authDiv.style.display = "flex"
+                return
+            }
+
+            if (localStat.username === usernameValue && localStat.isAuthenticated) {
+                return
+            } else {
+                try {
+                    const response = await fetch(`${baseUrl}/${usernameValue}`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        mode: "cors"
+                    })
+
+                    const data = await response.json();
+
+                    if (!data.isValid) {
+                        const pageContents = document.getElementById("pageContents");
+                        pageContents.style.display = "none"
+                        authDiv.style.display = "flex"
+
+                        localStorage.setItem("authStatus", JSON.stringify({ username: userName, isAuthenticated: false }))
+                    } else {
+                        localStorage.setItem("authStatus", JSON.stringify({ username: userName, isAuthenticated: true }))
+                        return
+                    }
+                } catch (error) {
+                    return
+                }
+            }
+        }
+
 
         function checkScores() {
             let scores = JSON.parse(localStorage.getItem("scores")) || [];
