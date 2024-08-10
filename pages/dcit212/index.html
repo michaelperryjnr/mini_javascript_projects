@@ -1707,7 +1707,947 @@
                     "D. It converts the system into a single non-linear equation."
                 ],
                 answer: "C"
+            }, {
+                question: "Which of the following statements is NOT true about the Thomas Algorithm?",
+                options: [
+                    "A. It is a specialized method for solving systems of linear equations with tridiagonal coefficient matrices.",
+                    "B. It is generally more efficient in terms of computational time and storage than standard Gaussian elimination for tridiagonal systems.",
+                    "C. It relies heavily on pivoting to ensure stability and accuracy.",
+                    "D. It can be considered a form of LU factorization."
+                ],
+                answer: "C"
+            },
+            {
+                question: "When applying the Thomas Algorithm, what happens to the elements in the original coefficient matrix?",
+                options: [
+                    "A. All elements are modified during the elimination process.",
+                    "B. Only the elements on the major diagonal are directly affected.",
+                    "C. Only the elements on the subdiagonal and superdiagonal are modified.",
+                    "D.  The matrix is transformed into its inverse."
+                ],
+                answer: "B"
+            },
+            {
+                question: "Why is pivoting typically avoided in the Thomas Algorithm?",
+                options: [
+                    "A. Pivoting is computationally very expensive for tridiagonal systems.",
+                    "B. Pivoting is unnecessary because the algorithm is inherently stable.",
+                    "C. Pivoting can disrupt the tridiagonal structure that the algorithm relies on.",
+                    "D. Pivoting would introduce complex numbers, making the algorithm more complicated."
+                ],
+                answer: "C"
+            },
+            {
+                question: "You are solving a linear system using Gaussian elimination and encounter a zero on the major diagonal. What is the appropriate action to take?",
+                options: [
+                    "A. Stop the algorithm, as the system has no solution.",
+                    "B. Replace the zero with a small, non-zero value to continue the elimination.",
+                    "C.  Perform a pivoting operation (row or column interchange) to obtain a non-zero pivot element.",
+                    "D.  Continue the elimination process, skipping the row with the zero."
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the primary purpose of scaling in Gaussian elimination?",
+                options: [
+                    "A. To make the matrix symmetric.",
+                    "B. To reduce the determinant of the coefficient matrix.",
+                    "C. To improve computational efficiency by reducing the number of operations.",
+                    "D. To minimize round-off errors by selecting a suitable pivot element during the elimination process."
+                ],
+                answer: "D"
+            },
+            {
+                question: "Which statement best describes the difference between Gauss elimination and Gauss-Jordan elimination?",
+                options: [
+                    "A. Gauss elimination finds the determinant, while Gauss-Jordan finds the inverse.",
+                    "B. Gauss elimination transforms the matrix into upper triangular form, while Gauss-Jordan transforms it into diagonal or identity form.",
+                    "C. Gauss elimination is an iterative method, while Gauss-Jordan is a direct method.",
+                    "D. Gauss elimination is more accurate than Gauss-Jordan due to fewer operations."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You are attempting to solve a linear system using Gaussian elimination, but after applying the algorithm, the transformed right-hand side vector contains all zeros. What does this indicate about the original system?",
+                options: [
+                    "A. The system has a unique solution, which is the zero vector.",
+                    "B. The system is inconsistent and has no solution.",
+                    "C. The system has infinitely many solutions.",
+                    "D. The coefficient matrix is singular."
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the relationship between the determinant of a matrix and its invertibility?",
+                options: [
+                    "A. A matrix is invertible only if its determinant is zero.",
+                    "B. The determinant of a matrix equals the sum of its eigenvalues, and if this sum is non-zero, the matrix is invertible.",
+                    "C.  A matrix is invertible if and only if its determinant is non-zero.",
+                    "D.  The determinant and invertibility of a matrix are unrelated concepts."
+                ],
+                answer: "C"
+            },
+            {
+                question: "You are comparing two methods for solving a linear system: Gaussian elimination and the matrix inverse method. Which of the following is a key advantage of using Gaussian elimination?",
+                options: [
+                    "A. It is always computationally faster than finding the inverse.",
+                    "B. It is more numerically stable, especially for ill-conditioned systems.",
+                    "C. It can be used even if the coefficient matrix is singular.",
+                    "D.  It directly provides the eigenvalues of the coefficient matrix."
+                ],
+                answer: "B"
+            },
+            {
+                question: "What does LU factorization achieve in the context of solving linear systems?",
+                options: [
+                    "A. It finds the eigenvalues and eigenvectors of the coefficient matrix.",
+                    "B. It decomposes the coefficient matrix into a product of lower (L) and upper (U) triangular matrices, simplifying the solution process.",
+                    "C.  It calculates the determinant of the coefficient matrix.",
+                    "D.  It transforms the system into a non-linear system that can be solved iteratively."
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which of the following LU factorization methods is characterized by having unity elements on the main diagonal of the lower triangular matrix (L)?",
+                options: [
+                    "A. Crout's method",
+                    "B. Doolittle's method",
+                    "C.  Cholesky decomposition",
+                    "D.  QR decomposition"
+                ],
+                answer: "B"
+            },
+            {
+                question: "How does LU factorization help reduce the computational effort when solving linear systems with multiple right-hand side vectors?",
+                options: [
+                    "A. The factorization only needs to be performed once, and then forward/backward substitution can be efficiently used for each right-hand side.",
+                    "B. It reduces the original system to a single equation with one unknown.",
+                    "C. It eliminates the need for pivoting, making the process faster.",
+                    "D. It transforms the system into a homogeneous system, which is easier to solve."
+                ],
+                answer: "A"
+            },
+            {
+                question: "You have a large sparse matrix, and you know that it is diagonally dominant. Which type of method is generally more efficient for solving a linear system with this matrix?",
+                options: [
+                    "A. Direct elimination methods like Gaussian elimination",
+                    "B. Iterative methods like Jacobi, Gauss-Seidel, or SOR",
+                    "C. The matrix inverse method",
+                    "D.  Symbolic computation methods"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What does it mean for a matrix to be diagonally dominant, and why is this property important for iterative methods?",
+                options: [
+                    "A. All diagonal elements are equal, ensuring that the iterations converge smoothly.",
+                    "B.  The absolute value of each diagonal element is greater than or equal to the sum of the absolute values of the other elements in its row, promoting convergence.",
+                    "C. The diagonal elements are all positive, leading to faster convergence.",
+                    "D.  The matrix is symmetric, simplifying the calculations in iterative methods."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You are solving a linear system using the Jacobi iteration method. How is the solution vector updated in each iteration?",
+                options: [
+                    "A. By solving each equation for one component, using the most recently computed values for all other components.",
+                    "B. By solving each equation for one component, using values from the previous iteration.",
+                    "C. By simultaneously solving all equations using matrix inversion.",
+                    "D. By averaging the values of the previous two iterations."
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which of the following factors does NOT influence the convergence rate of iterative methods for solving linear systems?",
+                options: [
+                    "A. The degree of diagonal dominance in the coefficient matrix",
+                    "B. The choice of the initial solution vector",
+                    "C.  The size of the matrix (number of rows and columns)",
+                    "D. The specific iterative method used (Jacobi, Gauss-Seidel, SOR)"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the 'residual' in the context of iterative methods, and how is it used to assess convergence?",
+                options: [
+                    "A. It is the difference between the approximate solution at the current iteration and the exact solution.",
+                    "B. It is the value obtained when substituting the current approximate solution back into the original equations.",
+                    "C.  It is the change in the solution vector between consecutive iterations.",
+                    "D.  It is the determinant of the coefficient matrix at the current iteration."
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the key distinction between the Jacobi iteration method and the Gauss-Seidel method?",
+                options: [
+                    "A. Jacobi updates all components of the solution vector simultaneously, while Gauss-Seidel updates them one at a time.",
+                    "B. Gauss-Seidel uses the most recently computed values for all components in each calculation, while Jacobi uses values from the previous iteration.",
+                    "C. Jacobi is guaranteed to converge for any linear system, while Gauss-Seidel might diverge.",
+                    "D. Gauss-Seidel can be applied to non-linear systems, while Jacobi is limited to linear systems."
+                ],
+                answer: "B"
+            },
+            {
+                question: "In general, which of the following iterative methods is expected to converge faster for solving a diagonally dominant linear system?",
+                options: [
+                    "A. Jacobi",
+                    "B. Gauss-Seidel",
+                    "C. They converge at the same rate.",
+                    "D.  The convergence rate depends solely on the initial guess, not the method."
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the role of the relaxation factor (ω) in the Successive Over-Relaxation (SOR) method?",
+                options: [
+                    "A. It determines the stopping criterion for the iterations.",
+                    "B. It scales the residual term, influencing the convergence rate.",
+                    "C.  It is used to select the pivot element in each iteration.",
+                    "D.  It controls the step size of the updates to the solution vector."
+                ],
+                answer: "B"
+            },
+            {
+                question: "What happens in the SOR method if the relaxation factor (ω) is set to 1?",
+                options: [
+                    "A. The method becomes equivalent to the Jacobi method.",
+                    "B. The method becomes equivalent to the Gauss-Seidel method.",
+                    "C. The method will always diverge.",
+                    "D.  The solution will oscillate indefinitely."
+                ],
+                answer: "B"
+            },
+            {
+                question: "When is over-relaxation (1 < ω < 2) typically applied in the SOR method?",
+                options: [
+                    "A. When the Gauss-Seidel method is converging too slowly.",
+                    "B. When the system of equations is ill-conditioned.",
+                    "C. When a very high accuracy is not required.",
+                    "D.  When the coefficient matrix is not diagonally dominant."
+                ],
+                answer: "A"
+            },
+            {
+                question: "Under what circumstances might under-relaxation (ω < 1) be beneficial in the SOR method?",
+                options: [
+                    "A. When the Gauss-Seidel method converges very quickly.",
+                    "B. When the Gauss-Seidel method leads to oscillations or overshooting of the solution.",
+                    "C. When the coefficient matrix is nearly singular.",
+                    "D. When the initial guess is very far from the true solution."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You are trying to solve a system of linear equations using the SOR method, but the solution diverges. What is the most likely reason for this divergence?",
+                options: [
+                    "A. The relaxation factor (ω) is too small (under-relaxation).",
+                    "B. The coefficient matrix is not diagonally dominant.",
+                    "C.  The relaxation factor (ω) is greater than or equal to 2.",
+                    "D.  The initial solution vector was poorly chosen."
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the relationship between a homogenous system of linear equations and an eigenproblem?",
+                options: [
+                    "A. Eigenproblems are a specific type of homogenous system where the right-hand side is a scalar multiple of the solution vector.",
+                    "B.  Homogenous systems always have non-trivial solutions, just like eigenproblems.",
+                    "C.  Eigenproblems are not related to homogenous systems; they deal with finding roots of non-linear equations.",
+                    "D.  Homogenous systems can be solved using the power method, which is also used for eigenproblems."
+                ],
+                answer: "A"
+            },
+            {
+                question: "In the context of eigenproblems, what are eigenvalues?",
+                options: [
+                    "A. The solutions for the unknown variables in a system of linear equations.",
+                    "B. The elements on the main diagonal of a matrix.",
+                    "C. Scalar values that, when subtracted from the diagonal elements of a matrix, make the determinant of the resulting matrix equal to zero.",
+                    "D.  The coefficients of the characteristic polynomial of a matrix."
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the fundamental principle behind the power method for finding eigenvalues?",
+                options: [
+                    "A. It directly solves the characteristic polynomial of a matrix.",
+                    "B. It repeatedly multiplies a trial vector by the matrix, scaling the result in each iteration, causing it to converge towards the dominant eigenvector and its corresponding eigenvalue.",
+                    "C.  It calculates the inverse of the matrix and finds its eigenvalues.",
+                    "D.  It decomposes the matrix into lower and upper triangular matrices using LU factorization."
+                ],
+                answer: "B"
+            },
+            {
+                question: "In the direct power method, why is it necessary to scale the resulting vector after each multiplication by the matrix?",
+                options: [
+                    "A. To make the calculations easier.",
+                    "B. To ensure that the components of the vector remain within a reasonable numerical range, preventing overflow or underflow.",
+                    "C.  To force the vector to converge to the eigenvector with the smallest magnitude.",
+                    "D.  To maintain the orthogonality of the eigenvectors."
+                ],
+                answer: "B"
+            },
+            {
+                question: "What condition must be met for the direct power method to converge effectively to the dominant eigenvalue?",
+                options: [
+                    "A. The matrix must be symmetric.",
+                    "B. The matrix must be diagonally dominant.",
+                    "C.  The dominant eigenvalue must be significantly larger in magnitude than the other eigenvalues.",
+                    "D.  The initial guess for the eigenvector must be very close to the true dominant eigenvector."
+                ],
+                answer: "C"
+            },
+            {
+                question: "What happens in the power method if the two largest eigenvalues of a matrix have the same magnitude?",
+                options: [
+                    "A. The method converges faster.",
+                    "B. The method converges to the average of the two eigenvalues.",
+                    "C.  The method fails to converge to a single eigenvalue.",
+                    "D.  The method converges to a random eigenvector."
+                ],
+                answer: "C"
+            },
+            {
+                question: "How does the inverse power method differ from the direct power method?",
+                options: [
+                    "A. It finds the eigenvalue closest to a given target value, while the direct method finds the largest eigenvalue.",
+                    "B. It finds the smallest eigenvalue (in magnitude) by applying the power method to the inverse of the matrix.",
+                    "C.  It does not require scaling the resulting vector in each iteration.",
+                    "D.  It only works for symmetric matrices."
+                ],
+                answer: "B"
+            },
+            {
+                question: "In practice, how is the inverse matrix typically handled in the inverse power method?",
+                options: [
+                    "A. The inverse matrix is explicitly calculated using Gaussian elimination.",
+                    "B. The LU decomposition of the original matrix is used to solve systems of equations efficiently, avoiding direct inversion.",
+                    "C.  The inverse is approximated using an iterative method like Jacobi or Gauss-Seidel.",
+                    "D. The inverse power method does not require the inverse matrix; it only needs the eigenvalues."
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which of the following statements about the direct method for solving eigenproblems is true?",
+                options: [
+                    "A. It is the most efficient method for finding all eigenvalues of large matrices.",
+                    "B. It finds eigenvalues by directly solving the characteristic equation, which can be computationally expensive for high-degree polynomials.",
+                    "C.  It automatically provides both eigenvalues and eigenvectors.",
+                    "D.  It is primarily used for finding complex eigenvalues."
+                ],
+                answer: "B"
+            },
+            {
+                question: "After using the direct method to find the eigenvalues of a matrix, how are the corresponding eigenvectors typically determined?",
+                options: [
+                    "A. The direct method automatically provides the eigenvectors along with the eigenvalues.",
+                    "B. The eigenvectors are found by substituting each eigenvalue back into the original eigenproblem (Ax = λx) and solving the resulting system.",
+                    "C. The eigenvectors are determined by applying the power method to the original matrix.",
+                    "D. The eigenvectors are simply the columns of the matrix."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You are using Newton's method to find the root of a non-linear equation, and you notice that the iterations are converging very slowly. What could be a possible explanation for this slow convergence?",
+                options: [
+                    "A. The initial guess is too far from the true root.",
+                    "B. The function has a multiple root at the solution.",
+                    "C.  The function is highly oscillatory near the root.",
+                    "D.  All of the above."
+                ],
+                answer: "D"
+            },
+            {
+                question: "What is the key difference between the interval halving (bisection) method and the false position (regula falsi) method?",
+                options: [
+                    "A. Bisection requires an initial guess, while false position does not.",
+                    "B. False position uses a linear approximation of the function within the interval, while bisection always chooses the midpoint.",
+                    "C.  Bisection guarantees convergence, while false position might diverge.",
+                    "D.  False position can find complex roots, while bisection cannot."
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which of the following root-finding methods is generally considered the most computationally efficient when the derivative of the function is readily available?",
+                options: [
+                    "A. Interval halving",
+                    "B. False position",
+                    "C.  Fixed-point iteration",
+                    "D.  Newton's method"
+                ],
+                answer: "D"
+            },
+            {
+                question: "What is a significant disadvantage of Newton's method compared to bracketing methods (like bisection or false position)?",
+                options: [
+                    "A. Newton's method is much slower to converge.",
+                    "B. Newton's method can only find real roots, not complex roots.",
+                    "C.  Newton's method requires the derivative of the function, which might not be available or easy to calculate.",
+                    "D. Newton's method always requires two initial guesses, while bracketing methods only need one."
+                ],
+                answer: "C"
+            },
+            {
+                question: "Under what circumstances is the secant method preferred over Newton's method for finding the root of a non-linear equation?",
+                options: [
+                    "A. When a high degree of accuracy is required.",
+                    "B. When the function is very close to linear near the root.",
+                    "C.  When the derivative of the function is difficult or expensive to compute.",
+                    "D.  When the initial guess is very close to the true root."
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the geometric interpretation of the secant method?",
+                options: [
+                    "A. It uses a tangent line to approximate the function at each iteration.",
+                    "B. It approximates the function with a secant line passing through two points on the curve, finding the root of this line as the next approximation.",
+                    "C.  It repeatedly halves the interval containing the root.",
+                    "D.  It converts the non-linear equation into a fixed-point problem (x = g(x))."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You are trying to find the root of a non-linear equation using an open domain method (like Newton's or the secant method), but the iterations diverge. What is the most likely cause of this divergence?",
+                options: [
+                    "A. The function has a multiple root at the solution.",
+                    "B. The initial guess is too far from the true root, leading the iterations away from the solution.",
+                    "C. The function is discontinuous near the root.",
+                    "D.  The method was implemented incorrectly."
+                ],
+                answer: "B"
+            },
+            {
+                question: "What does it mean for a numerical problem to be 'ill-conditioned'?",
+                options: [
+                    "A. Small changes in the input data can lead to large changes in the output or solution.",
+                    "B. The problem is very complex and difficult to solve.",
+                    "C.  The problem has no solution.",
+                    "D.  The problem has multiple solutions."
+                ],
+                answer: "A"
+            },
+            {
+                question: "How does ill-conditioning affect root-finding methods?",
+                options: [
+                    "A. Ill-conditioning makes it difficult to find an initial guess close to the true root.",
+                    "B. Ill-conditioning can amplify the effects of round-off errors, making the solutions less accurate.",
+                    "C.  Ill-conditioned problems often have multiple roots close together, making convergence difficult.",
+                    "D.  All of the above."
+                ],
+                answer: "D"
+            },
+            {
+                question: "Which of the following is a commonly used technique to mitigate the effects of round-off errors in numerical methods?",
+                options: [
+                    "A. Using lower-precision arithmetic to speed up calculations.",
+                    "B.  Employing pivoting strategies in Gaussian elimination.",
+                    "C.  Using iterative methods instead of direct methods.",
+                    "D.  Ignoring small values in the calculations."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You are solving a system of linear equations using a direct method and want to assess the condition of the system. Which of the following would be a suitable indicator of ill-conditioning?",
+                options: [
+                    "A. A small determinant of the coefficient matrix",
+                    "B. A large condition number of the coefficient matrix",
+                    "C.  A large number of iterations required for an iterative method to converge",
+                    "D.  All of the above"
+                ],
+                answer: "D"
+            },
+            {
+                question: "What is the purpose of 'iterative improvement' in the context of solving linear systems?",
+                options: [
+                    "A. To find a more accurate solution by iteratively refining an initial solution obtained from a direct method.",
+                    "B.  To speed up the convergence of iterative methods like Jacobi or Gauss-Seidel.",
+                    "C.  To reduce the condition number of the system.",
+                    "D.  To avoid the need for pivoting in Gaussian elimination."
+                ],
+                answer: "A"
+            },
+            {
+                question: "You are solving a linear system Ax = b using a direct method and obtain an approximate solution x'. How would you calculate the residual vector, which is used in iterative improvement?",
+                options: [
+                    "A. Residual = x' - x (where x is the exact solution)",
+                    "B. Residual = b - Ax'",
+                    "C.  Residual = A⁻¹b - x'",
+                    "D.  Residual = det(A) * (b - Ax')"
+                ],
+                answer: "B"
+            },
+            {
+                question: "The QR method is a powerful technique for finding eigenvalues. What is its key advantage over the power method or the direct method?",
+                options: [
+                    "A. It is computationally less expensive.",
+                    "B.  It can find all the eigenvalues of a matrix simultaneously.",
+                    "C.  It guarantees convergence for any matrix.",
+                    "D.  It is easier to understand and implement."
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the role of the Gram-Schmidt process in the QR method?",
+                options: [
+                    "A. To find the determinant of the matrix.",
+                    "B. To decompose the matrix into a product of orthogonal (Q) and upper triangular (R) matrices.",
+                    "C. To solve the system of linear equations associated with the eigenproblem.",
+                    "D. To reduce the matrix to its row echelon form."
+                ],
+                answer: "B"
+            },
+            {
+                question: "Why are triangular matrices important in understanding the QR method?",
+                options: [
+                    "A. Their eigenvalues are the reciprocals of their diagonal elements.",
+                    "B.  Their eigenvalues are easily found by calculating the determinant.",
+                    "C.  Their eigenvalues are directly visible on their main diagonal.",
+                    "D.  They always have real eigenvalues."
+                ],
+                answer: "C"
+            },
+            {
+                question: "In the QR method, what is the relationship between the original matrix (A) and the matrices Q and R?",
+                options: [
+                    "A. A = QR, where Q is orthogonal and R is upper triangular.",
+                    "B. A = RQ, where R is upper triangular and Q is orthogonal.",
+                    "C.  A = Q⁻¹R, where Q is orthogonal and R is upper triangular.",
+                    "D. A = R⁻¹Q, where R is upper triangular and Q is orthogonal."
+                ],
+                answer: "A"
+            },
+            {
+                question: "Why are the factors Q and R reversed (RQ) in each iteration of the QR method?",
+                options: [
+                    "A. To obtain a new matrix that is similar to the original matrix (A), preserving eigenvalues.",
+                    "B. To improve the numerical stability of the algorithm.",
+                    "C.  To make the iterations converge faster.",
+                    "D.  To orthogonalize the eigenvectors of the matrix."
+                ],
+                answer: "A"
+            },
+            {
+                question: "The QR method primarily focuses on finding eigenvalues. How are the corresponding eigenvectors typically determined after finding the eigenvalues?",
+                options: [
+                    "A. By applying the power method to the original matrix using each eigenvalue as an initial guess.",
+                    "B.  By calculating the inverse of the matrix and multiplying it by each eigenvalue.",
+                    "C. By substituting each eigenvalue back into the original eigenproblem (Ax = λx) and solving the resulting system.",
+                    "D.  By finding the null space of the matrix (A - λI) for each eigenvalue λ."
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is a potential advantage of using the QR method with shifting?",
+                options: [
+                    "A. It avoids the need for the Gram-Schmidt process.",
+                    "B.  It can accelerate convergence by targeting specific eigenvalues.",
+                    "C.  It reduces the computational complexity of the algorithm.",
+                    "D.  It makes the method applicable to non-linear eigenproblems."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You are working with a large, dense matrix and need to find all of its eigenvalues.  Which method would be the least efficient choice for this task?",
+                options: [
+                    "A. The QR method",
+                    "B. The power method",
+                    "C.  The direct method (solving the characteristic equation)",
+                    "D.  A method that transforms the matrix into Hessenberg form before applying QR iterations"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What does the 'fundamental theorem of algebra' state about polynomial equations?",
+                options: [
+                    "A. Any polynomial can be factored into linear terms.",
+                    "B.  A polynomial of degree 'n' has exactly 'n' roots, counting multiplicities, which may be real or complex.",
+                    "C.  Every polynomial has at least one real root.",
+                    "D.  The roots of a polynomial can always be found using explicit formulas."
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which of the following is NOT a valid approach to finding the roots of a polynomial equation?",
+                options: [
+                    "A. Using the quadratic formula for second-degree polynomials.",
+                    "B.  Applying iterative methods like Newton's method or the secant method.",
+                    "C.  Using the interval halving (bisection) method directly on the polynomial.",
+                    "D.  Finding roots one at a time and using polynomial deflation to reduce the degree."
+                ],
+                answer: "C"
+            },
+            {
+                question: "Descartes' rule of signs provides information about the roots of a polynomial. What specific information does it give?",
+                options: [
+                    "A. The exact values of the real roots.",
+                    "B.  The number of positive and negative real roots a polynomial with real coefficients might have.",
+                    "C.  The multiplicity of each root.",
+                    "D.  Whether the polynomial has any complex roots."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You are attempting to find the roots of a high-degree polynomial using Newton's method. You notice that the iterations are oscillating around a particular value without converging. What is the most likely explanation?",
+                options: [
+                    "A. The polynomial is ill-conditioned.",
+                    "B.  The initial guess is too far from the root.",
+                    "C.  The polynomial has a multiple root at that value.",
+                    "D.  Newton's method is not suitable for finding the roots of polynomials."
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the main purpose of using polynomial deflation when finding multiple roots?",
+                options: [
+                    "A. To reduce the computational complexity of finding subsequent roots.",
+                    "B.  To improve the accuracy of the calculated roots.",
+                    "C.  To avoid converging to the same root multiple times.",
+                    "D.  All of the above."
+                ],
+                answer: "D"
+            },
+            {
+                question: "What is a potential drawback of using polynomial deflation?",
+                options: [
+                    "A. It can only be used with bracketing methods, not open domain methods.",
+                    "B. It significantly slows down the root-finding process.",
+                    "C.  Errors in the previously found roots can propagate to the coefficients of the deflated polynomial, affecting subsequent roots.",
+                    "D.  It can only find real roots; it cannot find complex roots."
+                ],
+                answer: "C"
+            },
+            {
+                question: "Why is it generally recommended to find the last two roots of a deflated polynomial using the quadratic formula rather than continuing with an iterative method?",
+                options: [
+                    "A. The quadratic formula is always more accurate than iterative methods.",
+                    "B.  Iterative methods cannot be applied to quadratic equations.",
+                    "C.  The coefficients of the deflated quadratic polynomial might contain accumulated errors, making further deflation less reliable.",
+                    "D.  The quadratic formula is computationally faster for finding the last two roots."
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is a key challenge in solving systems of non-linear equations compared to solving single non-linear equations?",
+                options: [
+                    "A. Systems of non-linear equations always have only one solution.",
+                    "B.  It is more difficult to visualize the problem and determine the number of solutions.",
+                    "C.  All root-finding methods for single equations can be directly applied to systems of equations.",
+                    "D.  Systems of non-linear equations can only be solved using iterative methods; no direct methods exist."
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which of the following root-finding methods is commonly extended to solve systems of non-linear equations?",
+                options: [
+                    "A. Interval halving (bisection)",
+                    "B.  Fixed-point iteration",
+                    "C.  Newton's method",
+                    "D.  None of the above"
+                ],
+                answer: "C"
+            },
+            {
+                question: "How is Newton's method adapted to solve a system of non-linear equations?",
+                options: [
+                    "A. It uses a single-variable Taylor series expansion, applying Newton's method to each equation separately.",
+                    "B.  It directly solves the system using matrix inversion.",
+                    "C.  It employs a multi-variable Taylor series expansion, approximating the system with a linear system that is solved in each iteration.",
+                    "D.  It converts the system into a single non-linear equation with multiple variables."
+                ],
+                answer: "C"
+            },
+            {
+                question: "You are solving a system of non-linear equations using Newton's method. In each iteration, what type of system of equations needs to be solved to determine the updates to the solution vector?",
+                options: [
+                    "A. A non-linear system of equations",
+                    "B.  A linear system of equations",
+                    "C.  A single non-linear equation",
+                    "D.  A single linear equation"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the significance of the Jacobian matrix in the context of solving systems of non-linear equations using Newton's method?",
+                options: [
+                    "A. It is the coefficient matrix of the linearized system of equations in each iteration.",
+                    "B.  It is the matrix of partial derivatives of the non-linear functions with respect to the unknown variables.",
+                    "C.  It represents the Hessian matrix of the system.",
+                    "D.  Both A and B."
+                ],
+                answer: "D"
+            },
+            {
+                question: "You are trying to find all the roots of a polynomial with real coefficients. You suspect that some roots might be complex. Which of the following methods would NOT be suitable for this task?",
+                options: [
+                    "A. Newton's method with complex arithmetic",
+                    "B.  The secant method with complex arithmetic",
+                    "C.  The interval halving (bisection) method",
+                    "D.  Bairstow's method for finding quadratic factors"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the primary reason that bracketing methods (like interval halving or false position) cannot be used to find complex roots of polynomials?",
+                options: [
+                    "A. These methods rely on sign changes in the function, which do not occur for complex roots.",
+                    "B.  They are too computationally expensive for complex numbers.",
+                    "C.  They always converge to real roots, even if complex roots exist.",
+                    "D.  They require the derivative of the polynomial, which is undefined for complex values."
+                ],
+                answer: "A"
+            },
+            {
+                question: "Why is it important to be mindful of ill-conditioning when solving both linear and non-linear systems of equations?",
+                options: [
+                    "A. Ill-conditioning makes it impossible to find a solution using numerical methods.",
+                    "B.  Ill-conditioning can lead to solutions that are highly sensitive to small changes in the input data, making them less reliable.",
+                    "C.  Ill-conditioned systems always have an infinite number of solutions.",
+                    "D.  Ill-conditioning indicates that the equations are not independent."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You are trying to solve a non-linear equation using Newton's method, but the iterations keep cycling through a few values without converging or diverging. What is a possible explanation for this behavior?",
+                options: [
+                    "A. The function has a root with very high multiplicity.",
+                    "B.  The initial guess is trapped in a local minimum or maximum of the function.",
+                    "C.  The derivative of the function is zero at the points where the iterations are cycling.",
+                    "D.  All of the above."
+                ],
+                answer: "D"
+            },
+            {
+                question: "You are comparing the efficiency of different root-finding methods. Which factor would generally favor using an open domain method (like Newton's or the secant method) over a bracketing method (like interval halving or false position)?",
+                options: [
+                    "A. When a guaranteed convergence is required.",
+                    "B.  When the derivative of the function is readily available and computationally inexpensive.",
+                    "C.  When the function has multiple roots close together.",
+                    "D.  When a very high accuracy is not crucial."
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the main purpose of using a convergence criterion in iterative methods?",
+                options: [
+                    "A. To determine the maximum number of iterations allowed.",
+                    "B.  To specify a condition for stopping the iterations when a desired level of accuracy or convergence is reached.",
+                    "C.  To check if the method is converging to the correct solution.",
+                    "D.  To avoid exceeding the computational resources available."
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which of the following is a common type of convergence criterion used in root-finding algorithms?",
+                options: [
+                    "A. The absolute difference between consecutive iterates is below a threshold.",
+                    "B.  The absolute value of the function at the current iterate is below a threshold.",
+                    "C.  The relative difference between consecutive iterates is below a threshold.",
+                    "D.  All of the above."
+                ],
+                answer: "D"
+            },
+            {
+                question: "What is the main difference between absolute error and relative error in numerical calculations?",
+                options: [
+                    "A. Absolute error is always smaller than relative error.",
+                    "B.  Relative error takes into account the magnitude of the true value, while absolute error does not.",
+                    "C.  Absolute error is used for iterative methods, while relative error is used for direct methods.",
+                    "D.  Absolute error is measured in the same units as the quantity being calculated, while relative error is dimensionless."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You are solving a linear system Ax = b and want to measure the sensitivity of the solution to changes in the right-hand side vector (b). What is a suitable metric for this sensitivity?",
+                options: [
+                    "A. The determinant of matrix A",
+                    "B.  The condition number of matrix A",
+                    "C.  The number of iterations required for an iterative method to converge",
+                    "D.  The spectral radius of matrix A"
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the relationship between the norm of a vector and its magnitude?",
+                options: [
+                    "A. The norm is the square of the magnitude.",
+                    "B.  The norm is a generalization of the concept of magnitude, providing a way to measure the 'size' of a vector or matrix.",
+                    "C.  The norm and magnitude are unrelated concepts.",
+                    "D.  The norm is only defined for vectors in two or three dimensions."
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which of the following is NOT a commonly used norm for vectors?",
+                options: [
+                    "A. The Euclidean norm (L2 norm)",
+                    "B. The maximum norm (L∞ norm)",
+                    "C.  The sum of absolute values norm (L1 norm)",
+                    "D.  The determinant norm"
+                ],
+                answer: "D"
+            },
+            {
+                question: "You are working with a matrix and need to choose a norm to measure its 'size.' Which norm would emphasize the largest element in the matrix?",
+                options: [
+                    "A. The maximum row sum norm",
+                    "B.  The maximum column sum norm",
+                    "C.  The Frobenius norm",
+                    "D.  The spectral norm"
+                ],
+                answer: "A"
+            },
+            {
+                question: "What is the condition number of a matrix in terms of its norms, and what does a large condition number indicate?",
+                options: [
+                    "A. Condition number = ||A|| * ||A⁻¹||, indicating that the matrix is ill-conditioned.",
+                    "B.  Condition number = ||A|| / ||A⁻¹||, indicating that the matrix is well-conditioned.",
+                    "C.  Condition number = det(A), indicating that the matrix is singular.",
+                    "D.  Condition number = trace(A), indicating the sum of the eigenvalues."
+                ],
+                answer: "A"
+            },
+            {
+                question: "You are solving an eigenproblem Ax = λx.  What is the characteristic equation for this problem, and what is its significance?",
+                options: [
+                    "A. det(A - λI) = 0; its roots are the eigenvalues (λ) of matrix A.",
+                    "B.  (A - λI)x = 0; it defines a system of linear equations to solve for the eigenvectors.",
+                    "C.  λ = trace(A); it gives the sum of the eigenvalues.",
+                    "D.  λ = det(A); it gives the product of the eigenvalues."
+                ],
+                answer: "A"
+            },
+            {
+                question: "Which of the following statements is true regarding finding eigenvectors using the inverse power method after the eigenvalues have been determined?",
+                options: [
+                    "A. The inverse power method is not suitable for finding eigenvectors; it only finds eigenvalues.",
+                    "B.  The inverse power method can be applied to the shifted matrix (A - λI) to find the eigenvector corresponding to eigenvalue λ.",
+                    "C.  The eigenvectors are directly obtained from the QR decomposition of the matrix.",
+                    "D.  The eigenvectors are simply the rows of the inverse matrix."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You are using an iterative method to solve a linear system, and you want to ensure that the solution has converged to a high degree of accuracy. What is a suitable approach to achieve this?",
+                options: [
+                    "A. Use a very small tolerance value in the convergence criterion.",
+                    "B.  Perform a large number of iterations, even if the solution seems to have stabilized.",
+                    "C.  Use a method with a faster convergence rate, like Gauss-Seidel or SOR.",
+                    "D.  All of the above."
+                ],
+                answer: "D"
+            },
+            {
+                question: "What is a key consideration when choosing a root-finding method for a particular non-linear equation?",
+                options: [
+                    "A. The availability of the derivative of the function",
+                    "B.  The expected number of roots",
+                    "C.  The computational cost of evaluating the function",
+                    "D.  All of the above"
+                ],
+                answer: "D"
+            },
+            {
+                question: "You are tasked with finding the roots of a polynomial, and you know that some roots might be repeated (multiplicity greater than one). Which variation of Newton's method would be most appropriate for this situation?",
+                options: [
+                    "A. The standard Newton's method, as it handles multiple roots without modification.",
+                    "B.  Newton's method with a modified formula that incorporates the multiplicity of the root.",
+                    "C.  Newton's method applied to the function u(x) = f(x) / f'(x)",
+                    "D.  Both B and C"
+                ],
+                answer: "D"
+            },
+            {
+                question: "Why is it sometimes challenging to identify the presence of multiple roots when visually inspecting the graph of a function?",
+                options: [
+                    "A. Multiple roots always appear as a single point on the graph.",
+                    "B. The function might have a flat region or inflection point near a multiple root, making it difficult to distinguish visually.",
+                    "C.  Multiple roots only occur for polynomial functions, which are difficult to graph accurately.",
+                    "D.  Graphical methods cannot be used to find multiple roots."
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the main reason for preprocessing a matrix into a nearly triangular form before applying the QR method for eigenvalue calculation?",
+                options: [
+                    "A. To reduce the computational cost of the QR iterations.",
+                    "B.  To make the matrix diagonally dominant.",
+                    "C.  To eliminate the need for the Gram-Schmidt process.",
+                    "D.  To ensure that all eigenvalues are real numbers."
+                ],
+                answer: "A"
+            },
+            {
+                question: "Why are the eigenvectors of a matrix important in various applications?",
+                options: [
+                    "A. They represent the principal directions of transformation or deformation associated with the matrix.",
+                    "B.  They form an orthonormal basis for the vector space.",
+                    "C.  They can be used to diagonalize the matrix, simplifying calculations.",
+                    "D.  All of the above."
+                ],
+                answer: "D"
+            },
+            {
+                question: "You are using an iterative method to solve a non-linear equation, and you notice that the iterations are converging very quickly. What does this typically indicate about the behavior of the function near the root?",
+                options: [
+                    "A. The function is nearly linear in the vicinity of the root.",
+                    "B.  The function has a multiple root at the solution.",
+                    "C.  The initial guess was exceptionally good.",
+                    "D.  The function is highly oscillatory near the root."
+                ],
+                answer: "A"
+            },
+            {
+                question: "You need to solve a system of linear equations where the coefficient matrix is very large and sparse. You have the choice between using a direct method (like Gaussian elimination) or an iterative method (like Jacobi or Gauss-Seidel). Which statement best guides your choice?",
+                options: [
+                    "A. Direct methods are always more efficient for large matrices.",
+                    "B.  Iterative methods are often more suitable for large, sparse matrices, especially if they are diagonally dominant.",
+                    "C.  The choice depends solely on the accuracy requirements of the solution.",
+                    "D.  Direct methods are preferred if the matrix is ill-conditioned."
+                ],
+                answer: "B"
+            },
+            {
+                question: "What is the relationship between the eigenvalues of a matrix and its determinant?",
+                options: [
+                    "A. The determinant is the sum of the eigenvalues.",
+                    "B.  The determinant is the product of the eigenvalues.",
+                    "C.  The eigenvalues are the square roots of the determinant.",
+                    "D.  The determinant and eigenvalues are unrelated concepts."
+                ],
+                answer: "B"
+            },
+            {
+                question: "You have successfully used the QR method to find the eigenvalues of a matrix. You now want to find the corresponding eigenvectors. Which of the following methods would be appropriate for this task?",
+                options: [
+                    "A. Applying the inverse power method to the matrix shifted by each eigenvalue.",
+                    "B.  Performing a singular value decomposition (SVD) on the matrix.",
+                    "C.  Calculating the inverse of the matrix and multiplying it by each eigenvalue.",
+                    "D.  Solving the characteristic equation again for each eigenvalue."
+                ],
+                answer: "A"
+            },
+            {
+                question: "When solving a non-linear equation, what is the primary concern when the equation is known to be ill-conditioned?",
+                options: [
+                    "A. The solution might not exist.",
+                    "B. The solution might be very sensitive to small errors in the input data or round-off errors during calculations.",
+                    "C.  Iterative methods will always diverge.",
+                    "D.  The problem can only be solved using symbolic methods, not numerical methods."
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which of the following techniques is NOT commonly used to address ill-conditioning in numerical problems?",
+                options: [
+                    "A. Using higher-precision arithmetic",
+                    "B.  Employing regularization methods to stabilize the solution",
+                    "C.  Reformulating the problem to reduce sensitivity",
+                    "D.  Decreasing the number of iterations in iterative methods"
+                ],
+                answer: "D"
             }
+
         ];
 
         let all = { start: 0, end: questions.length - 1, name: "All" }
@@ -1717,8 +2657,9 @@
         let lect4 = { start: 77, end: 86, name: "Lecture 4: Trivial" };
         let lect5 = { start: 87, end: 101, name: "Lecture 5: Trivial" };
         let lect6 = { start: 102, end: 116, name: "Lecture 6: Trivial" }
+        let notSoObvious = { start: 117, end: 210, name: "Not So Obvious" }
 
-        const lectureRanges = [all, lect1, lect2, lect3, lect4, lect5, lect6];
+        const lectureRanges = [all, lect1, lect2, lect3, lect4, lect5, lect6, notSoObvious];
         let currentQuestion = 0;
         let userAnswers = Array(questions.length).fill(null);
         let selectedQuestions = [];
