@@ -701,7 +701,7 @@
         let selectedQuestions = [];
         let quizType = "all";
 
-        const baseUrl = "https://bbfquestions.vercel.app/api/validate/"
+        const baseUrl = "http://bbf-backend.onrender.com/api/quiz/user/"
         const usernameDialog = document.getElementById("usernameDialog");
         const quizContainer = document.getElementById("quizContainer");
         const quizOptionsDiv = document.getElementById("quiz-options");
@@ -749,16 +749,17 @@
                 enterBtn.style.display = "none";
                 loader.style.display = "block";
 
-                console.log(authKey)
 
-                const response = await fetch(baseUrl, {
-                    method: "POST",
+                const response = await fetch(`${baseUrl}verify`, {
+                    method: 'POST',
                     headers: {
-                        "Content-Type": "application/json"
+                        'Content-Type': 'application/json'
                     },
-                    body: payload,
-                    mode: "cors"
+                    body: JSON.stringify(payload),
+                    mode: 'cors',
                 });
+
+                console.log(response)
 
                 if (!response.ok) {
                     throw new Error(`Authentication Error`);
@@ -1120,7 +1121,7 @@
                 return
             } else {
                 try {
-                    const response = await fetch(`${baseUrl}/${usernameValue}`, {
+                    const response = await fetch(`${baseUrl}/validate/${usernameValue}`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json"
@@ -1129,6 +1130,7 @@
                     })
 
                     const data = await response.json();
+                    console.log(data)
 
                     if (!data.isValid) {
                         const pageContents = document.getElementById("pageContents");
