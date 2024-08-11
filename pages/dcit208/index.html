@@ -512,6 +512,17 @@
             animation: spin 2s linear infinite;
         }
 
+        #loader2 {
+            margin-top: 1rem;
+            display: none;
+            border: 0.5rem solid #069a8e;
+            border-top: 0.5em solid #6643b5;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            animation: spin 2s linear infinite;
+        }
+
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -520,6 +531,13 @@
             100% {
                 transform: rotate(360deg);
             }
+        }
+
+        .loaderContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
         }
     </style>
 </head>
@@ -533,7 +551,7 @@
             <h2 class="auth-h2" id="auth-key-text">Have an Auth key?</h2>
             <div id="loader"></div>
             <input id="authInputUsername" type="text" maxlength="20" placeholder="Enter username key" />
-            <input id="authInput" type="password" placeholder="Enter auth key" />
+            <input id="authInput" type="text" placeholder="Enter auth key" />
             <div id="enter-btn">Enter it</div>
         </div>
     </div>
@@ -545,6 +563,9 @@
                 <h4 id="usr-h4">
                     A username is required to access anything on the page
                 </h4>
+                <div class="loaderContainer">
+                    <div id="loader2"></div>
+                </div>
                 <input type="text" id="username" placeholder="Username" required />
                 <div id="usernameDiv">
                     <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
@@ -726,6 +747,7 @@
 
         const enterBtn = document.getElementById("enter-btn");
         const loader = document.getElementById("loader");
+        const loader2 = document.getElementById("loader2");
         const authInput = document.getElementById("authInput")
         const authUsername = document.getElementById("authInputUsername")
         const authHeader = document.getElementById("auth-h2");
@@ -734,60 +756,62 @@
         let authKey = ""
         const pageContents = document.getElementById("pageContents");
 
+        validateUserOnLoad();
+
 
         async function validateUserFromAPI() {
             try {
                 userName = authUsername.value.trim();
                 localStorage.setItem("username", userName);
                 authKey = authInput.value.trim();
-                let payload = JSON.stringify({ username: userName, key: authKey });
-                console.log(payload)
+
+                let payload = JSON.stringify({
+                    username: userName,
+                    key: authKey
+                });
+
                 authKeyText.innerText = "Validating Auth Key";
                 authHeader.innerText = "";
                 authInput.style.display = "none";
-                authUsername.style.display = "none"
+                authUsername.style.display = "none";
                 enterBtn.style.display = "none";
                 loader.style.display = "block";
 
-
-                const response = await fetch(`${baseUrl}verify`, {
+                const response = await fetch('https://bbf-backend.onrender.com/api/quiz/user/verify', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(payload),
+                    body: payload,
                     mode: 'cors',
                 });
 
-                console.log(response)
-
                 if (!response.ok) {
-                    throw new Error(`Authentication Error`);
+                    throw new Error('Authentication Error');
                 }
 
-
                 const data = await response.json();
-                console.log('Response data:', data);
 
                 if (data.isValid) {
                     authKeyText.innerText = "Auth Key Validated!";
                     authHeader.innerText = "Redirecting...";
-                    localStorage.setItem("authStatus", JSON.stringify({ username: userName, isAuthenticated: true }))
+                    localStorage.setItem("authStatus", JSON.stringify({ username: userName, isAuthenticated: true }));
                     setTimeout(() => {
-                        authDiv.style.display = "none"
-                        pageContents.style.display = "contents"
-                    }, 1000)
+                        authDiv.style.display = "none";
+                        pageContents.style.display = "block";
+                    }, 1000);
                 } else {
                     authKeyText.innerText = "Invalid Auth Key!";
+                    authInput.value = "";
+                    authHeader.innerText = "Invalid Auth Key";
                 }
             } catch (error) {
                 console.error("Fetch error:", error);
                 authHeader.innerText = error.message;
-                authInput.value = ""
                 authKeyText.innerText = "Have an auth key?";
                 authHeader.style.display = "block";
                 authInput.style.display = "block";
-                authUsername.style.display = "block"
+                authUsername.style.display = "block";
                 enterBtn.style.display = "block";
                 loader.style.display = "none";
             }
@@ -795,11 +819,12 @@
 
         enterBtn.addEventListener("click", () => {
             if (authInput.value.trim() === "") {
-                alert("Please enter your auth key")
-                return
+                alert("Please enter your auth key");
+                return;
             }
-            validateUserFromAPI()
-        })
+            validateUserFromAPI();
+        });
+
 
 
 
@@ -1107,47 +1132,69 @@
 
         async function validateUserOnLoad() {
             const usernameValue = document.getElementById("username").value.trim();
-
-            const localStat = JSON.parse(localStorage.getItem("authStatus"))
+            const uDiv = document.getElementById("username")
+            const uBtnFiv = document.getElementById("usernameDiv")
+            const localStat = JSON.parse(localStorage.getItem("authStatus"));
+            loader2.style.display = "block";
 
             if (!localStat) {
+                setTimeout(() => {
+                    loader2.style.display = "none";
+                    uDiv.style.display = "block";
+                    uBtnFiv.style.display = "flex";
+                }, 1000);
                 localStorage.setItem("authStatus", JSON.stringify({ username: usernameValue, isAuthenticated: false }));
-                pageContents.style.display = "none"
-                authDiv.style.display = "flex"
-                return
+                uDiv.style.display = "block";
+                uBtnFiv.style.display = "flex";
+                pageContents.style.display = "none";
+                authDiv.style.display = "flex";
+                return;
             }
-
             if (localStat.username === usernameValue && localStat.isAuthenticated) {
-                return
+                return;
             } else {
+                uDiv.style.display = "none";
+                uBtnFiv.style.display = "none";
+                loader2.style.display = "block";
                 try {
-                    const response = await fetch(`${baseUrl}/validate/${usernameValue}`, {
+                    const response = await fetch(`http://bbf-backend.onrender.com/api/quiz/user/validate/${usernameValue}`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json"
                         },
                         mode: "cors"
-                    })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
 
                     const data = await response.json();
-                    console.log(data)
+                    setTimeout(() => {
+                        loader2.style.display = "none";
+                        uDiv.style.display = "block";
+                        uBtnFiv.style.display = "flex";
+                    }, 1000);
+
 
                     if (!data.isValid) {
-                        const pageContents = document.getElementById("pageContents");
-                        pageContents.style.display = "none"
-                        authDiv.style.display = "flex"
+                        pageContents.style.display = "none";
+                        authDiv.style.display = "flex";
 
-                        localStorage.setItem("authStatus", JSON.stringify({ username: userName, isAuthenticated: false }))
+                        localStorage.setItem("authStatus", JSON.stringify({ username: usernameValue, isAuthenticated: false }));
                     } else {
-                        localStorage.setItem("authStatus", JSON.stringify({ username: userName, isAuthenticated: true }))
-                        return
+                        localStorage.setItem("authStatus", JSON.stringify({ username: usernameValue, isAuthenticated: true }));
+                        uDiv.style.display = "block";
+                        uBtnFiv.style.display = "flex";
+                        pageContents.style.display = "block";
+                        authDiv.style.display = "none";
+                        return;
                     }
                 } catch (error) {
                     return
                 }
             }
         }
-
 
         function checkScores() {
             let scores = JSON.parse(localStorage.getItem("scores")) || [];
