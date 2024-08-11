@@ -2490,6 +2490,7 @@ async function validateUserFromAPI() {
         JSON.stringify({ username: userName, isAuthenticated: true })
       );
       setTimeout(() => {
+        localStorage.setItem("authUser", userName);
         authDiv.style.display = "none";
         pageContents.style.display = "block";
         loader2.style.display = "none";
@@ -2891,9 +2892,10 @@ function saveAnswer() {
 window.addEventListener("beforeunload", () => {
   localStorage.setItem("previousUser", userName);
   saveProgressLocally();
+  const lastUser = localStorage.getItem("authUser");
   localStorage.setItem(
     "authStatus",
-    JSON.stringify({ username: userName, isAuthenticated: true })
+    JSON.stringify({ username: lastUser, isAuthenticated: true })
   );
 });
 
