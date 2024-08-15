@@ -89,6 +89,10 @@ enterBtn.addEventListener("click", () => {
     alert("Please enter your username");
     return;
   }
+
+  if (authUsername.value.trim().includes("bbflabs")) {
+    alert("You are not allowed to use this username");
+  }
   giveAuthKey();
 });
 
