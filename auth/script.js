@@ -1,238 +1,244 @@
-const _0x471d52 = _0x59e3;
-(function (_0x3c7a5a, _0x4e8ece) {
-  const _0x17a9ff = _0x59e3,
-    _0x1449be = _0x3c7a5a();
-  while (!![]) {
-    try {
-      const _0x2bfb57 =
-        (-parseInt(_0x17a9ff(0x97)) / 0x1) * (parseInt(_0x17a9ff(0xa4)) / 0x2) +
-        (parseInt(_0x17a9ff(0xc5)) / 0x3) * (-parseInt(_0x17a9ff(0xcb)) / 0x4) +
-        (parseInt(_0x17a9ff(0xaf)) / 0x5) * (parseInt(_0x17a9ff(0x98)) / 0x6) +
-        (-parseInt(_0x17a9ff(0xb1)) / 0x7) *
-          (-parseInt(_0x17a9ff(0xb8)) / 0x8) +
-        -parseInt(_0x17a9ff(0xbf)) / 0x9 +
-        parseInt(_0x17a9ff(0xc7)) / 0xa +
-        parseInt(_0x17a9ff(0xbd)) / 0xb;
-      if (_0x2bfb57 === _0x4e8ece) break;
-      else _0x1449be["push"](_0x1449be["shift"]());
-    } catch (_0x414eb6) {
-      _0x1449be["push"](_0x1449be["shift"]());
-    }
-  }
-})(_0x458f, 0x1c81e);
-let userName = "" || localStorage["getItem"](_0x471d52(0xd4));
-function _0x458f() {
-  const _0x5dfb10 = [
-    "slice",
-    "1683528TXmWLp",
-    "textContent",
-    "482256hoZbdq",
-    "Username\x20cannot\x20contain\x20\x27bbflabs\x27",
-    "message",
-    "Fetch\x20error:",
-    "block",
-    "cors",
-    "111JVWtSD",
-    "POST",
-    "223380OYgpHa",
-    "display",
-    "stringify",
-    "setItem",
-    "22508lzLjXk",
-    "Something\x20went\x20wrong\x20on\x20our\x20end",
-    "application/json",
-    "...",
+const _0x50013c = _0xe59e;
+function _0x1afd() {
+  const _0x7d5d92 = [
     "auth-key-text-copy",
+    "value",
+    "Copied!",
+    "loader2",
+    "auth-h2",
+    "6MjiTmX",
+    "toLowerCase",
+    "cors",
+    "getItem",
+    "username",
+    "Already\x20have\x20an\x20auth\x20key?",
+    "innerText",
+    "Something\x20went\x20wrong",
+    "user",
+    "337308zzmyIP",
+    "flex",
+    "authInput",
+    "message",
     "style",
     "trim",
-    "value",
-    "catch",
-    "username",
-    "user",
-    "Checking\x20your\x20account,\x20",
-    "Copied!",
-    "clipboard",
-    "128753IIsSyY",
-    "24246OGPrCD",
-    "writeText",
-    "Failed\x20to\x20copy",
-    "https://bbf-backend.onrender.com/api/quiz/user/validate/",
-    "authPage",
+    "614026rFkXDO",
     "none",
-    "Hold\x20on...",
-    "Copy",
-    "Already\x20have\x20an\x20auth\x20key?",
-    "loader",
-    "https://bbf-backend.onrender.com/api/quiz/user/add/",
-    "click",
-    "2hUMfJU",
-    "Something\x20went\x20wrong",
-    "enter-btn",
-    "getElementById",
-    "copy-container",
-    "loader2",
-    "json",
-    "accessKey",
-    "then",
-    "authInput",
-    "innerText",
-    "135uOLsZp",
+    "Creating\x20an\x20account\x20for\x20you",
+    "Failed\x20to\x20copy",
+    "Username\x20cannot\x20contain\x20\x27bbflabs\x27",
+    "block",
+    "application/json",
     "addEventListener",
-    "16079JIghOb",
-    "log",
-    "toLowerCase",
-    "copy-btn",
-    "Please\x20enter\x20your\x20username",
-    "error",
-    "Auth\x20Key\x20Created!",
-    "776fgmSDm",
-    "includes",
+    "getElementById",
+    "Hold\x20on...",
+    "Something\x20went\x20wrong\x20on\x20our\x20end",
+    "407505sNWPkZ",
+    "Username\x20must\x20be\x20at\x20least\x204\x20characters\x20long",
     "accessTokens",
-    "bbflabs",
+    "authUser",
+    "length",
+    "display",
+    "2539557uUVsWQ",
+    "accessKey",
+    "Auth\x20Key\x20Created!",
+    "18258VjIshD",
+    "1213296RaaqYa",
+    "success",
+    "https://bbf-backend.onrender.com/api/quiz/user/add/",
+    "auth-key-text",
+    "authPage",
+    "671632nZiSmj",
+    "615gwLZCQ",
+    "POST",
+    "then",
+    "includes",
+    "click",
+    "json",
+    "Please\x20wait...",
+    "Copy",
+    "copy-btn",
+    "copy-container",
+    "slice",
+    "writeText",
+    "stringify",
   ];
-  _0x458f = function () {
-    return _0x5dfb10;
+  _0x1afd = function () {
+    return _0x7d5d92;
   };
-  return _0x458f();
+  return _0x1afd();
 }
-function _0x59e3(_0x3e43b9, _0x12885d) {
-  const _0x458f53 = _0x458f();
+(function (_0x509994, _0xf2eff7) {
+  const _0x542964 = _0xe59e,
+    _0x190e0c = _0x509994();
+  while (!![]) {
+    try {
+      const _0xcb2239 =
+        -parseInt(_0x542964(0x1ae)) / 0x1 +
+        parseInt(_0x542964(0x178)) / 0x2 +
+        (-parseInt(_0x542964(0x1a5)) / 0x3) *
+          (parseInt(_0x542964(0x192)) / 0x4) +
+        (parseInt(_0x542964(0x193)) / 0x5) *
+          (parseInt(_0x542964(0x18c)) / 0x6) +
+        parseInt(_0x542964(0x183)) / 0x7 +
+        -parseInt(_0x542964(0x18d)) / 0x8 +
+        parseInt(_0x542964(0x189)) / 0x9;
+      if (_0xcb2239 === _0xf2eff7) break;
+      else _0x190e0c["push"](_0x190e0c["shift"]());
+    } catch (_0x11a588) {
+      _0x190e0c["push"](_0x190e0c["shift"]());
+    }
+  }
+})(_0x1afd, 0x30128);
+let userName = "" || localStorage[_0x50013c(0x1a8)](_0x50013c(0x1a9));
+const enterBtn = document[_0x50013c(0x180)]("enter-btn"),
+  loader = document["getElementById"]("loader"),
+  loader2 = document[_0x50013c(0x180)](_0x50013c(0x1a3)),
+  authInput = document[_0x50013c(0x180)](_0x50013c(0x1b0)),
+  authUsername = document[_0x50013c(0x180)]("authInputUsername"),
+  authHeader = document[_0x50013c(0x180)](_0x50013c(0x1a4)),
+  authKeyText = document[_0x50013c(0x180)](_0x50013c(0x190)),
+  authDiv = document[_0x50013c(0x180)](_0x50013c(0x191));
+function _0xe59e(_0x440f54, _0x24aa2b) {
+  const _0x1afd8b = _0x1afd();
   return (
-    (_0x59e3 = function (_0x59e3a0, _0x5f43a2) {
-      _0x59e3a0 = _0x59e3a0 - 0x95;
-      let _0x29f5f3 = _0x458f53[_0x59e3a0];
-      return _0x29f5f3;
+    (_0xe59e = function (_0xe59e98, _0x2aa8f4) {
+      _0xe59e98 = _0xe59e98 - 0x177;
+      let _0x3289c6 = _0x1afd8b[_0xe59e98];
+      return _0x3289c6;
     }),
-    _0x59e3(_0x3e43b9, _0x12885d)
+    _0xe59e(_0x440f54, _0x24aa2b)
   );
 }
-const enterBtn = document[_0x471d52(0xa7)](_0x471d52(0xa6)),
-  loader = document[_0x471d52(0xa7)](_0x471d52(0xa1)),
-  loader2 = document[_0x471d52(0xa7)](_0x471d52(0xa9)),
-  authInput = document[_0x471d52(0xa7)](_0x471d52(0xad)),
-  authUsername = document[_0x471d52(0xa7)]("authInputUsername"),
-  authHeader = document[_0x471d52(0xa7)]("auth-h2"),
-  authKeyText = document[_0x471d52(0xa7)]("auth-key-text"),
-  authDiv = document[_0x471d52(0xa7)](_0x471d52(0x9c));
 let authKey = "";
-const authKeyCopy = document[_0x471d52(0xa7)](_0x471d52(0xcf)),
-  authCopyContainer = document[_0x471d52(0xa7)](_0x471d52(0xa8)),
-  copyBtn = document[_0x471d52(0xa7)](_0x471d52(0xb4));
+const authKeyCopy = document[_0x50013c(0x180)](_0x50013c(0x1a0)),
+  authCopyContainer = document[_0x50013c(0x180)](_0x50013c(0x19c)),
+  copyBtn = document[_0x50013c(0x180)](_0x50013c(0x19b));
 async function giveAuthKey() {
-  const _0x12fb59 = _0x471d52;
+  const _0x18c227 = _0x50013c;
   try {
-    (userName = authUsername[_0x12fb59(0xd2)][_0x12fb59(0xd1)]()),
-      localStorage["setItem"](_0x12fb59(0xd4), userName);
-    let _0x32ab7c = userName[_0x12fb59(0xb3)]();
-    (authKeyText[_0x12fb59(0xae)] = _0x12fb59(0xd6) + _0x32ab7c),
-      (authHeader[_0x12fb59(0xae)] = ""),
-      (authUsername[_0x12fb59(0xd0)]["display"] = "none"),
-      (enterBtn[_0x12fb59(0xd0)][_0x12fb59(0xc8)] = _0x12fb59(0x9d)),
-      (loader[_0x12fb59(0xd0)]["display"] = _0x12fb59(0xc3));
-    const _0x21ab83 = await fetch(_0x12fb59(0x9b) + _0x32ab7c, {
-        method: _0x12fb59(0xc6),
-        headers: { "Content-Type": _0x12fb59(0xcd) },
-        mode: "cors",
-      }),
-      _0x2e3cfb = await _0x21ab83["json"]();
-    _0x2e3cfb["isValid"]
-      ? await handleExistingUser(_0x2e3cfb)
+    (userName = authUsername[_0x18c227(0x1a1)][_0x18c227(0x177)]()),
+      localStorage["setItem"](_0x18c227(0x1a9), userName);
+    let _0x5f361d = userName[_0x18c227(0x1a6)]();
+    (authKeyText[_0x18c227(0x1ab)] =
+      "Checking\x20your\x20account,\x20" + _0x5f361d),
+      (authHeader[_0x18c227(0x1ab)] = ""),
+      (authUsername[_0x18c227(0x1b2)][_0x18c227(0x188)] = _0x18c227(0x179)),
+      (enterBtn[_0x18c227(0x1b2)]["display"] = _0x18c227(0x179)),
+      (loader[_0x18c227(0x1b2)][_0x18c227(0x188)] = "block");
+    const _0xf57b0d = await fetch(
+        "https://bbf-backend.onrender.com/api/quiz/user/validate/" + _0x5f361d,
+        {
+          method: _0x18c227(0x194),
+          headers: { "Content-Type": _0x18c227(0x17e) },
+          mode: "cors",
+        }
+      ),
+      _0x4fa0cc = await _0xf57b0d[_0x18c227(0x198)]();
+    _0x4fa0cc["isValid"]
+      ? await handleExistingUser(_0x4fa0cc)
       : await handleNewUser();
-  } catch (_0x4cef2c) {
-    console[_0x12fb59(0xb6)](_0x12fb59(0xc2), _0x4cef2c),
-      (authHeader[_0x12fb59(0xae)] = _0x4cef2c[_0x12fb59(0xc1)]),
-      (authKeyText["innerText"] = _0x12fb59(0xa0)),
-      (authHeader[_0x12fb59(0xd0)][_0x12fb59(0xc8)] = _0x12fb59(0xc3)),
-      (authUsername[_0x12fb59(0xd0)][_0x12fb59(0xc8)] = _0x12fb59(0xc3)),
-      (enterBtn[_0x12fb59(0xd0)]["display"] = "block"),
-      (loader[_0x12fb59(0xd0)]["display"] = _0x12fb59(0x9d));
+  } catch (_0x5801ca) {
+    console["error"]("Fetch\x20error:", _0x5801ca),
+      (authHeader[_0x18c227(0x1ab)] = _0x5801ca[_0x18c227(0x1b1)]),
+      (authKeyText[_0x18c227(0x1ab)] = _0x18c227(0x1aa)),
+      (authHeader[_0x18c227(0x1b2)][_0x18c227(0x188)] = _0x18c227(0x17d)),
+      (authUsername["style"][_0x18c227(0x188)] = "block"),
+      (enterBtn["style"][_0x18c227(0x188)] = _0x18c227(0x17d)),
+      (loader[_0x18c227(0x1b2)][_0x18c227(0x188)] = _0x18c227(0x179));
   }
 }
-async function handleExistingUser(_0x1af0de) {
-  const _0x498775 = _0x471d52;
-  (authKeyText["innerText"] = _0x498775(0xb7)),
-    (authHeader["innerText"] = _0x498775(0x9e)),
-    localStorage[_0x498775(0xca)](
-      _0x498775(0xba),
-      JSON["stringify"]({ username: userName, authKey: "" })
+async function handleExistingUser(_0x2bf2f4) {
+  const _0x9e6bfd = _0x50013c;
+  (authKeyText["innerText"] = _0x9e6bfd(0x18b)),
+    (authHeader[_0x9e6bfd(0x1ab)] = _0x9e6bfd(0x181)),
+    localStorage["setItem"](
+      _0x9e6bfd(0x185),
+      JSON[_0x9e6bfd(0x19f)]({ username: userName, authKey: "" })
     ),
-    (authKey = _0x1af0de?.["accessKey"]?.[_0x498775(0xab)]);
-  let _0x2f48ac = authKey[_0x498775(0xbc)](0x0, 0xc) + _0x498775(0xce);
-  await new Promise((_0x3eafd2) => setTimeout(_0x3eafd2, 0x3e8)),
-    localStorage[_0x498775(0xca)]("authUser", userName),
-    (loader[_0x498775(0xd0)][_0x498775(0xc8)] = _0x498775(0x9d)),
-    (authHeader[_0x498775(0xd0)][_0x498775(0xc8)] = "none"),
-    (authKeyText["style"][_0x498775(0xc8)] = _0x498775(0x9d)),
-    (authCopyContainer[_0x498775(0xd0)][_0x498775(0xc8)] = "flex"),
-    (authKeyCopy[_0x498775(0xae)] = _0x2f48ac);
+    (authKey = _0x2bf2f4?.[_0x9e6bfd(0x18a)]?.[_0x9e6bfd(0x18a)]);
+  let _0x151f73 = authKey[_0x9e6bfd(0x19d)](0x0, 0xc) + "...";
+  await new Promise((_0x547035) => setTimeout(_0x547035, 0x3e8)),
+    localStorage["setItem"](_0x9e6bfd(0x186), userName),
+    (loader["style"][_0x9e6bfd(0x188)] = _0x9e6bfd(0x179)),
+    (authHeader[_0x9e6bfd(0x1b2)][_0x9e6bfd(0x188)] = _0x9e6bfd(0x179)),
+    (authKeyText[_0x9e6bfd(0x1b2)]["display"] = _0x9e6bfd(0x179)),
+    (authCopyContainer[_0x9e6bfd(0x1b2)][_0x9e6bfd(0x188)] = _0x9e6bfd(0x1af)),
+    (authKeyCopy[_0x9e6bfd(0x1ab)] = _0x151f73);
 }
 async function handleNewUser() {
-  const _0x57801c = _0x471d52;
-  (authKeyText["innerText"] = "Creating\x20an\x20account\x20for\x20you"),
-    (authHeader[_0x57801c(0xae)] = "Please\x20wait..."),
-    (loader[_0x57801c(0xd0)][_0x57801c(0xc8)] = "block"),
+  const _0x4fbbf5 = _0x50013c;
+  (authKeyText[_0x4fbbf5(0x1ab)] = _0x4fbbf5(0x17a)),
+    (authHeader["innerText"] = _0x4fbbf5(0x199)),
+    (loader[_0x4fbbf5(0x1b2)][_0x4fbbf5(0x188)] = "block"),
     await createUser();
   return;
 }
-enterBtn[_0x471d52(0xb0)](_0x471d52(0xa3), () => {
-  const _0x6870c8 = _0x471d52;
-  if (authUsername["value"][_0x6870c8(0xd1)]() === "") {
-    alert(_0x6870c8(0xb5));
+enterBtn[_0x50013c(0x17f)]("click", () => {
+  const _0x4feba9 = _0x50013c;
+  if (authUsername[_0x4feba9(0x1a1)]["trim"]() === "") {
+    alert("Please\x20enter\x20your\x20username");
     return;
   }
   if (
-    authUsername[_0x6870c8(0xd2)]
-      [_0x6870c8(0xd1)]()
+    authUsername[_0x4feba9(0x1a1)]
+      [_0x4feba9(0x177)]()
       ["toLowerCase"]()
-      [_0x6870c8(0xb9)](_0x6870c8(0xbb)[_0x6870c8(0xb3)]())
+      [_0x4feba9(0x196)]("bbflabs"["toLowerCase"]())
   ) {
-    (authHeader[_0x6870c8(0xae)] = _0x6870c8(0xc0)),
-      (authUsername[_0x6870c8(0xd2)] = "");
+    (authHeader[_0x4feba9(0x1ab)] = _0x4feba9(0x17c)),
+      (authUsername[_0x4feba9(0x1a1)] = "");
+    return;
+  }
+  if (
+    authUsername[_0x4feba9(0x1a1)][_0x4feba9(0x177)]()[_0x4feba9(0x187)] < 0x4
+  ) {
+    (authHeader[_0x4feba9(0x1ab)] = _0x4feba9(0x184)),
+      (authUsername[_0x4feba9(0x1a1)] = "");
     return;
   }
   giveAuthKey();
 }),
-  copyBtn[_0x471d52(0xb0)]("click", () => {
-    const _0x531b84 = _0x471d52;
-    navigator[_0x531b84(0x96)]
-      [_0x531b84(0x99)](authKey)
-      [_0x531b84(0xac)](() => {
-        const _0x374381 = _0x531b84;
-        (copyBtn[_0x374381(0xae)] = _0x374381(0x95)),
+  copyBtn[_0x50013c(0x17f)](_0x50013c(0x197), () => {
+    const _0x56a033 = _0x50013c;
+    navigator["clipboard"]
+      [_0x56a033(0x19e)](authKey)
+      [_0x56a033(0x195)](() => {
+        const _0x280c72 = _0x56a033;
+        (copyBtn[_0x280c72(0x1ab)] = _0x280c72(0x1a2)),
           setTimeout(() => {
-            const _0x5a5500 = _0x374381;
-            copyBtn[_0x5a5500(0xbe)] = _0x5a5500(0x9f);
+            const _0x45dd20 = _0x280c72;
+            copyBtn["textContent"] = _0x45dd20(0x19a);
           }, 0x7d0);
       })
-      [_0x531b84(0xd3)]((_0x2f2e7b) => {
-        const _0x27943d = _0x531b84;
-        throw new Error(_0x27943d(0x9a));
+      ["catch"]((_0x19e3aa) => {
+        const _0x471db0 = _0x56a033;
+        throw new Error(_0x471db0(0x17b));
       });
   });
 async function createUser() {
-  const _0xc3393f = _0x471d52;
+  const _0xde7dd0 = _0x50013c;
   try {
-    (userName = authUsername[_0xc3393f(0xd2)]["trim"]()),
-      localStorage[_0xc3393f(0xca)](_0xc3393f(0xd4), userName);
-    let _0x38a65c = JSON[_0xc3393f(0xc9)]({
+    (userName = authUsername["value"][_0xde7dd0(0x177)]()),
+      localStorage["setItem"](_0xde7dd0(0x1a9), userName);
+    let _0xa02635 = JSON["stringify"]({
       username: userName["toLowerCase"](),
-      role: _0xc3393f(0xd5),
+      role: _0xde7dd0(0x1ad),
     });
-    const _0x1e7e92 = await fetch(_0xc3393f(0xa2), {
-      method: _0xc3393f(0xc6),
-      headers: { "Content-Type": _0xc3393f(0xcd) },
-      body: _0x38a65c,
-      mode: _0xc3393f(0xc4),
+    const _0x138323 = await fetch(_0xde7dd0(0x18f), {
+      method: "POST",
+      headers: { "Content-Type": _0xde7dd0(0x17e) },
+      body: _0xa02635,
+      mode: _0xde7dd0(0x1a7),
     });
-    if (!_0x1e7e92["ok"]) {
-      console["log"](_0x1e7e92);
-      throw new Error("Something\x20went\x20wrong");
+    if (!_0x138323["ok"]) {
+      console["log"](_0x138323);
+      throw new Error(_0xde7dd0(0x1ac));
     }
-    const _0x580fc2 = await _0x1e7e92[_0xc3393f(0xaa)]();
-    if (_0x580fc2["success"]) giveAuthKey();
-    else throw new Error(_0xc3393f(0xcc));
-  } catch (_0x58f996) {
-    console[_0xc3393f(0xb2)](_0x58f996);
-    throw new Error(_0xc3393f(0xa5));
+    const _0x4d0dd6 = await _0x138323[_0xde7dd0(0x198)]();
+    if (_0x4d0dd6[_0xde7dd0(0x18e)]) giveAuthKey();
+    else throw new Error(_0xde7dd0(0x182));
+  } catch (_0x3986e) {
+    console["log"](_0x3986e);
+    throw new Error(_0xde7dd0(0x1ac));
   }
 }

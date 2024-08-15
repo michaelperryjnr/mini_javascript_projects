@@ -90,8 +90,18 @@ enterBtn.addEventListener("click", () => {
     return;
   }
 
-  if (authUsername.value.trim().includes("bbflabs")) {
-    alert("You are not allowed to use this username");
+  if (
+    authUsername.value.trim().toLowerCase().includes("bbflabs".toLowerCase())
+  ) {
+    authHeader.innerText = "Username cannot contain 'bbflabs'";
+    authUsername.value = "";
+    return;
+  }
+
+  if (authUsername.value.trim().length < 4) {
+    authHeader.innerText = "Username must be at least 4 characters long";
+    authUsername.value = "";
+    return;
   }
   giveAuthKey();
 });
