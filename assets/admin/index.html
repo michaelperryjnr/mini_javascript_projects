@@ -316,7 +316,7 @@
             allUsers.forEach(user => {
                 const userItem = document.createElement('div');
                 userItem.classList.add('user-item');
-                userItem.innerHTML = `<span>${user.username.slice(0, 6) + "..."} (${user.role})</span><button class="copy-btn" onclick="copyText('${user.accesskey}')">Copy Key</button>`;
+                userItem.innerHTML = `<span>${user.username} (${user.role})</span><button class="copy-btn" onclick="copyText('${user.accesskey}')">Copy Key</button>`;
                 userListElement.appendChild(userItem);
             });
         }
@@ -329,6 +329,7 @@
                 const option = document.createElement('option');
                 option.value = role;
                 option.innerText = role;
+
                 roleFilter.appendChild(option);
             });
 
@@ -352,7 +353,7 @@
             users.forEach(user => {
                 const userItem = document.createElement('div');
                 userItem.classList.add('user-item');
-                userItem.innerHTML = `<span>${user.username.slice(0, 5) + "..."} (${user.role})</span><button class="copy-btn" onclick="copyText('${user.accesskey}')">Copy Key</button>`;
+                userItem.innerHTML = `<span>${user.username} (${user.role})</span><button class="copy-btn" onclick="copyText('${user.accesskey}')">Copy Key</button>`;
                 userListElement.appendChild(userItem);
             });
         }
