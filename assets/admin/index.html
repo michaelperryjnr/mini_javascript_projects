@@ -17,6 +17,7 @@
             --hover-color: #f5f5f5;
             --primary-color: #4CAF50;
             --secondary-color: #2196F3;
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .dark-mode {
@@ -27,6 +28,7 @@
             --hover-color: #4c4c4c;
             --primary-color: #45a049;
             --secondary-color: #1e88e5;
+            --card-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         body {
@@ -48,7 +50,7 @@
             margin: 0 auto;
             background-color: var(--card-bg);
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--card-shadow);
         }
 
         .dashboard {
@@ -99,19 +101,30 @@
 
         .stat-card {
             background-color: var(--card-bg);
-            padding: 0.8rem 1rem;
+            padding: 1.5rem 2rem;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--card-shadow);
             display: flex;
             border-radius: 0.8rem;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             transition: transform 0.3s;
+            cursor: pointer;
         }
 
         .stat-card:hover {
             transform: scale(1.05);
+        }
+
+        .stat-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .stat-card p {
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
         .user-list {
@@ -193,6 +206,10 @@
             padding: 0.8rem 1rem;
         }
 
+        option {
+            padding: 0.8rem 1rem;
+        }
+
         #searchInput::placeholder {
             color: var(--text-color);
         }
@@ -211,16 +228,16 @@
             <h1>BBF Labs Admin Dashboard</h1>
             <div class="stats">
                 <div class="stat-card" style="background-color: var(--primary-color); color: white;">
-                    <h3 style="margin-bottom: 0;">Total Users</h3>
-                    <p id="totalUsers" style="font-size: 1rem; margin-top: 0;">0</p>
+                    <h3>Total Users</h3>
+                    <p id="totalUsers">0</p>
                 </div>
                 <div class="stat-card" style="background-color: var(--secondary-color); color: white;">
-                    <h3 style="margin-bottom: 0; margin-top: 0;">Users Today</h3>
-                    <p id="newUsers" style="font-size: 1rem;">0</p>
+                    <h3>Users Today</h3>
+                    <p id="newUsers">0</p>
                 </div>
                 <div class="stat-card" style="background-color: #FFC107; color: white;">
-                    <h3 style="margin-bottom: 0; margin-top: 0;">Unique Roles</h3>
-                    <p id="uniqueRoles" style="font-size: 1rem;">0</p>
+                    <h3>Unique Roles</h3>
+                    <p id="uniqueRoles">0</p>
                 </div>
             </div>
             <div class="filters">
@@ -238,15 +255,16 @@
     <script>
         const correctPassword = atob("YmJmQmVuTWlrZQ==");
         let previousUserCount = 0;
-        let allUsers = [];
+        let allUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
 
         function login() {
             const passwordInput = document.getElementById('passwordInput');
             if (passwordInput.value === correctPassword) {
                 document.getElementById('loginForm').style.display = 'none';
                 document.getElementById('dashboardContent').style.display = 'flex';
-                requestNotificationPermission()
+                requestNotificationPermission();
                 fetchData();
+                setInterval(checkForUpdates, 120000); // Check every 2 minutes
             } else {
                 alert('Incorrect password. Please try again.');
             }
@@ -257,98 +275,116 @@
                 .then(response => response.json())
                 .then(data => {
                     allUsers = data.message;
+                    localStorage.setItem('allUsers', JSON.stringify(allUsers));
                     updateDashboard();
                     updateFilters();
                 })
                 .catch(error => console.error('Error:', error));
         }
 
-        function updateDashboard() {
-            const totalUsers = allUsers.length;
-            const roles = new Set(allUsers.map(user => user.role));
-
-            document.getElementById('totalUsers').textContent = totalUsers;
-            document.getElementById('uniqueRoles').textContent = roles.size;
-
-            if (previousUserCount > 0 && totalUsers > previousUserCount) {
-                const newUsers = totalUsers - previousUserCount;
-                document.getElementById('newUsers').textContent = newUsers;
-                showNotification(`${newUsers} new user(s) added!`);
-            }
-
-            previousUserCount = totalUsers;
-
-            renderUserList();
+        function checkForUpdates() {
+            fetch('https://bbf-backend.onrender.com/api/quiz/user/')
+                .then(response => response.json())
+                .then(data => {
+                    const newUserCount = data.message.length;
+                    if (newUserCount !== previousUserCount) {
+                        allUsers = data.message;
+                        localStorage.setItem('allUsers', JSON.stringify(allUsers));
+                        updateDashboard();
+                        showNotification('New user update', 'User data has been updated.');
+                    }
+                    previousUserCount = newUserCount;
+                })
+                .catch(error => console.error('Error:', error));
         }
 
-        function renderUserList() {
-            const userList = document.getElementById('userList');
-            userList.innerHTML = '';
+        function updateDashboard() {
+            const totalUsersElement = document.getElementById('totalUsers');
+            const newUsersElement = document.getElementById('newUsers');
+            const uniqueRolesElement = document.getElementById('uniqueRoles');
+            const userListElement = document.getElementById('userList');
 
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const roleFilter = document.getElementById('roleFilter').value;
+            totalUsersElement.innerText = allUsers.length;
+            newUsersElement.innerText = allUsers.filter(user => {
+                const today = new Date();
+                const createdAt = new Date(user.createdAt);
+                return today.toDateString() === createdAt.toDateString();
+            }).length;
 
-            allUsers.filter(user =>
-                user.username.toLowerCase().includes(searchTerm) &&
-                (roleFilter === '' || user.role === roleFilter)
-            ).forEach(user => {
+            const uniqueRoles = [...new Set(allUsers.map(user => user.role))];
+            uniqueRolesElement.innerText = uniqueRoles.length;
+
+            userListElement.innerHTML = '';
+            allUsers.forEach(user => {
                 const userItem = document.createElement('div');
-                userItem.className = 'user-item';
-                userItem.innerHTML = `
-                    <span>${user.username} (${user.role})</span>
-                    <button class="copy-btn" data-accesskey="${user.accessKey}">Copy Access Key</button>
-                `;
-                userList.appendChild(userItem);
-            });
-
-            document.querySelectorAll('.copy-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const accessKey = this.getAttribute('data-accesskey');
-                    navigator.clipboard.writeText(accessKey).then(() => {
-                        showNotification('Access key copied to clipboard!');
-                    });
-                });
+                userItem.classList.add('user-item');
+                userItem.innerHTML = `<span>${user.username.slice(0, 6) + "..."} (${user.role})</span><button class="copy-btn" onclick="copyText('${user.accesskey}')">Copy Key</button>`;
+                userListElement.appendChild(userItem);
             });
         }
 
         function updateFilters() {
             const roleFilter = document.getElementById('roleFilter');
-            const roles = [...new Set(allUsers.map(user => user.role))];
-            roleFilter.innerHTML = '<option value="">All Roles</option>' +
-                roles.map(role => `<option value="${role}">${role}</option>`).join('');
+            roleFilter.innerHTML = '<option value="">All Roles</option>';
+            const uniqueRoles = [...new Set(allUsers.map(user => user.role))];
+            uniqueRoles.forEach(role => {
+                const option = document.createElement('option');
+                option.value = role;
+                option.innerText = role;
+                roleFilter.appendChild(option);
+            });
+
+            roleFilter.addEventListener('change', filterUsers);
         }
 
-        function showNotification(message) {
-            if ("Notification" in window) {
-                Notification.requestPermission().then(function (permission) {
-                    if (permission === "granted") {
-                        new Notification("BBF Labs Admin Dashboard", {
-                            body: message,
-                            icon: "path/to/icon.png" // Add an icon path if available
-                        });
-                    }
-                });
-            }
+        function filterUsers() {
+            const roleFilter = document.getElementById('roleFilter').value;
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const filteredUsers = allUsers.filter(user => {
+                const matchesRole = roleFilter === '' || user.role === roleFilter;
+                const matchesSearch = user.username.toLowerCase().includes(searchQuery);
+                return matchesRole && matchesSearch;
+            });
+            updateUserList(filteredUsers);
+        }
+
+        function updateUserList(users) {
+            const userListElement = document.getElementById('userList');
+            userListElement.innerHTML = '';
+            users.forEach(user => {
+                const userItem = document.createElement('div');
+                userItem.classList.add('user-item');
+                userItem.innerHTML = `<span>${user.username.slice(0, 5) + "..."} (${user.role})</span><button class="copy-btn" onclick="copyText('${user.accesskey}')">Copy Key</button>`;
+                userListElement.appendChild(userItem);
+            });
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Access key copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
         }
 
         function requestNotificationPermission() {
-            Notification.requestPermission()
+            if ('Notification' in window && Notification.permission !== 'granted') {
+                Notification.requestPermission();
+            }
         }
 
-
-        document.getElementById('searchInput').addEventListener('input', renderUserList);
-        document.getElementById('roleFilter').addEventListener('change', renderUserList);
-
-        document.getElementById('darkModeToggle').addEventListener('click', function () {
-            document.body.classList.toggle('dark-mode');
-            document.getElementById("darkModeToggle").textContent = document.body.classList.contains('dark-mode') ? "Light" : "Dark";
-        });
-
-
-        document.getElementById('passwordInput').addEventListener('keyup', function (event) {
-            if (event.key === 'Enter') {
-                login();
+        function showNotification(title, message) {
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification(title, { body: message });
             }
+        }
+
+        const darkModeToggle = document.getElementById("darkModeToggle");
+        const bodyElement = document.body;
+
+        darkModeToggle.addEventListener("click", function () {
+            bodyElement.classList.toggle("dark-mode");
+            darkModeToggle.textContent = bodyElement.classList.contains("dark-mode") ? "Light" : "Dark";
         });
 
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -362,6 +398,8 @@
                 document.body.classList.remove('dark-mode');
             }
         });
+
+        document.getElementById('searchInput').addEventListener('input', filterUsers);
     </script>
 </body>
 
