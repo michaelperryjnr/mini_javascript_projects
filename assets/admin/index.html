@@ -91,14 +91,14 @@
 
         .stats {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             margin-bottom: 20px;
             gap: 0.4rem;
         }
 
         .stat-card {
             background-color: var(--card-bg);
-            padding: 1rem 1rem;
+            padding: 0.8rem 1rem;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: flex;
@@ -210,15 +210,15 @@
             <h1>BBF Labs Admin Dashboard</h1>
             <div class="stats">
                 <div class="stat-card" style="background-color: var(--primary-color); color: white;">
-                    <h3>Total Users</h3>
-                    <p id="totalUsers" style="font-size: 1rem;">0</p>
+                    <h3 style="margin-bottom: 0;">Total Users</h3>
+                    <p id="totalUsers" style="font-size: 1rem; margin-top: 0;">0</p>
                 </div>
                 <div class="stat-card" style="background-color: var(--secondary-color); color: white;">
-                    <h3>Users Added Today</h3>
+                    <h3 style="margin-bottom: 0; margin-top: 0;">Users Today</h3>
                     <p id="newUsers" style="font-size: 1rem;">0</p>
                 </div>
                 <div class="stat-card" style="background-color: #FFC107; color: white;">
-                    <h3>Unique Roles</h3>
+                    <h3 style="margin-bottom: 0; margin-top: 0;">Unique Roles</h3>
                     <p id="uniqueRoles" style="font-size: 1rem;">0</p>
                 </div>
             </div>
@@ -339,6 +339,7 @@
         document.getElementById('roleFilter').addEventListener('change', renderUserList);
 
         document.getElementById('darkModeToggle').addEventListener('click', function () {
+            document.getElementById("darkModeToggle").textContent = document.body.classList === "dark-mode" ? "Dark" : document.body.classList !== "dark-mode" ? "Light" : "Dark"
             document.body.classList.toggle('dark-mode');
         });
 
