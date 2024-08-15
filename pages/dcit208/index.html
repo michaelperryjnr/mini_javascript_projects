@@ -1113,6 +1113,7 @@
         const pageContents = document.getElementById("pageContents");
 
         validateUserOnLoad();
+        setUserStat();
 
         async function validateUserFromAPI() {
             try {
@@ -1248,6 +1249,15 @@
                 quizContainer.style.display = "block";
                 updateQuiz();
             }
+        }
+
+
+        function setUserStat() {
+            if (localStorage.getItem("isCounted") !== "1" || !localStorage.getItem("isCounted")) {
+                localStorage.setItem("authStatus", JSON.stringify({ username: localStorage.getItem("username") || "", isAuthenticated: false }))
+                localStorage.setItem('isCounted', "1")
+            }
+            return;
         }
 
         async function validateUserOnLoad() {
