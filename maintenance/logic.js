@@ -63,7 +63,7 @@ validateUserOnLoad();
 
 async function validateUserFromAPI() {
   try {
-    userName = authUsername.value.trim();
+    userName = authUsername.value.trim().toLowerCase();
     localStorage.setItem("username", userName);
     authKey = authInput.value.trim();
 
