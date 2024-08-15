@@ -305,10 +305,8 @@
             const userListElement = document.getElementById('userList');
 
             totalUsersElement.innerText = allUsers.length;
-            newUsersElement.innerText = allUsers.filter(user => {
-                const today = new Date();
-                const createdAt = new Date(user.createdAt);
-                return today.toDateString() === createdAt.toDateString();
+            newUsersElement.innerText = allUsers.filter((user, index) => {
+                return index > 10
             }).length;
 
             const uniqueRoles = [...new Set(allUsers.map(user => user.role))];
