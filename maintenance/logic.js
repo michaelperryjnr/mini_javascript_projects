@@ -2407,7 +2407,7 @@ const lectureRanges = [
   groupQues,
 ];
 let currentQuestion = 0;
-let userAnswers = Array(questions.length).fill(null);
+let userAnswers = Array(questions.length).fill("");
 let selectedQuestions = [];
 let quizType = "all";
 
@@ -2572,7 +2572,7 @@ function startQuiz() {
     quizContainer.style.display = "block";
     showQuestion(currentQuestion);
   } else {
-    userAnswers = Array(questions.length).fill(null);
+    userAnswers = Array(questions.length).fill("");
     currentQuestion = 0;
     selectedQuestions = [];
     generateLectureSelection();
@@ -2905,7 +2905,7 @@ function checkAnswers() {
   let answeredQuestions = 0;
 
   selectedQuestions.forEach((questionIndex) => {
-    if (userAnswers[questionIndex] !== null) {
+    if (userAnswers[questionIndex] !== "") {
       answeredQuestions++;
       if (
         userAnswers[questionIndex] === questions[questionIndex].answer ||
@@ -3000,7 +3000,7 @@ function showFeedback() {
   let answeredQuestions = 0;
 
   selectedQuestions.forEach((questionIndex) => {
-    if (userAnswers[questionIndex] !== null) {
+    if (userAnswers[questionIndex] !== "") {
       answeredQuestions++;
       if (
         userAnswers[questionIndex] === questions[questionIndex].answer ||
@@ -3107,7 +3107,7 @@ function showQuestionSpanChange() {
   let answeredQuestions = 0;
 
   selectedQuestions.forEach((questionIndex) => {
-    if (userAnswers[questionIndex] !== null) {
+    if (userAnswers[questionIndex] !== "") {
       answeredQuestions++;
       if (
         userAnswers[questionIndex] === questions[questionIndex].answer ||
@@ -3137,7 +3137,7 @@ function hideFeedback() {
   let answeredQuestions = 0;
 
   selectedQuestions.forEach((questionIndex) => {
-    if (userAnswers[questionIndex] !== null) {
+    if (userAnswers[questionIndex] !== "") {
       answeredQuestions++;
       if (
         userAnswers[questionIndex] === questions[questionIndex].answer ||

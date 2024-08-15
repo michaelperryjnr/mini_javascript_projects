@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+        window.va =
+            window.va ||
+            function () {
+                (window.vaq = window.vaq || []).push(arguments);
+            };
+    </script>
+    <script defer src="../_vercel/speed-insights/script.js"></script>
+    <script defer src="../_vercel/insights/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon" />
+    <title>BBF Auth</title>
+</head>
+
+<body>
+
+    <div id="authPage">
+        <div id="authPageDiv">
+            <img id="logo" src="../../assets/images/bbf-logo.svg" alt="bbf labs logo" />
+            <h2 id="auth-h2" class="usr-h2">Get Your Auth Key?</h2>
+            <h2 class="auth-h2" id="auth-key-text">Have an Auth key already?</h2>
+            <div id="copy-container" style="display: none;">
+                <h2 id="auth-key-text-copy">Copy</h2>
+                <div id="copy-btn">Copy</div>
+            </div>
+
+            <div id="loader"></div>
+            <input id="authInputUsername" type="text" maxlength="20" placeholder="Enter your username key" />
+            <!-- <input id="authInput" type="password" placeholder="Enter auth key" /> -->
+            <div id="enter-btn">Get Key</div>
+        </div>
+    </div>
+</body>
+<script src="./script.js"></script>
+
+</html>
