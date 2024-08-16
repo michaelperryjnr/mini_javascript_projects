@@ -316,7 +316,7 @@
             allUsers.forEach(user => {
                 const userItem = document.createElement('div');
                 userItem.classList.add('user-item');
-                userItem.innerHTML = `<span>${user.username} (${user.role})</span><button class="copy-btn" onclick="copyText('${user.accesskey}')">Copy Key</button>`;
+                userItem.innerHTML = `<span>${user.username} (${user.role})</span><button class="copy-btn" onclick="copyText('${user.accessKey}')">Copy Key</button>`;
                 userListElement.appendChild(userItem);
             });
         }
@@ -353,7 +353,7 @@
             users.forEach(user => {
                 const userItem = document.createElement('div');
                 userItem.classList.add('user-item');
-                userItem.innerHTML = `<span>${user.username} (${user.role})</span><button class="copy-btn" onclick="copyText('${user.accesskey}')">Copy Key</button>`;
+                userItem.innerHTML = `<span>${user.username} (${user.role})</span><button class="copy-btn" onclick="copyText('${user.accessKey}')">Copy Key</button>`;
                 userListElement.appendChild(userItem);
             });
         }
