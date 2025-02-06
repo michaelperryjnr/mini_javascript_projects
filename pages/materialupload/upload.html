@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .clifford {
+          --color-clifford: #da373d;
+        }
+        body {
+          font-family: "Times New Roman", Times, serif;
+        }
+        .dottedb {
+          background: radial-gradient(circle, #e0e0e0 1px, white 0); /* Dots */
+          background-size: 20px 20px; /* Adjust the size of the background pattern */
+        }
+        .gridb {
+          background: linear-gradient(to right, #fafafa 1px, transparent 1px),
+            linear-gradient(to bottom, #fafafa 1px, white 1px);
+          background-size: 20px 20px; /* Adjust the size of the grid */
+        }
+      }
+    </style>
+    <title>Login / Signup</title>
+  </head>
+  <body>
+    <!-- Floating Button -->
+    <button
+      id="upload-button"
+      class="fixed bottom-8 right-8 bg-purple-500 text-white p-4 rounded-full shadow-lg hover:bg-purple-600 transition-all duration-300"
+      onclick="navigateToUpload()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 4v16m8-8H4"
+        />
+      </svg>
+    </button>
+
+    <!-- Main Container -->
+    <div
+      class="min-h-screen flex flex-col items-center justify-center px-4 py-4 bg-gradient-to-br from-blue-50 to-blue-100 dottedb"
+    >
+      <nav id="nav-profile" class="absolute top-0 w-screen hidden">
+        <div class="flex justify-end p-4 items-center space-x-2">
+          <img
+            src="https://up.yimg.com/ib/th?id=OIP.t9Wb7K5Kp5iVn5IHLZS5HwHaH_&pid=Api&rs=1&c=1&qlt=95&w=114&h=123"
+            alt="User Profile"
+            class="w-12 h-12 rounded-full"
+            src="https://randomuser.me/api/portraits/men/30.jpg"
+          />
+          <span class="font-semibold">Peterson</span>
+        </div>
+      </nav>
+      <h1
+        class="text-4xl py-4 font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-yellow-500 bg-clip-text text-transparent"
+      >
+        BBF LAB
+      </h1>
+      <div
+        id="form-container"
+        class="w-full max-w-lg border border-gray-100 p-8 rounded-2xl backdrop-blur-sm bg-opacity-sm bg-white transform transition-all duration-300"
+      >
+        <!-- Form content will be dynamically rendered here -->
+      </div>
+    </div>
+
+    <script>
+      // State management
+      let isLogin = true;
+      let error = "";
+
+      // DOM elements
+      const formContainer = document.getElementById("form-container");
+      const uploadButton = document.getElementById("upload-button");
+      const navProfile = document.getElementById("nav-profile");
+
+      // Function to render the login form
+      const renderLoginForm = () => {
+        formContainer.innerHTML = `
+          <div class="text-center space-y-3 mb-6">
+            <h2 class="text-3xl font-bold text-gray-900">Login</h2>
+            <p class="text-gray-600 text-base">Access your University account</p>
+          </div>
+
+          ${
+            error
+              ? `
+            <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-r-lg mb-4 animate-pulse">
+              <p class="font-semibold text-sm">${error}</p>
+            </div>
+          `
+              : ""
+          }
+
+          <form id="auth-form" class="space-y-4 ">
+            <div class="space-y-2">
+              <label for="email" class="block text-sm font-medium text-gray-700">
+                University Email
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  class="w-full pl-10 pr-3 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300"
+                  placeholder="student@st.ug.edu.gh"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="password" class="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m0 0v2m0-2h2m-2 0H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  class="w-full pl-10 pr-12 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300 border-gray-200 focus:border-blue-500"
+                  placeholder="Enter your password"
+                  required
+                />
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  onclick="togglePassword()"
+                >
+                  <svg class="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center text-sm mb-4">
+              <label class="inline-flex items-center">
+                <input type="checkbox" class="form-checkbox text-blue-500 rounded h-4 w-4" />
+                <span class="ml-2 text-gray-600">Remember me</span>
+              </label>
+              <a href="#" class="text-blue-600 hover:underline text-sm">Forgot Password?</a>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3.5 px-4 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 flex items-center justify-center space-x-2 text-base"
+            >
+              Login
+            </button>
+
+            <div class="mt-6 text-center text-sm text-gray-600">
+              Don't have an account?
+              <a href="/signup" class="font-medium text-blue-600 hover:underline ml-1" onclick="navigateToSignup(event)">
+                Sign up
+              </a>
+            </div>
+          </form>
+        `;
+      };
+
+      // Function to render the signup form
+      const renderSignupForm = () => {
+        formContainer.innerHTML = `
+          <div class="text-center space-y-3 mb-6">
+            <h2 class="text-3xl font-bold text-gray-900">Sign Up</h2>
+            <p class="text-gray-600 text-base">Create a new account</p>
+          </div>
+
+          ${
+            error
+              ? `
+            <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-r-lg mb-4 animate-pulse">
+              <p class="font-semibold text-sm">${error}</p>
+            </div>
+          `
+              : ""
+          }
+
+          <form id="auth-form" class="space-y-4">
+            <div class="space-y-2">
+              <label for="email" class="block text-sm font-medium text-gray-700">
+                University Email
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  class="w-full pl-10 pr-3 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300"
+                  placeholder="student@st.ug.edu.gh"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="password" class="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m0 0v2m0-2h2m-2 0H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  class="w-full pl-10 pr-12 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300 border-gray-200 focus:border-blue-500"
+                  placeholder="Enter your password"
+                  required
+                />
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  onclick="togglePassword()"
+                >
+                  <svg class="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3.5 px-4 rounded-xl font-semibold hover:from-purple-600 hover:to-blue-purple focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 flex items-center justify-center space-x-2 text-base"
+            >
+              Sign Up
+            </button>
+
+            <div class="mt-6 text-center text-sm text-gray-600">
+              Already have an account?
+              <a href="/login" class="font-medium text-blue-600 hover:underline ml-1" onclick="navigateToLogin(event)">
+                Login
+              </a>
+            </div>
+          </form>
+        `;
+      };
+
+      //   navProfile.classList.add(
+      //       "flex justify-end items-center space-x-4 text-sm text-gray-600"
+      //     );
+      //     // profile image
+      //     navProfile.innerHTML = `
+      //         <div class="flex items-center space-x-2">
+      //           <img
+      //             src="https://randomuser.me/api/portraits
+      //             alt="User Profile"
+      //             class="w-12 h-12 rounded-full"
+      //             src="https://randomuser.me/api/portraits/men/30.jpg"
+      //           />
+      //             <span class="font-semibold">John Doe</span>
+      //         </div>
+      //     `;
+
+      // Function to render the upload material form
+
+      const renderUploadMaterialForm = () => {
+        navProfile.classList.remove("hidden");
+        formContainer.innerHTML = `
+    <div class="text-center space-y-3 mb-6">
+      <h2 class="text-3xl font-bold text-gray-900">Upload Material</h2>
+      <p class="text-gray-600 text-base">Share your course materials (PDF, Word, TXT, or a link)</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="mb-6 relative">
+      <div class="relative">
+        <input
+          type="text"
+          id="course-search"
+          class="w-full px-4 py-2 pl-10 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-all duration-300"
+          placeholder="Search for a course..."
+        />
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <div class="absolute right-0 top-0 h-full flex items-center pr-3">
+          <div class="loader hidden">
+            <div class="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Search Results Dropdown -->
+      <div id="search-results" class="absolute w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg hidden z-50 max-h-60 overflow-y-auto">
+      </div>
+    </div>
+
+    <form id="upload-form" class="space-y-6">
+      <!-- Material Type Selection -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700">Material Type</label>
+        <select
+          id="material-type"
+          name="material-type"
+          class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          required
+        >
+          <option value="" disabled selected>Select Material Type</option>
+          <option value="file">File (PDF, Word, TXT)</option>
+          <option value="link">Link to Material</option>
+        </select>
+      </div>
+
+      <!-- File Upload Section -->
+      <div id="file-upload-section" class="space-y-2 hidden">
+        <label class="block text-sm font-medium text-gray-700">Upload Files</label>
+        <div
+          id="drop-zone"
+          class="border-2 border-dashed border-gray-300 rounded-lg p-6 transition-colors duration-200 ease-in-out"
+        >
+          <div class="flex flex-col items-center justify-center">
+            <p class="text-sm text-gray-500 text-center mb-2">Drag and drop files here, or click to select files</p>
+            <input
+              type="file"
+              accept=".pdf,.doc,.docx,.txt"
+              id="file"
+              class="hidden"
+              multiple
+            />
+            <label
+              for="file"
+              class="px-4 py-2 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-full transition-colors cursor-pointer"
+            >
+              Select Files
+            </label>
+          </div>
+          <div id="file-preview" class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          </div>
+        </div>
+      </div>
+
+      <!-- Link Upload Section -->
+      <div id="link-upload-section" class="space-y-2 hidden">
+        <label for="link" class="block text-sm font-medium text-gray-700">Material Link</label>
+        <input
+          type="url"
+          id="link"
+          name="link"
+          class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          placeholder="https://example.com"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex justify-end pt-4 border-t border-gray-200">
+        <button
+          type="submit"
+          class="px-6 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors flex items-center justify-center gap-3"
+        >
+          <span class="font-semibold">Submit</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </button>
+      </div>
+    </form>
+  `;
+
+        // Setup course search with API simulation
+        const searchInput = document.getElementById("course-search");
+        const searchResults = document.getElementById("search-results");
+        const loader = document.querySelector(".loader");
+        let searchTimeout;
+
+        // Simulated API call function
+        const searchCourses = async (query) => {
+          // Show loader
+          loader.classList.remove("hidden");
+
+          // Simulate API delay
+          await new Promise((resolve) => setTimeout(resolve, 500));
+
+          // Simulate API response
+          const mockApiResponse = {
+            courses: [
+              { id: 1, name: `${query} Programming`, code: "CS101" },
+              { id: 2, name: `Advanced ${query}`, code: "CS201" },
+              { id: 3, name: `${query} Technologies`, code: "CS301" },
+            ],
+          };
+
+          // Hide loader
+          loader.classList.add("hidden");
+
+          return mockApiResponse.courses;
+        };
+
+        // Search input handler
+        searchInput.addEventListener("input", async (e) => {
+          const searchTerm = e.target.value.trim();
+
+          // Clear previous timeout
+          if (searchTimeout) {
+            clearTimeout(searchTimeout);
+          }
+
+          if (searchTerm.length < 2) {
+            searchResults.classList.add("hidden");
+            return;
+          }
+
+          // Set new timeout for API call
+          searchTimeout = setTimeout(async () => {
+            try {
+              const courses = await searchCourses(searchTerm);
+
+              if (courses.length > 0) {
+                searchResults.innerHTML = courses
+                  .map(
+                    (course) => `
+            <div class="p-3 hover:bg-gray-50 cursor-pointer" onclick="selectCourse('${course.code}', '${course.name}')">
+              <div class="font-medium">${course.name}</div>
+              <div class="text-sm text-gray-500">${course.code}</div>
+            </div>
+          `
+                  )
+                  .join("");
+                searchResults.classList.remove("hidden");
+              } else {
+                searchResults.innerHTML = `
+            <div class="p-3 text-gray-500">No courses found</div>
+          `;
+                searchResults.classList.remove("hidden");
+              }
+            } catch (error) {
+              searchResults.innerHTML = `
+          <div class="p-3 text-red-500">Error searching courses. Please try again.</div>
+        `;
+              searchResults.classList.remove("hidden");
+            }
+          }, 300); // Debounce delay
+        });
+
+        // Setup drag and drop
+        const dropZone = document.getElementById("drop-zone");
+        const fileInput = document.getElementById("file");
+        const filePreview = document.getElementById("file-preview");
+
+        // Prevent default drag behaviors
+        ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+          dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          });
+        });
+
+        // Highlight drop zone when dragging over it
+        ["dragenter", "dragover"].forEach((eventName) => {
+          dropZone.addEventListener(eventName, () => {
+            dropZone.classList.add("border-blue-500", "bg-blue-50");
+          });
+        });
+
+        ["dragleave", "drop"].forEach((eventName) => {
+          dropZone.addEventListener(eventName, () => {
+            dropZone.classList.remove("border-blue-500", "bg-blue-50");
+          });
+        });
+
+        // Handle dropped files
+        dropZone.addEventListener("drop", (e) => {
+          const droppedFiles = [...e.dataTransfer.files];
+          handleFiles(droppedFiles);
+        });
+
+        // Handle selected files
+        fileInput.addEventListener("change", (e) => {
+          const selectedFiles = [...e.target.files];
+          handleFiles(selectedFiles);
+        });
+
+        // File handling function
+        const handleFiles = (files) => {
+          filePreview.innerHTML = "";
+
+          files.forEach((file) => {
+            const fileType = file.name.split(".").pop().toLowerCase();
+            let imagePath;
+
+            // Determine file type icon
+            if (fileType === "pdf") {
+              imagePath =
+                "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg";
+            } else if (fileType === "doc" || fileType === "docx") {
+              imagePath =
+                "https://png.pngtree.com/png-clipart/20190516/original/pngtree-microsoft-word-logo-icon-png-image_3588805.jpg";
+            } else if (fileType === "txt") {
+              imagePath =
+                "https://upload.wikimedia.org/wikipedia/commons/9/99/Text_edit_icon.svg";
+            }
+
+            if (imagePath) {
+              const fileCard = document.createElement("div");
+              fileCard.className =
+                "bg-white p-4 rounded-lg shadow-sm border border-gray-200";
+              fileCard.innerHTML = `
+          <div class="flex items-center space-x-4">
+            <img src="${imagePath}" alt="${fileType} icon" class="w-10 h-10">
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-gray-900 truncate">${
+                file.name
+              }</p>
+              <p class="text-sm text-gray-500">${(file.size / 1024).toFixed(
+                1
+              )} KB</p>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" class="text-red-500 hover:text-red-700">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        `;
+              filePreview.appendChild(fileCard);
+            }
+          });
+        };
+
+        // Material type selection handler
+        const materialTypeSelect = document.getElementById("material-type");
+        const fileUploadSection = document.getElementById(
+          "file-upload-section"
+        );
+        const linkUploadSection = document.getElementById(
+          "link-upload-section"
+        );
+
+        materialTypeSelect.addEventListener("change", (e) => {
+          if (e.target.value === "link") {
+            fileUploadSection.classList.add("hidden");
+            linkUploadSection.classList.remove("hidden");
+          } else if (e.target.value === "file") {
+            linkUploadSection.classList.add("hidden");
+            fileUploadSection.classList.remove("hidden");
+          }
+        });
+
+        // Form submission handler
+        const uploadForm = document.getElementById("upload-form");
+        uploadForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          // Handle form submission logic here
+          console.log("Form submitted");
+        });
+      };
+
+      // Function to handle course selection from search results
+      function selectCourse(code, name) {
+        document.getElementById("course-search").value = `${code} - ${name}`;
+        document.getElementById("search-results").classList.add("hidden");
+      }
+
+      const navigateToUpload = () => {
+        formContainer.classList.remove("max-w-lg");
+        formContainer.classList.add("max-w-7xl");
+        renderUploadMaterialForm();
+      };
+
+      // Function to toggle between login and signup
+      const navigateToSignup = (e) => {
+        formContainer.classList.remove("max-w-7xl");
+        formContainer.classList.add("max-w-lg");
+        e.preventDefault();
+        renderSignupForm();
+      };
+
+      const navigateToLogin = (e) => {
+        formContainer.classList.remove("max-w-7xl");
+        formContainer.classList.add("max-w-lg");
+        e.preventDefault();
+        renderLoginForm();
+      };
+
+      // Function to toggle password visibility
+      const togglePassword = () => {
+        const passwordInput = document.getElementById("password");
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+        } else {
+          passwordInput.type = "password";
+        }
+      };
+
+      // Initialize the page with the login form
+      renderLoginForm();
+    </script>
+  </body>
+</html>
