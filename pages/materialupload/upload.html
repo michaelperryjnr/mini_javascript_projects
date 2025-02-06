@@ -91,7 +91,7 @@
         formContainer.innerHTML = `
           <div class="text-center space-y-3 mb-6">
             <h2 class="text-3xl font-bold text-gray-900">Login</h2>
-            <p class="text-gray-600 text-base">Access your University account</p>
+            <p class="text-gray-600 text-base">Access your account</p>
           </div>
 
           ${
@@ -107,20 +107,21 @@
           <form id="auth-form" class="space-y-4 ">
             <div class="space-y-2">
               <label for="email" class="block text-sm font-medium text-gray-700">
-                University Email
+                 Email
               </label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
+
                 </div>
                 <input
                   id="email"
                   name="email"
                   type="email"
                   class="w-full pl-10 pr-3 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300"
-                  placeholder="student@st.ug.edu.gh"
+                  placeholder="example@gmail.com"
                   required
                 />
               </div>
@@ -187,7 +188,7 @@
         formContainer.innerHTML = `
           <div class="text-center space-y-3 mb-6">
             <h2 class="text-3xl font-bold text-gray-900">Sign Up</h2>
-            <p class="text-gray-600 text-base">Create a new account</p>
+            <p class=" text underline italic text-blue-500">* Your official email is much more preferred*</p>
           </div>
 
           ${
@@ -201,9 +202,53 @@
           }
 
           <form id="auth-form" class="space-y-4">
+             <div class="space-y-2">
+              <label for="name" class="block text-sm font-medium text-gray-700">
+                 Name
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                 <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
+
+                </div>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  class="w-full pl-10 pr-3 py-2.5 text-sm border-2 border-gray-200 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300"
+                  placeholder="Peterson Greg"
+                  required
+                />
+              </div>
+            </div>
+
+             <div class="space-y-2">
+              <label for="email" class="block text-sm font-medium text-gray-700">
+                 Username
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+
+                </div>
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  class="w-full pl-10 pr-3 py-2.5 text-sm  bg-white border-2 border-gray-200 text-gray-700 rounded-lg focus:outline-none transition-all duration-300"
+                  placeholder="gring5o"
+                  required
+                />
+              </div>
+            </div>
+
             <div class="space-y-2">
               <label for="email" class="block text-sm font-medium text-gray-700">
-                University Email
+                 Email
               </label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -215,7 +260,7 @@
                   id="email"
                   name="email"
                   type="email"
-                  class="w-full pl-10 pr-3 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300"
+                  class="w-full pl-10 pr-3 py-2.5 text-sm border-2 border-gray-200 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300"
                   placeholder="student@st.ug.edu.gh"
                   required
                 />
@@ -332,7 +377,7 @@
           required
         >
           <option value="" disabled selected>Select Material Type</option>
-          <option value="file">File (PDF, Word, TXT)</option>
+          <option value="file">File (file format)</option>
           <option value="link">Link to Material</option>
         </select>
       </div>
@@ -347,12 +392,13 @@
           <div class="flex flex-col items-center justify-center">
             <p class="text-sm text-gray-500 text-center mb-2">Drag and drop files here, or click to select files</p>
             <input
-              type="file"
-              accept=".pdf,.doc,.docx,.txt"
-              id="file"
-              class="hidden"
-              multiple
-            />
+                type="file"
+                accept=".jpeg,.jpg,.png,.txt,.doc,.docx,.pdf,.pptx ,.ppt"
+                id="file"
+                class="hidden"
+                multiple
+                />
+
             <label
               for="file"
               class="px-4 py-2 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-full transition-colors cursor-pointer"
@@ -444,11 +490,11 @@
                 searchResults.innerHTML = courses
                   .map(
                     (course) => `
-            <div class="p-3 hover:bg-gray-50 cursor-pointer" onclick="selectCourse('${course.code}', '${course.name}')">
-              <div class="font-medium">${course.name}</div>
-              <div class="text-sm text-gray-500">${course.code}</div>
-            </div>
-          `
+                    <div class="p-3 hover:bg-gray-50 cursor-pointer" onclick="selectCourse('${course.code}', '${course.name}')">
+                    <div class="font-medium">${course.name}</div>
+                    <div class="text-sm text-gray-500">${course.code}</div>
+                    </div>
+                `
                   )
                   .join("");
                 searchResults.classList.remove("hidden");
@@ -493,45 +539,55 @@
           });
         });
 
-        // Handle dropped files
+        // Handle dropped files (only one file)
         dropZone.addEventListener("drop", (e) => {
-          const droppedFiles = [...e.dataTransfer.files];
+          const droppedFiles = [e.dataTransfer.files[0]]; // Only allow one file
           handleFiles(droppedFiles);
         });
 
-        // Handle selected files
+        // Handle selected files (only one file)
         fileInput.addEventListener("change", (e) => {
-          const selectedFiles = [...e.target.files];
+          const selectedFiles = [e.target.files[0]]; // Only allow one file
           handleFiles(selectedFiles);
         });
 
         // File handling function
         const handleFiles = (files) => {
-          filePreview.innerHTML = "";
+          filePreview.innerHTML = ""; // Clear preview
 
-          files.forEach((file) => {
-            const fileType = file.name.split(".").pop().toLowerCase();
-            let imagePath;
+          const file = files[0];
+          const fileType = file.name.split(".").pop().toLowerCase();
+          let imagePath;
 
-            // Determine file type icon
-            if (fileType === "pdf") {
-              imagePath =
-                "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg";
-            } else if (fileType === "doc" || fileType === "docx") {
-              imagePath =
-                "https://png.pngtree.com/png-clipart/20190516/original/pngtree-microsoft-word-logo-icon-png-image_3588805.jpg";
-            } else if (fileType === "txt") {
-              imagePath =
-                "https://upload.wikimedia.org/wikipedia/commons/9/99/Text_edit_icon.svg";
-            }
-
-            if (imagePath) {
+          // Create file preview based on file type
+          if (fileType === "pdf") {
+            imagePath =
+              "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg";
+          } else if (fileType === "doc" || fileType === "docx") {
+            imagePath =
+              "https://png.pngtree.com/png-clipart/20190516/original/pngtree-microsoft-word-logo-icon-png-image_3588805.jpg";
+          } else if (fileType === "pptx") {
+            imagePath =
+              "https://www.freeiconspng.com/thumbs/ppt-icon/powerpoint-icon-microsoft-powerpoint-icon-network-powerpoint-icons-and-3.png";
+          } else if (fileType === "txt") {
+            imagePath =
+              "https://png.pngtree.com/element_our/png/20181227/txt-vector-icon-png_287421.jpg";
+          } else if (
+            fileType === "jpg" ||
+            fileType === "jpeg" ||
+            fileType === "png"
+          ) {
+            // For images, use the actual file as the preview
+            const reader = new FileReader();
+            reader.onload = (e) => {
               const fileCard = document.createElement("div");
               fileCard.className =
                 "bg-white p-4 rounded-lg shadow-sm border border-gray-200";
               fileCard.innerHTML = `
           <div class="flex items-center space-x-4">
-            <img src="${imagePath}" alt="${fileType} icon" class="w-10 h-10">
+            <img src="${
+              e.target.result
+            }" alt="${fileType} image" class="w-10 h-10">
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium text-gray-900 truncate">${
                 file.name
@@ -548,8 +604,32 @@
           </div>
         `;
               filePreview.appendChild(fileCard);
-            }
-          });
+            };
+            reader.readAsDataURL(file); // Load image file
+            return; // Stop execution here, as image is being processed
+          }
+
+          // For non-image files, use the icon
+          const fileCard = document.createElement("div");
+          fileCard.className =
+            "bg-white p-4 rounded-lg shadow-sm border border-gray-200";
+          fileCard.innerHTML = `
+      <div class="flex items-center space-x-4">
+        <img src="${imagePath}" alt="${fileType} icon" class="w-10 h-10">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900 truncate">${file.name}</p>
+          <p class="text-sm text-gray-500">${(file.size / 1024).toFixed(
+            1
+          )} KB</p>
+        </div>
+        <button onclick="this.parentElement.parentElement.remove()" class="text-red-500 hover:text-red-700">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    `;
+          filePreview.appendChild(fileCard);
         };
 
         // Material type selection handler
