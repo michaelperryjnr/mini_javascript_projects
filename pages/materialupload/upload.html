@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <style type="text/tailwindcss">
-      @layer utilities {
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @layer utilities {
         .clifford {
           --color-clifford: #da373d;
         }
@@ -23,108 +24,87 @@
         }
       }
     </style>
-    <title>Login / Signup</title>
-  </head>
-  <body>
-    <!-- Floating Button -->
-    <button
-      id="upload-button"
-      class="fixed bottom-8 right-8 bg-purple-500 text-white p-4 rounded-full shadow-lg hover:bg-purple-600 transition-all duration-300"
-      onclick="navigateToUpload()"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M12 4v16m8-8H4"
-        />
-      </svg>
-    </button>
+  <title>Login / Signup</title>
+</head>
 
-    <!-- Main Container -->
-    <div
-      class="min-h-screen flex flex-col items-center justify-center px-4 py-4 bg-gradient-to-br from-blue-50 to-blue-100 dottedb"
-    >
-      <nav id="nav-profile" class="absolute top-0 w-screen hidden">
-        <div class="flex justify-end p-4 items-center space-x-2">
-          <img
-            src="https://up.yimg.com/ib/th?id=OIP.t9Wb7K5Kp5iVn5IHLZS5HwHaH_&pid=Api&rs=1&c=1&qlt=95&w=114&h=123"
-            alt="User Profile"
-            class="w-12 h-12 rounded-full"
-            src="https://randomuser.me/api/portraits/men/30.jpg"
-          />
-          <span class="font-semibold">Peterson</span>
-        </div>
-      </nav>
-      <h1
-        class="text-4xl py-4 font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-yellow-500 bg-clip-text text-transparent"
-      >
-        BBF LAB
-      </h1>
-      <div
-        id="form-container"
-        class="w-full max-w-lg border border-gray-100 p-8 rounded-2xl backdrop-blur-sm bg-opacity-sm bg-white transform transition-all duration-300"
-      >
-        <!-- Form content will be dynamically rendered here -->
+<body>
+  <!-- Floating Button -->
+  <button id="upload-button"
+    class="fixed bottom-8 right-8 bg-purple-500 text-white p-4 rounded-full shadow-lg hover:bg-purple-600 transition-all duration-300"
+    onclick="navigateToUpload()">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+    </svg>
+  </button>
+
+  <!-- Main Container -->
+  <div
+    class="min-h-screen flex flex-col items-center justify-center px-4 py-4 bg-gradient-to-br from-blue-50 to-blue-100 dottedb">
+    <nav id="nav-profile" class="absolute top-0 w-screen hidden">
+      <div class="flex justify-end p-4 items-center space-x-2">
+        <img src="https://up.yimg.com/ib/th?id=OIP.t9Wb7K5Kp5iVn5IHLZS5HwHaH_&pid=Api&rs=1&c=1&qlt=95&w=114&h=123"
+          alt="User Profile" class="w-12 h-12 rounded-full" src="https://randomuser.me/api/portraits/men/30.jpg" />
+        <span class="font-semibold">Peterson</span>
       </div>
+    </nav>
+    <h1 class="text-4xl py-4 font-bold bg-gradient-to-r from-[#2c5460] to-yellow-500 bg-clip-text text-transparent">
+      BBF LABS
+    </h1>
+    <div id="form-container"
+      class="w-full max-w-lg border border-gray-100 p-8 rounded-2xl backdrop-blur-sm bg-opacity-sm bg-white transform transition-all duration-300">
+      <!-- Form content will be dynamically rendered here -->
     </div>
+  </div>
 
-    <script>
-      // State management
-      let isLogin = true;
-      let error = "";
+  <script>
+    // State management
+    const baseUrl = "http://localhost:3000/api/v1";
+    let isLogin = true;
+    let error = "";
 
-      // DOM elements
-      const formContainer = document.getElementById("form-container");
-      const uploadButton = document.getElementById("upload-button");
-      const navProfile = document.getElementById("nav-profile");
+    // DOM elements
+    const formContainer = document.getElementById("form-container");
+    const uploadButton = document.getElementById("upload-button");
+    const navProfile = document.getElementById("nav-profile");
 
-      // Function to render the login form
-      const renderLoginForm = () => {
-        formContainer.innerHTML = `
+    // Function to render the login form
+    const renderLoginForm = () => {
+      formContainer.innerHTML = `
           <div class="text-center space-y-3 mb-6">
             <h2 class="text-3xl font-bold text-gray-900">Login</h2>
-            <p class="text-gray-600 text-base">Access your University account</p>
+            <p class="text-gray-600 text-base">Access your BBF Labs Account</p>
           </div>
 
-          ${
-            error
-              ? `
+          ${error
+          ? `
             <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-r-lg mb-4 animate-pulse">
               <p class="font-semibold text-sm">${error}</p>
             </div>
           `
-              : ""
-          }
+          : ""
+        }
 
           <form id="auth-form" class="space-y-4 ">
             <div class="space-y-2">
-              <label for="email" class="block text-sm font-medium text-gray-700">
-                University Email
-              </label>
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  class="w-full pl-10 pr-3 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300"
-                  placeholder="student@st.ug.edu.gh"
-                  required
-                />
-              </div>
-            </div>
+  <label for="username" class="block text-sm font-medium text-gray-700">
+    Username
+  </label>
+  <div class="relative">
+    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+    </div>
+    <input
+      id="username"
+      name="username"
+      type="text"
+      class="w-full pl-10 pr-12 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300 border-gray-200 focus:border-blue-500"
+      placeholder="johndoe"
+      required
+    />
+  </div>
+</div>
 
             <div class="space-y-2">
               <label for="password" class="block text-sm font-medium text-gray-700">
@@ -167,6 +147,7 @@
 
             <button
               type="submit"
+              id="login-form"
               class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3.5 px-4 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 flex items-center justify-center space-x-2 text-base"
             >
               Login
@@ -180,30 +161,99 @@
             </div>
           </form>
         `;
-      };
+      document.getElementById('login-form').addEventListener('submit', handleLogin);
+    };
 
-      // Function to render the signup form
-      const renderSignupForm = () => {
-        formContainer.innerHTML = `
+    async function handleLogin(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch(`${baseUrl}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+        if (response.ok) {
+          localStorage.setItem('accessToken', data.accessToken); // Save token
+          alert('Login successful');
+          renderUploadMaterialForm();
+        } else {
+          alert(data.message || 'Login failed');
+        }
+      } catch (error) {
+        alert('Error logging in');
+      }
+    }
+
+    // Function to render the signup form
+    const renderSignupForm = () => {
+      formContainer.innerHTML = `
           <div class="text-center space-y-3 mb-6">
             <h2 class="text-3xl font-bold text-gray-900">Sign Up</h2>
             <p class="text-gray-600 text-base">Create a new account</p>
           </div>
 
-          ${
-            error
-              ? `
+          ${error
+          ? `
             <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-r-lg mb-4 animate-pulse">
               <p class="font-semibold text-sm">${error}</p>
             </div>
           `
-              : ""
-          }
+          : ""
+        }
 
           <form id="auth-form" class="space-y-4">
             <div class="space-y-2">
+  <label for="name" class="block text-sm font-medium text-gray-700">
+    Name
+  </label>
+  <div class="relative">
+    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      class="w-full pl-10 pr-12 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300 border-gray-200 focus:border-blue-500"
+      placeholder="John Doe"
+      required
+    />
+  </div>
+</div>
+
+            <div class="space-y-2">
+  <label for="username" class="block text-sm font-medium text-gray-700">
+    Username
+  </label>
+  <div class="relative">
+    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+    </div>
+    <input
+      id="username"
+      name="username"
+      type="text"
+      class="w-full pl-10 pr-12 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300 border-gray-200 focus:border-blue-500"
+      placeholder="johndoe"
+      required
+    />
+  </div>
+</div>
+
+            <div class="space-y-2">
               <label for="email" class="block text-sm font-medium text-gray-700">
-                University Email
+                Email
               </label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -215,12 +265,14 @@
                   id="email"
                   name="email"
                   type="email"
-                  class="w-full pl-10 pr-3 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300"
-                  placeholder="student@st.ug.edu.gh"
+                  class="w-full pl-10 pr-12 py-2.5 text-sm border-2 bg-white text-gray-700 rounded-lg focus:outline-none transition-all duration-300 border-gray-200 focus:border-blue-500"
+                  placeholder="example@mail.com"
                   required
                 />
               </div>
             </div>
+
+
 
             <div class="space-y-2">
               <label for="password" class="block text-sm font-medium text-gray-700">
@@ -255,7 +307,9 @@
 
             <button
               type="submit"
+              id="register-form"
               class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3.5 px-4 rounded-xl font-semibold hover:from-purple-600 hover:to-blue-purple focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 flex items-center justify-center space-x-2 text-base"
+              onclick="signup()"
             >
               Sign Up
             </button>
@@ -268,29 +322,58 @@
             </div>
           </form>
         `;
-      };
+      document.getElementById('register-form').addEventListener('submit', handleRegister);
+    };
 
-      //   navProfile.classList.add(
-      //       "flex justify-end items-center space-x-4 text-sm text-gray-600"
-      //     );
-      //     // profile image
-      //     navProfile.innerHTML = `
-      //         <div class="flex items-center space-x-2">
-      //           <img
-      //             src="https://randomuser.me/api/portraits
-      //             alt="User Profile"
-      //             class="w-12 h-12 rounded-full"
-      //             src="https://randomuser.me/api/portraits/men/30.jpg"
-      //           />
-      //             <span class="font-semibold">John Doe</span>
-      //         </div>
-      //     `;
+    //   navProfile.classList.add(
+    //       "flex justify-end items-center space-x-4 text-sm text-gray-600"
+    //     );
+    //     // profile image
+    //     navProfile.innerHTML = `
+    //         <div class="flex items-center space-x-2">
+    //           <img
+    //             src="https://randomuser.me/api/portraits
+    //             alt="User Profile"
+    //             class="w-12 h-12 rounded-full"
+    //             src="https://randomuser.me/api/portraits/men/30.jpg"
+    //           />
+    //             <span class="font-semibold">John Doe</span>
+    //         </div>
+    //     `;
 
-      // Function to render the upload material form
+    // Function to render the upload material form
 
-      const renderUploadMaterialForm = () => {
-        navProfile.classList.remove("hidden");
-        formContainer.innerHTML = `
+    async function handleRegister(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch(`${baseUrl}/user/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, username, email, password }),
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+        if (response.ok) {
+          alert('Registration successful');
+          renderLogin();
+        } else {
+          alert(data.message || 'Registration failed');
+        }
+      } catch (error) {
+        alert('Error registering');
+      }
+    }
+
+    const renderUploadMaterialForm = () => {
+      navProfile.classList.remove("hidden");
+      formContainer.innerHTML = `
     <div class="text-center space-y-3 mb-6">
       <h2 class="text-3xl font-bold text-gray-900">Upload Material</h2>
       <p class="text-gray-600 text-base">Share your course materials (PDF, Word, TXT, or a link)</p>
@@ -392,149 +475,148 @@
     </form>
   `;
 
-        // Setup course search with API simulation
-        const searchInput = document.getElementById("course-search");
-        const searchResults = document.getElementById("search-results");
-        const loader = document.querySelector(".loader");
-        let searchTimeout;
+      // Setup course search with API simulation
+      const searchInput = document.getElementById("course-search");
+      const searchResults = document.getElementById("search-results");
+      const loader = document.querySelector(".loader");
+      let searchTimeout;
 
-        // Simulated API call function
-        const searchCourses = async (query) => {
-          // Show loader
-          loader.classList.remove("hidden");
+      // Simulated API call function
+      const searchCourses = async (query) => {
+        // Show loader
+        loader.classList.remove("hidden");
 
-          // Simulate API delay
-          await new Promise((resolve) => setTimeout(resolve, 500));
+        // Simulate API delay
+        await new Promise((resolve) => setTimeout(resolve, 500));
 
-          // Simulate API response
-          const mockApiResponse = {
-            courses: [
-              { id: 1, name: `${query} Programming`, code: "CS101" },
-              { id: 2, name: `Advanced ${query}`, code: "CS201" },
-              { id: 3, name: `${query} Technologies`, code: "CS301" },
-            ],
-          };
-
-          // Hide loader
-          loader.classList.add("hidden");
-
-          return mockApiResponse.courses;
+        // Simulate API response
+        const mockApiResponse = {
+          courses: [
+            { id: 1, name: `${query} Programming`, code: "CS101" },
+            { id: 2, name: `Advanced ${query}`, code: "CS201" },
+            { id: 3, name: `${query} Technologies`, code: "CS301" },
+          ],
         };
 
-        // Search input handler
-        searchInput.addEventListener("input", async (e) => {
-          const searchTerm = e.target.value.trim();
+        // Hide loader
+        loader.classList.add("hidden");
 
-          // Clear previous timeout
-          if (searchTimeout) {
-            clearTimeout(searchTimeout);
-          }
+        return mockApiResponse.courses;
+      };
 
-          if (searchTerm.length < 2) {
-            searchResults.classList.add("hidden");
-            return;
-          }
+      // Search input handler
+      searchInput.addEventListener("input", async (e) => {
+        const searchTerm = e.target.value.trim();
 
-          // Set new timeout for API call
-          searchTimeout = setTimeout(async () => {
-            try {
-              const courses = await searchCourses(searchTerm);
+        // Clear previous timeout
+        if (searchTimeout) {
+          clearTimeout(searchTimeout);
+        }
 
-              if (courses.length > 0) {
-                searchResults.innerHTML = courses
-                  .map(
-                    (course) => `
+        if (searchTerm.length < 2) {
+          searchResults.classList.add("hidden");
+          return;
+        }
+
+        // Set new timeout for API call
+        searchTimeout = setTimeout(async () => {
+          try {
+            const courses = await searchCourses(searchTerm);
+
+            if (courses.length > 0) {
+              searchResults.innerHTML = courses
+                .map(
+                  (course) => `
             <div class="p-3 hover:bg-gray-50 cursor-pointer" onclick="selectCourse('${course.code}', '${course.name}')">
               <div class="font-medium">${course.name}</div>
               <div class="text-sm text-gray-500">${course.code}</div>
             </div>
           `
-                  )
-                  .join("");
-                searchResults.classList.remove("hidden");
-              } else {
-                searchResults.innerHTML = `
+                )
+                .join("");
+              searchResults.classList.remove("hidden");
+            } else {
+              searchResults.innerHTML = `
             <div class="p-3 text-gray-500">No courses found</div>
           `;
-                searchResults.classList.remove("hidden");
-              }
-            } catch (error) {
-              searchResults.innerHTML = `
-          <div class="p-3 text-red-500">Error searching courses. Please try again.</div>
-        `;
               searchResults.classList.remove("hidden");
             }
-          }, 300); // Debounce delay
+          } catch (error) {
+            searchResults.innerHTML = `
+          <div class="p-3 text-red-500">Error searching courses. Please try again.</div>
+        `;
+            searchResults.classList.remove("hidden");
+          }
+        }, 300); // Debounce delay
+      });
+
+      // Setup drag and drop
+      const dropZone = document.getElementById("drop-zone");
+      const fileInput = document.getElementById("file");
+      const filePreview = document.getElementById("file-preview");
+
+      // Prevent default drag behaviors
+      ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
         });
+      });
 
-        // Setup drag and drop
-        const dropZone = document.getElementById("drop-zone");
-        const fileInput = document.getElementById("file");
-        const filePreview = document.getElementById("file-preview");
-
-        // Prevent default drag behaviors
-        ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
-          dropZone.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          });
+      // Highlight drop zone when dragging over it
+      ["dragenter", "dragover"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, () => {
+          dropZone.classList.add("border-blue-500", "bg-blue-50");
         });
+      });
 
-        // Highlight drop zone when dragging over it
-        ["dragenter", "dragover"].forEach((eventName) => {
-          dropZone.addEventListener(eventName, () => {
-            dropZone.classList.add("border-blue-500", "bg-blue-50");
-          });
+      ["dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, () => {
+          dropZone.classList.remove("border-blue-500", "bg-blue-50");
         });
+      });
 
-        ["dragleave", "drop"].forEach((eventName) => {
-          dropZone.addEventListener(eventName, () => {
-            dropZone.classList.remove("border-blue-500", "bg-blue-50");
-          });
-        });
+      // Handle dropped files
+      dropZone.addEventListener("drop", (e) => {
+        const droppedFiles = [...e.dataTransfer.files];
+        handleFiles(droppedFiles);
+      });
 
-        // Handle dropped files
-        dropZone.addEventListener("drop", (e) => {
-          const droppedFiles = [...e.dataTransfer.files];
-          handleFiles(droppedFiles);
-        });
+      // Handle selected files
+      fileInput.addEventListener("change", (e) => {
+        const selectedFiles = [...e.target.files];
+        handleFiles(selectedFiles);
+      });
 
-        // Handle selected files
-        fileInput.addEventListener("change", (e) => {
-          const selectedFiles = [...e.target.files];
-          handleFiles(selectedFiles);
-        });
+      // File handling function
+      const handleFiles = (files) => {
+        filePreview.innerHTML = "";
 
-        // File handling function
-        const handleFiles = (files) => {
-          filePreview.innerHTML = "";
+        files.forEach((file) => {
+          const fileType = file.name.split(".").pop().toLowerCase();
+          let imagePath;
 
-          files.forEach((file) => {
-            const fileType = file.name.split(".").pop().toLowerCase();
-            let imagePath;
+          // Determine file type icon
+          if (fileType === "pdf") {
+            imagePath =
+              "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg";
+          } else if (fileType === "doc" || fileType === "docx") {
+            imagePath =
+              "https://png.pngtree.com/png-clipart/20190516/original/pngtree-microsoft-word-logo-icon-png-image_3588805.jpg";
+          } else if (fileType === "txt") {
+            imagePath =
+              "https://upload.wikimedia.org/wikipedia/commons/9/99/Text_edit_icon.svg";
+          }
 
-            // Determine file type icon
-            if (fileType === "pdf") {
-              imagePath =
-                "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg";
-            } else if (fileType === "doc" || fileType === "docx") {
-              imagePath =
-                "https://png.pngtree.com/png-clipart/20190516/original/pngtree-microsoft-word-logo-icon-png-image_3588805.jpg";
-            } else if (fileType === "txt") {
-              imagePath =
-                "https://upload.wikimedia.org/wikipedia/commons/9/99/Text_edit_icon.svg";
-            }
-
-            if (imagePath) {
-              const fileCard = document.createElement("div");
-              fileCard.className =
-                "bg-white p-4 rounded-lg shadow-sm border border-gray-200";
-              fileCard.innerHTML = `
+          if (imagePath) {
+            const fileCard = document.createElement("div");
+            fileCard.className =
+              "bg-white p-4 rounded-lg shadow-sm border border-gray-200";
+            fileCard.innerHTML = `
           <div class="flex items-center space-x-4">
             <img src="${imagePath}" alt="${fileType} icon" class="w-10 h-10">
             <div class="flex-1 min-w-0">
-              <p class="text-sm font-medium text-gray-900 truncate">${
-                file.name
+              <p class="text-sm font-medium text-gray-900 truncate">${file.name
               }</p>
               <p class="text-sm text-gray-500">${(file.size / 1024).toFixed(
                 1
@@ -547,78 +629,79 @@
             </button>
           </div>
         `;
-              filePreview.appendChild(fileCard);
-            }
-          });
-        };
-
-        // Material type selection handler
-        const materialTypeSelect = document.getElementById("material-type");
-        const fileUploadSection = document.getElementById(
-          "file-upload-section"
-        );
-        const linkUploadSection = document.getElementById(
-          "link-upload-section"
-        );
-
-        materialTypeSelect.addEventListener("change", (e) => {
-          if (e.target.value === "link") {
-            fileUploadSection.classList.add("hidden");
-            linkUploadSection.classList.remove("hidden");
-          } else if (e.target.value === "file") {
-            linkUploadSection.classList.add("hidden");
-            fileUploadSection.classList.remove("hidden");
+            filePreview.appendChild(fileCard);
           }
         });
-
-        // Form submission handler
-        const uploadForm = document.getElementById("upload-form");
-        uploadForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-          // Handle form submission logic here
-          console.log("Form submitted");
-        });
       };
 
-      // Function to handle course selection from search results
-      function selectCourse(code, name) {
-        document.getElementById("course-search").value = `${code} - ${name}`;
-        document.getElementById("search-results").classList.add("hidden");
-      }
+      // Material type selection handler
+      const materialTypeSelect = document.getElementById("material-type");
+      const fileUploadSection = document.getElementById(
+        "file-upload-section"
+      );
+      const linkUploadSection = document.getElementById(
+        "link-upload-section"
+      );
 
-      const navigateToUpload = () => {
-        formContainer.classList.remove("max-w-lg");
-        formContainer.classList.add("max-w-7xl");
-        renderUploadMaterialForm();
-      };
-
-      // Function to toggle between login and signup
-      const navigateToSignup = (e) => {
-        formContainer.classList.remove("max-w-7xl");
-        formContainer.classList.add("max-w-lg");
-        e.preventDefault();
-        renderSignupForm();
-      };
-
-      const navigateToLogin = (e) => {
-        formContainer.classList.remove("max-w-7xl");
-        formContainer.classList.add("max-w-lg");
-        e.preventDefault();
-        renderLoginForm();
-      };
-
-      // Function to toggle password visibility
-      const togglePassword = () => {
-        const passwordInput = document.getElementById("password");
-        if (passwordInput.type === "password") {
-          passwordInput.type = "text";
-        } else {
-          passwordInput.type = "password";
+      materialTypeSelect.addEventListener("change", (e) => {
+        if (e.target.value === "link") {
+          fileUploadSection.classList.add("hidden");
+          linkUploadSection.classList.remove("hidden");
+        } else if (e.target.value === "file") {
+          linkUploadSection.classList.add("hidden");
+          fileUploadSection.classList.remove("hidden");
         }
-      };
+      });
 
-      // Initialize the page with the login form
+      // Form submission handler
+      const uploadForm = document.getElementById("upload-form");
+      uploadForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Handle form submission logic here
+        console.log("Form submitted");
+      });
+    };
+
+    // Function to handle course selection from search results
+    function selectCourse(code, name) {
+      document.getElementById("course-search").value = `${code} - ${name}`;
+      document.getElementById("search-results").classList.add("hidden");
+    }
+
+    const navigateToUpload = () => {
+      formContainer.classList.remove("max-w-lg");
+      formContainer.classList.add("max-w-7xl");
+      renderUploadMaterialForm();
+    };
+
+    // Function to toggle between login and signup
+    const navigateToSignup = (e) => {
+      formContainer.classList.remove("max-w-7xl");
+      formContainer.classList.add("max-w-lg");
+      e.preventDefault();
+      renderSignupForm();
+    };
+
+    const navigateToLogin = (e) => {
+      formContainer.classList.remove("max-w-7xl");
+      formContainer.classList.add("max-w-lg");
+      e.preventDefault();
       renderLoginForm();
-    </script>
-  </body>
+    };
+
+    // Function to toggle password visibility
+    const togglePassword = () => {
+      const passwordInput = document.getElementById("password");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    };
+
+    // Initialize the page with the login form
+    renderLoginForm();
+  </script>
+</body>
+
 </html>
