@@ -2,7 +2,6 @@ const app = document.getElementById("app");
 const baseUrl = "https://api.theniitettey.live/api/v1";
 let courses = [];
 
-// Theme handling
 const html = document.documentElement;
 const themeToggle = document.getElementById("theme-toggle");
 
@@ -28,6 +27,26 @@ function updateThemeIcon() {
 }
 
 updateThemeIcon();
+
+function disableButton(buttonSelector = "button[type='submit']") {
+  const button = document.querySelector(buttonSelector);
+  console.log(button);
+  if (button) {
+    button.setAttribute("disabled", true);
+    button.classList.add("opacity-50");
+    button.classList.add("cursor-not-allowed");
+  }
+}
+
+function enableButton(buttonSelector = "button[type='submit']") {
+  const button = document.querySelector(buttonSelector);
+  console.log(button);
+  if (button) {
+    button.removeAttribute("disabled");
+    button.classList.remove("opacity-50");
+    button.classList.remove("cursor-not-allowed");
+  }
+}
 
 async function fetchUserProfile() {
   try {
@@ -258,6 +277,7 @@ function contactAdmin() {
 
 async function handleUpload(event, type) {
   event.preventDefault();
+
   const courseId = courses.filter(
     (course) => course._id === document.getElementById("courseId").value
   )[0]._id;
@@ -283,6 +303,7 @@ async function handleUpload(event, type) {
 
   try {
     let response;
+    disableButton();
     if (type === "file") {
       response = await fetch(`${baseUrl}/materials/upload`, {
         method: "POST",
@@ -304,6 +325,7 @@ async function handleUpload(event, type) {
     }
 
     const data = await response.json();
+
     if (response.ok) {
       showToast(
         `${type === "file" ? "File" : "Link"} uploaded successfully`,
@@ -313,10 +335,11 @@ async function handleUpload(event, type) {
     } else {
       showToast("Failed" + data.message || "Upload failed", "error");
     }
+
+    enableButton();
   } catch (error) {
     showToast(`Error uploading ${type}`, "error");
-    showToast(error.message, "error");
-    console.log(error.message);
+    enableButton();
   }
 }
 
@@ -329,6 +352,7 @@ async function handleLogin(event) {
   const password = document.getElementById("password").value;
 
   try {
+    disableButton();
     const response = await fetch(`${baseUrl}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -343,8 +367,10 @@ async function handleLogin(event) {
     } else {
       showToast(data.message || "Login failed", "error");
     }
+    enableButton();
   } catch (error) {
     showToast("Error logging in", "error");
+    enableButton();
   }
 }
 
@@ -359,6 +385,7 @@ async function handleRegister(event) {
   const password = document.getElementById("password").value;
 
   try {
+    disableButton();
     const response = await fetch(`${baseUrl}/user/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -372,8 +399,10 @@ async function handleRegister(event) {
     } else {
       showToast(data.message || "Registration failed", "error");
     }
+    enableButton();
   } catch (error) {
     showToast("Error registering", "error");
+    enableButton();
   }
 }
 
