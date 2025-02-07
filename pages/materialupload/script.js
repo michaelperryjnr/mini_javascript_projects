@@ -322,7 +322,10 @@ async function handleUpload(event, type) {
 
 async function handleLogin(event) {
   event.preventDefault();
-  const username = document.getElementById("username").value.toLowerCase();
+  const username = document
+    .getElementById("username")
+    .value.trim()
+    .toLowerCase();
   const password = document.getElementById("password").value;
 
   try {
@@ -348,8 +351,11 @@ async function handleLogin(event) {
 async function handleRegister(event) {
   event.preventDefault();
   const name = document.getElementById("name").value;
-  const username = document.getElementById("username").value.toLowerCase();
-  const email = document.getElementById("email").value.toLowerCase();
+  const username = document
+    .getElementById("username")
+    .value.trim()
+    .toLowerCase();
+  const email = document.getElementById("email").value.trim().toLowerCase();
   const password = document.getElementById("password").value;
 
   try {
