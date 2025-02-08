@@ -73,7 +73,7 @@
     </div>
     <div class="min-h-full hidden" id="fullPage">
         <!-- Sidebar -->
-        <div class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-gray-800 shadow-lg z-10 transition-transform duration-300 ease-in-out transform"
+        <div class="fixed hidden md:contents inset-y-0 left-0 w-64 bg-white dark:bg-gray-800 shadow-lg z-10 transition-transform duration-300 ease-in-out transform"
             id="sidebar">
             <div class="flex items-center justify-center h-16 border-b border-gray-200 dark:border-gray-700">
                 <h1 class="text-xl font-semibold text-gray-800 dark:text-white">BBF LABS Admin</h1>
@@ -620,7 +620,6 @@
 
         function disableButton(buttonSelector = "button[type='submit']") {
             const button = document.querySelector(buttonSelector);
-            console.log(button);
             if (button) {
                 button.setAttribute("disabled", true);
                 button.classList.add("opacity-50");
@@ -630,7 +629,6 @@
 
         function enableButton(buttonSelector = "button[type='submit']") {
             const button = document.querySelector(buttonSelector);
-            console.log(button);
             if (button) {
                 button.removeAttribute("disabled");
                 button.classList.remove("opacity-50");
@@ -784,6 +782,7 @@
                 enableButton();
             } catch (error) {
                 showToast("Error logging in", "error");
+                console.log(error)
                 enableButton();
             }
 
