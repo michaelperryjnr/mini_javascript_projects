@@ -418,10 +418,7 @@
                         <!-- Courses Content -->
                         <div id="courses" class="mt-8 hidden">
                             <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md">
-                                <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-                                    <div id="course-container"></div>
-                                    <!-- Add more course items here -->
-                                </ul>
+                                <div id="course-container"></div>
                             </div>
                         </div>
 
@@ -701,7 +698,8 @@
         }
 
         function renderCourses() {
-            courseContainer.innerHTML = courses.map((course) => {
+            courseContainer.innerHTML = `<ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                                 ${courses.map((course) => {
                 `< li >
                         <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
                             <div class="px-4 py-4 sm:px-6">
@@ -744,7 +742,7 @@
                             </div>
                         </a>
                     </li >
-        `}).join('');
+        `}).join('')}</ul>`;
         }
 
         // Initialize charts
