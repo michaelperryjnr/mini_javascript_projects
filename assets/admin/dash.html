@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100 dark:bg-gray-900">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBF LABS Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .toast-holder {
+            position: fixed;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            top: 1rem;
+            z-index: 50;
+        }
+
+
+
+        .toast {
+            background-color: rgb(var(--color-background));
+            color: rgb(var(--color-foreground));
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(-1rem);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast.success {
+            background-color: rgb(var(--color-primary));
+            color: white;
+        }
+
+        .toast.error {
+            background-color: rgb(220 38 38);
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="h-full">
+    <div class="min-h-screen flex flex-col items-center justify-center p-4" id="login">
+        <div class="w-full max-w-md">
+            <!-- Logo/Title -->
+            <h1
+                class="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-green-600 via-[#434e52] to-[#ecce6d] bg-clip-text text-transparent flex flex-row items-center justify-center space-x-2">
+                <img src="../../assets/images/bbf-logo.svg" class="w-[8rem]" />
+            </h1>
+
+            <!-- Main Content Container -->
+            <div id="login-app"
+                class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 transition-all duration-300">
+                <!-- Dynamic content will be rendered here -->
+            </div>
+        </div>
+    </div>
+    <div class="min-h-full hidden" id="fullPage">
+        <!-- Sidebar -->
+        <div class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-gray-800 shadow-lg z-10 transition-transform duration-300 ease-in-out transform"
+            id="sidebar">
+            <div class="flex items-center justify-center h-16 border-b border-gray-200 dark:border-gray-700">
+                <h1 class="text-xl font-semibold text-gray-800 dark:text-white">BBF LABS Admin</h1>
+            </div>
+            <nav class="mt-5">
+                <a href="#"
+                    class="flex items-center px-6 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    onclick="showSection('dashboard')">
+                    <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                        </path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="#"
+                    class="flex items-center px-6 py-2 mt-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    onclick="showSection('courses')">
+                    <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                        </path>
+                    </svg>
+                    Courses
+                </a>
+                <a href="#"
+                    class="flex items-center px-6 py-2 mt-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    onclick="showSection('users')">
+                    <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    Users
+                </a>
+                <a href="#"
+                    class="flex items-center px-6 py-2 mt-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    onclick="showSection('packages')">
+                    <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                    </svg>
+                    Packages
+                </a>
+                <a href="#"
+                    class="flex items-center px-6 py-2 mt-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    onclick="showSection('payments')">
+                    <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z">
+                        </path>
+                    </svg>
+                    Payments
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="ml-64 flex flex-col flex-1" id="main">
+            <!-- Top Navbar -->
+            <nav class="bg-white dark:bg-gray-800 shadow-sm">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <div class="flex">
+                            <div class="flex-shrink-0 flex items-center">
+                                <button id="sidebarToggle" class="text-gray-500 focus:outline-none focus:text-gray-700">
+                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 6h16M4 12h16M4 18h16"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <button id="darkModeToggle" class="text-gray-500 focus:outline-none focus:text-gray-700">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                                    </path>
+                                </svg>
+                            </button>
+                            <div class="ml-3 relative">
+                                <div id="profile-section"
+                                    class="flex items-center cursor-pointer space-x-3 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg z-100">
+                                    <div id="profile-avatar"
+                                        class="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center text-white font-bold">
+                                        A
+                                    </div>
+                                    <div>
+                                        <p id="profile-name"
+                                            class="font-semibold text-gray-800 dark:text-gray-200 text-sm"></p>
+                                        <p id="profile-email" class="text-gray-500 dark:text-gray-400 text-xs">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Page Content -->
+            <main class="flex-1 overflow-y-auto bg-gray-100 dark:bg-gray-900">
+                <div class="py-6">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white" id="pageTitle">Dashboard</h1>
+                    </div>
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <!-- Dashboard Content -->
+                        <div id="dashboard" class="mt-8">
+                            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                                <!-- Total Users Card -->
+                                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+                                    <div class="p-5">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+                                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-5 w-0 flex-1">
+                                                <dl>
+                                                    <dt
+                                                        class="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
+                                                        Total Users
+                                                    </dt>
+                                                    <dd class="flex items-baseline">
+                                                        <div
+                                                            class="text-2xl font-semibold text-gray-900 dark:text-white">
+                                                            1,234
+                                                        </div>
+                                                        <div
+                                                            class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
+                                                            <svg class="self-center flex-shrink-0 h-5 w-5 text-green-500"
+                                                                fill="currentColor" viewBox="0 0 20 20"
+                                                                aria-hidden="true">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg>
+                                                            <span class="sr-only">Increased by</span>
+                                                            10%
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Total Courses Card -->
+                                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+                                    <div class="p-5">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-5 w-0 flex-1">
+                                                <dl>
+                                                    <dt
+                                                        class="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
+                                                        Total Courses
+                                                    </dt>
+                                                    <dd class="flex items-baseline">
+                                                        <div
+                                                            class="text-2xl font-semibold text-gray-900 dark:text-white">
+                                                            25
+                                                        </div>
+                                                        <div
+                                                            class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
+                                                            <svg class="self-center flex-shrink-0 h-5 w-5 text-green-500"
+                                                                fill="currentColor" viewBox="0 0 20 20"
+                                                                aria-hidden="true">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg>
+                                                            <span class="sr-only">Increased by</span>
+                                                            5%
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Total Packages Card -->
+                                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+                                    <div class="p-5">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 bg-yellow-500 rounded-md p-3">
+                                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-5 w-0 flex-1">
+                                                <dl>
+                                                    <dt
+                                                        class="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
+                                                        Total Packages
+                                                    </dt>
+                                                    <dd class="flex items-baseline">
+                                                        <div
+                                                            class="text-2xl font-semibold text-gray-900 dark:text-white">
+                                                            5
+                                                        </div>
+                                                        <div
+                                                            class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
+                                                            <svg class="self-center flex-shrink-0 h-5 w-5 text-green-500"
+                                                                fill="currentColor" viewBox="0 0 20 20"
+                                                                aria-hidden="true">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg>
+                                                            <span class="sr-only">Increased by</span>
+                                                            2%
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Total Revenue Card -->
+                                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+                                    <div class="p-5">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 bg-red-500 rounded-md p-3">
+                                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-5 w-0 flex-1">
+                                                <dl>
+                                                    <dt
+                                                        class="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
+                                                        Total Revenue
+                                                    </dt>
+                                                    <dd class="flex items-baseline">
+                                                        <div
+                                                            class="text-2xl font-semibold text-gray-900 dark:text-white">
+                                                            $45,231
+                                                        </div>
+                                                        <div
+                                                            class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
+                                                            <svg class="self-center flex-shrink-0 h-5 w-5 text-green-500"
+                                                                fill="currentColor" viewBox="0 0 20 20"
+                                                                aria-hidden="true">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg>
+                                                            <span class="sr-only">Increased by</span>
+                                                            8%
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Charts -->
+                            <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+                                    <div class="p-5">
+                                        <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">User
+                                            Growth</h3>
+                                        <div class="mt-2 h-64">
+                                            <canvas id="userGrowthChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+                                    <div class="p-5">
+                                        <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Revenue
+                                        </h3>
+                                        <div class="mt-2 h-64">
+                                            <canvas id="revenueChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Courses Content -->
+                        <div id="courses" class="mt-8 hidden">
+                            <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md">
+                                <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                                    <li>
+                                        <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
+                                            <div class="px-4 py-4 sm:px-6">
+                                                <div class="flex items-center justify-between">
+                                                    <p
+                                                        class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
+                                                        Introduction to Programming
+                                                    </p>
+                                                    <div class="ml-2 flex-shrink-0 flex">
+                                                        <p
+                                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                            Active
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2 sm:flex sm:justify-between">
+                                                    <div class="sm:flex">
+                                                        <p
+                                                            class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                            </svg>
+                                                            Start date: January 15, 2023
+                                                        </p>
+                                                    </div>
+                                                    <div
+                                                        class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+                                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                                        </svg>
+                                                        Enrolled: 150 students
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- Add more course items here -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Users Content -->
+                        <div id="users" class="mt-8 hidden">
+                            <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md">
+                                <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                                    <li>
+                                        <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
+                                            <div class="px-4 py-4 sm:px-6">
+                                                <div class="flex items-center justify-between">
+                                                    <p
+                                                        class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
+                                                        John Doe
+                                                    </p>
+                                                    <div class="ml-2 flex-shrink-0 flex">
+                                                        <p
+                                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                            Active
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2 sm:flex sm:justify-between">
+                                                    <div class="sm:flex">
+                                                        <p
+                                                            class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                                                            </svg>
+                                                            john.doe@example.com
+                                                        </p>
+                                                    </div>
+                                                    <div
+                                                        class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+                                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                        </svg>
+                                                        Joined: January 1, 2023
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- Add more user items here -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Packages Content -->
+                        <div id="packages" class="mt-8 hidden">
+                            <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md">
+                                <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                                    <li>
+                                        <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
+                                            <div class="px-4 py-4 sm:px-6">
+                                                <div class="flex items-center justify-between">
+                                                    <p
+                                                        class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
+                                                        Basic Package
+                                                    </p>
+                                                    <div class="ml-2 flex-shrink-0 flex">
+                                                        <p
+                                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                            Active
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2 sm:flex sm:justify-between">
+                                                    <div class="sm:flex">
+                                                        <p
+                                                            class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                            </svg>
+                                                            Price: $9.99/month
+                                                        </p>
+                                                    </div>
+                                                    <div
+                                                        class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+                                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                                        </svg>
+                                                        Subscribers: 500
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- Add more package items here -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Payments Content -->
+                        <div id="payments" class="mt-8 hidden">
+                            <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md">
+                                <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                                    <li>
+                                        <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
+                                            <div class="px-4 py-4 sm:px-6">
+                                                <div class="flex items-center justify-between">
+                                                    <p
+                                                        class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
+                                                        Payment #12345
+                                                    </p>
+                                                    <div class="ml-2 flex-shrink-0 flex">
+                                                        <p
+                                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                            Completed
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2 sm:flex sm:justify-between">
+                                                    <div class="sm:flex">
+                                                        <p
+                                                            class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                            </svg>
+                                                            Amount: $99.99
+                                                        </p>
+                                                    </div>
+                                                    <div
+                                                        class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+                                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                        </svg>
+                                                        Date: March 15, 2023
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- Add more payment items here -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+    </div>
+    <div class="toast-holder">
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+
+    <script>
+        const baseUrl = "https://api.theniitettey.live/api/v1";
+        const toastContainer = document.getElementById("toast-container");
+
+        function showToast(message, type = "default", duration = 3000) {
+            const toast = document.createElement("div");
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+
+            toastContainer.appendChild(toast);
+
+            toast.offsetHeight;
+
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                setTimeout(() => {
+                    toastContainer.removeChild(toast);
+                }, 300);
+            }, duration);
+        }
+
+        function disableButton(buttonSelector = "button[type='submit']") {
+            const button = document.querySelector(buttonSelector);
+            console.log(button);
+            if (button) {
+                button.setAttribute("disabled", true);
+                button.classList.add("opacity-50");
+                button.classList.add("cursor-not-allowed");
+            }
+        }
+
+        function enableButton(buttonSelector = "button[type='submit']") {
+            const button = document.querySelector(buttonSelector);
+            console.log(button);
+            if (button) {
+                button.removeAttribute("disabled");
+                button.classList.remove("opacity-50");
+                button.classList.remove("cursor-not-allowed");
+            }
+        }
+        let isSidebarHidden = false;
+        document.getElementById('sidebarToggle').addEventListener('click', function () {
+            isSidebarHidden = !isSidebarHidden;
+            document.getElementById('sidebar').classList.toggle('hidden', isSidebarHidden);
+            document.getElementById('sidebar').classList.toggle('md:block', !isSidebarHidden);
+            document.getElementById("main").classList.toggle('ml-64', !isSidebarHidden);
+            document.getElementById("main").classList.toggle('ml-0', isSidebarHidden);
+        });
+
+
+        const login = document.getElementById("login");
+        const loginDiv = document.getElementById("login-app");
+        const fullPage = document.getElementById("fullPage");
+        function renderLogin() {
+            document.getElementById("profile-section").classList.add("hidden");
+            loginDiv.innerHTML = `
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Login</h2>
+        <form id="login-form" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Username</label>
+            <input type="text" id="username" required
+              class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+              placeholder="Enter your username">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Password</label>
+            <input type="password" id="password" required
+              class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+              placeholder="Enter your password">
+          </div>
+          <button type="submit"
+            class="w-full py-2 px-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-medium rounded-lg transition-colors">
+            Login
+          </button>
+        </form>
+      `;
+            document.getElementById("login-form").addEventListener("submit", handleLogin);
+        }
+
+        // Toggle dark mode
+        document.getElementById('darkModeToggle').addEventListener('click', function () {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Show/hide sections
+        function showSection(sectionId) {
+            document.querySelectorAll('main > div > div > div').forEach(function (section) {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+            document.getElementById('pageTitle').textContent = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
+        }
+
+        // Initialize charts
+        function initCharts() {
+            // User Growth Chart
+            new Chart(document.getElementById('userGrowthChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Users',
+                        data: [100, 200, 300, 400, 500, 600],
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Revenue Chart
+            new Chart(document.getElementById('revenueChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Revenue',
+                        data: [1000, 1500, 2000, 1800, 2200, 2500],
+                        backgroundColor: 'rgba(153, 102, 255, 0.6)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+
+        async function fetchUserProfile() {
+            try {
+                const response = await fetch(`${baseUrl}/user/profile`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const profile = await response.json();
+                    document.getElementById("profile-section").classList.remove("hidden");
+                    document.getElementById("profile-name").textContent = profile.user.name;
+                    document.getElementById("profile-email").textContent = profile.user.email;
+                    document.getElementById("profile-avatar").textContent = profile.user.name
+                        .charAt(0)
+                        .toUpperCase();
+                }
+            } catch (error) {
+                console.error("Error fetching profile:", error);
+            }
+        }
+
+
+        async function handleLogin() {
+            event.preventDefault();
+            const username = document
+                .getElementById("username")
+                .value.trim()
+                .toLowerCase();
+            const password = document.getElementById("password").value;
+
+            try {
+                disableButton();
+                const response = await fetch(`${baseUrl}/auth/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    localStorage.setItem("accessToken", data.accessToken);
+                    fullPage.classList.remove("hidden")
+                    document.getElementById("profile-section").classList.remove("hidden")
+                    showSection('dashboard')
+                    initCharts()
+                    showToast("Login successful", "success");
+                    renderUploadChoice();
+                } else {
+                    showToast(data.message || "Login failed", "error");
+                }
+                enableButton();
+            } catch (error) {
+                showToast("Error logging in", "error");
+                enableButton();
+            }
+
+            fetchUserProfile();
+        }
+
+        renderLogin()
+    </script>
+</body>
+
+</html>

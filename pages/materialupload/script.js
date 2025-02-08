@@ -30,7 +30,6 @@ updateThemeIcon();
 
 function disableButton(buttonSelector = "button[type='submit']") {
   const button = document.querySelector(buttonSelector);
-  console.log(button);
   if (button) {
     button.setAttribute("disabled", true);
     button.classList.add("opacity-50");
@@ -40,7 +39,6 @@ function disableButton(buttonSelector = "button[type='submit']") {
 
 function enableButton(buttonSelector = "button[type='submit']") {
   const button = document.querySelector(buttonSelector);
-  console.log(button);
   if (button) {
     button.removeAttribute("disabled");
     button.classList.remove("opacity-50");
