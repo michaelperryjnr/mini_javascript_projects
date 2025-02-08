@@ -771,6 +771,7 @@
                 const data = await response.json();
                 if (response.ok) {
                     localStorage.setItem("accessToken", data.accessToken);
+                    login.classList.add("hidden");
                     fullPage.classList.remove("hidden")
                     document.getElementById("profile-section").classList.remove("hidden")
                     showSection('dashboard')
