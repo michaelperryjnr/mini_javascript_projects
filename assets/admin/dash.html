@@ -699,7 +699,7 @@
 
         function renderCourses() {
             console.log(courses)
-            courseContainer.innerHTML = `<ul class="divide-y divide-gray-200 dark:divide-gray-700">
+            courseContainer.innerHTML = `<ul class="divide-y overflow-scroll divide-gray-200 dark:divide-gray-700">
                                  ${courses.map((course) => {
                 `< li >
                         <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
@@ -848,8 +848,8 @@
                 showToast("Error logging in", "error");
                 enableButton();
             }
-            fetchCourses();
-            fetchUserProfile();
+            await fetchCourses();
+            await fetchUserProfile();
             renderCourses()
         }
 
