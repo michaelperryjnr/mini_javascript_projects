@@ -700,7 +700,7 @@
         }
 
         function renderCourses() {
-            courseContainer.innerHTML = courses.forEach((course) => {
+            courseContainer.innerHTML = courses.map((course) => {
                 return (`  < li >
                         <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
                             <div class="px-4 py-4 sm:px-6">
