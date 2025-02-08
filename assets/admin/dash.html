@@ -802,6 +802,13 @@
 
                 const data = await response.json();
                 if (response.ok) {
+
+                    if (data.user.role !== "admin") {
+                        showToast("You are not authorized to access this page", "error");
+                        enableButton();
+                        return;
+                    }
+
                     localStorage.setItem("accessToken", data.accessToken);
                     login.classList.add("hidden");
                     fullPage.classList.remove("hidden")
