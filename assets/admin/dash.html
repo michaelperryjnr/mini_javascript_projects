@@ -698,9 +698,8 @@
         }
 
         function renderCourses() {
-            console.log(courses)
             courseContainer.innerHTML = `<ul class="divide-y overflow-scroll divide-gray-200 dark:divide-gray-700">
-                                 ${courses.map((course) => {
+                                 ${courses.slice(0, 30).map((course) => {
                 `< li >
                         <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
                             <div class="px-4 py-4 sm:px-6">
