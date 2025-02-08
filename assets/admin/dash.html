@@ -13,6 +13,41 @@
             font-family: 'Inter', sans-serif;
         }
 
+        @layer base {
+            :root {
+                --color-primary: 22 163 74;
+                --color-secondary: 234 179 8;
+                --color-accent: 124 58 237;
+                --color-background: 255 255 255;
+                --color-foreground: 17 24 39;
+            }
+
+            .dark {
+                --color-primary: 34 197 94;
+                --color-secondary: 252 211 77;
+                --color-accent: 167 139 250;
+                --color-background: 140 140 140;
+                --color-foreground: 243 244 246;
+            }
+        }
+
+        @layer utilities {
+            .transition-all {
+                transition-property: all;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 150ms;
+            }
+
+            .bg-pattern-light {
+                background-image: radial-gradient(circle at 1px 1px, rgb(var(--color-primary) / 0.1) 1px, transparent 0);
+                background-size: 20px 20px;
+            }
+
+            .dark .bg-pattern-light {
+                background-image: radial-gradient(circle at 1px 1px, rgb(var(--color-primary) / 0.2) 1px, transparent 0);
+            }
+        }
+
         .toast-holder {
             position: fixed;
             width: 100%;
