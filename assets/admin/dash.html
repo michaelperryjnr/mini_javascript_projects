@@ -73,7 +73,7 @@
     </div>
     <div class="min-h-full hidden" id="fullPage">
         <!-- Sidebar -->
-        <div class="fixed hidden md:contents inset-y-0 left-0 w-64 bg-white dark:bg-gray-800 shadow-lg z-10 transition-transform duration-300 ease-in-out transform"
+        <div class="fixed hidden md:fixed inset-y-0 left-0 w-64 bg-white dark:bg-gray-800 shadow-lg z-10 transition-transform duration-300 ease-in-out transform"
             id="sidebar">
             <div class="flex items-center justify-center h-16 border-b border-gray-200 dark:border-gray-700">
                 <h1 class="text-xl font-semibold text-gray-800 dark:text-white">BBF LABS Admin</h1>
@@ -160,9 +160,8 @@
                                     class="flex items-center cursor-pointer space-x-3 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg z-100">
                                     <div id="profile-avatar"
                                         class="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center text-white font-bold">
-                                        A
                                     </div>
-                                    <div>
+                                    <div class="hidden md:block">
                                         <p id="profile-name"
                                             class="font-semibold text-gray-800 dark:text-gray-200 text-sm"></p>
                                         <p id="profile-email" class="text-gray-500 dark:text-gray-400 text-xs">
@@ -775,14 +774,12 @@
                     showSection('dashboard')
                     initCharts()
                     showToast("Login successful", "success");
-                    renderUploadChoice();
                 } else {
                     showToast(data.message || "Login failed", "error");
                 }
                 enableButton();
             } catch (error) {
                 showToast("Error logging in", "error");
-                console.log(error)
                 enableButton();
             }
 
