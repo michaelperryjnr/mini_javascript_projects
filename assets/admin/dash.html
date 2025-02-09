@@ -122,7 +122,17 @@
                 transform transition-transform duration-300 ease-in-out
                 md:translate-x-0 -translate-x-full">
             <div class="flex items-center justify-center h-16 border-b border-gray-200 dark:border-gray-700">
-                <h1 class="text-xl font-semibold text-gray-800 dark:text-white">BBF LABS Admin</h1>
+                <div class="flex flex-row items-center jutstify-between gap-4">
+                    <div id="close-sidebar" class="w-5 h-5 bg-white rounded-full lg:hidden">
+                        <svg class="w-5 h-5 text-gray-900 dark:text-gray-400" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
+                    <h1 class="text-xl font-semibold text-gray-800 dark:text-white">BBF LABS Admin</h1>
+                </div>
+
             </div>
             <nav class="mt-5">
                 <a href="#"
@@ -252,7 +262,7 @@
                                                     <dd class="flex items-baseline">
                                                         <div class="text-2xl font-semibold text-gray-900 dark:text-white"
                                                             id="total-users">
-                                                            1,234
+                                                            0
                                                         </div>
                                                         <div
                                                             class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
@@ -294,7 +304,7 @@
                                                     <dd class="flex items-baseline">
                                                         <div class="text-2xl font-semibold text-gray-900 dark:text-white"
                                                             id="total-courses">
-                                                            25
+                                                            0
                                                         </div>
                                                         <div
                                                             class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
@@ -336,7 +346,7 @@
                                                     <dd class="flex items-baseline">
                                                         <div class="text-2xl font-semibold text-gray-900 dark:text-white"
                                                             id="total-packages">
-                                                            5
+                                                            0
                                                         </div>
                                                         <div
                                                             class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
@@ -378,7 +388,7 @@
                                                     <dd class="flex items-baseline">
                                                         <div class="text-2xl font-semibold text-gray-900 dark:text-white"
                                                             id="total-revenue">
-                                                            $45,231
+                                                            GHS 0.00
                                                         </div>
                                                         <div
                                                             class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
@@ -549,6 +559,11 @@
                     updateSidebarClasses(true);
                 }
             });
+        });
+
+        document.getElementById("close-sidebar").addEventListener("click", () => {
+            isSidebarHidden = true;
+            updateSidebarClasses(true);
         });
 
 
