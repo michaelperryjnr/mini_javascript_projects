@@ -123,7 +123,7 @@
                 md:translate-x-0 -translate-x-full">
             <div class="flex items-center justify-center h-16 border-b border-gray-200 dark:border-gray-700">
                 <div class="flex flex-row items-center jutstify-between gap-4">
-                    <div id="close-sidebar" class="w-5 h-5 bg-white rounded-full lg:hidden">
+                    <div id="close-sidebar" class="cursor-pointer w-5 h-5 bg-white rounded-full lg:hidden">
                         <svg class="w-5 h-5 text-gray-900 dark:text-gray-400" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -625,6 +625,9 @@
             });
             document.getElementById(sectionId).classList.remove('hidden');
             document.getElementById('pageTitle').textContent = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
+
+            isSidebarHidden = window.innerWidth < 768 === !isSidebarHidden
+            updateSidebarClasses(isSidebarHidden)
         }
 
         async function fetchUserProfile() {
