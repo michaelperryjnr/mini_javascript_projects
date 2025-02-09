@@ -108,8 +108,9 @@
     </div>
     <div class="min-h-full hidden" id="fullPage">
         <!-- Sidebar -->
-        <div class="hidden fixed md:fixed md:block inset-y-0 left-0 w-64 bg-white dark:bg-gray-800 shadow-lg z-10 transition-transform duration-300 ease-in-out transform"
-            id="sidebar">
+        <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-gray-800 shadow-lg z-10 
+                transform transition-transform duration-300 ease-in-out
+                md:translate-x-0 -translate-x-full">
             <div class="flex items-center justify-center h-16 border-b border-gray-200 dark:border-gray-700">
                 <h1 class="text-xl font-semibold text-gray-800 dark:text-white">BBF LABS Admin</h1>
             </div>
@@ -170,7 +171,7 @@
         <div class="ml-0 md:ml-64 flex flex-col flex-1" id="main">
             <!-- Top Navbar -->
             <nav class="bg-white dark:bg-gray-800 shadow-sm">
-                <div class=" max-w-full md:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class=" max-w-full md:max-w-7xl mx-auto px-4 py-2 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <div class="flex-shrink-0 flex items-center">
@@ -192,7 +193,7 @@
                             </button>
                             <div class="ml-3 relative">
                                 <div id="profile-section"
-                                    class="flex items-center cursor-pointer space-x-3 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg z-100">
+                                    class="flex items-center cursor-pointer space-x-3 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg z-100">
                                     <div id="profile-avatar"
                                         class="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center text-white font-bold">
                                     </div>
@@ -239,8 +240,8 @@
                                                         Total Users
                                                     </dt>
                                                     <dd class="flex items-baseline">
-                                                        <div
-                                                            class="text-2xl font-semibold text-gray-900 dark:text-white">
+                                                        <div class="text-2xl font-semibold text-gray-900 dark:text-white"
+                                                            id="total-users">
                                                             1,234
                                                         </div>
                                                         <div
@@ -253,7 +254,6 @@
                                                                     clip-rule="evenodd"></path>
                                                             </svg>
                                                             <span class="sr-only">Increased by</span>
-                                                            10%
                                                         </div>
                                                     </dd>
                                                 </dl>
@@ -282,8 +282,8 @@
                                                         Total Courses
                                                     </dt>
                                                     <dd class="flex items-baseline">
-                                                        <div
-                                                            class="text-2xl font-semibold text-gray-900 dark:text-white">
+                                                        <div class="text-2xl font-semibold text-gray-900 dark:text-white"
+                                                            id="total-courses">
                                                             25
                                                         </div>
                                                         <div
@@ -296,7 +296,6 @@
                                                                     clip-rule="evenodd"></path>
                                                             </svg>
                                                             <span class="sr-only">Increased by</span>
-                                                            5%
                                                         </div>
                                                     </dd>
                                                 </dl>
@@ -325,8 +324,8 @@
                                                         Total Packages
                                                     </dt>
                                                     <dd class="flex items-baseline">
-                                                        <div
-                                                            class="text-2xl font-semibold text-gray-900 dark:text-white">
+                                                        <div class="text-2xl font-semibold text-gray-900 dark:text-white"
+                                                            id="total-packages">
                                                             5
                                                         </div>
                                                         <div
@@ -339,7 +338,6 @@
                                                                     clip-rule="evenodd"></path>
                                                             </svg>
                                                             <span class="sr-only">Increased by</span>
-                                                            2%
                                                         </div>
                                                     </dd>
                                                 </dl>
@@ -368,8 +366,8 @@
                                                         Total Revenue
                                                     </dt>
                                                     <dd class="flex items-baseline">
-                                                        <div
-                                                            class="text-2xl font-semibold text-gray-900 dark:text-white">
+                                                        <div class="text-2xl font-semibold text-gray-900 dark:text-white"
+                                                            id="total-revenue">
                                                             $45,231
                                                         </div>
                                                         <div
@@ -382,7 +380,6 @@
                                                                     clip-rule="evenodd"></path>
                                                             </svg>
                                                             <span class="sr-only">Increased by</span>
-                                                            8%
                                                         </div>
                                                     </dd>
                                                 </dl>
@@ -412,6 +409,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+                                    <div class="p-5">
+                                        <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Revenue
+                                        </h3>
+                                        <div class="mt-2 h-64">
+                                            <canvas id="paymentsChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -425,153 +431,21 @@
                         <!-- Users Content -->
                         <div id="users" class="mt-8 hidden">
                             <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md">
-                                <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-                                    <li>
-                                        <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
-                                            <div class="px-4 py-4 sm:px-6">
-                                                <div class="flex items-center justify-between">
-                                                    <p
-                                                        class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
-                                                        John Doe
-                                                    </p>
-                                                    <div class="ml-2 flex-shrink-0 flex">
-                                                        <p
-                                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                            Active
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="mt-2 sm:flex sm:justify-between">
-                                                    <div class="sm:flex">
-                                                        <p
-                                                            class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    stroke-width="2"
-                                                                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                                                            </svg>
-                                                            john.doe@example.com
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
-                                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                                        </svg>
-                                                        Joined: January 1, 2023
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <!-- Add more user items here -->
-                                </ul>
+                                <div id="user-container"></div>
                             </div>
                         </div>
 
                         <!-- Packages Content -->
                         <div id="packages" class="mt-8 hidden">
                             <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md">
-                                <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-                                    <li>
-                                        <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
-                                            <div class="px-4 py-4 sm:px-6">
-                                                <div class="flex items-center justify-between">
-                                                    <p
-                                                        class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
-                                                        Basic Package
-                                                    </p>
-                                                    <div class="ml-2 flex-shrink-0 flex">
-                                                        <p
-                                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                            Active
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="mt-2 sm:flex sm:justify-between">
-                                                    <div class="sm:flex">
-                                                        <p
-                                                            class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    stroke-width="2"
-                                                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                            </svg>
-                                                            Price: $9.99/month
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
-                                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                                                        </svg>
-                                                        Subscribers: 500
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <!-- Add more package items here -->
-                                </ul>
+                                <div id="package-container"></div>
                             </div>
                         </div>
 
                         <!-- Payments Content -->
                         <div id="payments" class="mt-8 hidden">
                             <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-md">
-                                <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-                                    <li>
-                                        <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
-                                            <div class="px-4 py-4 sm:px-6">
-                                                <div class="flex items-center justify-between">
-                                                    <p
-                                                        class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
-                                                        Payment #12345
-                                                    </p>
-                                                    <div class="ml-2 flex-shrink-0 flex">
-                                                        <p
-                                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                            Completed
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="mt-2 sm:flex sm:justify-between">
-                                                    <div class="sm:flex">
-                                                        <p
-                                                            class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    stroke-width="2"
-                                                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                            </svg>
-                                                            Amount: $99.99
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
-                                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                                        </svg>
-                                                        Date: March 15, 2023
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <!-- Add more payment items here -->
-                                </ul>
+                                <div id="payment-container"></div>
                             </div>
                         </div>
                     </div>
@@ -586,9 +460,14 @@
 
 
     <script>
+        let currentPage = 1;
+        const itemsPerPage = 10;
         const baseUrl = "https://api.theniitettey.live/api/v1";
         const toastContainer = document.getElementById("toast-container");
         const courseContainer = document.getElementById("course-container");
+        const packageContainer = document.getElementById("package-container");
+        const userContainer = document.getElementById("user-container")
+        const paymentContainer = document.getElementById("payment-container")
 
         function showToast(message, type = "default", duration = 3000) {
             const toast = document.createElement("div");
@@ -626,13 +505,40 @@
                 button.classList.remove("cursor-not-allowed");
             }
         }
-        let isSidebarHidden = document.getElementById('sidebar').classList.contains('hidden');
-        document.getElementById('sidebarToggle').addEventListener('click', function () {
-            isSidebarHidden = !isSidebarHidden;
-            document.getElementById('sidebar').classList.toggle('hidden', isSidebarHidden);
-            document.getElementById('sidebar').classList.toggle('md:block', !isSidebarHidden);
-            document.getElementById("main").classList.toggle('ml-64', !isSidebarHidden);
-            document.getElementById("main").classList.toggle('ml-0', isSidebarHidden);
+
+
+        let isSidebarHidden = window.innerWidth < 768;
+        function updateSidebarClasses(hidden) {
+            const sidebar = document.getElementById('sidebar');
+            const main = document.getElementById('main');
+
+            if (hidden) {
+                sidebar.classList.add('hidden', '-translate-x-full');
+                sidebar.classList.remove('md:block', 'translate-x-0');
+                main.classList.add('ml-0');
+                main.classList.remove('md:ml-64');
+            } else {
+                sidebar.classList.remove('hidden', '-translate-x-full');
+                sidebar.classList.add('md:block', 'translate-x-0');
+                main.classList.remove('ml-0');
+                main.classList.add('md:ml-64');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSidebarClasses(isSidebarHidden);
+
+            document.getElementById('sidebarToggle').addEventListener('click', () => {
+                isSidebarHidden = !isSidebarHidden;
+                updateSidebarClasses(isSidebarHidden);
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth < 768) {
+                    isSidebarHidden = true;
+                    updateSidebarClasses(true);
+                }
+            });
         });
 
 
@@ -666,8 +572,25 @@
         }
 
         // Toggle dark mode
-        document.getElementById('darkModeToggle').addEventListener('click', function () {
-            document.documentElement.classList.toggle('dark');
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleButton = document.getElementById('darkModeToggle');
+            const htmlElement = document.documentElement;
+
+            // Check for stored theme preference in localStorage
+            if (localStorage.getItem("theme") === "dark") {
+                htmlElement.classList.add("dark");
+            }
+
+            toggleButton.addEventListener('click', function () {
+                htmlElement.classList.toggle('dark');
+
+                // Save theme preference in localStorage
+                if (htmlElement.classList.contains("dark")) {
+                    localStorage.setItem("theme", "dark");
+                } else {
+                    localStorage.setItem("theme", "light");
+                }
+            });
         });
 
         // Show/hide sections
@@ -677,6 +600,28 @@
             });
             document.getElementById(sectionId).classList.remove('hidden');
             document.getElementById('pageTitle').textContent = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
+        }
+
+        async function fetchUserProfile() {
+            try {
+                const response = await fetch(`${baseUrl}/user/profile`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const profile = await response.json();
+                    document.getElementById("profile-section").classList.remove("hidden");
+                    document.getElementById("profile-name").textContent = profile.user.name;
+                    document.getElementById("profile-email").textContent = profile.user.email;
+                    document.getElementById("profile-avatar").textContent = profile.user.name
+                        .charAt(0)
+                        .toUpperCase();
+                }
+            } catch (error) {
+                showToast("Error fetching user profile", "error");
+            }
         }
 
         let courses = [];
@@ -697,28 +642,159 @@
             }
         }
 
-        function renderCourses() {
-            courseContainer.innerHTML = `<ul class="divide-y overflow-scroll divide-gray-200 dark:divide-gray-700">
-                                 ${courses.slice(0, 30).map((course) => {
-                `< li >
+        let packages = [];
+        async function fetchPackages() {
+            try {
+                const response = await fetch(`${baseUrl}/packages`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    packages = data.package
+                }
+            } catch (error) {
+                showToast("Error fetching courses", "error");
+            }
+        }
+
+        let users = [];
+        async function fetchUsers() {
+            try {
+                const response = await fetch(`${baseUrl}/user`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    users = data.users
+                }
+            } catch (error) {
+                showToast("Error fetching courses", "error");
+            }
+        }
+
+        let payments = [];
+        async function fetchPayments() {
+            try {
+                const response = await fetch(`${baseUrl}/payments`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    payments = data.payment
+                }
+            } catch (error) {
+                showToast("Error fetching courses", "error");
+            }
+        }
+
+        // Pagination state management
+        function getPaginatedItems(items) {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            return items.slice(startIndex, endIndex);
+        }
+
+        function getTotalPages(items) {
+            return Math.ceil(items.length / itemsPerPage);
+        }
+
+        function createPaginationControls(items, onPageChange) {
+            const totalPages = getTotalPages(items);
+            return `
+        <div class="flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex-1 flex justify-between sm:hidden">
+                <button onclick="handlePageChange(${currentPage - 1}, '${onPageChange}')" 
+                    class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}" 
+                    ${currentPage === 1 ? 'disabled' : ''}>
+                    Previous
+                </button>
+                <button onclick="handlePageChange(${currentPage + 1}, '${onPageChange}')" 
+                    class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}" 
+                    ${currentPage === totalPages ? 'disabled' : ''}>
+                    Next
+                </button>
+            </div>
+            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                <div>
+                    <p class="text-sm text-gray-700 dark:text-gray-300">
+                        Showing
+                        <span class="font-medium">${(currentPage - 1) * itemsPerPage + 1}</span>
+                        to
+                        <span class="font-medium">${Math.min(currentPage * itemsPerPage, items.length)}</span>
+                        of
+                        <span class="font-medium">${items.length}</span>
+                        results
+                    </p>
+                </div>
+                <div>
+                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                        <button onclick="handlePageChange(${currentPage - 1}, '${onPageChange}')" 
+                            class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}" 
+                            ${currentPage === 1 ? 'disabled' : ''}>
+                            <span class="sr-only">Previous</span>
+                            ←
+                        </button>
+                        ${Array.from({ length: totalPages }, (_, i) => i + 1)
+                    .map(page => `
+                                <button onclick="handlePageChange(${page}, '${onPageChange}')" 
+                                    class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium ${currentPage === page ? 'bg-green-50 text-green-600' : 'text-gray-700 hover:bg-gray-50'}">
+                                    ${page}
+                                </button>
+                            `).join('')}
+                        <button onclick="handlePageChange(${currentPage + 1}, '${onPageChange}')" 
+                            class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}" 
+                            ${currentPage === totalPages ? 'disabled' : ''}>
+                            <span class="sr-only">Next</span>
+                            →
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    `;
+        }
+
+        function handlePageChange(newPage, callbackName) {
+            const totalPages = getTotalPages(window[callbackName].items);
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                window[callbackName]();
+            }
+        }
+
+        async function renderCourses() {
+            renderCourses.items = courses;
+
+            const paginatedCourses = getPaginatedItems(courses);
+            courseContainer.innerHTML = `
+        <div class="max-h-[calc(100vh-300px)]">
+            <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                ${paginatedCourses.map(course => `
+                    <li>
                         <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
                             <div class="px-4 py-4 sm:px-6">
                                 <div class="flex items-center justify-between">
-                                    <p
-                                        class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
+                                    <p class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
                                         ${course.title}
                                     </p>
                                     <div class="ml-2 flex-shrink-0 flex">
-                                        <p
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
+                                        <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${course.students.length > 0 ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}">
+                                            ${course.students.length > 0 ? 'Active' : 'Inactive'}
                                         </p>
                                     </div>
                                 </div>
                                 <div class="mt-2 sm:flex sm:justify-between">
                                     <div class="sm:flex">
-                                        <p
-                                            class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                        <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
                                             <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
                                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -728,85 +804,499 @@
                                             Start date: ${new Date(course.createdAt).toDateString()}
                                         </p>
                                     </div>
-                                    <div
-                                        class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+                                    <div class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
                                         <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 stroke-width="2"
                                                 d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                                         </svg>
-                                        Enrolled: ${course.students.length ? course.students.length : 0}} students
+                                        Enrolled: ${course.students.length} students
                                     </div>
                                 </div>
                             </div>
                         </a>
-                    </li >
-        `}).join('')}</ul>`;
+                    </li>
+                `).join('')}
+            </ul>
+            ${createPaginationControls(courses, 'renderCourses')}
+        </div>
+    `;
         }
 
-        // Initialize charts
-        function initCharts() {
-            // User Growth Chart
-            new Chart(document.getElementById('userGrowthChart'), {
+        async function renderPackages() {
+            renderPackages.items = packages;
+
+            const paginatedPackages = getPaginatedItems(packages);
+
+            packageContainer.innerHTML = `
+        <div class="max-h-[calc(100vh-300px)]">
+            <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                ${paginatedPackages.map(pkg => `
+                    <li>
+                        <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
+                            <div class="px-4 py-4 sm:px-6">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
+                                        ${pkg.name}
+                                    </p>
+                                    <div class="ml-2 flex-shrink-0 flex gap-2">
+                                        ${pkg.discountPercentage > 0 ? `
+                                            <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                ${pkg.discountPercentage}% OFF
+                                            </p>
+                                        ` : ''}
+                                        <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${pkg.isUpgradable ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'}">
+                                            ${pkg.isUpgradable ? 'Upgradable' : 'Fixed'}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="flex flex-col space-y-2">
+                                        <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            Price: GHS ${pkg.price.toFixed(2)}
+                                        </p>
+                                        <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            Duration: ${pkg.duration} day${pkg.duration > 1 ? 's' : ''}
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-col space-y-2">
+                                        <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                            </svg>
+                                            Courses: ${pkg.numberOfCourses || 0}
+                                        </p>
+                                        <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                            </svg>
+                                            Quizzes: ${pkg.numberOfQuizzes || 0}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                                    Created: ${new Date(pkg.createdAt).toLocaleDateString()}
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                `).join('')}
+            </ul>
+            ${createPaginationControls(packages, 'renderPackages')}
+        </div>
+    `;
+        }
+
+        async function renderUsers() {
+            renderUsers.items = users;
+
+            const paginatedUsers = getPaginatedItems(users);
+            userContainer.innerHTML = `
+        <div class="max-h-[calc(100vh-300px)]">
+            <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                ${paginatedUsers.map(user => `
+                    <li>
+                        <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
+                            <div class="px-4 py-4 sm:px-6">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
+                                        ${user.name}
+                                    </p>
+                                    <div class="ml-2 flex-shrink-0 flex">
+                                        <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.isBanned ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}">
+                                            ${user.isBanned ? 'Banned' : 'Active'}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mt-2 sm:flex sm:justify-between">
+                                    <div class="sm:flex">
+                                        <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                                            </svg>
+                                            ${user.email}
+                                        </p>
+                                    </div>
+                                    <div class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        Joined: ${new Date(user.createdAt).toDateString()}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                `).join('')}
+            </ul>
+            ${createPaginationControls(users, 'renderUsers')}
+        </div>
+    `;
+        }
+
+        async function renderPayments() {
+            renderPayments.items = payments;
+
+            const paginatedPayments = getPaginatedItems(payments);
+            paymentContainer.innerHTML = `
+        <div class="max-h-[calc(100vh-300px)]">
+            <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                ${paginatedPayments.map(payment => `
+                    <li>
+                        <a href="#" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
+                            <div class="px-4 py-4 sm:px-6">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
+                                        Payment #${payment.reference}
+                                    </p>
+                                    <div class="ml-2 flex-shrink-0 flex">
+                                        <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                            ${payment.status === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                            ${payment.status.charAt(0).toUpperCase() + payment.status.slice(1)}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mt-2 sm:flex sm:justify-between">
+                                    <div class="sm:flex">
+                                        <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            Amount: $${(payment.amount / 100).toFixed(2)}
+                                        </p>
+                                    </div>
+                                    <div class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        Date: ${new Date(payment.date).toDateString()}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                `).join('')}
+            </ul>
+            ${createPaginationControls(payments, 'renderPayments')}
+        </div>
+    `;
+        }
+
+        let charts = {
+            userGrowth: null,
+            revenue: null,
+            payments: null
+        };
+
+        function destroyCharts() {
+            Object.values(charts).forEach(chart => {
+                if (chart) {
+                    chart.destroy();
+                }
+            });
+            charts = {
+                userGrowth: null,
+                revenue: null,
+                payments: null
+            };
+        }
+
+        function processUserGrowthData(users) {
+
+            const usersByMonth = users.reduce((acc, user) => {
+                if (!user || !user.createdAt) return acc;
+
+                const date = new Date(user.createdAt);
+                if (isNaN(date.getTime())) return acc;
+
+                const monthYear = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+                acc[monthYear] = (acc[monthYear] || 0) + 1;
+                return acc;
+            }, {});
+
+            let cumulativeCount = 0;
+            const sortedMonths = Object.keys(usersByMonth).sort();
+            return sortedMonths.map(month => {
+                cumulativeCount += usersByMonth[month];
+                return {
+                    month: month,
+                    count: cumulativeCount
+                };
+            });
+        }
+
+        function processPaymentData(payments) {
+
+            const paymentsByMonth = payments.reduce((acc, payment) => {
+                if (!payment || !payment.date || !payment.amount) return acc;
+
+                const date = new Date(payment.date);
+                if (isNaN(date.getTime())) return acc;
+
+                const monthYear = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+                acc[monthYear] = (acc[monthYear] || 0) + payment.amount;
+                return acc;
+            }, {});
+
+            return Object.entries(paymentsByMonth).map(([month, amount]) => ({
+                month: month,
+                amount: amount / 100
+            }));
+        }
+
+        function getChartLabels(data) {
+
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return data.map(item => {
+                if (!item || !item.month) return '';
+                const [year, month] = item.month.split('-');
+                return `${months[parseInt(month) - 1]} ${year}`;
+            });
+        }
+
+        function initCharts(users, payments) {
+            destroyCharts();
+
+            const userGrowthData = processUserGrowthData(users);
+            const paymentData = processPaymentData(payments);
+
+            const userGrowthCanvas = document.getElementById('userGrowthChart');
+            const revenueCanvas = document.getElementById('revenueChart');
+            const paymentsCanvas = document.getElementById('paymentsChart');
+
+            charts.userGrowth = new Chart(userGrowthCanvas, {
                 type: 'line',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    labels: getChartLabels(userGrowthData),
                     datasets: [{
-                        label: 'Users',
-                        data: [100, 200, 300, 400, 500, 600],
+                        label: 'Total Users',
+                        data: userGrowthData.map(d => d.count),
                         borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
+                        backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                        tension: 0.1,
+                        fill: true
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'User Growth Over Time'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Users'
+                            }
+                        }
+                    }
                 }
             });
 
-            // Revenue Chart
-            new Chart(document.getElementById('revenueChart'), {
+            charts.revenue = new Chart(revenueCanvas, {
                 type: 'bar',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    labels: getChartLabels(paymentData),
                     datasets: [{
-                        label: 'Revenue',
-                        data: [1000, 1500, 2000, 1800, 2200, 2500],
-                        backgroundColor: 'rgba(153, 102, 255, 0.6)'
+                        label: 'Monthly Revenue (GHS)',
+                        data: paymentData.map(d => d.amount),
+                        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Monthly Revenue'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Revenue (GHS)'
+                            }
+                        }
+                    }
                 }
             });
+
+            const transactionsByMonth = payments.reduce((acc, payment) => {
+                if (!payment || !payment.date) return acc;
+
+                const date = new Date(payment.date);
+                if (isNaN(date.getTime())) return acc;
+
+                const monthYear = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+                acc[monthYear] = (acc[monthYear] || 0) + 1;
+                return acc;
+            }, {});
+
+            charts.payments = new Chart(paymentsCanvas, {
+                type: 'line',
+                data: {
+                    labels: getChartLabels(paymentData),
+                    datasets: [{
+                        label: 'Number of Transactions',
+                        data: Object.values(transactionsByMonth),
+                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                        tension: 0.1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Payment Transaction Trends'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Transactions'
+                            }
+                        }
+                    }
+                }
+            });
+
         }
 
 
-        async function fetchUserProfile() {
-            try {
-                const response = await fetch(`${baseUrl}/user/profile`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-                    },
-                });
+        async function refreshAll() {
+            await fetchUserProfile();
+            await fetchCourses();
+            await fetchPackages();
+            await fetchUsers();
+            await fetchPayments();
+        }
 
-                if (response.ok) {
-                    const profile = await response.json();
-                    document.getElementById("profile-section").classList.remove("hidden");
-                    document.getElementById("profile-name").textContent = profile.user.name;
-                    document.getElementById("profile-email").textContent = profile.user.email;
-                    document.getElementById("profile-avatar").textContent = profile.user.name
-                        .charAt(0)
-                        .toUpperCase();
+        // Utility function to format numbers with commas
+        const formatNumber = (num) => {
+            return new Intl.NumberFormat().format(num);
+        };
+
+        // Function to calculate percentage change
+        const calculateChange = (currentValue, previousValue) => {
+            if (!previousValue) return { percentage: 0, isIncrease: true };
+            const change = ((currentValue - previousValue) / previousValue) * 100;
+            return {
+                percentage: Math.abs(change).toFixed(1),
+                isIncrease: change >= 0
+            };
+        };
+
+        function updateDashStats() {
+            const currentStats = {
+                totalUsers: users.length,
+                totalPackages: packages.length,
+                totalCourses: courses.length,
+                totalRevenue: payments.reduce((sum, payment) => sum + payment.amount, 0) || 0
+            };
+
+            const previousStats = JSON.parse(localStorage.getItem('previousStats')) || {};
+
+            const metrics = [
+                { key: 'totalUsers', id: 'total-users', format: formatNumber },
+                { key: 'totalPackages', id: 'total-packages', format: formatNumber },
+                { key: 'totalCourses', id: 'total-courses', format: formatNumber },
+                {
+                    key: 'totalRevenue',
+                    id: 'total-revenue',
+                    format: (value) => `GHS ${((value || 0) / 100).toFixed(2)}`
                 }
-            } catch (error) {
-                console.error("Error fetching profile:", error);
+            ];
+
+            metrics.forEach(metric => {
+                const currentValue = currentStats[metric.key];
+                const previousValue = previousStats[metric.key];
+                const change = calculateChange(currentValue, previousValue);
+
+                const element = document.getElementById(metric.id);
+                element.textContent = metric.format(currentValue);
+
+                const card = element.closest('.bg-white');
+                const changeElement = card.querySelector('.ml-2');
+
+                const percentageSpan = changeElement.querySelector('span:not(.sr-only)') ||
+                    document.createElement('span');
+                percentageSpan.textContent = `${change.percentage}%`;
+                if (!percentageSpan.parentElement) {
+                    changeElement.appendChild(percentageSpan);
+                }
+
+                changeElement.classList.remove('text-green-600', 'text-red-600');
+                changeElement.classList.add(change.isIncrease ? 'text-green-600' : 'text-red-600');
+
+                const svg = changeElement.querySelector('svg');
+                svg.style.transform = change.isIncrease ? 'rotate(0deg)' : 'rotate(180deg)';
+                svg.classList.remove('text-green-500', 'text-red-500');
+                svg.classList.add(change.isIncrease ? 'text-green-500' : 'text-red-500');
+            });
+
+            localStorage.setItem('previousStats', JSON.stringify(currentStats));
+        }
+
+        function initializeStats() {
+            if (!localStorage.getItem('previousStats')) {
+                const initialStats = {
+                    totalUsers: 0,
+                    totalPackages: 0,
+                    totalCourses: 0,
+                    totalRevenue: 0
+                };
+                localStorage.setItem('previousStats', JSON.stringify(initialStats));
             }
         }
-
-
         async function handleLogin() {
             event.preventDefault();
             const username = document
@@ -836,20 +1326,30 @@
                     login.classList.add("hidden");
                     fullPage.classList.remove("hidden")
                     document.getElementById("profile-section").classList.remove("hidden")
-                    showSection('dashboard')
-                    initCharts()
+
+                    await refreshAll().then(() => {
+                        initializeStats()
+                        updateDashStats();
+                        initCharts(users, payments)
+                        showSection('dashboard')
+                    }).catch((err) => {
+                        showToast(err.message, 'error')
+                        throw new Error(err.message)
+                    })
+
                     showToast("Login successful", "success");
                 } else {
                     showToast(data.message || "Login failed", "error");
                 }
                 enableButton();
             } catch (error) {
-                showToast("Error logging in", "error");
+                showToast(`Error logging in: ${error.message}`, "error");
                 enableButton();
             }
-            await fetchCourses();
-            await fetchUserProfile();
             renderCourses()
+            renderPackages()
+            renderUsers()
+            renderPayments()
         }
 
         renderLogin()
