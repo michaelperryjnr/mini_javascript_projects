@@ -481,7 +481,7 @@
 
     <script>
         let currentPage = 1;
-        const itemsPerPage = 10;
+        const itemsPerPage = window.innerWidth < 768 ? 5 : 10;
         const baseUrl = "https://api.theniitettey.live/api/v1";
         const toastContainer = document.getElementById("toast-container");
         const courseContainer = document.getElementById("course-container");
