@@ -433,28 +433,28 @@
 
                         <!-- Courses Content -->
                         <div id="courses" class="mt-8 hidden">
-                            <div class="bg-white dark:bg-gray-800 shadow overflow-y-auto sm:rounded-md">
+                            <div class="bg-white dark:bg-gray-800 shadow overflow-scroll sm:rounded-md">
                                 <div id="course-container"></div>
                             </div>
                         </div>
 
                         <!-- Users Content -->
                         <div id="users" class="mt-8 hidden">
-                            <div class="bg-white dark:bg-gray-800 shadow overflow-y-auto sm:rounded-md">
+                            <div class="bg-white dark:bg-gray-800 shadow overflow-scroll sm:rounded-md">
                                 <div id="user-container"></div>
                             </div>
                         </div>
 
                         <!-- Packages Content -->
                         <div id="packages" class="mt-8 hidden">
-                            <div class="bg-white dark:bg-gray-800 shadow overflow-y-auto sm:rounded-md">
+                            <div class="bg-white dark:bg-gray-800 shadow overflow-scroll sm:rounded-md">
                                 <div id="package-container"></div>
                             </div>
                         </div>
 
                         <!-- Payments Content -->
                         <div id="payments" class="mt-8 hidden">
-                            <div class="bg-white dark:bg-gray-800 shadow overflow-y-auto sm:rounded-md">
+                            <div class="bg-white dark:bg-gray-800 shadow overflow-scroll sm:rounded-md">
                                 <div id="payment-container"></div>
                             </div>
                         </div>
@@ -1336,8 +1336,10 @@
                     login.classList.add("hidden");
                     fullPage.classList.remove("hidden")
                     document.getElementById("profile-section").classList.remove("hidden")
+                    showToast("Login successful", "success");
 
                     await refreshAll().then(() => {
+                        showToast("Data refreshed", "success");
                         initializeStats()
                         updateDashStats();
                         initCharts(users, payments)
@@ -1346,8 +1348,6 @@
                         showToast(err.message, 'error')
                         throw new Error(err.message)
                     })
-
-                    showToast("Login successful", "success");
                 } else {
                     showToast(data.message || "Login failed", "error");
                 }
