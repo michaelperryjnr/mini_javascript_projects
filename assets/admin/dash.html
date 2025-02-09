@@ -631,6 +631,7 @@
                 }
             } catch (error) {
                 showToast("Error fetching user profile", "error");
+                throw new Error(error.message)
             }
         }
 
@@ -649,6 +650,7 @@
                 }
             } catch (error) {
                 showToast("Error fetching courses", "error");
+                throw new Error(error.message)
             }
         }
 
@@ -667,6 +669,7 @@
                 }
             } catch (error) {
                 showToast("Error fetching courses", "error");
+                throw new Error(error.message)
             }
         }
 
@@ -685,6 +688,7 @@
                 }
             } catch (error) {
                 showToast("Error fetching courses", "error");
+                throw new Error(error.message)
             }
         }
 
@@ -703,6 +707,7 @@
                 }
             } catch (error) {
                 showToast("Error fetching courses", "error");
+                throw new Error(error.message)
             }
         }
 
@@ -719,6 +724,14 @@
 
         function createPaginationControls(items, onPageChange) {
             const totalPages = getTotalPages(items);
+            const maxVisiblePages = 5; // Only show 5 page numbers at a time
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+
             return `
         <div class="flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
             <div class="flex-1 flex justify-between sm:hidden">
@@ -746,20 +759,22 @@
                     </p>
                 </div>
                 <div>
-                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px overflow-x-auto" aria-label="Pagination">
                         <button onclick="handlePageChange(${currentPage - 1}, '${onPageChange}')" 
                             class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}" 
                             ${currentPage === 1 ? 'disabled' : ''}>
                             <span class="sr-only">Previous</span>
                             ←
                         </button>
-                        ${Array.from({ length: totalPages }, (_, i) => i + 1)
+                        ${startPage > 1 ? `<span class="px-3 py-2 text-gray-500">...</span>` : ''}
+                        ${Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i)
                     .map(page => `
                                 <button onclick="handlePageChange(${page}, '${onPageChange}')" 
                                     class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium ${currentPage === page ? 'bg-green-50 text-green-600' : 'text-gray-700 hover:bg-gray-50'}">
                                     ${page}
                                 </button>
                             `).join('')}
+                        ${endPage < totalPages ? `<span class="px-3 py-2 text-gray-500">...</span>` : ''}
                         <button onclick="handlePageChange(${currentPage + 1}, '${onPageChange}')" 
                             class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}" 
                             ${currentPage === totalPages ? 'disabled' : ''}>
@@ -786,7 +801,7 @@
 
             const paginatedCourses = getPaginatedItems(courses);
             courseContainer.innerHTML = `
-        <div class="max-h-[calc(100vh-300px)]">
+        <div class="max-h-[calc(100vh-100px)]">
             <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                 ${paginatedCourses.map(course => `
                     <li>
@@ -840,7 +855,7 @@
             const paginatedPackages = getPaginatedItems(packages);
 
             packageContainer.innerHTML = `
-        <div class="max-h-[calc(100vh-300px)]">
+        <div class="max-h-[calc(100vh-100px)]">
             <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                 ${paginatedPackages.map(pkg => `
                     <li>
@@ -921,7 +936,7 @@
 
             const paginatedUsers = getPaginatedItems(users);
             userContainer.innerHTML = `
-        <div class="max-h-[calc(100vh-300px)]">
+        <div class="max-h-[calc(100vh-100px)]">
             <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                 ${paginatedUsers.map(user => `
                     <li>
@@ -968,7 +983,7 @@
 
             const paginatedPayments = getPaginatedItems(payments);
             paymentContainer.innerHTML = `
-        <div class="max-h-[calc(100vh-300px)]">
+        <div class="max-h-[calc(100vh-100px)]">
             <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                 ${paginatedPayments.map(payment => `
                     <li>
@@ -1223,11 +1238,15 @@
 
 
         async function refreshAll() {
-            await fetchUserProfile();
-            await fetchCourses();
-            await fetchPackages();
-            await fetchUsers();
-            await fetchPayments();
+            try {
+                await fetchUserProfile();
+                await fetchCourses();
+                await fetchPackages();
+                await fetchUsers();
+                await fetchPayments();
+            } catch (error) {
+                throw new Error(error.message)
+            }
         }
 
         // Utility function to format numbers with commas
@@ -1333,10 +1352,13 @@
                     }
 
                     localStorage.setItem("accessToken", data.accessToken);
+                    localStorage.setItem("accessTokenDate", new Date());
                     login.classList.add("hidden");
                     fullPage.classList.remove("hidden")
                     document.getElementById("profile-section").classList.remove("hidden")
                     showToast("Login successful", "success");
+
+                    showToast("Fetching data...", 'info')
 
                     await refreshAll().then(() => {
                         showToast("Data refreshed", "success");
@@ -1362,7 +1384,49 @@
             renderPayments()
         }
 
-        renderLogin()
+
+        const hasLoggedBefore = localStorage.getItem("accessToken") && localStorage.getItem("accessTokenDate");
+
+        if (hasLoggedBefore) {
+            const tokenAge = new Date() - new Date(localStorage.getItem("accessTokenDate"));
+
+            if (tokenAge < 1000 * 60 * 60) {
+                login.classList.add("hidden");
+                fullPage.classList.remove("hidden");
+                document.getElementById("profile-section").classList.remove("hidden");
+                showToast("Welcome back!", "success");
+
+                (async () => {
+                    try {
+                        await refreshAll();
+
+                        showToast("Refreshing data...", "info");
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+
+                        showToast("Data refreshed", "success");
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+
+                        initializeStats();
+                        updateDashStats();
+                        initCharts(users, payments);
+                        showSection('dashboard');
+                        renderCourses();
+                        renderPackages();
+                        renderUsers();
+                        renderPayments();
+                    } catch (error) {
+                        showToast(error.message, 'error');
+                        renderLogin();
+                    }
+                })();
+            } else {
+                renderLogin();
+            }
+        } else {
+            renderLogin();
+        }
+
+
     </script>
 </body>
 
