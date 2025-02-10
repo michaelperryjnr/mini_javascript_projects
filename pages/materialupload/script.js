@@ -206,58 +206,77 @@ function renderUploadChoice() {
 function renderUpload(type) {
   const isFile = type === "file";
   app.innerHTML = `
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Upload ${
-          isFile ? "File" : "Link"
-        }</h2>
-        <form id="upload-form" class="space-y-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Course</label>
-            <select id="courseId" required
-              class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white">
-              <option value="">Select a course</option>
-              ${courses
-                .map(
-                  (course) =>
-                    `<option value="${course._id}">${course.code}</option>`
-                )
-                .join("")}
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Title</label>
-            <input type="text" id="title" required
-              class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
-              placeholder="Enter material title">
-          </div>
-          ${
-            isFile
-              ? `
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">File</label>
-              <input type="file" id="file" required
-                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 dark:file:bg-gray-700 dark:file:text-gray-200">
-            </div>
-          `
-              : `
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Link</label>
-              <input type="url" id="link" required
-                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
-                placeholder="Enter material link">
-            </div>
-          `
-          }
-          <button type="submit"
-            class="w-full py-2 px-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-medium rounded-lg transition-colors">
-            Upload
-          </button>
-        </form>
-        <div class="mt-4 flex justify-between text-sm">
-          <a href="#" class="text-green-600 hover:text-green-500 font-medium" id="back-to-choice">Back to Upload Choice</a>
-          <a href="#" class="text-red-600 hover:text-red-500 font-medium" id="to-logout">Logout</a>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Upload ${
+      isFile ? "File" : "Link"
+    }</h2>
+    <form id="upload-form" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Course</label>
+        <input type="text" id="courseSearch" placeholder="Search for a course..." 
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white mb-2">
+        <select id="courseId" required
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white">
+          <option value="">Select a course</option>
+          ${courses
+            .map(
+              (course) =>
+                `<option value="${course._id}">${course.code} - ${course.title}</option>`
+            )
+            .join("")}
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Course Type</label>
+        <select id="courseType" required
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white">
+          <option value="">Select course type</option>
+          <option value="lecture">Lecture</option>
+          <option value="IA">IA</option>
+          <option value="quiz">Quiz</option>
+        </select>
+      </div>
+      <div id="lectureNumberContainer" style="display: none;">
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Lecture Number</label>
+        <input type="text" id="lectureNumber" 
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+          placeholder="Enter lecture number">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Title</label>
+        <input type="text" id="title" required
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+          placeholder="Enter material title">
+      </div>
+      ${
+        isFile
+          ? `
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">File</label>
+          <input type="file" id="file" required
+            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 dark:file:bg-gray-700 dark:file:text-gray-200">
         </div>
-      `;
+      `
+          : `
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Link</label>
+          <input type="url" id="link" required
+            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+            placeholder="Enter material link">
+        </div>
+      `
+      }
+      <button type="submit"
+        class="w-full py-2 px-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-medium rounded-lg transition-colors">
+        Upload
+      </button>
+    </form>
+    <div class="mt-4 flex justify-between text-sm">
+      <a href="#" class="text-green-600 hover:text-green-500 font-medium" id="back-to-choice">Back to Upload Choice</a>
+      <a href="#" class="text-red-600 hover:text-red-500 font-medium" id="to-logout">Logout</a>
+    </div>
+  `;
 
+  // Event listeners
   document
     .getElementById("back-to-choice")
     .addEventListener("click", renderUploadChoice);
@@ -265,8 +284,51 @@ function renderUpload(type) {
   document
     .getElementById("upload-form")
     .addEventListener("submit", (e) => handleUpload(e, type));
-}
 
+  // Add event listener for course type selection
+  document.getElementById("courseType").addEventListener("change", (e) => {
+    const selectedType = e.target.value;
+    const lectureNumberContainer = document.getElementById(
+      "lectureNumberContainer"
+    );
+
+    if (selectedType === "lecture") {
+      lectureNumberContainer.style.display = "block"; // Show lecture number input
+    } else {
+      lectureNumberContainer.style.display = "none";
+    }
+  });
+
+  document.getElementById("courseSearch").addEventListener("input", (e) => {
+    const searchQuery = e.target.value.toLowerCase().replace(/\s+/g, "").trim();
+    const filteredCourses = courses.filter(
+      (course) =>
+        course.code.toLowerCase().replace(/\s+/g, "").includes(searchQuery) ||
+        course.title.toLowerCase().replace(/\s+/g, "").includes(searchQuery) ||
+        course.about.toLowerCase().replace(/\s+/g, "").includes(searchQuery)
+    );
+
+    const courseSelect = document.getElementById("courseId");
+    courseSelect.innerHTML =
+      `<option value="">Select a course</option>` +
+      filteredCourses
+        .map(
+          (course) =>
+            `<option value="${course._id}">${course.code} - ${course.title}</option>`
+        )
+        .join("");
+
+    if (filteredCourses.length === 1) {
+      courseSelect.value = filteredCourses[0]._id;
+    } else {
+      courseSelect.value = "";
+    }
+  });
+
+  document.getElementById("courseSearch").addEventListener("focus", (e) => {
+    e.target.dispatchEvent(new Event("input"));
+  });
+}
 function contactAdmin() {
   showToast("Contacting admin at admin@theniitettey.live", "success");
   window.location.href =
@@ -281,14 +343,23 @@ async function handleUpload(event, type) {
   )[0]._id;
 
   const title = document.getElementById("title").value;
+  const courseType = document.getElementById("courseType").value;
+  const lectureNumberInput = document.getElementById("lectureNumber");
+
+  const questionRefType =
+    courseType === "lecture"
+      ? lectureNumberInput.value
+      : courseType.toUpperCase();
 
   const formData = new FormData();
   formData.append("courseId", courseId);
   formData.append("title", title);
+  formData.append("questionRefType", questionRefType);
 
   let body = {
     title: title,
     courseId: courseId,
+    questionRefType: questionRefType,
   };
 
   if (type === "file") {
@@ -331,7 +402,7 @@ async function handleUpload(event, type) {
       );
       renderUploadChoice();
     } else {
-      showToast("Failed" + data.message || "Upload failed", "error");
+      showToast("Failed" + (data.message || "Upload failed"), "error");
     }
 
     enableButton();
@@ -340,7 +411,6 @@ async function handleUpload(event, type) {
     enableButton();
   }
 }
-
 async function handleLogin(event) {
   event.preventDefault();
   const username = document
