@@ -721,7 +721,7 @@
 
                 if (response.ok) {
                     const data = await response.json();
-                    payments = data.payment
+                    payments = data.payment.filter((pay) => pay.status === "success")
                 }
             } catch (error) {
                 showToast("Error fetching courses", "error");
